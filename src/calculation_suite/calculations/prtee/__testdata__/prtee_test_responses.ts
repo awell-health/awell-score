@@ -1,0 +1,77 @@
+export const best_response = {
+  PAIN_Q01: 0,
+  PAIN_Q02: 0,
+  PAIN_Q03: 0,
+  PAIN_Q04: 0,
+  PAIN_Q05: 0,
+  FUNCTION_Q01: 0,
+  FUNCTION_Q02: 0,
+  FUNCTION_Q03: 0,
+  FUNCTION_Q04: 0,
+  FUNCTION_Q05: 0,
+  FUNCTION_Q06: 0,
+  FUNCTION_Q07: 0,
+  FUNCTION_Q08: 0,
+  FUNCTION_Q09: 0,
+  FUNCTION_Q10: 0,
+}
+
+export const median_response = {
+  PAIN_Q01: 5,
+  PAIN_Q02: 5,
+  PAIN_Q03: 5,
+  PAIN_Q04: 5,
+  PAIN_Q05: 5,
+  FUNCTION_Q01: 5,
+  FUNCTION_Q02: 5,
+  FUNCTION_Q03: 5,
+  FUNCTION_Q04: 5,
+  FUNCTION_Q05: 5,
+  FUNCTION_Q06: 5,
+  FUNCTION_Q07: 5,
+  FUNCTION_Q08: 5,
+  FUNCTION_Q09: 5,
+  FUNCTION_Q10: 5,
+}
+
+export const worst_response = {
+  PAIN_Q01: 10,
+  PAIN_Q02: 10,
+  PAIN_Q03: 10,
+  PAIN_Q04: 10,
+  PAIN_Q05: 10,
+  FUNCTION_Q01: 10,
+  FUNCTION_Q02: 10,
+  FUNCTION_Q03: 10,
+  FUNCTION_Q04: 10,
+  FUNCTION_Q05: 10,
+  FUNCTION_Q06: 10,
+  FUNCTION_Q07: 10,
+  FUNCTION_Q08: 10,
+  FUNCTION_Q09: 10,
+  FUNCTION_Q10: 10,
+}
+
+/**
+ * Expected scores:
+ * Pain = 18
+ * Function = 21.5
+ * Total = 39.5
+ */
+export const random_response = {
+  PAIN_Q01: 7,
+  PAIN_Q02: 5,
+  PAIN_Q03: 1,
+  PAIN_Q04: 3,
+  PAIN_Q05: 2,
+  FUNCTION_Q01: 3,
+  FUNCTION_Q02: 3,
+  FUNCTION_Q03: 7,
+  FUNCTION_Q04: 4,
+  FUNCTION_Q05: 0,
+  FUNCTION_Q06: 1,
+  FUNCTION_Q07: 5,
+  FUNCTION_Q08: 10,
+  FUNCTION_Q09: 4,
+  FUNCTION_Q10: 6,
+}

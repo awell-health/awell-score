@@ -1,0 +1,32 @@
+export const best_response = {
+  '1_AGE': 0,
+  '2_SEX': 0,
+  '3_CHF_HISTORY': 0,
+  '4_HYPERTENSION_HISTORY': 0,
+  '5_STROKE_TIA_THROMBOEMBOLISM_HISTORY': 0,
+  '6_VASCULAR_DISEASE_HISTORY': 0,
+  '7_DIABETES_HISTORY': 0,
+}
+
+export const worst_response = {
+  '1_AGE': 2,
+  '2_SEX': 1,
+  '3_CHF_HISTORY': 1,
+  '4_HYPERTENSION_HISTORY': 1,
+  '5_STROKE_TIA_THROMBOEMBOLISM_HISTORY': 2,
+  '6_VASCULAR_DISEASE_HISTORY': 1,
+  '7_DIABETES_HISTORY': 1,
+}
+
+/**
+ * Expected score: 6 points
+ */
+export const random_response = {
+  '1_AGE': 2,
+  '2_SEX': 0,
+  '3_CHF_HISTORY': 1,
+  '4_HYPERTENSION_HISTORY': 0,
+  '5_STROKE_TIA_THROMBOEMBOLISM_HISTORY': 2,
+  '6_VASCULAR_DISEASE_HISTORY': 1,
+  '7_DIABETES_HISTORY': 0,
+}

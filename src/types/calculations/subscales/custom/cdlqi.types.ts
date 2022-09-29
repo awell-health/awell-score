@@ -1,0 +1,7 @@
+import type { DefaultSubscaleType } from '../../../calculations.types'
+
+export type CDLQIScaleType = DefaultSubscaleType & {
+  min_score: number
+  median_score: number
+  max_score: number
+}

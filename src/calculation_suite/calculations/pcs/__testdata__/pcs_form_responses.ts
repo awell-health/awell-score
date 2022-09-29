@@ -1,0 +1,63 @@
+export const min_response = {
+  question_1: 0,
+  question_2: 0,
+  question_3: 0,
+  question_4: 0,
+  question_5: 0,
+  question_6: 0,
+  question_7: 0,
+  question_8: 0,
+  question_9: 0,
+  question_10: 0,
+  question_11: 0,
+  question_12: 0,
+  question_13: 0,
+}
+
+export const median_response = {
+  question_1: 2,
+  question_2: 2,
+  question_3: 2,
+  question_4: 2,
+  question_5: 2,
+  question_6: 2,
+  question_7: 2,
+  question_8: 2,
+  question_9: 2,
+  question_10: 2,
+  question_11: 2,
+  question_12: 2,
+  question_13: 2,
+}
+
+export const max_response = {
+  question_1: 4,
+  question_2: 4,
+  question_3: 4,
+  question_4: 4,
+  question_5: 4,
+  question_6: 4,
+  question_7: 4,
+  question_8: 4,
+  question_9: 4,
+  question_10: 4,
+  question_11: 4,
+  question_12: 4,
+  question_13: 4,
+}
+
+export const random_response = {
+  question_1: 0,
+  question_2: 1,
+  question_3: 2,
+  question_4: 3,
+  question_5: 0,
+  question_6: 0,
+  question_7: 1,
+  question_8: 4,
+  question_9: 2,
+  question_10: 1,
+  question_11: 3,
+  question_12: 0,
+  question_13: 4,
+}

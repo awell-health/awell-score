@@ -1,0 +1,34 @@
+export const worst_response = {
+  SCORE_FOR_ACTIVITY_01: 0,
+  SCORE_FOR_ACTIVITY_02: 0,
+  SCORE_FOR_ACTIVITY_03: 0,
+  SCORE_FOR_ACTIVITY_04: 0,
+  SCORE_FOR_ACTIVITY_05: 0,
+}
+
+export const median_response = {
+  SCORE_FOR_ACTIVITY_01: 5,
+  SCORE_FOR_ACTIVITY_02: 5,
+  SCORE_FOR_ACTIVITY_03: 5,
+  SCORE_FOR_ACTIVITY_04: 5,
+  SCORE_FOR_ACTIVITY_05: 5,
+}
+
+export const best_response = {
+  SCORE_FOR_ACTIVITY_01: 10,
+  SCORE_FOR_ACTIVITY_02: 10,
+  SCORE_FOR_ACTIVITY_03: 10,
+  SCORE_FOR_ACTIVITY_04: 10,
+  SCORE_FOR_ACTIVITY_05: 10,
+}
+
+/**
+ * Expected score = 3
+ */
+export const random_response = {
+  SCORE_FOR_ACTIVITY_01: 1,
+  SCORE_FOR_ACTIVITY_02: 2,
+  SCORE_FOR_ACTIVITY_03: 0,
+  SCORE_FOR_ACTIVITY_04: 7,
+  SCORE_FOR_ACTIVITY_05: 5,
+}
