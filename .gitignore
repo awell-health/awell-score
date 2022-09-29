@@ -1,0 +1,10 @@
+.env
+node_modules
+tmp
+logs
+*.log
+npm-debug.log*
+.npm
+.eslintcache
+dist
+.DS_Store
