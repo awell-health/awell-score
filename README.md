@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-    <img src="https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555" alt="PRs welcome!" />
+    <img src="https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555" alt="Built with Typescript" />
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
 </p>
 
@@ -22,7 +22,7 @@
   <a href="https://developers.awellhealth.com/awell-score/developer-tools/api-playground">API playground</a>
 </h3>
 
-Awell Score is an API developed by the [Awell Health](http://awell.health/) team. It's an API that can be used to calculate validated scores for clinical & patient reported outcome measures or any other clinical algorithms. **The API currently has a library of over 100 validated scores.**
+Awell Score is an API developed by the [Awell Health](http://awell.health/) team used to calculate validated scores for clinical & patient reported outcome measures or perform any other clinical algorithms. **The API currently has a library of over 100 validated scores.**
 
 It was originally developed as an in-house microservice used by our own products. However, in September 2022 we decided to make the project open source and make it available to everyone.
 
@@ -37,7 +37,7 @@ With Awell Score, you can avoid building clinical score calculations yourself wh
 
 - [Background](#-background)
 - [Documentation](#-documentation)
-- [Installation and running the app](#-instalation-and-running-the-app)
+- [Installation and running the app](#-installation-and-running-the-app)
 - [Test suite](#-test-suite)
 - [How to Contribute](#-how-to-contribute)
 
