@@ -49,7 +49,7 @@ However, a webpage is not something that a computer program or system can use, s
 
 ## 📖 Documentation
 
-The full documentation for Awell Score can be found on our [Developer hub][https://developers.awellhealth.com/awell-score/docs/getting-started/what-is-awell-score].
+The full documentation for Awell Score can be found on our [Developer hub](https://developers.awellhealth.com/awell-score/docs/getting-started/what-is-awell-score).
 
 ## 🎉 Installation and running the app
 
