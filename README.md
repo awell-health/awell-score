@@ -45,7 +45,7 @@ With Awell Score, you can avoid building clinical score calculations yourself wh
 
 Clinical score calculations are tools which medical professionals use to help make decisions. Many of them are available in web page form on sites such as [MDCalc](https://www.mdcalc.com/).
 
-However, a webpage is not something that a computer or system program can use, so in order to embed these calculations inside clinical systems an API would be more beneficial. That's why we have created Awell Score.
+However, a webpage is not something that a computer program or system can use, so in order to embed these calculations inside clinical systems an API would be more beneficial.
 
 ## 📖 Documentation
 
