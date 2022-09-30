@@ -83,3 +83,13 @@ We want to make contributing to this project as easy and transparent as possible
 ### Contributing Guide
 
 We are currently working on this section.
+
+### Known issues
+
+The first version of the API - which was only used by Awell internally - was built in December 2020 with plain JavaScript and Flow for static type checking. When we decided to make the API publically available, we did the effort to migrate the app to Typescript as that's the golden standard nowadays.
+
+However, not all code passed Typescript's validation and quite some `//@ts-expect-error` comments had to be added in several places. Removing all of the errors will take some time and will be a gradual and progressive effort. There's a high confidence that there's no impact on the reliability & validity of scores given the extensive test coverage that is present.
+
+### Roadmap
+
+We would love to hear ideas from you on how to improve the API and add functionality. Currently no major features, besides adding new calculations & maintaining the current ones, are planned.
