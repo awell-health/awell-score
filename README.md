@@ -17,7 +17,7 @@
 <h3 align="center" style='margin-bottom: 24px;'>
   <a href="https://developers.awellhealth.com/awell-score">Documentation</a>
   <span> · </span>
-  <a href="score.awellhealth.com">Playground app</a>
+  <a href="https://score.awellhealth.com">Playground app</a>
   <span> · </span>
   <a href="https://developers.awellhealth.com/awell-score/developer-tools/api-playground">API playground</a>
 </h3>
