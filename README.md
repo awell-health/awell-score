@@ -93,3 +93,15 @@ However, not all code passed Typescript's validation and quite some `//@ts-expec
 ### Roadmap
 
 We would love to hear ideas from you on how to improve the API and add functionality. Currently no major features, besides adding new calculations & maintaining the current ones, are planned.
+
+### Contributors ✨
+
+Awell Score was made possible by the following people:
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://www.linkedin.com/in/nckhell/"><img src="https://media-exp1.licdn.com/dms/image/C4D03AQEYDXgdp2oo9Q/profile-displayphoto-shrink_800_800/0/1539797053431?e=1669852800&v=beta&t=fR7HyaFffJOw3obemS-aw611YwQiHNbCAj_7GVlPIPY" width="100px;" alt=""/><br /><sub><b>Nick Hellemans</b></sub></a></td>
+    </tr>
+  </tbody>
+</table>
