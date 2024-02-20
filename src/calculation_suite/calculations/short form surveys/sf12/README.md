@@ -2,31 +2,25 @@
 
 ## Introduction
 
-The SF-12 questionnaire (Short Form 12) is a general health questionnaire that allows statements to be made about the patient's state of health over 8 different dimensions. It is the short form of the Short Form 36 questionnaire (SF-36). Some patients have complained that completing 36 questions is cumbersome. Consequently, the originators of the SF-36 developed the SF-12 [1]. Using regression analysis, Ware et al [1] were able to select 12 questions from the SF-36 that reliably produced scores that mirrored those from the SF-36. 
+The SF-12 questionnaire (Short Form 12) is a general health questionnaire that allows statements to be made about the patient's state of health over 2 different dimensions. It is the short form of the Short Form 36 questionnaire (SF-36). Some patients have complained that completing 36 questions is cumbersome. Consequently, the originators of the SF-36 developed the SF-12 [1]. Using regression analysis, Ware et al. [1] were able to select 12 questions from the SF-36 that reliably produced scores that mirrored those from the SF-36. This calculation uses the second edition of the calculation as described by Ware et al. [2].
+
+This version of the SF-12 is non-proprietary, and the scores calculated are in reference to the United States population profile at the time of the original publication in 1994. Subsequent updates to the SF-12 have been made that align the scores with more recent U.S. demographics. However, these updates are proprietary, unlike the original SF-12. Although differences in scores between different scoring systems for the sf-12 may be minor, clinicians and researchers should note the version of the SF-12 they are using.
 
 ## Questions and Scoring
 
-The SF-12 consists of 12 items split over 8 different dimensions. The items cover:
-
-- General health perceptions - 1 item; Excellent = 5,0; Very Good = 4,4; Good = 3,4; Fair = 2,0; Poor = 1,0
-- Physical functioning - 2 items; No, not limited at all = 3; Yes, limited a little = 2; Yes, limited a lot = 1
-- Role physical - 2 items; None of the time = 5; A little of the time = 4; Some of the time = 3; Most of the time = 2; All of the time = 1
-- Bodily pain - 1 item; Not at all = 5; A little bit = 4; Moderately = 3; Quite a bit = 2; Extremely = 1
-- Vitality - 1 item; None of the time = 1; A little of the time = 2; Some of the time = 3; Most of the time = 4; All of the time = 5
-- Social functioning - 1 item; None of the time = 5; A little of the time = 4; Some of the time = 3; Most of the time = 2; All of the time = 1
-- Role emotional - 2 items; None of the time = 5; A little of the time = 4; Some of the time = 3; Most of the time = 2; All of the time = 1
-- Mental health - 2 items; 
-    - Item 1: None of the time = 1; A little of the time = 2; Some of the time = 3; Most of the time = 4; All of the time = 5; 
-    - Item 2: None of the time = 5; A little of the time = 4; Some of the time = 3; Most of the time = 2; All of the time = 1 
+You can view the official SF-12 form we used for this calculation [here](https://drive.google.com/file/d/1w3KG5S-hjRVOc51k6aMm5dhRoUJWhQ-J/view?usp=sharing).
 
 
 ## Calculations
 
-First the raw score is calculated for each dimension by adding each item score within the dimension. Next the raw score is transformed to a 0-100 scale, as follows:
+1. Questions 1, 8, 9 & 10 are adjusted because they are reverse-scored, meaning that higher values indicate lower health status.
+2. Each response option in the questionnaire items is converted into binary indicator variables.
+3. The score then applies regression weights to these indicator variables. These weights are derived from statistical analyses that determine the contribution of each item to the overall physical and mental health scores. Click [here](https://drive.google.com/file/d/1w3KG5S-hjRVOc51k6aMm5dhRoUJWhQ-J/view?usp=sharing) to view these weights.
+4. After weighting and aggregation, the raw scores for physical and mental health components are obtained. These raw scores are then standardized using population-based norms, resulting in final Physical Component Summary (PCS12) and Mental Component Summary (MCS12) scores.
 
-Transformed scale = {(Actual raw score - lowest possible raw score)/Possible raw score range}*100
+## Missing data
 
-This transforms the lowest possible score to 0 and the highest to 100. Scores in between are % of the possible achieved score.
+All questions on the SF-12 must be completed before the component scores can be calculated.
 
 ## Interpretation
 
@@ -34,3 +28,5 @@ Generally, highest scores indicate better outcome and lowest worse.
 
 ## References
 [1] Ware J Jr, Kosinski M, Keller SD. A 12-Item Short-Form Health Survey: construction of scales and preliminary tests of reliability and validity. Med Care. 1996;34(3):220-233. doi:10.1097/00005650-199603000-00003
+[2] [How To Score the SF-12 Physical & Mental Health Summary Scales (Second Edition)](https://www.researchgate.net/profile/John-Ware-6/publication/291994160_How_to_score_SF-12_items/links/58dfc42f92851c369548e04e/How-to-score-SF-12-items.pdf)
+[3] [Other](https://github.com/lbraglia/lbscorer/blob/master/R/sf12.R)

@@ -1,0 +1,73 @@
+// @flow
+
+export const OAS_SUBSCALE_ITEMS = {
+  DAILY_ACTIVITIES: [
+    'OAS_Q01',
+    'OAS_Q02',
+    'OAS_Q03',
+    'OAS_Q04',
+    'OAS_Q05',
+    'OAS_Q06',
+    'OAS_Q07',
+    'OAS_Q32'
+  ],
+  KNOWLEDGE_AND_SKILLS: ['OAS_Q21', 'OAS_Q22'],
+  SELF_ESTEEM: [
+    'OAS_Q09',
+    'OAS_Q10',
+    'OAS_Q12',
+    'OAS_Q13',
+    'OAS_Q14',
+    'OAS_Q15',
+    'OAS_Q26',
+    'OAS_Q28',
+    'OAS_Q31'
+  ],
+  PSYCHOLOGICAL_EXISTENTIAL: [
+    'OAS_Q11',
+    'OAS_Q16',
+    'OAS_Q17',
+    'OAS_Q25',
+    'OAS_Q29',
+    'OAS_Q33'
+  ],
+  HEALTH: ['OAS_Q23', 'OAS_Q24', 'OAS_Q34'],
+  HEALTH_PROFESSIONALS: ['OAS_Q18', 'OAS_Q19', 'OAS_Q20'],
+  SEXUALITY: ['OAS_Q08', 'OAS_Q27', 'OAS_Q30'],
+  TOTAL: [
+    'OAS_Q01',
+    'OAS_Q02',
+    'OAS_Q03',
+    'OAS_Q04',
+    'OAS_Q05',
+    'OAS_Q06',
+    'OAS_Q07',
+    'OAS_Q08',
+    'OAS_Q09',
+    'OAS_Q10',
+    'OAS_Q11',
+    'OAS_Q12',
+    'OAS_Q13',
+    'OAS_Q14',
+    'OAS_Q15',
+    'OAS_Q16',
+    'OAS_Q17',
+    'OAS_Q18',
+    'OAS_Q19',
+    'OAS_Q20',
+    'OAS_Q21',
+    'OAS_Q22',
+    'OAS_Q23',
+    'OAS_Q24',
+    'OAS_Q25',
+    'OAS_Q26',
+    'OAS_Q27',
+    'OAS_Q28',
+    'OAS_Q29',
+    'OAS_Q30',
+    'OAS_Q31',
+    'OAS_Q32',
+    'OAS_Q33',
+    'OAS_Q34'
+  ]
+}
