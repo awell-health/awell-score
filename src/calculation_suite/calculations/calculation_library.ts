@@ -63,6 +63,7 @@ import { isi } from './isi/isi'
 import { k_bild } from './k_bild/k_bild'
 import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
 import { koos_ps } from './koos_ps/koos_ps'
+import { math_divide, math_multiply, math_subtract, math_sum } from './math'
 import { mds_updrs } from './mds_updrs/mds_updrs'
 import { mini_best_test } from './mini_best_test/mini_best_test'
 import { mmse } from './mmse/mmse'
@@ -170,6 +171,10 @@ export const CALCULATIONS: CalculationsLibraryType = {
   k_bild,
   KCCQ_12,
   koos_ps,
+  math_divide,
+  math_multiply,
+  math_sum,
+  math_subtract,
   mds_updrs,
   mini_best_test,
   mmse,
