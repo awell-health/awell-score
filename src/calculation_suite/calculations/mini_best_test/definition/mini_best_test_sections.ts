@@ -8,7 +8,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     id: 'ANTICIPATORY_POSTURAL_ADJUSTEMENTS',
     input_ids_in_subscale: [
       {
-        input_id: 'MINI_BEST_TEST_Q1',
+        input_id: 'MINI_BEST_TEST_Q01',
         input_label: { nl: 'Van zit naar stand', en: 'Sit to stand' },
         input_type: {
           type: 'number',
@@ -38,7 +38,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q2',
+        input_id: 'MINI_BEST_TEST_Q02',
         input_label: { nl: 'Op de tenen staan', en: 'Rise to toes' },
         input_type: {
           type: 'number',
@@ -63,7 +63,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         info: { nl: 'Op de tenen staan', en: '' },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q3_LEFT',
+        input_id: 'MINI_BEST_TEST_Q03_LEFT',
         bilateral: true,
         input_label: {
           nl: 'Op één been staan (links)',
@@ -86,7 +86,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         info: { nl: 'Op één been staan (links)', en: '' },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q3_RIGHT',
+        input_id: 'MINI_BEST_TEST_Q03_RIGHT',
         bilateral: true,
         input_label: {
           nl: 'Op één been staan (rechts)',
@@ -113,7 +113,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     id: 'REACTIVE_POSTURAL_CONTROL',
     input_ids_in_subscale: [
       {
-        input_id: 'MINI_BEST_TEST_Q4',
+        input_id: 'MINI_BEST_TEST_Q04',
         input_label: {
           nl: 'Corrigerende stappen ter compensatie - vooruit',
           en: 'Compensatory stepping correction - forward',
@@ -146,7 +146,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q5',
+        input_id: 'MINI_BEST_TEST_Q05',
         input_label: {
           nl: 'Corrigerende stappen ter compensatie – achteruit (=Push & Release test)',
           en: 'Compensatory stepping correction - backward',
@@ -179,7 +179,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q6_LEFT',
+        input_id: 'MINI_BEST_TEST_Q06_LEFT',
         bilateral: true,
         input_label: {
           nl: 'Corrigerende stappen ter compensatie naar links',
@@ -213,7 +213,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q6_RIGHT',
+        input_id: 'MINI_BEST_TEST_Q06_RIGHT',
         bilateral: true,
         input_label: {
           nl: 'Corrigerende stappen ter compensatie naar rechts',
@@ -252,7 +252,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     id: 'SENSORY_ORIENTATION',
     input_ids_in_subscale: [
       {
-        input_id: 'MINI_BEST_TEST_Q7',
+        input_id: 'MINI_BEST_TEST_Q07',
         input_label: {
           nl: 'Staan (voeten naast elkaar); ogen open, op stevige ondergrond',
           en: 'Stance (feet together); eyes open, firm surface',
@@ -273,7 +273,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q8',
+        input_id: 'MINI_BEST_TEST_Q08',
         input_label: {
           nl: 'Staan (voeten naast elkaar); ogen dicht, op schuimrubber',
           en: 'Stance (feet together); eyes closed, foam surface',
@@ -294,7 +294,7 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
         },
       },
       {
-        input_id: 'MINI_BEST_TEST_Q9',
+        input_id: 'MINI_BEST_TEST_Q09',
         input_label: {
           nl: 'Helling - ogen dicht',
           en: 'Incline - Eyes closed',

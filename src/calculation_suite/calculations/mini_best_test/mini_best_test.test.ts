@@ -33,17 +33,17 @@ describe('mini_best_test', function () {
   describe('the score includes the correct input fields', function () {
     it('should have all the expected input ids configured', function () {
       const EXPECTED_INPUT_IDS = [
-        'MINI_BEST_TEST_Q1',
-        'MINI_BEST_TEST_Q2',
-        'MINI_BEST_TEST_Q3_LEFT',
-        'MINI_BEST_TEST_Q3_RIGHT',
-        'MINI_BEST_TEST_Q4',
-        'MINI_BEST_TEST_Q5',
-        'MINI_BEST_TEST_Q6_LEFT',
-        'MINI_BEST_TEST_Q6_RIGHT',
-        'MINI_BEST_TEST_Q7',
-        'MINI_BEST_TEST_Q8',
-        'MINI_BEST_TEST_Q9',
+        'MINI_BEST_TEST_Q01',
+        'MINI_BEST_TEST_Q02',
+        'MINI_BEST_TEST_Q03_LEFT',
+        'MINI_BEST_TEST_Q03_RIGHT',
+        'MINI_BEST_TEST_Q04',
+        'MINI_BEST_TEST_Q05',
+        'MINI_BEST_TEST_Q06_LEFT',
+        'MINI_BEST_TEST_Q06_RIGHT',
+        'MINI_BEST_TEST_Q07',
+        'MINI_BEST_TEST_Q08',
+        'MINI_BEST_TEST_Q09',
         'MINI_BEST_TEST_Q10',
         'MINI_BEST_TEST_Q11',
         'MINI_BEST_TEST_Q12',
@@ -62,10 +62,10 @@ describe('mini_best_test', function () {
 
     it('should have the expected input idss configured for the "Anticipatory postural adjustments" subscale', function () {
       const EXPECTED_INPUT_IDS = [
-        'MINI_BEST_TEST_Q1',
-        'MINI_BEST_TEST_Q2',
-        'MINI_BEST_TEST_Q3_LEFT',
-        'MINI_BEST_TEST_Q3_RIGHT',
+        'MINI_BEST_TEST_Q01',
+        'MINI_BEST_TEST_Q02',
+        'MINI_BEST_TEST_Q03_LEFT',
+        'MINI_BEST_TEST_Q03_RIGHT',
       ]
 
       expect(EXPECTED_INPUT_IDS).to.eql(
@@ -77,10 +77,10 @@ describe('mini_best_test', function () {
 
     it('should have the expected input idss configured for the "Reactive postural control" subscale', function () {
       const EXPECTED_INPUT_IDS = [
-        'MINI_BEST_TEST_Q4',
-        'MINI_BEST_TEST_Q5',
-        'MINI_BEST_TEST_Q6_LEFT',
-        'MINI_BEST_TEST_Q6_RIGHT',
+        'MINI_BEST_TEST_Q04',
+        'MINI_BEST_TEST_Q05',
+        'MINI_BEST_TEST_Q06_LEFT',
+        'MINI_BEST_TEST_Q06_RIGHT',
       ]
 
       expect(EXPECTED_INPUT_IDS).to.eql(
@@ -92,9 +92,9 @@ describe('mini_best_test', function () {
 
     it('should have the expected input idss configured for the "Sensory orientation" subscale', function () {
       const EXPECTED_INPUT_IDS = [
-        'MINI_BEST_TEST_Q7',
-        'MINI_BEST_TEST_Q8',
-        'MINI_BEST_TEST_Q9',
+        'MINI_BEST_TEST_Q07',
+        'MINI_BEST_TEST_Q08',
+        'MINI_BEST_TEST_Q09',
       ]
 
       expect(EXPECTED_INPUT_IDS).to.eql(
@@ -337,7 +337,7 @@ describe('mini_best_test', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
           mini_best_test_calculation({
-            MINI_BEST_TEST_Q1: "I'm not a number",
+            MINI_BEST_TEST_Q01: "I'm not a number",
           })
         ).to.throw(InvalidInputsError)
       })
@@ -346,7 +346,7 @@ describe('mini_best_test', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
           mini_best_test_calculation({
-            MINI_BEST_TEST_Q1: -1,
+            MINI_BEST_TEST_Q01: -1,
           })
         ).to.throw(InvalidInputsError)
       })
@@ -355,7 +355,7 @@ describe('mini_best_test', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
           mini_best_test_calculation({
-            MINI_BEST_TEST_Q1: 5,
+            MINI_BEST_TEST_Q01: 5,
           })
         ).to.throw(InvalidInputsError)
       })

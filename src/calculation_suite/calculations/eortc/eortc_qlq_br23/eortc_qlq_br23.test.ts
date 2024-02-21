@@ -64,7 +64,7 @@ describe('eortc_qlq_br23', function () {
         it('should throw an InvalidInputsError', function () {
           expect(() =>
             eortc_qlq_br23_calculation({
-              EORTC_QLQ_BR23_Q1: "I'm not a number",
+              EORTC_QLQ_BR23_Q01: "I'm not a number",
             })
           ).to.throw(InvalidInputsError)
         })
@@ -74,7 +74,7 @@ describe('eortc_qlq_br23', function () {
         it('should throw an InvalidInputsError', function () {
           expect(() =>
             eortc_qlq_br23_calculation({
-              EORTC_QLQ_BR23_Q1: -1,
+              EORTC_QLQ_BR23_Q01: -1,
             })
           ).to.throw(InvalidInputsError)
         })
@@ -84,7 +84,7 @@ describe('eortc_qlq_br23', function () {
         it('should throw an InvalidInputsError', function () {
           expect(() =>
             eortc_qlq_br23_calculation({
-              EORTC_QLQ_BR23_Q1: 999,
+              EORTC_QLQ_BR23_Q01: 999,
             })
           ).to.throw(InvalidInputsError)
         })
@@ -94,15 +94,15 @@ describe('eortc_qlq_br23', function () {
     describe('the score includes the correct input fields', function () {
       it('should have all the expected input ids configured', function () {
         const EXPECTED_INPUT_IDS = [
-          'EORTC_QLQ_BR23_Q1',
-          'EORTC_QLQ_BR23_Q2',
-          'EORTC_QLQ_BR23_Q3',
-          'EORTC_QLQ_BR23_Q4',
-          'EORTC_QLQ_BR23_Q5',
-          'EORTC_QLQ_BR23_Q6',
-          'EORTC_QLQ_BR23_Q7',
-          'EORTC_QLQ_BR23_Q8',
-          'EORTC_QLQ_BR23_Q9',
+          'EORTC_QLQ_BR23_Q01',
+          'EORTC_QLQ_BR23_Q02',
+          'EORTC_QLQ_BR23_Q03',
+          'EORTC_QLQ_BR23_Q04',
+          'EORTC_QLQ_BR23_Q05',
+          'EORTC_QLQ_BR23_Q06',
+          'EORTC_QLQ_BR23_Q07',
+          'EORTC_QLQ_BR23_Q08',
+          'EORTC_QLQ_BR23_Q09',
           'EORTC_QLQ_BR23_Q10',
           'EORTC_QLQ_BR23_Q11',
           'EORTC_QLQ_BR23_Q12',
