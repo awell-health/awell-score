@@ -46,6 +46,9 @@ import {
   forgotten_joint_score_hip,
   forgotten_joint_score_knee,
 } from './forgotten_joint_score_12'
+import { pss_4 } from './pss_4/pss_4'
+import { stop_bang } from './stop_bang/stop_bang'
+import { gad_2 } from './GAD_2/gad_2'
 import { gad_7 } from './GAD_7/gad_7'
 import { ghq_12 } from './ghq_12/ghq_12'
 import { hads } from './hads/HADS_score'
@@ -156,6 +159,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   foot_function_index_5pt,
   forgotten_joint_score_hip,
   forgotten_joint_score_knee,
+  gad_2,
   gad_7,
   ghq_12,
   hads,
@@ -210,6 +214,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   promis_10,
   prtee,
   psk,
+  pss_4,
   qol_stoma,
   quickdash,
   sccai,
@@ -222,6 +227,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   spadi,
   simple_shoulder_test,
   start_back_screening_tool,
+  stop_bang,
   tampa,
   ten_meter_walk_test,
   visa_a,

@@ -25,7 +25,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -55,7 +55,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -85,7 +85,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -115,7 +115,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -145,7 +145,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -175,7 +175,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -205,7 +205,7 @@ export const GAD7_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
