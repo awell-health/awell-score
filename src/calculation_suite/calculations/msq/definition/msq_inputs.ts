@@ -67,7 +67,7 @@ export const MSQ_INPUTS: Array<InputType> = [
   {
     input_id: 'EYES_Q01_WATERY_OR_ITCHY_EYES',
     input_label: {
-      en: 'Eyes - Watery or ichy eyes',
+      en: 'Eyes - Watery or itchy eyes',
     },
     input_type: INPUT_TYPE,
   },

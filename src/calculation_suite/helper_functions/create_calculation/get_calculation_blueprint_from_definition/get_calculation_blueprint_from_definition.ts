@@ -59,7 +59,20 @@ export const get_calculation_blueprint_from_definition = ({
         R.map(R.view(inputsInSubscaleLens))
       )(calculation_definition),
       ...additional_inputs.map(get_parameters),
-    ]
+    ].sort((a, b) => {
+      const idA = a.id.toUpperCase() // ignore upper and lowercase
+      const idB = b.id.toUpperCase() // ignore upper and lowercase
+      if (idA < idB) {
+        return -1
+      }
+
+      if (idA > idB) {
+        return 1
+      }
+
+      // names must be equal
+      return 0
+    })
   } else {
     all_calculation_parameters = [
       //@ts-expect-error add types

@@ -1,9 +1,11 @@
+import { InputType } from '../../../../../types/calculations.types'
 import type { EORTCScaleType } from '../../../../../types/calculations/subscales/custom/eortc.types'
 import { NOT_APPLICABLE_MESSAGE } from '../../../../PARAMETERS'
 import { DEFAULT_ALLOWED_ANSWER_VALUES } from '../../common/eortc_parameters'
 
-//@ts-expect-error to do
-const add_allowed_answers = input => ({
+const add_allowed_answers = (
+  input: Pick<InputType, 'input_label' | 'input_id'>
+): InputType => ({
   ...input,
   input_type: {
     type: 'number',
@@ -27,7 +29,7 @@ export const EORTC_QLQ_BR23_SCALES: Array<EORTCScaleType> = [
           nl: 'Voelde u zich gedurende de afgelopen week lichamelijk minder aantrekkelijk ten gevolge van uw ziekte of behandeling?',
           en: 'Have you felt physically less attractive as a result of your disease or treatment during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q9',
+        input_id: 'EORTC_QLQ_BR23_Q09',
       },
       {
         input_label: {
@@ -125,30 +127,30 @@ export const EORTC_QLQ_BR23_SCALES: Array<EORTCScaleType> = [
           nl: 'Had u gedurende de afgelopen week een droge mond?',
           en: 'Did you have a dry mouth during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q1',
+        input_id: 'EORTC_QLQ_BR23_Q01',
       },
       {
         input_label: {
           nl: 'Was gedurende de afgelopen week de smaak van voedsel en drank anders dan u gewend was?',
           en: 'Did food and drink taste different than usual during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q2',
+        input_id: 'EORTC_QLQ_BR23_Q02',
       },
       {
         input_label: {
           nl: 'Had u gedurende de afgelopen week pijnlijke, geïrriteerde of tranende ogen?',
           en: 'Were your eyes painful, irritated or watery during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q3',
+        input_id: 'EORTC_QLQ_BR23_Q03',
       },
       {
         input_label: {
           nl: 'Heeft u gedurende de afgelopen week haaruitval gehad?',
           en: 'Have you lost any hair during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q4',
+        input_id: 'EORTC_QLQ_BR23_Q04',
         info: {
-          en: 'If "EORTC_QLQ_BR23_Q4" = 1 then subscale "Upset by hair loss" will not be applicable.',
+          en: 'If "EORTC_QLQ_BR23_Q04" = 1 then subscale "Upset by hair loss" will not be applicable.',
         },
       },
       {
@@ -156,21 +158,21 @@ export const EORTC_QLQ_BR23_SCALES: Array<EORTCScaleType> = [
           nl: 'Voelde u zich gedurende de afgelopen week ziek of onwel? ',
           en: 'Did you feel ill or unwell during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q6',
+        input_id: 'EORTC_QLQ_BR23_Q06',
       },
       {
         input_label: {
           nl: 'Heeft u gedurende de afgelopen week opvliegers gehad?',
           en: 'Did you have hot flushes during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q7',
+        input_id: 'EORTC_QLQ_BR23_Q07',
       },
       {
         input_label: {
           nl: 'Heeft u gedurende de afgelopen week hoofdpijn gehad?',
           en: 'Did you have headaches during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q8',
+        input_id: 'EORTC_QLQ_BR23_Q08',
       },
     ].map(add_allowed_answers),
   },
@@ -247,7 +249,7 @@ export const EORTC_QLQ_BR23_SCALES: Array<EORTCScaleType> = [
           nl: 'Was u gedurende de afgelopen week door het verlies van uw haar van streek?',
           en: 'Were you upset by the loss of your hair during the past week?',
         },
-        input_id: 'EORTC_QLQ_BR23_Q5',
+        input_id: 'EORTC_QLQ_BR23_Q05',
         info: {
           nl: 'Deze vraag alleen invullen indien u haaruitval heeft gehad.',
           en: 'Answer this question only if you had any hair loss.',
@@ -256,7 +258,7 @@ export const EORTC_QLQ_BR23_SCALES: Array<EORTCScaleType> = [
     ].map(add_allowed_answers),
     not_applicable_if: {
       input: {
-        input_id: 'EORTC_QLQ_BR23_Q4',
+        input_id: 'EORTC_QLQ_BR23_Q04',
         value_is_one_of: [1],
       },
       not_applicable_score: NOT_APPLICABLE_MESSAGE,
