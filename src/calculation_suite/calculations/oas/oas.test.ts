@@ -11,7 +11,6 @@ import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
 import {
   best_response,
   random_response,
-  // random_response,
   worst_response,
 } from './__testdata__/oas_test_responses'
 import { OAS_INPUTS, OAS_SUBSCALE_ITEMS } from './definition'
@@ -386,133 +385,25 @@ describe('oas', function () {
   })
 
   describe('score calculation', function () {
-    describe('when called with the worst response', function () {
-      const outcome = oas_calculation(worst_response)
-
-      it('should return the worst score for daily activities sum score', function () {
-        const score = view_result('OAS_DAILY_ACTIVITIES_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(8)
-      })
-
-      it('should return the worst score for daily activities mean score', function () {
-        const score = view_result('OAS_DAILY_ACTIVITIES_MEAN_SCORE')(outcome)
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for knowledge and skills sum score', function () {
-        const score = view_result('OAS_KNOWLEDGE_AND_SKILLS_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(2)
-      })
-
-      it('should return the worst score for knowledge and skills mean score', function () {
-        const score = view_result('OAS_KNOWLEDGE_AND_SKILLS_MEAN_SCORE')(
-          outcome
-        )
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for self-esteem sum score', function () {
-        const score = view_result('OAS_SELF_ESTEEM_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(9)
-      })
-
-      it('should return the worst score for self-esteem mean score', function () {
-        const score = view_result('OAS_SELF_ESTEEM_MEAN_SCORE')(outcome)
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for psychological/existential sum score', function () {
-        const score = view_result('OAS_PSYCHOLOGICAL_EXISTENTIAL_SUM_SCORE')(
-          outcome
-        )
-
-        expect(score).to.eql(6)
-      })
-
-      it('should return the worst score for psychological/existential mean score', function () {
-        const score = view_result('OAS_PSYCHOLOGICAL_EXISTENTIAL_MEAN_SCORE')(
-          outcome
-        )
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for health sum score', function () {
-        const score = view_result('OAS_HEALTH_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(3)
-      })
-
-      it('should return the worst score for health mean score', function () {
-        const score = view_result('OAS_HEALTH_MEAN_SCORE')(outcome)
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for health professionals sum score', function () {
-        const score = view_result('OAS_HEALTH_PROFESSIONALS_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(3)
-      })
-
-      it('should return the worst score for health professionals mean score', function () {
-        const score = view_result('OAS_HEALTH_PROFESSIONALS_MEAN_SCORE')(
-          outcome
-        )
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for sexuality sum score', function () {
-        const score = view_result('OAS_SEXUALITY_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(3)
-      })
-
-      it('should return the worst score for sexuality mean score', function () {
-        const score = view_result('OAS_SEXUALITY_MEAN_SCORE')(outcome)
-
-        expect(score).to.eql(1)
-      })
-
-      it('should return the worst score for total sum score', function () {
-        const score = view_result('OAS_TOTAL_SUM_SCORE')(outcome)
-
-        expect(score).to.eql(34)
-      })
-
-      it('should return the worst score for total mean score', function () {
-        const score = view_result('OAS_MEAN_SCORE')(outcome)
-
-        expect(score).to.eql(1)
-      })
-    })
-
     describe('when called with the best response', function () {
       const outcome = oas_calculation(best_response)
 
       it('should return the best score for daily activities sum score', function () {
         const score = view_result('OAS_DAILY_ACTIVITIES_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(48)
+        expect(score).to.eql(8)
       })
 
       it('should return the best score for daily activities mean score', function () {
         const score = view_result('OAS_DAILY_ACTIVITIES_MEAN_SCORE')(outcome)
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for knowledge and skills sum score', function () {
         const score = view_result('OAS_KNOWLEDGE_AND_SKILLS_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(12)
+        expect(score).to.eql(2)
       })
 
       it('should return the best score for knowledge and skills mean score', function () {
@@ -520,19 +411,19 @@ describe('oas', function () {
           outcome
         )
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for self-esteem sum score', function () {
         const score = view_result('OAS_SELF_ESTEEM_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(54)
+        expect(score).to.eql(9)
       })
 
       it('should return the best score for self-esteem mean score', function () {
         const score = view_result('OAS_SELF_ESTEEM_MEAN_SCORE')(outcome)
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for psychological/existential sum score', function () {
@@ -540,7 +431,7 @@ describe('oas', function () {
           outcome
         )
 
-        expect(score).to.eql(36)
+        expect(score).to.eql(6)
       })
 
       it('should return the best score for psychological/existential mean score', function () {
@@ -548,25 +439,25 @@ describe('oas', function () {
           outcome
         )
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for health sum score', function () {
         const score = view_result('OAS_HEALTH_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(18)
+        expect(score).to.eql(3)
       })
 
       it('should return the best score for health mean score', function () {
         const score = view_result('OAS_HEALTH_MEAN_SCORE')(outcome)
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for health professionals sum score', function () {
         const score = view_result('OAS_HEALTH_PROFESSIONALS_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(18)
+        expect(score).to.eql(3)
       })
 
       it('should return the best score for health professionals mean score', function () {
@@ -574,28 +465,136 @@ describe('oas', function () {
           outcome
         )
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for sexuality sum score', function () {
         const score = view_result('OAS_SEXUALITY_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(18)
+        expect(score).to.eql(3)
       })
 
       it('should return the best score for sexuality mean score', function () {
         const score = view_result('OAS_SEXUALITY_MEAN_SCORE')(outcome)
 
-        expect(score).to.eql(6)
+        expect(score).to.eql(1)
       })
 
       it('should return the best score for total sum score', function () {
         const score = view_result('OAS_TOTAL_SUM_SCORE')(outcome)
 
-        expect(score).to.eql(204)
+        expect(score).to.eql(34)
       })
 
       it('should return the best score for total mean score', function () {
+        const score = view_result('OAS_MEAN_SCORE')(outcome)
+
+        expect(score).to.eql(1)
+      })
+    })
+
+    describe('when called with the worst response', function () {
+      const outcome = oas_calculation(worst_response)
+
+      it('should return the worst score for daily activities sum score', function () {
+        const score = view_result('OAS_DAILY_ACTIVITIES_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(48)
+      })
+
+      it('should return the worst score for daily activities mean score', function () {
+        const score = view_result('OAS_DAILY_ACTIVITIES_MEAN_SCORE')(outcome)
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for knowledge and skills sum score', function () {
+        const score = view_result('OAS_KNOWLEDGE_AND_SKILLS_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(12)
+      })
+
+      it('should return the worst score for knowledge and skills mean score', function () {
+        const score = view_result('OAS_KNOWLEDGE_AND_SKILLS_MEAN_SCORE')(
+          outcome
+        )
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for self-esteem sum score', function () {
+        const score = view_result('OAS_SELF_ESTEEM_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(54)
+      })
+
+      it('should return the worst score for self-esteem mean score', function () {
+        const score = view_result('OAS_SELF_ESTEEM_MEAN_SCORE')(outcome)
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for psychological/existential sum score', function () {
+        const score = view_result('OAS_PSYCHOLOGICAL_EXISTENTIAL_SUM_SCORE')(
+          outcome
+        )
+
+        expect(score).to.eql(36)
+      })
+
+      it('should return the worst score for psychological/existential mean score', function () {
+        const score = view_result('OAS_PSYCHOLOGICAL_EXISTENTIAL_MEAN_SCORE')(
+          outcome
+        )
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for health sum score', function () {
+        const score = view_result('OAS_HEALTH_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(18)
+      })
+
+      it('should return the worst score for health mean score', function () {
+        const score = view_result('OAS_HEALTH_MEAN_SCORE')(outcome)
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for health professionals sum score', function () {
+        const score = view_result('OAS_HEALTH_PROFESSIONALS_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(18)
+      })
+
+      it('should return the worst score for health professionals mean score', function () {
+        const score = view_result('OAS_HEALTH_PROFESSIONALS_MEAN_SCORE')(
+          outcome
+        )
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for sexuality sum score', function () {
+        const score = view_result('OAS_SEXUALITY_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(18)
+      })
+
+      it('should return the worst score for sexuality mean score', function () {
+        const score = view_result('OAS_SEXUALITY_MEAN_SCORE')(outcome)
+
+        expect(score).to.eql(6)
+      })
+
+      it('should return the worst score for total sum score', function () {
+        const score = view_result('OAS_TOTAL_SUM_SCORE')(outcome)
+
+        expect(score).to.eql(204)
+      })
+
+      it('should return the worst score for total mean score', function () {
         const score = view_result('OAS_MEAN_SCORE')(outcome)
 
         expect(score).to.eql(6)

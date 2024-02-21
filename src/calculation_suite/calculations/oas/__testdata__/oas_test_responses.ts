@@ -1,4 +1,4 @@
-export const worst_response = {
+export const best_response = {
   OAS_Q01: 1,
   OAS_Q02: 1,
   OAS_Q03: 6, // inverse
@@ -35,7 +35,7 @@ export const worst_response = {
   OAS_Q34: 1,
 }
 
-export const best_response = {
+export const worst_response = {
   OAS_Q01: 6,
   OAS_Q02: 6,
   OAS_Q03: 1, // inverse
