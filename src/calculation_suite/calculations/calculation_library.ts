@@ -53,6 +53,7 @@ import { harris_hip_score } from './harris_hip_score/harris_hip_score'
 import { hoos_extended } from './hoos_extended/hoos_extended'
 import { hoos_ps } from './hoos_ps/hoos_ps'
 import { hos } from './hos/hos'
+import { hrqol_4 } from './hrqol'
 import { ias } from './ias/ias'
 import { IBD_control } from './IBD_control/IBD_control'
 import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
@@ -159,6 +160,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   hoos_extended,
   hoos_ps,
   hos,
+  hrqol_4,
   ias,
   IBD_control,
   ibd_disk_total_score,
