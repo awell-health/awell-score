@@ -57,6 +57,7 @@ import { hrqol_4 } from './hrqol'
 import { ias } from './ias/ias'
 import { IBD_control } from './IBD_control/IBD_control'
 import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
+import { iief5 } from './iief5/iief5'
 import { ikdc } from './ikdc/ikdc'
 import { ipss } from './ipss/ipss'
 import { isi } from './isi/isi'
@@ -166,6 +167,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   ias,
   IBD_control,
   ibd_disk_total_score,
+  iief5,
   ikdc,
   isi,
   ipss,
