@@ -7,6 +7,7 @@ The OAS is a 34-item questionnaire measuring the patient’s subjective adaptati
 ### Subscales
 
 Clinical judgement and psychometric tests suggest that the OAS can be divided into seven subscales. In clinic practice, both the single items version and the version with subscales may promote patient-centred follow-up.
+
 1. Daily activities (1, 2, 3, 4, 5, 6, 7, 32)
 2. Knowledge and skills (21, 22)
 3. Self-esteem (9, 10, 12, 13, 14, 15, 26, 28, 31)
@@ -17,7 +18,8 @@ Clinical judgement and psychometric tests suggest that the OAS can be divided in
 
 ### Scoring
 
-All items are scored on a Likert scale from 1 (strongly agree) to 6 (strongly disagree); some statements are expressed negatively, and their raw scores are therefore converted by subtracting from 7 before the analysis.
+All items are scored on a Likert scale from 1 (strongly agree) to 6 (strongly disagree); some statements are expressed negatively, and their raw scores are converted by subtracting from 7 before the analysis so that in all cases a higher score indicates better adjustment to the ostomy.
+
 - Item 3
 - Item 6
 - Item 9
@@ -50,6 +52,10 @@ The total score is determined by summing all 34 item scores. The total score for
 ### (Subscale) Mean score
 
 The mean score is determined by dividing the total score divided by the number of items that were answered. The mean score for a subscale is determined by dividing the total score of the subscale divided by the number of items that were answered in that subscale.
+
+## Interpretation
+
+A higher score indicates better adjustment to the ostomy.
 
 ## References
 
