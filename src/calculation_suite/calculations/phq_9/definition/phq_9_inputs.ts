@@ -26,7 +26,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -57,7 +57,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -88,7 +88,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -119,7 +119,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -150,7 +150,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -181,7 +181,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -212,7 +212,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -243,7 +243,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],
@@ -274,7 +274,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
           value: 2,
         },
         {
-          label: { en: 'Nearly every day', nl: 'Bijna elkde dag' },
+          label: { en: 'Nearly every day', nl: 'Bijna elke dag' },
           value: 3,
         },
       ],

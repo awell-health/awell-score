@@ -578,56 +578,56 @@ export const BECK_INPUTS: Array<InputType> = [
       en: 'Changes in Sleeping Pattern',
     },
     input_type: {
-      type: 'string',
+      type: 'number',
       allowed_answers: [
         {
           label: {
             nl: 'Mijn slaappatroon is niet veranderd.',
             en: 'I have not experienced any change in my sleeping.',
           },
-          value: '0',
+          value: 0,
         },
         {
           label: {
             nl: 'Ik slaap wat meer dan gewoonlijk.',
             en: 'I sleep somewhat more than usual.',
           },
-          value: '1a',
+          value: 1,
         },
         {
           label: {
             nl: 'Ik slaap wat minder dan gewoonlijk.',
             en: 'I sleep somewhat less than usual.',
           },
-          value: '1b',
+          value: 2,
         },
         {
           label: {
             nl: 'Ik slaap veel meer dan gewoonlijk.',
             en: 'I sleep a lot more than usual.',
           },
-          value: '2a',
+          value: 3,
         },
         {
           label: {
             nl: 'Ik slaap veel minder dan gewoonlijk.',
             en: 'I sleep a lot less than usual.',
           },
-          value: '2b',
+          value: 4,
         },
         {
           label: {
             nl: 'Ik slaap het grootste deel van de dag.',
             en: 'I sleep most of the day.',
           },
-          value: '3a',
+          value: 5,
         },
         {
           label: {
             nl: 'Ik word 1-2uren te vroeg wakker en kan niet meer inslapen.',
             en: "I wake up 1-2 hours early and can't get back to sleep.",
           },
-          value: '3b',
+          value: 6,
         },
       ],
     },
@@ -675,56 +675,56 @@ export const BECK_INPUTS: Array<InputType> = [
     input_id: 'Q18',
     input_label: { nl: 'Verandering van eetlust', en: 'Changes in Appetite' },
     input_type: {
-      type: 'string',
+      type: 'number',
       allowed_answers: [
         {
           label: {
             nl: 'Mijn eetlust is niet veranderd.',
             en: 'I have not experienced any change in my appetite.',
           },
-          value: '0',
+          value: 0,
         },
         {
           label: {
             nl: 'Mijn eetlust is wat kleiner dan gewoonlijk.',
             en: 'My appetite is somewhat less than usual.',
           },
-          value: '1a',
+          value: 1,
         },
         {
           label: {
             nl: 'Mijn eetlust is wat groter dan gewoonlijk.',
             en: 'My appetite is somewhat greater than usual.',
           },
-          value: '1b',
+          value: 2,
         },
         {
           label: {
             nl: 'Mijn eetlust is veel kleiner dan vroeger.',
             en: 'My appetite is much less than before.',
           },
-          value: '2a',
+          value: 3,
         },
         {
           label: {
             nl: 'Mijn eetlust is veel groter dan gewoonlijk.',
             en: 'My appetite is much greater than usual.',
           },
-          value: '2b',
+          value: 4,
         },
         {
           label: {
             nl: 'Ik heb helemaal geen eetlust.',
             en: 'I have no appetite at all.',
           },
-          value: '3a',
+          value: 5,
         },
         {
           label: {
             nl: 'Ik verlang de hele tijd naar eten.',
             en: 'I crave food all the time.',
           },
-          value: '3b',
+          value: 6,
         },
       ],
     },

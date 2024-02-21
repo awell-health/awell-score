@@ -17,36 +17,37 @@ import { BECK_INPUTS, BECK_OUTPUT } from './definition'
 export const BeckCalculationID = 'beck'
 
 /**
- * Input 16 and 18 have different answer options.
- * These answer options need to be converted to the corresponding value.
+ * The answer values of question 16 and 18 have to be standardized
  */
-const RAW_ANSWER_TO_VALUE_DICT = {
-  '1a': 1,
-  '1b': 1,
-  '2a': 2,
-  '2b': 2,
-  '3a': 3,
-  '3b': 3,
+const RAW_ANSWER_TO_VALUE_DICT: Record<string, number> = {
+  '0': 0,
+  '1': 1, // 1a
+  '2': 1, // 1b
+  '3': 2, // 2a
+  '4': 2, // 2b
+  '5': 3, // 3a
+  '6': 3, // 3b
 }
 
 const preprocess_beck_response = (
   beck_inputs_with_answers: Array<InputType>
-): Array<InputType> =>
-  //@ts-expect-error to do
-  R.map((input: InputType) => {
-    const raw_answer_value = R.prop('raw_input_value', input)
+): Array<InputType> => {
+  const QUESTIONS_TO_PREPROCESS = ['Q16', 'Q18']
 
-    //@ts-expect-error to do
-    const value_in_dict = R.prop(raw_answer_value, RAW_ANSWER_TO_VALUE_DICT)
+  return R.map((input: InputType) => {
+    if (QUESTIONS_TO_PREPROCESS.includes(input.input_id)) {
+      const value_in_dict =
+        RAW_ANSWER_TO_VALUE_DICT[String(input.raw_input_value)]
 
-    if (value_in_dict)
       return {
         ...input,
         raw_input_value: value_in_dict,
       }
+    }
 
     return input
   })(beck_inputs_with_answers)
+}
 
 const calculate_beck_score = (
   beck_inputs_with_answers: Array<InputType>
