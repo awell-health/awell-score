@@ -1,0 +1,28 @@
+export type SubscaleType =
+  | 'SUBJECTIVE_SLEEP_QUALITY'
+  | 'SLEEP_LATENCY'
+  | 'SLEEP_DURATION'
+  | 'HABITUAL_SLEEP_EFFICIENCY'
+  | 'SLEEP_DISTURBANCES'
+  | 'USE_OF_SLEEPING_MEDICATION'
+  | 'DAYTIME_DYSFUNCTION'
+
+export const PSQI_SUBSCALES: Record<SubscaleType, string[]> = {
+  SUBJECTIVE_SLEEP_QUALITY: ['Q09'],
+  SLEEP_LATENCY: ['Q02', 'Q05a'],
+  SLEEP_DURATION: ['Q04'],
+  HABITUAL_SLEEP_EFFICIENCY: ['Q04', 'Q03', 'Q01'],
+  SLEEP_DISTURBANCES: [
+    'Q05b',
+    'Q05c',
+    'Q05d',
+    'Q05e',
+    'Q05f',
+    'Q05g',
+    'Q05h',
+    'Q05i',
+    'Q05j',
+  ],
+  USE_OF_SLEEPING_MEDICATION: ['Q06'],
+  DAYTIME_DYSFUNCTION: ['Q07', 'Q08'],
+}

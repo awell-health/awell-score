@@ -221,7 +221,7 @@ export const PHQ9_INPUTS: Array<InputType> = [
   {
     input_id: 'PHQ9_Q08',
     input_label: {
-      en: 'Over the last 2 weeks, how often have you been bothered by moving or speaking so slowly that other people could have noticed. Or the opposite being so figety or restless that you have been moving around a lot more than usual?',
+      en: 'Over the last 2 weeks, how often have you been bothered by moving or speaking so slowly that other people could have noticed. Or the opposite being so fidgety or restless that you have been moving around a lot more than usual?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van zo traag bewegen of zo langzaam spreken dat andere mensen dit opgemerkt hebben? Of het tegenovergestelde: zo zenuwachtig of rusteloos zijn dat u veel meer bewoog dan gebruikelijk?',
     },
     input_type: {

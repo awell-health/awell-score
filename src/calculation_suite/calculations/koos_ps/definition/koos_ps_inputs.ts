@@ -4,18 +4,22 @@ import { NumberInputType } from '../../../../types/calculations/inputs/calculati
 const input_type: NumberInputType = {
   type: 'number',
   allowed_answers: [
-    { value: 0, label: { nl: 'Geen', en: 'None' } },
-    { value: 1, label: { nl: 'Gering', en: 'Mild' } },
-    { value: 2, label: { nl: 'Matig', en: 'Moderate' } },
-    { value: 3, label: { nl: 'Veel', en: 'Severe' } },
-    { value: 4, label: { nl: 'Erg veel', en: 'Extreme' } },
+    { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Jamais' } },
+    { value: 1, label: { nl: 'Gering', en: 'Mild', fr: 'Rarement' } },
+    { value: 2, label: { nl: 'Matig', en: 'Moderate', fr: 'Parfois' } },
+    { value: 3, label: { nl: 'Veel', en: 'Severe', fr: 'Souvent' } },
+    { value: 4, label: { nl: 'Erg veel', en: 'Extreme', fr: 'Toujours' } },
   ],
 }
 
 export const KOOS_PS_INPUTS: Array<InputType> = [
   {
     input_id: '1_rise_from_bed',
-    input_label: { nl: 'Opstaan vanuit bed', en: 'Rising from bed' },
+    input_label: {
+      nl: 'Opstaan vanuit bed',
+      en: 'Rising from bed',
+      fr: 'Se lever du lit',
+    },
     input_type,
     required: true,
   },
@@ -24,13 +28,18 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
     input_label: {
       nl: 'Sokken / kousen aantrekken',
       en: 'Putting on socks/stockings',
+      fr: 'Mettre des chaussettes/bas',
     },
     input_type,
     required: true,
   },
   {
     input_id: '3_rise_from_chair',
-    input_label: { nl: 'Opstaan vanuit een stoel', en: 'Rising from sitting' },
+    input_label: {
+      nl: 'Opstaan vanuit een stoel',
+      en: 'Rising from sitting',
+      fr: 'Se lever d`une chaise',
+    },
     input_type,
     required: true,
   },
@@ -39,6 +48,7 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
     input_label: {
       nl: 'Bukken naar de grond/iets oppakken van de grond',
       en: 'Bending to floor',
+      fr: 'Ramasser quelque chose du sol',
     },
     input_type,
     required: true,
@@ -48,19 +58,24 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
     input_label: {
       nl: 'Draaien op een belaste knie',
       en: 'Twisting/pivoting on your injured knee',
+      fr: 'Tourner sur un genou blessé',
     },
     input_type,
     required: true,
   },
   {
     input_id: '6_kneel',
-    input_label: { nl: 'Knielen', en: 'Kneeling' },
+    input_label: { nl: 'Knielen', en: 'Kneeling', fr: 's`agenouiller' },
     input_type,
     required: true,
   },
   {
     input_id: '7_staying_squat',
-    input_label: { nl: 'Op uw hurken zitten', en: 'Squatting' },
+    input_label: {
+      nl: 'Op uw hurken zitten',
+      en: 'Squatting',
+      fr: 'S`accroupir',
+    },
     input_type,
     required: true,
   },
