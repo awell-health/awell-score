@@ -1,4 +1,3 @@
-// @flow
 export const min_response = {
   Q01: 0,
   Q02: 0,

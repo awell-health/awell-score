@@ -21,11 +21,11 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'VISUOCONSTRUCTIONAL_SKILLS_CLOCK',
         input_type: {
-          type: 'strings_array',
+          type: 'numbers_array',
           allowed_answers: [
-            { value: 'contour', label: { en: 'Contour' } },
-            { value: 'numbers', label: { en: 'Numbers' } },
-            { value: 'hands', label: { en: 'Hands' } },
+            { value: 0, label: { en: 'Contour' } },
+            { value: 1, label: { en: 'Numbers' } },
+            { value: 2, label: { en: 'Hands' } },
           ],
         },
       },
@@ -37,11 +37,11 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'NAMING',
         input_type: {
-          type: 'strings_array',
+          type: 'numbers_array',
           allowed_answers: [
-            { value: 'lion', label: { en: 'Lion' } },
-            { value: 'rhino', label: { en: 'Rhino' } },
-            { value: 'camel', label: { en: 'Camel' } },
+            { value: 0, label: { en: 'Lion' } },
+            { value: 1, label: { en: 'Rhino' } },
+            { value: 2, label: { en: 'Camel' } },
           ],
         },
       },
@@ -122,13 +122,13 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DELAYED_RECALL',
         input_type: {
-          type: 'strings_array',
+          type: 'numbers_array',
           allowed_answers: [
-            { value: 'face', label: { en: 'Face' } },
-            { value: 'velvet', label: { en: 'Velvet' } },
-            { value: 'church', label: { en: 'Church' } },
-            { value: 'daisy', label: { en: 'Daisy' } },
-            { value: 'red', label: { en: 'Red' } },
+            { value: 0, label: { en: 'Face' } },
+            { value: 1, label: { en: 'Velvet' } },
+            { value: 2, label: { en: 'Church' } },
+            { value: 3, label: { en: 'Daisy' } },
+            { value: 4, label: { en: 'Red' } },
           ],
         },
       },
@@ -140,14 +140,14 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'ORIENTATION',
         input_type: {
-          type: 'strings_array',
+          type: 'numbers_array',
           allowed_answers: [
-            { value: 'date', label: { en: 'Date' } },
-            { value: 'month', label: { en: 'Month' } },
-            { value: 'year', label: { en: 'Year' } },
-            { value: 'day', label: { en: 'Day' } },
-            { value: 'location', label: { en: 'Location' } },
-            { value: 'place', label: { en: 'Place' } },
+            { value: 0, label: { en: 'Date' } },
+            { value: 1, label: { en: 'Month' } },
+            { value: 2, label: { en: 'Year' } },
+            { value: 3, label: { en: 'Day' } },
+            { value: 4, label: { en: 'Location' } },
+            { value: 5, label: { en: 'Place' } },
           ],
         },
       },

@@ -19,7 +19,7 @@ export const add_std_answer_to_inputs_in_subscale = (
     const input_type = R.view(inputTypeLens, input)
     const raw_answer = R.view(rawInputValueLens, input)
 
-    if (input_type.type === 'strings_array') {
+    if (input_type.type === 'numbers_array') {
       if (Array.isArray(raw_answer))
         return R.set(stdInputValueLens, raw_answer.length, subscale)
 
