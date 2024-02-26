@@ -117,9 +117,14 @@ import { tampa } from './tampa/tampa'
 import { visa_a, visa_g, visa_p } from './visa'
 import { yp_core } from './yp_core/yp_core'
 import { zarit_12 } from './zarit_12/zarit_12'
+import { acro } from './acro/acro'
+import { korq } from './korq/korq'
+import { mlks } from './mlks/mlks'
+import { psqi } from './psqi/psqi'
 
 export const CALCULATIONS: CalculationsLibraryType = {
   age_calc,
+  acro,
   asrs,
   audit,
   beck,
@@ -184,6 +189,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   k_bild,
   KCCQ_12,
   koos_ps,
+  korq,
   math_divide,
   math_multiply,
   math_sum,
@@ -191,6 +197,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   mds_updrs,
   mini_best_test,
   mfis,
+  mlks,
   mmse,
   moca,
   modified_caregiver_strain_index,
@@ -222,6 +229,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   promis_10,
   prtee,
   psk,
+  psqi,
   pss_4,
   qol_stoma,
   quickdash,
