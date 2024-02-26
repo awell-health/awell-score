@@ -11,6 +11,9 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.test.ts'"
   },
+  "precommit": [
+    "lint"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
