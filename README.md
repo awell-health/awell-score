@@ -10,6 +10,10 @@
 </p>
 
 <p align="center">
+  <i>This project is licensed under the terms of the MIT license.</i>
+</p>
+
+<p align="center">
     <img src="https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555" alt="Built with Typescript" />
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
 </p>
@@ -17,14 +21,14 @@
 <h3 align="center" style='margin-bottom: 24px;'>
   <a href="https://developers.awellhealth.com/awell-score">Documentation</a>
   <span> · </span>
-  <a href="https://score.awellhealth.com">Playground app</a>
-  <span> · </span>
   <a href="https://developers.awellhealth.com/awell-score/developer-tools/api-playground">API playground</a>
+  <span> · </span>
+  <a href="https://score.awellhealth.com">Playground app</a>
 </h3>
 
 Awell Score is an API developed by the [Awell Health](http://awell.health/) team used to calculate validated scores for clinical & patient reported outcome measures or perform any other clinical algorithms. **The API currently has a library of over 100 validated scores.**
 
-It was originally developed as an in-house microservice used by our own products. However, in September 2022 we decided to make the project open source and make it available to everyone.
+It was originally developed as an in-house microservice used by our own products. However, in February 2024 we decided to open source the project and make it available to everyone.
 
 With Awell Score, you can avoid building clinical score calculations yourself which has a couple of benefits:
 
@@ -39,6 +43,7 @@ With Awell Score, you can avoid building clinical score calculations yourself wh
 - [Documentation](#-documentation)
 - [Installation and running the app](#-installation-and-running-the-app)
 - [Test suite](#-test-suite)
+- [License policy](#-license-policy)
 - [How to Contribute](#-how-to-contribute)
 
 ## 📜 Background
@@ -70,9 +75,17 @@ The API is running on Node and built with Express and Typescript. NPM is used as
 
 ## 🧪 Test suite
 
-All calculations are covered with an extensive test suite to make sure the results are reliable and valid. This is required because the Awell hosted version of the API is a medical device class Ia.
+All calculations are covered with an extensive test suite to make sure the results are reliable and valid.
 
 Run all tests via the `npm run test` command.
+
+## 🪪 License policy
+
+This open-source library supports calculations for various clinical questionnaires, some of which may have licensing requirements. **Users are responsible for ensuring they have the appropriate licenses** to use these questionnaires.
+
+We do not provide licenses for the questionnaires nor manage licensing on your behalf. Failure to secure necessary licenses or comply with their terms is solely the user's liability.
+
+Please ensure you have all necessary permissions before using this library.
 
 ## 👏 How to Contribute
 
@@ -89,10 +102,6 @@ We are currently working on this section.
 The first version of the API - which was only used by Awell internally - was built in December 2020 with plain JavaScript and Flow for static type checking. When we decided to make the API publically available, we did the effort to migrate the app to Typescript as that's the golden standard nowadays.
 
 However, not all code passed Typescript's validation and quite some `//@ts-expect-error` comments had to be added in several places. Removing all of the errors will take some time and will be a gradual and progressive effort. There's a high confidence that there's no impact on the reliability & validity of scores given the extensive test coverage that is present.
-
-### Roadmap
-
-We would love to hear ideas from you on how to improve the API and add functionality. Currently no major features, besides adding new calculations & maintaining the current ones, are planned.
 
 ### Contributors ✨
 
