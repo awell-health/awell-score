@@ -4,6 +4,8 @@ import { age_calc } from './age_calc/age_calc'
 import { asrs } from './asrs/asrs'
 import { audit } from './audit/audit'
 import { beck } from './beck/beck'
+import { blcs } from './blcs/blcs'
+import { bwcs } from './bwcs/bwcs'
 import { bmi_imperial, bmi_metric } from './bmi'
 import { breast_q as breast_q_conserving_therapy_pre_and_postoperative } from './breast_q/breast_conserving/breast_q'
 import { cade_q_sv } from './cade_q'
@@ -70,6 +72,7 @@ import { koos_ps } from './koos_ps/koos_ps'
 import { math_divide, math_multiply, math_subtract, math_sum } from './math'
 import { mds_updrs } from './mds_updrs/mds_updrs'
 import { mini_best_test } from './mini_best_test/mini_best_test'
+import { mfis } from './mfis/mfis'
 import { mmse } from './mmse/mmse'
 import { moca } from './moca/moca'
 import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
@@ -87,6 +90,7 @@ import { paq_c } from './paq_c/paq_c'
 import { pci } from './pci/pci'
 import { pcl_5 } from './pcl_5/pcl_5'
 import { pcs } from './pcs/pcs'
+import { pdi } from './pdi/pdi'
 import { pdq_8 } from './pdq_8/pdq_8'
 import { phq_2 } from './phq_2/phq_2'
 import { phq_4 } from './phq_4/phq_4'
@@ -121,6 +125,8 @@ export const CALCULATIONS: CalculationsLibraryType = {
   beck,
   bmi: bmi_metric,
   bmi_imperial,
+  blcs,
+  bwcs,
   breast_q_conserving_therapy_pre_and_postoperative,
   cade_q_sv,
   caregiver_strain_index,
@@ -184,6 +190,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   math_subtract,
   mds_updrs,
   mini_best_test,
+  mfis,
   mmse,
   moca,
   modified_caregiver_strain_index,
@@ -202,6 +209,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   pci,
   pcl_5,
   pcs,
+  pdi,
   pdq_8,
   phq_2,
   phq_4,

@@ -1,5 +1,3 @@
-// @flow
-
 type SeverityType = 'Low' | 'Intermediate' | 'High'
 
 export const STOP_BANG_INTERPRETATION_TABLE: Record<string, SeverityType> = {

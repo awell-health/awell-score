@@ -1,4 +1,3 @@
-// @flow
 import type { InputType } from '../../../../types/calculations.types'
 import { NumberInputType } from '../../../../types/calculations/inputs/calculation-inputs.types'
 

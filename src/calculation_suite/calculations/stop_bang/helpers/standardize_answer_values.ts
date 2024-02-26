@@ -1,17 +1,16 @@
-// @flow
 import R from 'ramda'
 
 import { type InputType } from '../../../../types/calculations.types'
 import {
   inputIdLens,
   rawInputValueLens,
-  stdInputValueLens
+  stdInputValueLens,
 } from '../../../helper_functions/calculation_variants/api/input/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 
 type FunctionType = (inputs: Array<InputType>) => Array<InputType>
 
-export const standardize_answer_values: FunctionType = (inputs) => {
+export const standardize_answer_values: FunctionType = inputs => {
   const add_standardized_value_to_input = (input: InputType) => {
     const input_id = R.view(inputIdLens, input)
     const raw_value = R.view(rawInputValueLens, input)

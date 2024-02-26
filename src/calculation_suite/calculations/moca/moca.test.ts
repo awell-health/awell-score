@@ -338,7 +338,7 @@ describe('moca', function () {
         })
 
         describe('when an unexpected answer is passed in the array', function () {
-          it('should NOT throw an error', function () {
+          it('should throw an error', function () {
             expect(() =>
               moca_calculation({
                 VISUOCONSTRUCTIONAL_SKILLS_CLOCK: ["I'm unexpected"],

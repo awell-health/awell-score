@@ -1,10 +1,9 @@
-// @flow
 import R from 'ramda'
 
 import type {
   CalculationType,
   InputType,
-  WIPCalculationResultType
+  WIPCalculationResultType,
 } from '../../../types/calculations.types'
 import { rawInputValueLens } from '../../helper_functions/calculation_variants/api/input/lenses'
 import { add_raw_values_to_inputs } from '../../helper_functions/calculation_variants/simple_calculation'
@@ -14,7 +13,7 @@ import { is_numeric } from '../shared_functions'
 import {
   GAD2_INPUTS,
   GAD2_INTERPRETATION_TABLE,
-  GAD2_OUTPUT
+  GAD2_OUTPUT,
 } from './definition'
 
 const calculate_score = (
@@ -22,19 +21,19 @@ const calculate_score = (
 ): WIPCalculationResultType => {
   const valid_inputs = R.compose(
     R.filter(is_numeric),
-    R.map((input) => R.view(rawInputValueLens, input))
+    R.map(input => R.view(rawInputValueLens, input))
   )(inputs_with_answers)
 
   if (valid_inputs.length !== GAD2_INPUTS.length)
     return [
       {
         id: 'GAD2_SCORE',
-        score: MISSING_MESSAGE
+        score: MISSING_MESSAGE,
       },
       {
         id: 'GAD2_INTERPRETATION',
-        score: MISSING_MESSAGE
-      }
+        score: MISSING_MESSAGE,
+      },
     ]
 
   const total_score = R.sum(valid_inputs)
@@ -42,18 +41,18 @@ const calculate_score = (
   return [
     {
       id: 'GAD2_SCORE',
-      score: total_score
+      score: total_score,
     },
     {
       id: 'GAD2_INTERPRETATION',
-      score: GAD2_INTERPRETATION_TABLE[total_score.toString()]
-    }
+      score: GAD2_INTERPRETATION_TABLE[total_score.toString()],
+    },
   ]
 }
 
 export const specific_steps_gad_2_calc = [
   calculate_score,
-  add_raw_values_to_inputs(GAD2_INPUTS)
+  add_raw_values_to_inputs(GAD2_INPUTS),
 ]
 
 export const gad_2: CalculationType = create_calculation({
@@ -62,6 +61,6 @@ export const gad_2: CalculationType = create_calculation({
   calculation_steps: specific_steps_gad_2_calc,
   calculation_definition: {
     input_definition: GAD2_INPUTS,
-    output_definition: GAD2_OUTPUT
-  }
+    output_definition: GAD2_OUTPUT,
+  },
 })

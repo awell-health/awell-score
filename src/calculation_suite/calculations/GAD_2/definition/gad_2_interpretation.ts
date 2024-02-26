@@ -1,5 +1,3 @@
-// @flow
-
 type AnxietySeverityType =
   | 'No anxiety'
   | 'Mild anxiety'

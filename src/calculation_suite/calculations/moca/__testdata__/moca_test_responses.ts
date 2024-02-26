@@ -1,8 +1,8 @@
 export const best_response = {
   ALTERNATING_TRAIL_MARKING: 1,
   VISUOCONSTRUCTIONAL_SKILLS_CUBE: 1,
-  VISUOCONSTRUCTIONAL_SKILLS_CLOCK: ['contour', 'numbers', 'hands'],
-  NAMING: ['lion', 'rhino', 'camel'],
+  VISUOCONSTRUCTIONAL_SKILLS_CLOCK: [0, 1, 2],
+  NAMING: [0, 1, 2],
   FORWARD_DIGIT_SPAN: 1,
   BACKWARD_DIGIT_SPAN: 1,
   VIGILANCE: 1,
@@ -10,15 +10,15 @@ export const best_response = {
   SENTENCE_REPETITION: 2,
   VERBAL_FLUENCY: 1,
   ABSTRACTION: 2,
-  DELAYED_RECALL: ['face', 'velvet', 'church', 'daisy', 'red'],
-  ORIENTATION: ['date', 'month', 'year', 'day', 'location', 'place'],
+  DELAYED_RECALL: [0, 1, 2, 3, 4],
+  ORIENTATION: [0, 1, 2, 3, 4, 5],
 }
 
 export const median_response = {
   ALTERNATING_TRAIL_MARKING: 1,
   VISUOCONSTRUCTIONAL_SKILLS_CUBE: 1,
-  VISUOCONSTRUCTIONAL_SKILLS_CLOCK: ['contour'],
-  NAMING: ['lion'],
+  VISUOCONSTRUCTIONAL_SKILLS_CLOCK: [0],
+  NAMING: [1],
   FORWARD_DIGIT_SPAN: 0,
   BACKWARD_DIGIT_SPAN: 1,
   VIGILANCE: 0,
@@ -26,8 +26,8 @@ export const median_response = {
   SENTENCE_REPETITION: 1,
   VERBAL_FLUENCY: 0,
   ABSTRACTION: 1,
-  DELAYED_RECALL: ['face', 'velvet', 'church'],
-  ORIENTATION: ['date', 'month', 'year', 'day'],
+  DELAYED_RECALL: [0, 1, 2],
+  ORIENTATION: [0, 1, 2, 3],
 }
 
 export const worst_response = {
@@ -52,8 +52,8 @@ export const worst_response = {
 export const random_response = {
   ALTERNATING_TRAIL_MARKING: 1,
   VISUOCONSTRUCTIONAL_SKILLS_CUBE: 0,
-  VISUOCONSTRUCTIONAL_SKILLS_CLOCK: ['contour', 'hands'],
-  NAMING: ['lion'],
+  VISUOCONSTRUCTIONAL_SKILLS_CLOCK: [0, 1],
+  NAMING: [0],
   FORWARD_DIGIT_SPAN: 1,
   BACKWARD_DIGIT_SPAN: 0,
   VIGILANCE: 1,
@@ -61,6 +61,6 @@ export const random_response = {
   SENTENCE_REPETITION: 2,
   VERBAL_FLUENCY: 0,
   ABSTRACTION: 2,
-  DELAYED_RECALL: ['face', 'velvet'],
-  ORIENTATION: ['date', 'month', 'location', 'place'],
+  DELAYED_RECALL: [1, 2],
+  ORIENTATION: [0, 1, 2, 3],
 }
