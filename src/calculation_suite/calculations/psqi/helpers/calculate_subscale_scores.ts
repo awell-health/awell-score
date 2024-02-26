@@ -1,4 +1,3 @@
-// eslint-disable-next-line simple-import-sort/imports
 import R from 'ramda'
 
 import type { InputType } from '../../../../types/calculations.types'

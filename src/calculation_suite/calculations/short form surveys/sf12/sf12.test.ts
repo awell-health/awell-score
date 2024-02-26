@@ -1,6 +1,5 @@
 /* eslint-disable no-magic-numbers */
 import { expect } from 'chai'
-import R from 'ramda'
 
 import { InvalidInputsError } from '../../../errors'
 import { execute_test_calculation } from '../../../helper_functions/execute_test_calculation'
