@@ -1,10 +1,9 @@
-// @flow
 import {
   ALMOST_ALWAYS,
   NEVER,
   OFTEN,
   RARELY,
-  SOMETIMES
+  SOMETIMES,
 } from '../definition/mfis_inputs'
 
 export const best_response = {
@@ -28,7 +27,7 @@ export const best_response = {
   Q18: NEVER,
   Q19: NEVER,
   Q20: NEVER,
-  Q21: NEVER
+  Q21: NEVER,
 }
 
 export const median_response = {
@@ -52,7 +51,7 @@ export const median_response = {
   Q18: SOMETIMES,
   Q19: SOMETIMES,
   Q20: SOMETIMES,
-  Q21: SOMETIMES
+  Q21: SOMETIMES,
 }
 
 export const worst_response = {
@@ -76,7 +75,7 @@ export const worst_response = {
   Q18: ALMOST_ALWAYS,
   Q19: ALMOST_ALWAYS,
   Q20: ALMOST_ALWAYS,
-  Q21: ALMOST_ALWAYS
+  Q21: ALMOST_ALWAYS,
 }
 
 /**
@@ -106,5 +105,5 @@ export const random_response = {
   Q18: NEVER, // Cognitive subscale
   Q19: ALMOST_ALWAYS, // Cognitive subscale
   Q20: ALMOST_ALWAYS, // Physicial subscale
-  Q21: ALMOST_ALWAYS // Physicial subscale
+  Q21: ALMOST_ALWAYS, // Physicial subscale
 }
