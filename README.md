@@ -26,7 +26,7 @@
   <a href="https://score.awellhealth.com">Playground app</a>
 </h3>
 
-Awell Score is an API developed by the [Awell Health](http://awell.health/) team used to calculate validated scores for clinical & patient reported outcome measures or perform any other clinical algorithms. **The API currently has a library of over 100 validated scores.**
+Awell Score is an API developed by the [Awell](http://awell.health/) team used to calculate validated scores for clinical & patient reported outcome measures or perform any other clinical algorithms. **The API currently has a library of over 100 validated scores.**
 
 It was originally developed as an in-house microservice used by our own products. However, in February 2024 we decided to open source the project and make it available to everyone.
 
