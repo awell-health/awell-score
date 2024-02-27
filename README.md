@@ -34,7 +34,6 @@ With Awell Score, you can avoid building clinical score calculations yourself wh
 
 - ⏱️ **Save time and resources.** There's no need anymore to build these scoring algorithms yourself, which can be a time-consuming process.
 - 📏 **Reliability & validity.** Score calculations can be openly peer-reviewed and clinically assured, resulting in a higher level of scrutiny and verifiability.
-- 🔍 **Compliance.** There's an Awell hosted/deployed version of the API available which is a certified class Ia medical device. Additionally, compliance can be achieved at the API level instead of at the app level.
 - 🧑‍🤝‍🧑 **Contributions.** Clinicians, developers, health care organizations, ... can contribute knowledge to a single, shared knowledgebase.
 
 ## Contents
