@@ -26,13 +26,13 @@
   <a href="https://score.awellhealth.com">Playground app</a>
 </h3>
 
-Awell Score is an API developed by the [Awell](http://awell.health/) team used to calculate validated scores for clinical & patient reported outcome measures or perform any other clinical algorithms. **The API currently has a library of over 100 validated scores.**
+Awell Score is an API developed by the [Awell](http://awell.health/) team used to calculate validated scores for clinical and patient-reported outcome measures or perform other clinical algorithms. **The API currently has a library of over 100 validated scores.**
 
-It was originally developed as an in-house microservice used by our own products. However, in February 2024 we decided to open source the project and make it available to everyone.
+It was initially developed as an in-house microservice used by our products.
 
 With Awell Score, you can avoid building clinical score calculations yourself which has a couple of benefits:
 
-- ⏱️ **Save time and resources.** There's no need anymore to build these scoring algorithms yourself, which can be a time-consuming process.
+- ⏱️ **Save time and resources.** There's no longer a need to build these scoring algorithms yourself, which can be a time-consuming process.
 - 📏 **Reliability & validity.** Score calculations can be openly peer-reviewed and clinically assured, resulting in a higher level of scrutiny and verifiability.
 - 🧑‍🤝‍🧑 **Contributions.** Clinicians, developers, health care organizations, ... can contribute knowledge to a single, shared knowledgebase.
 
@@ -47,23 +47,21 @@ With Awell Score, you can avoid building clinical score calculations yourself wh
 
 ## 📜 Background
 
-Clinical score calculations are tools which medical professionals use to help make decisions. Many of them are available in web page form on sites such as [MDCalc](https://www.mdcalc.com/).
-
-However, a webpage is not something that a computer program or system can use, so in order to embed these calculations inside clinical systems an API would be more beneficial.
+Patient-Reported Outcome Measures (PROMs) and clinical scores are commonly utilized to evaluate patients' health conditions.  Platforms like [MDCalc](https://www.mdcalc.com/) provide access to numerous such assessments through a user interface (UI). However, a UI is not practical for integrating these score calculations within your proprietary software systems. An API would be more appropriate, allowing these calculations to be embedded directly into your software.
 
 ## 📖 Documentation
 
-The full documentation for Awell Score can be found on our [Developer hub](https://developers.awellhealth.com/awell-score/docs/getting-started/what-is-awell-score).
+Documentation for Awell Score can be found on [Awell's Developer hub](https://developers.awellhealth.com/awell-score/docs/getting-started/what-is-awell-score).
 
 ## 🎉 Installation and running the app
 
-The API is running on Node and built with Express and Typescript. NPM is used as the package manager. The API needs to be connected to a MongoDb database as it writes requests logs and calculation results into a database.
+The API runs on Node and is built with Express and Typescript. NPM is used as the package manager. The API needs to be connected to a MongoDb database as it writes request logs and calculation results into it.
 
 **Installation guide:**
 
 1. Run `npm i` to install all the packages.
 2. Create an `.env` file at the root of the project. Have a look at `.env.example` for the variables you need to run the app.
-3. Make sure MongoDb is running on your machine (see instructions below).
+3. Ensure MongoDB is running on your machine (see instructions below).
 4. Run the app via the `npm run dev` command.
 
 ### MongoDb
@@ -74,33 +72,27 @@ The API is running on Node and built with Express and Typescript. NPM is used as
 
 ## 🧪 Test suite
 
-All calculations are covered with an extensive test suite to make sure the results are reliable and valid.
+All calculations are covered with an extensive test suite to ensure reliable and valid results.
 
 Run all tests via the `npm run test` command.
 
 ## 🪪 License policy
 
-This open-source library supports calculations for various clinical questionnaires, some of which may have licensing requirements. **Users are responsible for ensuring they have the appropriate licenses** to use these questionnaires.
-
-We do not provide licenses for the questionnaires nor manage licensing on your behalf. Failure to secure necessary licenses or comply with their terms is solely the user's liability.
+This open-source library supports calculations for various clinical questionnaires, some of which may have licensing requirements. **Users are responsible for ensuring they have the appropriate licenses** to use these questionnaires. We do not provide or manage licenses for you to use the questionnaires. Failure to secure necessary licenses or comply with their terms is solely the user's liability.
 
 Please ensure you have all necessary permissions before using this library.
 
 ## 👏 How to Contribute
 
-The main purpose of this repository is to continue evolving Awell Score together with the healthcare community.
-
-We want to make contributing to this project as easy and transparent as possible, and we are grateful to the community for contributing bug fixes and improvements. Read below to learn how you can take part in improving Awell Score.
+We want to make contributing to this project as easy and transparent as possible, and we are grateful to the community for contributing bug fixes and improvements. You can read below to learn how you can take part in improving Awell Score.
 
 ### Contributing Guide
 
-We are currently working on this section.
-
 ### Known issues
 
-The first version of the API - which was only used by Awell internally - was built in December 2020 with plain JavaScript and Flow for static type checking. When we decided to make the API publically available, we did the effort to migrate the app to Typescript as that's the golden standard nowadays.
+The first version of the API—which was only used by Awell internally—was built in December 2020 with JavaScript and Flow for static type checking. When we decided to make the API publicly available, we migrated the app to Typescript
 
-However, not all code passed Typescript's validation and quite some `//@ts-expect-error` comments had to be added in several places. Removing all of the errors will take some time and will be a gradual and progressive effort. There's a high confidence that there's no impact on the reliability & validity of scores given the extensive test coverage that is present.
+However, not all code passed Typescript's validation, and quite a few `//@ts-expect-error` comments had to be added in several places. Removing all of the errors will take some time and will be a gradual and progressive effort. Given the extensive test coverage, there's a high confidence that there's no impact on the reliability and validity of scores.
 
 ### Contributors ✨
 
