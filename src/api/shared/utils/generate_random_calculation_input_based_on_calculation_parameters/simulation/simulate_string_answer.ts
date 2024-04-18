@@ -22,11 +22,11 @@ export const simulate_string_answer = (input_type: StringInputType): string => {
   }
 
   const DEFAULT_SIMULATION = [
-    { value: 'Nick is a beast' },
-    { value: 'Etienne is a beast' },
-    { value: 'Yann is a breast' },
-    { value: 'Thomas is a beast' },
-    { value: 'Olivier is a beast' },
+    { value: 'Toby the turtle tried tap-dancing' },
+    { value: 'Tina talks to tulips, thinking they’re turtles' },
+    { value: 'Timmy turtle wears tiny top hats' },
+    { value: 'Tabitha turtle tutors in turtle trigonometry' },
+    { value: 'Tony’s turtle told tall tales' },
   ]
 
   const random_answer =
