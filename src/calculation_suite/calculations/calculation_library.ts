@@ -94,6 +94,7 @@ import { pdi } from './pdi/pdi'
 import { pdq_8 } from './pdq_8/pdq_8'
 import { phq_2 } from './phq_2/phq_2'
 import { phq_4 } from './phq_4/phq_4'
+import { phq_8 } from './phq_8/phq_8'
 import { phq_9 } from './phq_9/phq_9'
 import { physical_activity_measurement } from './physical_activity_measurements/physical_activity_measurements'
 import { posas_observer } from './posas_observer/posas_observer'
@@ -220,6 +221,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   pdq_8,
   phq_2,
   phq_4,
+  phq_8,
   phq_9,
   physical_activity_measurement,
   posas_observer,
