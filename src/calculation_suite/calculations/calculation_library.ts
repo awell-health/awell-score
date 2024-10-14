@@ -1,6 +1,7 @@
 import type { CalculationsLibraryType } from '../../types/calculations.types'
 import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
 import { age_calc } from './age_calc/age_calc'
+import { aq_10 } from './AQ_10/aq_10'
 import { asrs } from './asrs/asrs'
 import { audit } from './audit/audit'
 import { beck } from './beck/beck'
@@ -125,6 +126,7 @@ import { psqi } from './psqi/psqi'
 
 export const CALCULATIONS: CalculationsLibraryType = {
   age_calc,
+  aq_10,
   acro,
   asrs,
   audit,
