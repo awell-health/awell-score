@@ -8,9 +8,9 @@ import type {
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../helper_functions/calculation_variants/api/input/lenses'
-import { add_raw_values_to_inputs } from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/api/input/lenses'
+import { add_raw_values_to_inputs } from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { DN4_INPUTS, DN4_OUTPUT } from './definition'
 

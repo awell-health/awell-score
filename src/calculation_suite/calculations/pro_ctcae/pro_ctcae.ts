@@ -9,10 +9,10 @@ import type {
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../helper_functions/calculation_variants/api/input/lenses'
-import { inputsInSubscaleLens } from '../../helper_functions/calculation_variants/api/subscale/lenses'
-import { add_response_values_to_subscale_inputs } from '../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/api/input/lenses'
+import { inputsInSubscaleLens } from '../../lib/calculation_variants/api/subscale/lenses'
+import { add_response_values_to_subscale_inputs } from '../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { PRO_CTCAE_OUTPUT, PRO_CTCAE_SYMPTOMS } from './definition'
 import { pro_ctcae_calculation } from './pro_ctcae_calculation/pro_ctcae_calculation'

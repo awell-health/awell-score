@@ -5,7 +5,7 @@ import {
   inputIdLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 
 type FunctionType = (inputs: Array<InputType>) => Array<InputType>

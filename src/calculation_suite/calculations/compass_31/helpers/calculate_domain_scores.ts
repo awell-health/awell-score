@@ -6,7 +6,7 @@ import {
   inputIdLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 import {
   COMPASS_31_DOMAINS,
   type DomainType,

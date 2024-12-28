@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { CalculationType } from '../../../api/shared/classes/Calculation'
-import { InputSchema, BECK_OUTPUT } from './definition'
+import { InputSchema, BECK_OUTPUT, BECK_INPUTS } from './definition'
 import _ from 'lodash'
 
 /**
@@ -36,6 +36,7 @@ export const beck: CalculationType<typeof InputSchema, typeof BECK_OUTPUT> = {
   readme_location: __dirname,
   inputSchema: InputSchema,
   outputSchema: BECK_OUTPUT,
+  formData: BECK_INPUTS,
   calculate: ({ data }) => {
     const preprocessed_data = preprocess_beck_response(data)
     const score = _.sum(Object.values(preprocessed_data))

@@ -2,8 +2,8 @@
 import { expect } from 'chai'
 
 import { InvalidInputsError } from '../../../errors'
-import { execute_test_calculation } from '../../../helper_functions/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../../helper_functions/get_result_ids_from_calculation_output'
+import { execute_test_calculation } from '../../../lib/execute_test_calculation'
+import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { CALCULATIONS } from '../../calculation_library'
 import { get_input_ids_from_calculation_blueprint } from '../../shared_functions'
 import {

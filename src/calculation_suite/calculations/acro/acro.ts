@@ -1,5 +1,5 @@
 import { CalculationType } from '../../../api/shared/classes/Calculation'
-import { InputSchema, ACRO_OUTPUT } from './definition'
+import { InputSchema, ACRO_OUTPUT, ACRO_INPUTS } from './definition'
 import { calculate_scores } from './helpers'
 
 export const acro: CalculationType<typeof InputSchema, typeof ACRO_OUTPUT> = {
@@ -7,6 +7,7 @@ export const acro: CalculationType<typeof InputSchema, typeof ACRO_OUTPUT> = {
   readme_location: __dirname,
   inputSchema: InputSchema,
   outputSchema: ACRO_OUTPUT,
+  formData: ACRO_INPUTS,
   calculate: ({ data }) => {
     const PHYSICAL_SUBSCALE_SCORE = calculate_scores(data, 'PHYSICAL_SUBSCALE')
     const PSYCHOLOGICAL_APPEARANCE_SUBSCALE = calculate_scores(

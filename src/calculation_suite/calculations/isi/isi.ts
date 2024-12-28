@@ -5,9 +5,9 @@ import type {
   InputType,
   WIPCalculationResultType,
 } from '../../../types/calculations.types'
-import { rawInputValueLens } from '../../helper_functions/calculation_variants/api/input/lenses'
-import { add_raw_values_to_inputs } from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+import { rawInputValueLens } from '../../lib/calculation_variants/api/input/lenses'
+import { add_raw_values_to_inputs } from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { is_numeric } from '../shared_functions'
 import { ISI_INPUTS, ISI_INTERPRATION_TABLE, ISI_OUTPUT } from './definition'

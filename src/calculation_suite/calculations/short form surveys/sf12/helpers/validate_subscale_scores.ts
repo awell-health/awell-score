@@ -4,7 +4,7 @@ import type { InputType } from '../../../../../types/calculations.types'
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../../lib/calculation_variants/api/input/lenses'
 import { is_numeric } from '../../../shared_functions'
 import { SF12_SUBSCALES, type SubscaleType } from '../definition/sf12_subscales'
 

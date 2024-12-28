@@ -2,7 +2,7 @@ import R from 'ramda'
 import { round } from 'mathjs'
 
 import type { InputType } from '../../../../types/calculations.types'
-import { get_valid_values } from '../../../helper_functions/calculation_variants/simple_calculation'
+import { get_valid_values } from '../../../lib/calculation_variants/simple_calculation'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { type DomainType, KBILD_DOMAINS } from '../definition/k_bild_domains'
 

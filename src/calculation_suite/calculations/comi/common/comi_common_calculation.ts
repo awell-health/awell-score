@@ -5,9 +5,9 @@ import type {
   WIPCalculationResultType,
 } from '../../../../types/calculations.types'
 import type { COMIDomainType } from '../../../../types/calculations/subscales/custom/comi.types'
-import { rawInputValueLens } from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { scoreLens } from '../../../helper_functions/calculation_variants/api/subscale/lenses'
-import { add_response_values_to_subscale_inputs } from '../../../helper_functions/calculation_variants/calculation_with_subscales'
+import { rawInputValueLens } from '../../../lib/calculation_variants/api/input/lenses'
+import { scoreLens } from '../../../lib/calculation_variants/api/subscale/lenses'
+import { add_response_values_to_subscale_inputs } from '../../../lib/calculation_variants/calculation_with_subscales'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 

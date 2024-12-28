@@ -1,5 +1,5 @@
 import { CalculationType } from '../../../api/shared/classes/Calculation'
-import { ASRS_OUTPUT, InputSchema } from './definition'
+import { ASRS_INPUTS, ASRS_OUTPUT, InputSchema } from './definition'
 import { calculate_part_scores, calculate_subscale_scores } from './helpers'
 
 export const asrs: CalculationType<typeof InputSchema, typeof ASRS_OUTPUT> = {
@@ -7,6 +7,7 @@ export const asrs: CalculationType<typeof InputSchema, typeof ASRS_OUTPUT> = {
   readme_location: __dirname,
   inputSchema: InputSchema,
   outputSchema: ASRS_OUTPUT,
+  formData: ASRS_INPUTS,
   calculate: ({ data }) => {
     const PART_A_SCORE = calculate_part_scores(data, 'PART_A')
     const PART_B_SCORE = calculate_part_scores(data, 'PART_B')

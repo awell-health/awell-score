@@ -1,8 +1,8 @@
 import R from 'ramda'
 
 import type { InputType } from '../../../../types/calculations.types'
-import { inputIdLens } from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { get_valid_values } from '../../../helper_functions/calculation_variants/simple_calculation'
+import { inputIdLens } from '../../../lib/calculation_variants/api/input/lenses'
+import { get_valid_values } from '../../../lib/calculation_variants/simple_calculation'
 
 /**
  * Minimum amount of expected answers is 3 ("LIGHT_PA_DAYS_PER_WEEK", "MODERATE_PA_DAYS_PER_WEEK"

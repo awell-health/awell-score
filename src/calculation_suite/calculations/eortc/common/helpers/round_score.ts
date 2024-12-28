@@ -2,7 +2,7 @@ import { round } from 'mathjs'
 import R from 'ramda'
 
 import type { EORTCScaleType } from '../../../../../types/calculations/subscales/custom/eortc.types'
-import { scoreLens } from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+import { scoreLens } from '../../../../lib/calculation_variants/api/subscale/lenses'
 
 const ROUND_TO = 2
 

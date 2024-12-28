@@ -7,13 +7,13 @@ import type {
   SubscaleType,
   WIPCalculationResultType,
 } from '../../../../types/calculations.types'
-import { stdInputValueLens } from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { scoreLens } from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+import { stdInputValueLens } from '../../../lib/calculation_variants/api/input/lenses'
+import { scoreLens } from '../../../lib/calculation_variants/api/subscale/lenses'
 import {
   add_response_values_to_subscale_inputs,
   add_standardized_values_to_subscale_inputs,
-} from '../../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../../helper_functions/create_calculation'
+} from '../../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 import { SF36_OUTPUT, SF36_SUBSCALES } from './definition'
@@ -49,7 +49,6 @@ export const calculate_sf36_scores = (
 ): WIPCalculationResultType => {
   const readable_calculation_name = 'SF36'
 
-  
   const subscales_with_scores = R.compose(
     calculate_score_for_each_subscale,
     add_standardized_values_to_subscale_inputs({

@@ -7,8 +7,8 @@ import type {
 import {
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { inputsInSubscaleLens } from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
+import { inputsInSubscaleLens } from '../../../lib/calculation_variants/api/subscale/lenses'
 import { NOT_RELEVANT_ANSWER } from '../definition/dlqi_subscales'
 
 export const transform_not_relevant_answers = (

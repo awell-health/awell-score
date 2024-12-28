@@ -1,7 +1,7 @@
 import R from 'ramda'
 
 import type { InputType } from '../../../../types/calculations.types'
-import { get_valid_values } from '../../../helper_functions/calculation_variants/simple_calculation'
+import { get_valid_values } from '../../../lib/calculation_variants/simple_calculation'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { CLUSTERS, type ClusterType } from '../definition/pcl_5_clusters'
 

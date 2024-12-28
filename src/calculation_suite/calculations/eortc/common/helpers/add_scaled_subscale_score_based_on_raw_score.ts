@@ -4,7 +4,7 @@ import type { EORTCScaleType } from '../../../../../types/calculations/subscales
 import {
   notApplicableScoreLens,
   scoreLens,
-} from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE, NOT_APPLICABLE_MESSAGE } from '../../../../PARAMETERS'
 import {
   apply_functional_scale,

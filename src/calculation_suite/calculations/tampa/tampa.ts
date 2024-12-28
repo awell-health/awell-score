@@ -5,13 +5,13 @@ import type {
   InputType,
   WIPCalculationResultType,
 } from '../../../types/calculations.types'
-import { rawInputValueLens } from '../../helper_functions/calculation_variants/api/input/lenses'
+import { rawInputValueLens } from '../../lib/calculation_variants/api/input/lenses'
 import {
   add_raw_values_to_inputs,
   do_all_required_inputs_have_a_valid_value,
   get_valid_values,
-} from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { is_numeric } from '../shared_functions'
 import { TAMPA_INPUTS, TAMPA_OUTPUT } from './definition'

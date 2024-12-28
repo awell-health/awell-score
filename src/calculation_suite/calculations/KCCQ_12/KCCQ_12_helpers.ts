@@ -9,7 +9,7 @@ import {
   inputIdLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../lib/calculation_variants/api/input/lenses'
 
 export const remove_answers_considered_as_missing_values =
   (answer_treated_as_missing_value?: number) =>

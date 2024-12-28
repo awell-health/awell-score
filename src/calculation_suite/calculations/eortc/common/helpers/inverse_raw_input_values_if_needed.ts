@@ -5,8 +5,8 @@ import {
   inputInverseLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../../helper_functions/calculation_variants/api/input/lenses'
-import { inputsInSubscaleLens } from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../../lib/calculation_variants/api/input/lenses'
+import { inputsInSubscaleLens } from '../../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../../PARAMETERS'
 import { is_numeric } from '../../../shared_functions'
 import { MIN_ITEM_VALUE } from '../eortc_parameters'

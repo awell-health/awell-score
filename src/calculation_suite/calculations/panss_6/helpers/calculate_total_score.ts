@@ -1,7 +1,7 @@
 import R from 'ramda'
 
 import type { InputType } from '../../../../types/calculations.types'
-import { rawInputValueLens } from '../../../helper_functions/calculation_variants/api/input/lenses'
+import { rawInputValueLens } from '../../../lib/calculation_variants/api/input/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 

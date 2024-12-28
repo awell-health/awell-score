@@ -15,11 +15,8 @@ export const calculate_part_scores = (
     inputs_with_answers,
     INPUT_IDS_NEEDED_FOR_SCORING
   )
-
-  const standardized_input_scores = _.map(inputs_in_part, (_i, key) => {
-    const input_definition = ASRS_INPUTS.find(
-      inputDef => inputDef.input_id === key
-    )
+  const standardized_input_scores = _.map(inputs_in_part, (_i, key: string) => {
+    const input_definition = _.find(ASRS_INPUTS, (_i, k) => k === key)
 
     if (input_definition === undefined || _i === undefined) return null
 

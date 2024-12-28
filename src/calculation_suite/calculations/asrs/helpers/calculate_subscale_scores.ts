@@ -17,9 +17,7 @@ export const calculate_subscale_scores = (
   )
 
   const standardized_input_scores = _.map(inputs_in_subscale, (_i, key) => {
-    const input_definition = ASRS_INPUTS.find(
-      inputDef => inputDef.input_id === key
-    )
+    const input_definition = _.find(ASRS_INPUTS, (_i, k) => k === key)
 
     if (input_definition === undefined || _i === undefined) return null
 

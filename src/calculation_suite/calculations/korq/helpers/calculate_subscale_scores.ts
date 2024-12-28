@@ -5,7 +5,7 @@ import { KORQ_SUBSCALES, type SubscaleType } from '../definition/korq_subscales'
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 import { MISSING_MESSAGE, type MissingScoreType } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 

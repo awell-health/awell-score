@@ -6,13 +6,13 @@ import type {
   SubscaleType,
   WIPCalculationResultType,
 } from '../../../types/calculations.types'
-import { rawInputValueLens } from '../../helper_functions/calculation_variants/api/input/lenses'
+import { rawInputValueLens } from '../../lib/calculation_variants/api/input/lenses'
 import {
   inputsInSubscaleLens,
   scoreLens,
-} from '../../helper_functions/calculation_variants/api/subscale/lenses'
-import { add_response_values_to_subscale_inputs } from '../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/api/subscale/lenses'
+import { add_response_values_to_subscale_inputs } from '../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { is_numeric } from '../shared_functions'
 import { CDLQI_OUTPUT, CDLQI_subscales } from './definition'
@@ -56,7 +56,6 @@ export const calculate_cdlqi_subscale_scores = (
   R.compose(
     R.map(calculate_score_for_each_subscale),
     add_response_values_to_subscale_inputs(calculation_input)
-    
   )(CDLQI_subscales)
 
 const validate_calculation_input = (

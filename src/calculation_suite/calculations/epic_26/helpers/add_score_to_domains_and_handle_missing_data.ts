@@ -1,11 +1,11 @@
 import R from 'ramda'
 
 import type { EPICDomainType } from '../../../../types/calculations/subscales/custom/epic26.types'
-import { stdInputValueLens } from '../../../helper_functions/calculation_variants/api/input/lenses'
+import { stdInputValueLens } from '../../../lib/calculation_variants/api/input/lenses'
 import {
   inputsInSubscaleLens,
   scoreLens,
-} from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 

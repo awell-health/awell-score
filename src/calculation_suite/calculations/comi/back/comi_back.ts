@@ -1,5 +1,5 @@
 import type { CalculationType } from '../../../../types/calculations.types'
-import { create_calculation } from '../../../helper_functions/create_calculation'
+import { create_calculation } from '../../../lib/create_calculation'
 import { comi_common_calculation } from '../common/comi_common_calculation'
 import { COMI_BACK_DOMAINS, COMI_BACK_OUTPUT } from './definition'
 

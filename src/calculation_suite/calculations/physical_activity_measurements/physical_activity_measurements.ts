@@ -8,9 +8,9 @@ import type {
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../helper_functions/calculation_variants/api/input/lenses'
-import { add_raw_values_to_inputs } from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/api/input/lenses'
+import { add_raw_values_to_inputs } from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { PA_INPUTS, PHYSICAL_ACTIVITY_MEASUREMENTS_OUTPUT } from './definition'
 import { are_sufficient_answers_provided } from './validation/are_sufficient_answers_provided'

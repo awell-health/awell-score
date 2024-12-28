@@ -1,7 +1,7 @@
 import R from 'ramda'
 
 import type { InputType } from '../../../../types/calculations.types'
-import { get_valid_values } from '../../../helper_functions/calculation_variants/simple_calculation'
+import { get_valid_values } from '../../../lib/calculation_variants/simple_calculation'
 import { type DomainType, MSQ_DOMAINS } from '../definition/msq_domains'
 
 export const calculate_domain_scores = (

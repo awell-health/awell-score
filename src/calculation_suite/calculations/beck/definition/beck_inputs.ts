@@ -1,9 +1,7 @@
 import { z } from 'zod'
-import type { InputType } from '../../../../types/calculations.types'
 
-export const BECK_INPUTS: Array<InputType> = [
-  {
-    input_id: 'Q01',
+export const BECK_INPUTS = {
+  Q01: {
     input_label: { nl: 'Somberheid, verdriet', en: 'Sadness' },
     input_type: {
       type: 'number',
@@ -37,8 +35,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q02',
+  Q02: {
     input_label: { nl: 'Pessimisme', en: 'Pessimism' },
     input_type: {
       type: 'number',
@@ -75,8 +72,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q03',
+  Q03: {
     input_label: { nl: 'Mislukkingen', en: 'Past Failure' },
     input_type: {
       type: 'number',
@@ -113,8 +109,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q04',
+  Q04: {
     input_label: { nl: 'Verlies van plezier', en: 'Loss of Pleasure' },
     input_type: {
       type: 'number',
@@ -151,8 +146,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q05',
+  Q05: {
     input_label: { nl: 'Schuldgevoelens', en: 'Guilty Feelings' },
     input_type: {
       type: 'number',
@@ -189,8 +183,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q06',
+  Q06: {
     input_label: { nl: 'Gevoel gestraft te worden', en: 'Punishment Feelings' },
     input_type: {
       type: 'number',
@@ -227,8 +220,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q07',
+  Q07: {
     input_label: { nl: 'Afkeer van zichzelf', en: 'Self-Dislike' },
     input_type: {
       type: 'number',
@@ -265,8 +257,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q08',
+  Q08: {
     input_label: { nl: 'Zelfkritiek', en: 'Self-Criticalness' },
     input_type: {
       type: 'number',
@@ -303,8 +294,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q09',
+  Q09: {
     input_label: {
       nl: 'Suïcidale gedachten of wensen',
       en: 'Suicidal Thoughts or Wishes',
@@ -344,8 +334,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q10',
+  Q10: {
     input_label: { nl: 'Huilen', en: 'Crying' },
     input_type: {
       type: 'number',
@@ -382,8 +371,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q11',
+  Q11: {
     input_label: { nl: 'Agitatie, onrust', en: 'Agitation' },
     input_type: {
       type: 'number',
@@ -420,8 +408,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q12',
+  Q12: {
     input_label: { nl: 'Verlies van interesse', en: 'Loss of Interest' },
     input_type: {
       type: 'number',
@@ -458,8 +445,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q13',
+  Q13: {
     input_label: { nl: 'Besluiteloosheid', en: 'Indecisiveness' },
     input_type: {
       type: 'number',
@@ -496,8 +482,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q14',
+  Q14: {
     input_label: { nl: 'Waardeloosheid', en: 'Worthlessness' },
     input_type: {
       type: 'number',
@@ -534,8 +519,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q15',
+  Q15: {
     input_label: { nl: 'Energieverlies', en: 'Loss of Energy' },
     input_type: {
       type: 'number',
@@ -572,8 +556,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q16',
+  Q16: {
     input_label: {
       nl: 'Verandering van slaappatroon',
       en: 'Changes in Sleeping Pattern',
@@ -634,8 +617,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q17',
+  Q17: {
     input_label: { nl: 'Prikkelbaarheid', en: 'Irritability' },
     input_type: {
       type: 'number',
@@ -672,8 +654,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q18',
+  Q18: {
     input_label: { nl: 'Verandering van eetlust', en: 'Changes in Appetite' },
     input_type: {
       type: 'number',
@@ -731,8 +712,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q19',
+  Q19: {
     input_label: {
       nl: 'Concentratieproblemen',
       en: 'Concentration Difficulty',
@@ -772,8 +752,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q20',
+  Q20: {
     input_label: { nl: 'Moeheid', en: 'Tiredness or Fatigue' },
     input_type: {
       type: 'number',
@@ -810,8 +789,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-  {
-    input_id: 'Q21',
+  Q21: {
     input_label: {
       nl: 'Verlies van interesse in sex',
       en: 'Loss of Interest in Sex',
@@ -851,7 +829,7 @@ export const BECK_INPUTS: Array<InputType> = [
     },
     required: true,
   },
-]
+}
 
 const InputTypeSchema = z.union([
   z.literal(0),

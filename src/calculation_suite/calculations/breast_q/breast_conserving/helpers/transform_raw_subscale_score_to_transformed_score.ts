@@ -4,7 +4,7 @@ import type { BreastQScaleType } from '../../../../../types/calculations/subscal
 import {
   scoreLens,
   subscaleIdLens,
-} from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../../PARAMETERS'
 
 export const transform_raw_subscale_score_to_transformed_score = (

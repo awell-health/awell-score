@@ -7,7 +7,7 @@ import type {
 import {
   scoreLens,
   subscaleIdLens,
-} from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../../PARAMETERS'
 import { is_numeric } from '../../../shared_functions'
 import {

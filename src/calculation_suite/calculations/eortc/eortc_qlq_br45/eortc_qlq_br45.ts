@@ -9,9 +9,9 @@ import type {
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { add_response_values_to_subscale_inputs } from '../../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../../helper_functions/create_calculation'
+} from '../../../lib/calculation_variants/api/input/lenses'
+import { add_response_values_to_subscale_inputs } from '../../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import {
   add_raw_subscale_score_if_applicable,

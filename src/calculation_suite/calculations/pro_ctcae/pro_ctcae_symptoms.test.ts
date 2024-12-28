@@ -2,11 +2,11 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { inputIdLens } from '../../helper_functions/calculation_variants/api/input/lenses'
+import { inputIdLens } from '../../lib/calculation_variants/api/input/lenses'
 import {
   inputsInSubscaleLens,
   subscaleIdLens,
-} from '../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../lib/calculation_variants/api/subscale/lenses'
 import { PRO_CTCAE_SYMPTOMS } from './definition/pro_ctcae_symptoms'
 import { extract_symptom_and_dimension_from_input } from './pro_ctcae_calculation/extract_symptom_and_dimension_from_input/extract_symptom_and_dimension_from_input'
 

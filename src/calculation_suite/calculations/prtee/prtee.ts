@@ -6,10 +6,10 @@ import type {
   SubscaleType,
   WIPCalculationResultType,
 } from '../../../types/calculations.types'
-import { rawInputValueLens } from '../../helper_functions/calculation_variants/api/input/lenses'
-import { scoreLens } from '../../helper_functions/calculation_variants/api/subscale/lenses'
-import { add_response_values_to_subscale_inputs } from '../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../helper_functions/create_calculation'
+import { rawInputValueLens } from '../../lib/calculation_variants/api/input/lenses'
+import { scoreLens } from '../../lib/calculation_variants/api/subscale/lenses'
+import { add_response_values_to_subscale_inputs } from '../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { is_numeric } from '../shared_functions'
 import { PRTEE_OUTPUT, PRTEE_SUBSCALES } from './definition'

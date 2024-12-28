@@ -9,8 +9,8 @@ import {
   add_raw_values_to_inputs,
   do_all_required_inputs_have_a_valid_value,
   get_valid_values,
-} from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { HOOS_PS_INPUTS, HOOS_PS_OUTPUT } from './definition'
 import { hoos_conversion_table } from './hoos_ps_conversion_table'

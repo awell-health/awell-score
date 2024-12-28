@@ -5,8 +5,8 @@ import type {
   IncomingCalculationInputType,
   WIPCalculationResultType,
 } from '../../../../types/calculations.types'
-import { add_response_values_to_subscale_inputs } from '../../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../../helper_functions/create_calculation'
+import { add_response_values_to_subscale_inputs } from '../../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../../lib/create_calculation'
 import {
   add_raw_subscale_score_if_applicable,
   add_scaled_subscale_score_based_on_raw_score,

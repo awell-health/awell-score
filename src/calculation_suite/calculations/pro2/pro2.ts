@@ -9,12 +9,12 @@ import {
   inputIdLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../lib/calculation_variants/api/input/lenses'
 import {
   add_raw_values_to_inputs,
   do_all_required_inputs_have_a_valid_value,
-} from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { PRO2_INPUTS, PRO2_OUTPUT, SUBSCORE_QUESTIONS } from './definition'
 import { determine_remission } from './determine_remission/determine_remission'

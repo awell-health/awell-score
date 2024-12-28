@@ -3,8 +3,8 @@ import type {
   InputType,
   WIPCalculationResultType,
 } from '../../../types/calculations.types'
-import { add_raw_values_to_inputs } from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+import { add_raw_values_to_inputs } from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { PANNS_6_OUTPUT, PANSS_6_INPUTS } from './definition'
 import { calculate_scale_scores, calculate_total_score } from './helpers'
 

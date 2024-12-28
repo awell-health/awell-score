@@ -1,9 +1,9 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { execute_test_calculation } from '../../../helper_functions/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../../helper_functions/get_result_ids_from_calculation_output'
-import { view_result } from '../../../helper_functions/view_result'
+import { execute_test_calculation } from '../../../lib/execute_test_calculation'
+import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
+import { view_result } from '../../../lib/view_result'
 import { CALCULATIONS } from '../../calculation_library'
 import { filter_eortc_results_by_specific_scale_type } from '../common/eortc_helper_functions'
 import {

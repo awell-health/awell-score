@@ -2,10 +2,10 @@ import { expect } from 'chai'
 import R from 'ramda'
 
 import { InvalidInputsError } from '../../errors'
-import { subscaleIdLens } from '../../helper_functions/calculation_variants/api/subscale/lenses'
-import { execute_test_calculation } from '../../helper_functions/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../helper_functions/get_result_ids_from_calculation_output'
-import { view_result } from '../../helper_functions/view_result'
+import { subscaleIdLens } from '../../lib/calculation_variants/api/subscale/lenses'
+import { execute_test_calculation } from '../../lib/execute_test_calculation'
+import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
+import { view_result } from '../../lib/view_result'
 import { CALCULATIONS } from '../calculation_library'
 import {
   get_input_ids_for_specific_subscale,

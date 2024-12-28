@@ -7,8 +7,8 @@ import {
   notApplicableInputLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../../helper_functions/calculation_variants/api/input/lenses'
-import { inputsInSubscaleLens } from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../../lib/calculation_variants/api/input/lenses'
+import { inputsInSubscaleLens } from '../../../../lib/calculation_variants/api/subscale/lenses'
 import { NOT_APPLICABLE_MESSAGE } from '../../../../PARAMETERS'
 import { calculate_RS } from '../eortc_helper_functions'
 import { rawScoreLens } from '../lenses'

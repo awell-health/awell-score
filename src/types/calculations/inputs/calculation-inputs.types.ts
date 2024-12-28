@@ -28,8 +28,8 @@ export type NumberInputType = {
     label?: LabelType
   }>
   range?: {
-    min: { value: number; label?: LabelType }
-    max: { value: number; label?: LabelType }
+    min?: { value: number; label?: LabelType }
+    max?: { value: number; label?: LabelType }
   }
 }
 

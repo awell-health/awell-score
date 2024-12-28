@@ -6,7 +6,7 @@ import type {
   EORTCScaleType,
   TypeOfScaleType,
 } from '../../../../types/calculations/subscales/custom/eortc.types'
-import { subscaleIdLens } from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+import { subscaleIdLens } from '../../../lib/calculation_variants/api/subscale/lenses'
 import { scaleTypeLens } from './lenses'
 
 export const calculate_RS = (array_of_items: Array<number | undefined>) => {

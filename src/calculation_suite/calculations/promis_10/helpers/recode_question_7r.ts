@@ -5,7 +5,7 @@ import {
   inputIdLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 
 const recoding_table = {
   '0': 5,

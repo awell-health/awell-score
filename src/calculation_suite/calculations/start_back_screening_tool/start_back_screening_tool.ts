@@ -8,9 +8,9 @@ import type {
 import {
   scoreLens,
   subscaleIdLens,
-} from '../../helper_functions/calculation_variants/api/subscale/lenses'
-import { add_raw_values_to_inputs } from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/api/subscale/lenses'
+import { add_raw_values_to_inputs } from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { START_BACK_INPUTS, START_BACK_OUTPUT } from './definition'
 import { calculate_total_and_subscale_score } from './helpers/calculate_total_and_subscale_score'
 import { classify_risk } from './helpers/classify_risk/classify_risk'

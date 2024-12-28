@@ -2,7 +2,7 @@ import type {
   CalculationType,
   WIPCalculationResultType,
 } from '../../../types/calculations.types'
-import { create_calculation } from '../../helper_functions/create_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { DEMO_INPUTS, DEMO_OUTPUT } from './definition'
 
 const calculate_demo_score = (): WIPCalculationResultType => [

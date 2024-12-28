@@ -27,7 +27,7 @@ describe('bmi_imperial', function () {
       ]
 
       const configured_calculation_input_ids = Object.keys(
-        calculation.inputSchema.shape
+        calculation.inputSchemaAsObject.shape
       )
 
       expect(configured_calculation_input_ids).to.have.members(

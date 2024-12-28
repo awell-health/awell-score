@@ -8,8 +8,8 @@ import {
   inputTypeLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { inputsInSubscaleLens } from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
+import { inputsInSubscaleLens } from '../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 
 export const add_std_answer_to_inputs_in_subscale = (

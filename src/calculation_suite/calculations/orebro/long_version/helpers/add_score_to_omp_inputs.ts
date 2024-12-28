@@ -9,7 +9,7 @@ import {
   inputInverseLens,
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../../lib/calculation_variants/api/input/lenses'
 import { is_numeric } from '../../../shared_functions'
 
 const calculate_reverse_score = (answer: unknown): number | string => {

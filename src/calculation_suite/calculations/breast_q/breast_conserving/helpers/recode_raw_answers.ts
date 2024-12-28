@@ -5,8 +5,8 @@ import type { BreastQScaleType } from '../../../../../types/calculations/subscal
 import {
   rawInputValueLens,
   stdInputValueLens,
-} from '../../../../helper_functions/calculation_variants/api/input/lenses'
-import { inputsInSubscaleLens } from '../../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../../lib/calculation_variants/api/input/lenses'
+import { inputsInSubscaleLens } from '../../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../../PARAMETERS'
 
 export const recode_raw_answers = (

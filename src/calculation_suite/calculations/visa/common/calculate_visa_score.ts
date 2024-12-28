@@ -7,7 +7,7 @@ import type {
 import {
   inputRequiredLens,
   rawInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 

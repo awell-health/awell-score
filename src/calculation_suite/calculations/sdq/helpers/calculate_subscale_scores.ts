@@ -1,12 +1,12 @@
 import R from 'ramda'
 
 import type { SubscaleType } from '../../../../types/calculations.types'
-import { rawInputValueLens } from '../../../helper_functions/calculation_variants/api/input/lenses'
+import { rawInputValueLens } from '../../../lib/calculation_variants/api/input/lenses'
 import {
   inputsInSubscaleLens,
   scoreLens,
   subscaleIdLens,
-} from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../lib/calculation_variants/api/subscale/lenses'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { is_numeric } from '../../shared_functions'
 import { NOT_AT_ALL } from '../definition/sdq_subscales'

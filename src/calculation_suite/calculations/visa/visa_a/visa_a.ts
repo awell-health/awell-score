@@ -1,6 +1,6 @@
 import type { CalculationType } from '../../../../types/calculations.types'
-import { add_raw_values_to_inputs } from '../../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../../helper_functions/create_calculation'
+import { add_raw_values_to_inputs } from '../../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../../lib/create_calculation'
 import { calculate_visa_score } from '../common/calculate_visa_score'
 import { VISA_A_INPUTS, VISA_A_OUTPUT } from './definition'
 

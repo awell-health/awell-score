@@ -4,11 +4,11 @@ import type { SubscaleType } from '../../../../types/calculations.types'
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 import {
   inputsInSubscaleLens,
   subscaleIdLens,
-} from '../../../helper_functions/calculation_variants/api/subscale/lenses'
+} from '../../../lib/calculation_variants/api/subscale/lenses'
 import { is_numeric } from '../../shared_functions'
 import { NOT_RELEVANT_ANSWER, YES_ANSWER } from '../definition/dlqi_subscales'
 

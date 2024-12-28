@@ -1,7 +1,7 @@
 import R from 'ramda'
 
 import type { InputType } from '../../../../types/calculations.types'
-import { get_valid_values } from '../../../helper_functions/calculation_variants/simple_calculation'
+import { get_valid_values } from '../../../lib/calculation_variants/simple_calculation'
 import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { PANNS_6_SCALES, type ScaleType } from '../definition/panss_6_scales'
 

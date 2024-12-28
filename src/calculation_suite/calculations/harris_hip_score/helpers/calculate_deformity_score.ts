@@ -4,7 +4,7 @@ import type { InputType } from '../../../../types/calculations.types'
 import {
   inputIdLens,
   rawInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+} from '../../../lib/calculation_variants/api/input/lenses'
 
 export const calculate_deformity_score = (
   inputs: InputType[]

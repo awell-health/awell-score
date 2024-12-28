@@ -1,9 +1,37 @@
 import { z } from 'zod'
 
-export const BmiInputSchema = z.object({
-  weight: z.number().min(10).max(300),
-  height: z.number().min(20).max(300),
-})
+export const BmiInputSchema = {
+  weight: {
+    type: z.number(),
+    label: {
+      nl: 'Gewicht',
+      en: 'Weight',
+      fr: 'Poids',
+      de: 'Gewicht',
+    },
+    unit: {
+      nl: 'kg',
+      en: 'kg',
+      fr: 'kg',
+      de: 'kg',
+    },
+  },
+  height: {
+    type: z.number().min(20).max(300),
+    label: {
+      nl: 'Lengte',
+      en: 'Height',
+      fr: 'Longueur',
+      de: 'Länge',
+    },
+    unit: {
+      nl: 'cm',
+      en: 'cm',
+      fr: 'cm',
+      de: 'cm',
+    },
+  },
+}
 
 export const BmiOutputSchema = {
   BMI: {

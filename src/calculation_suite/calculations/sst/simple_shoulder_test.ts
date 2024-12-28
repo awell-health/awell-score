@@ -9,8 +9,8 @@ import type {
 import {
   add_raw_values_to_inputs,
   get_valid_values,
-} from '../../helper_functions/calculation_variants/simple_calculation'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/simple_calculation'
+import { create_calculation } from '../../lib/create_calculation'
 import { MISSING_MESSAGE } from '../../PARAMETERS'
 import { SST_INPUTS, SST_OUTPUT } from './definition'
 

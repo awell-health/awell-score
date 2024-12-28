@@ -8,8 +8,8 @@ import type {
 import {
   add_response_values_to_subscale_inputs,
   add_standardized_values_to_subscale_inputs,
-} from '../../helper_functions/calculation_variants/calculation_with_subscales'
-import { create_calculation } from '../../helper_functions/create_calculation'
+} from '../../lib/calculation_variants/calculation_with_subscales'
+import { create_calculation } from '../../lib/create_calculation'
 import { EPIC_26_HRQOL_DOMAINS, EPIC_26_OUTPUT } from './definition'
 import { EPIC_26_standardization } from './epic_26_conversion_table'
 import { add_score_to_domains_and_handle_missing_data } from './helpers/add_score_to_domains_and_handle_missing_data'
