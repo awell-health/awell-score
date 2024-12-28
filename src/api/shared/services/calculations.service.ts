@@ -16,18 +16,27 @@ import {
   filter_out_non_applicable_inputs,
   generate_random_calculation_input_based_on_calculation_parameters,
 } from '../utils'
+import type { CalculationType as NewCalculationType } from '../classes/Calculation'
 
 /**
  * Only return calculations where `is_private` is set to false
  */
 const get_public_calculations = (): CalculationsLibraryType =>
-  R.filter(calculation => calculation.is_private === false, CALCULATIONS)
+  R.filter(
+    (calculation): calculation is CalculationType =>
+      'is_private' in calculation && calculation.is_private === false,
+    CALCULATIONS
+  )
 
 /**
  * Only return calculations where `is_private` is set to true
  */
 const get_private_calculations = (): CalculationsLibraryType =>
-  R.filter(calculation => calculation.is_private === true, CALCULATIONS)
+  R.filter(
+    (calculation): calculation is CalculationType =>
+      'is_private' in calculation && calculation.is_private === true,
+    CALCULATIONS
+  )
 
 /**
  * Return all calculations
@@ -36,7 +45,7 @@ const get_all_calculations = (): CalculationsLibraryType => CALCULATIONS
 
 const get_calculation = (
   calculation_id: CalculationScriptIdentifierType
-): CalculationType | undefined => {
+): CalculationType | NewCalculationType<any, any> | undefined => {
   const calculation = CALCULATIONS[calculation_id]
 
   if (R.isNil(calculation)) return undefined

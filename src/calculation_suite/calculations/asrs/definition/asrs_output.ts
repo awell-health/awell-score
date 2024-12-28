@@ -1,34 +1,28 @@
-import type { CalculationOutputDefinition } from '../../../../types/calculations.types'
+import { z } from 'zod'
 
-export const ASRS_OUTPUT: CalculationOutputDefinition[] = [
-  {
-    subresult_id: 'ASRS_PART_A_SCORE',
+export const ASRS_OUTPUT = {
+  ASRS_PART_A_SCORE: {
     label: { en: 'ASRS - Part A' },
-    type: 'number',
+    type: z.number(),
   },
-  {
-    subresult_id: 'ASRS_PART_B_SCORE',
+  ASRS_PART_B_SCORE: {
     label: { en: 'ASRS - Part B' },
-    type: 'number',
+    type: z.number(),
   },
-  {
-    subresult_id: 'ASRS_TOTAL_SCORE',
+  ASRS_TOTAL_SCORE: {
     label: { en: 'ASRS - Total Score' },
-    type: 'number',
+    type: z.number(),
   },
-  {
-    subresult_id: 'ASRS_INATTENTIVE_SUBSCALE_SCORE',
+  ASRS_INATTENTIVE_SUBSCALE_SCORE: {
     label: { en: 'ASRS - Inattentive Subscale Score' },
-    type: 'number',
+    type: z.number(),
   },
-  {
-    subresult_id: 'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE',
+  ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE: {
     label: { en: 'ASRS - Hyperactive/Impulsive Subscale (Motor)' },
-    type: 'number',
+    type: z.number(),
   },
-  {
-    subresult_id: 'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE',
+  ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE: {
     label: { en: 'ASRS - Hyperactive/Impulsive Subscale (Verbal)' },
-    type: 'number',
+    type: z.number(),
   },
-]
+}

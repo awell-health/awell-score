@@ -64,37 +64,37 @@ describe('cdlqi', function () {
 
       it('should return undefined result as score for TOTAL', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
 
       it('should return undefined result as score for the Symptoms and feelings', function () {
         const score = view_result('SYMPTOMS_AND_FEELINGS')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
 
       it('should return undefined result as score for the Leisure', function () {
         const score = view_result('LEISURE')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
 
       it('should return undefined result as score for the School or holidays', function () {
         const score = view_result('SCHOOL_OR_HOLIDAYS')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
 
       it('should return undefined result as score for the Personal relationships', function () {
         const score = view_result('PERSONAL_RELATIONSHIPS')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
 
       it('should return undefined result as score for the Sleep', function () {
         const score = view_result('SLEEP')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
 
       it('should return undefined result as score for the Treatment', function () {
         const score = view_result('TREATMENT')(outcome)
-        return expect(score).to.eql(undefined)
+        expect(score).to.eql(undefined)
       })
     })
 
@@ -228,43 +228,43 @@ describe('cdlqi', function () {
       const outcome = cdlqi_calculation(min_response)
       it('should return the minimum score for CDLQI TOTAL', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(CDLQI_MIN_SCORE)
+        expect(score).to.eql(CDLQI_MIN_SCORE)
       })
 
       it('should return the minimum score for the Symptoms and feelings', function () {
         const score = view_result('SYMPTOMS_AND_FEELINGS')(outcome)
         const EXPECTED_SYMPTOMS_AND_FEELINGS_MIN_SCORE = 0
-        return expect(score).to.eql(EXPECTED_SYMPTOMS_AND_FEELINGS_MIN_SCORE)
+        expect(score).to.eql(EXPECTED_SYMPTOMS_AND_FEELINGS_MIN_SCORE)
       })
 
       it('should return the minimum score for the Leisure', function () {
         const score = view_result('LEISURE')(outcome)
         const EXPECTED_LEISURE_MIN_SCORE = 0
-        return expect(score).to.eql(EXPECTED_LEISURE_MIN_SCORE)
+        expect(score).to.eql(EXPECTED_LEISURE_MIN_SCORE)
       })
 
       it('should return the minimum score for the School or holidays', function () {
         const score = view_result('SCHOOL_OR_HOLIDAYS')(outcome)
         const EXPECTED_SCHOOL_OR_HOLIDAYS_MIN_SCORE = 0
-        return expect(score).to.eql(EXPECTED_SCHOOL_OR_HOLIDAYS_MIN_SCORE)
+        expect(score).to.eql(EXPECTED_SCHOOL_OR_HOLIDAYS_MIN_SCORE)
       })
 
       it('should return the minimum score for the Personal relationships', function () {
         const score = view_result('PERSONAL_RELATIONSHIPS')(outcome)
         const EXPECTED_PERSONAL_RELATIONSHIPS_MIN_SCORE = 0
-        return expect(score).to.eql(EXPECTED_PERSONAL_RELATIONSHIPS_MIN_SCORE)
+        expect(score).to.eql(EXPECTED_PERSONAL_RELATIONSHIPS_MIN_SCORE)
       })
 
       it('should return the minimum score for the Sleep', function () {
         const score = view_result('SLEEP')(outcome)
         const EXPECTED_SLEEP_MIN_SCORE = 0
-        return expect(score).to.eql(EXPECTED_SLEEP_MIN_SCORE)
+        expect(score).to.eql(EXPECTED_SLEEP_MIN_SCORE)
       })
 
       it('should return the minimum score for the Treatment', function () {
         const score = view_result('TREATMENT')(outcome)
         const EXPECTED_TREATMENT_MIN_SCORE = 0
-        return expect(score).to.eql(EXPECTED_TREATMENT_MIN_SCORE)
+        expect(score).to.eql(EXPECTED_TREATMENT_MIN_SCORE)
       })
     })
 
@@ -272,45 +272,43 @@ describe('cdlqi', function () {
       const outcome = cdlqi_calculation(median_response)
       it('should return the median score for CDLQI TOTAL', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(CDLQI_MEDIAN_SCORE)
+        expect(score).to.eql(CDLQI_MEDIAN_SCORE)
       })
 
       it('should return the median score for the Symptoms and feelings', function () {
         const score = view_result('SYMPTOMS_AND_FEELINGS')(outcome)
         const EXPECTED_SYMPTOMS_AND_FEELINGS_MEDIAN_SCORE = 3
-        return expect(score).to.eql(EXPECTED_SYMPTOMS_AND_FEELINGS_MEDIAN_SCORE)
+        expect(score).to.eql(EXPECTED_SYMPTOMS_AND_FEELINGS_MEDIAN_SCORE)
       })
 
       it('should return the median score for the Leisure', function () {
         const score = view_result('LEISURE')(outcome)
         const EXPECTED_LEISURE_MEDIAN_SCORE = 4
-        return expect(score).to.eql(EXPECTED_LEISURE_MEDIAN_SCORE)
+        expect(score).to.eql(EXPECTED_LEISURE_MEDIAN_SCORE)
       })
 
       it('should return the median score for the School or holidays', function () {
         const score = view_result('SCHOOL_OR_HOLIDAYS')(outcome)
         const EXPECTED_SCHOOL_OR_HOLIDAYS_MEDIAN_SCORE = 2
-        return expect(score).to.eql(EXPECTED_SCHOOL_OR_HOLIDAYS_MEDIAN_SCORE)
+        expect(score).to.eql(EXPECTED_SCHOOL_OR_HOLIDAYS_MEDIAN_SCORE)
       })
 
       it('should return the median score for the Personal relationships', function () {
         const score = view_result('PERSONAL_RELATIONSHIPS')(outcome)
         const EXPECTED_PERSONAL_RELATIONSHIPS_MEDIAN_SCORE = 3
-        return expect(score).to.eql(
-          EXPECTED_PERSONAL_RELATIONSHIPS_MEDIAN_SCORE
-        )
+        expect(score).to.eql(EXPECTED_PERSONAL_RELATIONSHIPS_MEDIAN_SCORE)
       })
 
       it('should return the median score for the Sleep', function () {
         const score = view_result('SLEEP')(outcome)
         const EXPECTED_SLEEP_MEDIAN_SCORE = 2
-        return expect(score).to.eql(EXPECTED_SLEEP_MEDIAN_SCORE)
+        expect(score).to.eql(EXPECTED_SLEEP_MEDIAN_SCORE)
       })
 
       it('should return the median score for the Treatment', function () {
         const score = view_result('TREATMENT')(outcome)
         const EXPECTED_TREATMENT_MEDIAN_SCORE = 1
-        return expect(score).to.eql(EXPECTED_TREATMENT_MEDIAN_SCORE)
+        expect(score).to.eql(EXPECTED_TREATMENT_MEDIAN_SCORE)
       })
     })
 
@@ -319,43 +317,43 @@ describe('cdlqi', function () {
 
       it('should return the maximum score for CDLQI TOTAL', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(CDLQI_MAX_SCORE)
+        expect(score).to.eql(CDLQI_MAX_SCORE)
       })
 
       it('should return the maximum score for the Symptoms and feelings', function () {
         const score = view_result('SYMPTOMS_AND_FEELINGS')(outcome)
         const EXPECTED_SYMPTOMS_AND_FEELINGS_MAX_SCORE = 6
-        return expect(score).to.eql(EXPECTED_SYMPTOMS_AND_FEELINGS_MAX_SCORE)
+        expect(score).to.eql(EXPECTED_SYMPTOMS_AND_FEELINGS_MAX_SCORE)
       })
 
       it('should return the maximum score for the Leisure', function () {
         const score = view_result('LEISURE')(outcome)
         const EXPECTED_LEISURE_MAX_SCORE = 9
-        return expect(score).to.eql(EXPECTED_LEISURE_MAX_SCORE)
+        expect(score).to.eql(EXPECTED_LEISURE_MAX_SCORE)
       })
 
       it('should return the maximum score for the School or holidays', function () {
         const score = view_result('SCHOOL_OR_HOLIDAYS')(outcome)
         const EXPECTED_SCHOOL_OR_HOLIDAYS_MAX_SCORE = 3
-        return expect(score).to.eql(EXPECTED_SCHOOL_OR_HOLIDAYS_MAX_SCORE)
+        expect(score).to.eql(EXPECTED_SCHOOL_OR_HOLIDAYS_MAX_SCORE)
       })
 
       it('should return the maximum score for the Personal relationships', function () {
         const score = view_result('PERSONAL_RELATIONSHIPS')(outcome)
         const EXPECTED_PERSONAL_RELATIONSHIPS_MAX_SCORE = 6
-        return expect(score).to.eql(EXPECTED_PERSONAL_RELATIONSHIPS_MAX_SCORE)
+        expect(score).to.eql(EXPECTED_PERSONAL_RELATIONSHIPS_MAX_SCORE)
       })
 
       it('should return the maximum score for the Sleep', function () {
         const score = view_result('SLEEP')(outcome)
         const EXPECTED_SLEEP_MAX_SCORE = 3
-        return expect(score).to.eql(EXPECTED_SLEEP_MAX_SCORE)
+        expect(score).to.eql(EXPECTED_SLEEP_MAX_SCORE)
       })
 
       it('should return the maximum score for the Treatment', function () {
         const score = view_result('TREATMENT')(outcome)
         const EXPECTED_TREATMENT_MAX_SCORE = 3
-        return expect(score).to.eql(EXPECTED_TREATMENT_MAX_SCORE)
+        expect(score).to.eql(EXPECTED_TREATMENT_MAX_SCORE)
       })
     })
 

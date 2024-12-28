@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import type { InputType } from '../../../../types/calculations.types'
 
 export const BECK_INPUTS: Array<InputType> = [
@@ -851,3 +852,50 @@ export const BECK_INPUTS: Array<InputType> = [
     required: true,
   },
 ]
+
+const InputTypeSchema = z.union([
+  z.literal(0),
+  z.literal(1),
+  z.literal(2),
+  z.literal(3),
+])
+
+export const InputSchema = z.object({
+  Q01: InputTypeSchema,
+  Q02: InputTypeSchema,
+  Q03: InputTypeSchema,
+  Q04: InputTypeSchema,
+  Q05: InputTypeSchema,
+  Q06: InputTypeSchema,
+  Q07: InputTypeSchema,
+  Q08: InputTypeSchema,
+  Q09: InputTypeSchema,
+  Q10: InputTypeSchema,
+  Q11: InputTypeSchema,
+  Q12: InputTypeSchema,
+  Q13: InputTypeSchema,
+  Q14: InputTypeSchema,
+  Q15: InputTypeSchema,
+  Q16: z.union([
+    z.literal(0),
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+    z.literal(5),
+    z.literal(6),
+  ]),
+  Q17: InputTypeSchema,
+  Q18: z.union([
+    z.literal(0),
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+    z.literal(5),
+    z.literal(6),
+  ]),
+  Q19: InputTypeSchema,
+  Q20: InputTypeSchema,
+  Q21: InputTypeSchema,
+})

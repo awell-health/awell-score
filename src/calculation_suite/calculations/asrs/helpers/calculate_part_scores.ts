@@ -1,54 +1,34 @@
 import R from 'ramda'
 
-import type { InputType } from '../../../../types/calculations.types'
-import { MISSING_MESSAGE } from '../../../PARAMETERS'
 import { ASRS_PARTS, type PartType } from '../definition/asrs_parts'
-import { ASRS_INPUTS } from '../definition'
-import { is_numeric } from '../../shared_functions'
-
-import {
-  inputIdLens,
-  rawInputValueLens,
-  stdInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
+import { ASRS_INPUTS, InputSchema } from '../definition'
+import { z } from 'zod'
+import _ from 'lodash'
 
 export const calculate_part_scores = (
-  inputs_with_answers: Array<InputType>,
+  inputs_with_answers: z.infer<typeof InputSchema>,
   part: PartType
-): number | string => {
+): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ASRS_PARTS[part]
 
-  const valid_standardized_input_scores = R.compose(
-    R.filter(is_numeric),
-    R.map(stdValue => Number(stdValue)),
-    R.filter(stdValue => stdValue !== MISSING_MESSAGE),
-    R.map(input => R.view(stdInputValueLens, input)),
-    R.map(input => {
-      const inputValue = R.view(rawInputValueLens, input)
+  const inputs_in_part = _.pick(
+    inputs_with_answers,
+    INPUT_IDS_NEEDED_FOR_SCORING
+  )
 
-      if (inputValue === MISSING_MESSAGE)
-        return R.set(stdInputValueLens, MISSING_MESSAGE, input)
-
-      const input_definition = ASRS_INPUTS.find(
-        id => R.view(inputIdLens, id) === R.view(inputIdLens, input)
-      )
-
-      if (!input_definition) {
-        return R.set(stdInputValueLens, MISSING_MESSAGE, input)
-      }
-
-      if (input_definition.positive_scores.includes(inputValue)) {
-        return R.set(stdInputValueLens, 1, input)
-      }
-
-      return R.set(stdInputValueLens, 0, input)
-    }),
-    R.filter(({ input_id }: InputType) =>
-      INPUT_IDS_NEEDED_FOR_SCORING.includes(input_id)
+  const standardized_input_scores = _.map(inputs_in_part, (_i, key) => {
+    const input_definition = ASRS_INPUTS.find(
+      inputDef => inputDef.input_id === key
     )
-  )(inputs_with_answers)
 
-  if (valid_standardized_input_scores.length === 0) return MISSING_MESSAGE
+    if (input_definition === undefined || _i === undefined) return null
 
-  return R.sum(valid_standardized_input_scores)
+    if (input_definition.positive_scores.includes(_i)) return 1
+
+    return 0
+  }).filter(v => v !== null)
+
+  if (standardized_input_scores.length === 0) return null
+
+  return R.sum(standardized_input_scores as number[])
 }

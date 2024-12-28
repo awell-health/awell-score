@@ -4,6 +4,7 @@ import type {
 } from './calculations/inputs/calculation-inputs.types'
 import type { CustomSubscaleType } from './calculations/subscales/custom'
 import type { LabelType } from './localization.types'
+import type { CalculationType as NewCalculationType } from '../api/shared/classes/Calculation'
 
 export type CalculationInputKey = string
 export type CalculationInputValue = unknown
@@ -47,7 +48,11 @@ export type CalculationOutputDefinition = {
   type: OutputTypes
   unit?: LabelType
   interpretation?: LabelType
+  terminology?: unknown
 }
+
+export type SubresultIds<OutputFields extends CalculationOutputDefinition[]> =
+  OutputFields[number]['subresult_id']
 
 export type CalculationOutputType = {
   subresult_id: string
@@ -146,5 +151,7 @@ export type CalculationType = {
 }
 
 export type CalculationsLibraryType = {
-  [key in CalculationScriptIdentifierType]: CalculationType
+  [key in CalculationScriptIdentifierType]:
+    | CalculationType
+    | NewCalculationType<any, any>
 }

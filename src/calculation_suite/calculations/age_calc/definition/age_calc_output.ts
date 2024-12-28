@@ -1,10 +1,9 @@
-import type { CalculationOutputDefinition } from '../../../../types/calculations.types'
+import { z } from 'zod'
 
-export const AGE_CALC_OUTPUT: CalculationOutputDefinition[] = [
-  {
-    subresult_id: 'AGE',
+export const AGE_CALC_OUTPUT = {
+  AGE: {
     label: { en: 'Age' },
     unit: { en: 'years' },
-    type: 'number',
+    type: z.number(),
   },
-]
+}

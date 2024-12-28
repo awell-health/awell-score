@@ -1,22 +1,17 @@
 import { expect } from 'chai'
 
-import { InvalidInputsError } from '../../errors'
-import { execute_test_calculation } from '../../helper_functions/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../helper_functions/get_result_ids_from_calculation_output'
-import { view_result } from '../../helper_functions/view_result'
-import { view_status } from '../../helper_functions/view_status'
-import { MISSING_STATUS } from '../../PARAMETERS'
 import { CALCULATIONS } from '../calculation_library'
-import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
 import {
   best_response,
   random_response,
   worst_response,
 } from './__testdata__/asrs_test_responses'
 import { asrs } from './asrs'
-import { ASRS_INPUTS, ASRS_PARTS, ASRS_SUBSCALES } from './definition'
+import { ASRS_PARTS, ASRS_SUBSCALES } from './definition'
+import { Calculation } from '../../../api/shared/classes/Calculation'
+import { ZodError } from 'zod'
 
-const asrs_calculation = execute_test_calculation(asrs)
+const asrs_calculation = new Calculation(asrs)
 
 describe('asrs', function () {
   it('asrs calculation function should be available as a calculation', function () {
@@ -24,7 +19,7 @@ describe('asrs', function () {
   })
 
   describe('basic assumptions', function () {
-    const outcome = asrs_calculation(best_response)
+    const outcome = asrs_calculation.calculate({ payload: best_response })
 
     it('should have the expected calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
@@ -35,8 +30,7 @@ describe('asrs', function () {
         'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE',
         'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE',
       ]
-      const configured_calculation_ids =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_ids = Object.keys(outcome)
 
       expect(configured_calculation_ids).to.eql(EXPECTED_CALCULATION_IDS)
     })
@@ -66,8 +60,9 @@ describe('asrs', function () {
           'Q18',
         ]
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(ASRS_INPUTS)
+        const configured_input_ids = Object.keys(
+          asrs_calculation.inputSchema.shape
+        )
 
         expect(EXPECTED_INPUT_IDS).to.eql(configured_input_ids)
       })
@@ -147,273 +142,256 @@ describe('asrs', function () {
     describe('when an answer is below the expected range', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          asrs_calculation({
-            Q01: -1,
+          asrs_calculation.calculate({
+            payload: {
+              Q01: -1,
+            },
           })
-        ).to.throw(InvalidInputsError)
+        ).to.throw(ZodError)
       })
     })
 
     describe('when an answer is above the expected range', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          asrs_calculation({
-            Q01: 5,
+          asrs_calculation.calculate({
+            payload: {
+              Q01: 5,
+            },
           })
-        ).to.throw(InvalidInputsError)
+        ).to.throw(ZodError)
       })
     })
 
     describe('when there are non-numerical answers', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          asrs_calculation({
-            Q01: "I'm not a number",
+          asrs_calculation.calculate({
+            payload: {
+              Q01: "I'm not a number",
+            },
           })
-        ).to.throw(InvalidInputsError)
+        ).to.throw(ZodError)
       })
     })
 
     describe('when called with an empty response', function () {
-      const outcome = asrs_calculation({})
+      const outcome = asrs_calculation.calculate({ payload: {} })
       describe('Part A', function () {
         it('should return undefined for the score', function () {
-          const score = view_result('ASRS_PART_A_SCORE')(outcome)
-
-          expect(score).to.eql(undefined)
+          expect(outcome.ASRS_PART_A_SCORE).to.eql(null)
         })
 
-        it('should return MISSING for the status', function () {
-          const score = view_status('ASRS_PART_A_SCORE')(outcome)
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status('ASRS_PART_A_SCORE')(outcome)
 
-          expect(score).to.eql(MISSING_STATUS)
-        })
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
       })
       describe('Part B', function () {
         it('should return undefined for the score', function () {
-          const score = view_result('ASRS_PART_B_SCORE')(outcome)
-
-          expect(score).to.eql(undefined)
+          expect(outcome.ASRS_PART_B_SCORE).to.eql(null)
         })
 
-        it('should return MISSING for the status', function () {
-          const score = view_status('ASRS_PART_B_SCORE')(outcome)
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status('ASRS_PART_B_SCORE')(outcome)
 
-          expect(score).to.eql(MISSING_STATUS)
-        })
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
       })
       describe('Total score', function () {
         it('should return undefined for the score', function () {
-          const score = view_result('ASRS_TOTAL_SCORE')(outcome)
-
-          expect(score).to.eql(undefined)
+          expect(outcome.ASRS_TOTAL_SCORE).to.eql(null)
         })
 
-        it('should return MISSING for the status', function () {
-          const score = view_status('ASRS_TOTAL_SCORE')(outcome)
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status('ASRS_TOTAL_SCORE')(outcome)
 
-          expect(score).to.eql(MISSING_STATUS)
-        })
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
       })
       describe('Inattentive Subscale', function () {
         it('should return undefined for the score', function () {
-          const score = view_result('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).to.eql(undefined)
+          expect(outcome.ASRS_INATTENTIVE_SUBSCALE_SCORE).to.eql(null)
         })
 
-        it('should return MISSING for the status', function () {
-          const score = view_status('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
 
-          expect(score).to.eql(MISSING_STATUS)
-        })
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
       })
       describe('Hyperactive/Impulsive Subscale (Motor)', function () {
         it('should return undefined for the score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE'
-          )(outcome)
-
-          expect(score).to.eql(undefined)
+          expect(
+            outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE
+          ).to.eql(null)
         })
 
-        it('should return MISSING for the status', function () {
-          const score = view_status(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE'
-          )(outcome)
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
 
-          expect(score).to.eql(MISSING_STATUS)
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
+      })
+      describe('Hyperactive/Impulsive Subscale (Motor)', function () {
+        it('should return undefined for the score', function () {
+          expect(
+            outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE
+          ).to.eql(null)
         })
+
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status(
+        //     'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE'
+        //   )(outcome)
+
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
       })
       describe('Hyperactive/Impulsive Subscale (Verbal)', function () {
         it('should return undefined for the score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE'
-          )(outcome)
-
-          expect(score).to.eql(undefined)
+          expect(
+            outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE
+          ).to.eql(null)
         })
 
-        it('should return MISSING for the status', function () {
-          const score = view_status(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE'
-          )(outcome)
+        // it('should return MISSING for the status', function () {
+        //   const score = view_status(
+        //     'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE'
+        // )(outcome)
 
-          expect(score).to.eql(MISSING_STATUS)
-        })
+        //   expect(score).to.eql(MISSING_STATUS)
+        // })
       })
     })
   })
 
   describe('score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = asrs_calculation(worst_response)
+      const outcome = asrs_calculation.calculate({
+        payload: worst_response,
+      })
 
       describe('Part A', function () {
         it('should return the worst score', function () {
-          const score = view_result('ASRS_PART_A_SCORE')(outcome)
-
+          const score = outcome.ASRS_PART_A_SCORE
           expect(score).to.eql(6)
         })
       })
       describe('Part B', function () {
         it('should return the worst score', function () {
-          const score = view_result('ASRS_PART_B_SCORE')(outcome)
-
+          const score = outcome.ASRS_PART_B_SCORE
           expect(score).to.eql(12)
         })
       })
       describe('Total score', function () {
         it('should return the worst score', function () {
-          const score = view_result('ASRS_TOTAL_SCORE')(outcome)
-
+          const score = outcome.ASRS_TOTAL_SCORE
           expect(score).to.eql(18)
         })
       })
       describe('Inattentive Subscale', function () {
         it('should return the worst score', function () {
-          const score = view_result('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
-
+          const score = outcome.ASRS_INATTENTIVE_SUBSCALE_SCORE
           expect(score).to.eql(9)
         })
       })
       describe('Hyperactive/Impulsive Subscale (Motor)', function () {
         it('should return the worst score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE'
-          )(outcome)
-
+          const score = outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE
           expect(score).to.eql(5)
         })
       })
       describe('Hyperactive/Impulsive Subscale (Verbal)', function () {
         it('should return the worst score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE'
-          )(outcome)
-
+          const score = outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE
           expect(score).to.eql(4)
         })
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = asrs_calculation(best_response)
+      const outcome = asrs_calculation.calculate({
+        payload: best_response,
+      })
 
       describe('Part A', function () {
         it('should return the best score', function () {
-          const score = view_result('ASRS_PART_A_SCORE')(outcome)
-
+          const score = outcome.ASRS_PART_A_SCORE
           expect(score).to.eql(0)
         })
       })
       describe('Part B', function () {
         it('should return the best score', function () {
-          const score = view_result('ASRS_PART_B_SCORE')(outcome)
-
+          const score = outcome.ASRS_PART_B_SCORE
           expect(score).to.eql(0)
         })
       })
       describe('Total score', function () {
         it('should return the best score', function () {
-          const score = view_result('ASRS_TOTAL_SCORE')(outcome)
-
+          const score = outcome.ASRS_TOTAL_SCORE
           expect(score).to.eql(0)
         })
       })
       describe('Inattentive Subscale', function () {
         it('should return the best score', function () {
-          const score = view_result('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
-
+          const score = outcome.ASRS_INATTENTIVE_SUBSCALE_SCORE
           expect(score).to.eql(0)
         })
       })
       describe('Hyperactive/Impulsive Subscale (Motor)', function () {
         it('should return the best score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE'
-          )(outcome)
-
+          const score = outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE
           expect(score).to.eql(0)
         })
       })
       describe('Hyperactive/Impulsive Subscale (Verbal)', function () {
         it('should return the best score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE'
-          )(outcome)
-
+          const score = outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE
           expect(score).to.eql(0)
         })
       })
     })
 
     describe('when called with the random response', function () {
-      const outcome = asrs_calculation(random_response)
+      const outcome = asrs_calculation.calculate({
+        payload: random_response,
+      })
 
       describe('Part A', function () {
         it('should return the exepected score', function () {
-          const score = view_result('ASRS_PART_A_SCORE')(outcome)
-
+          const score = outcome.ASRS_PART_A_SCORE
           expect(score).to.eql(2)
         })
       })
       describe('Part B', function () {
         it('should return the exepected score', function () {
-          const score = view_result('ASRS_PART_B_SCORE')(outcome)
-
+          const score = outcome.ASRS_PART_B_SCORE
           expect(score).to.eql(5)
         })
       })
       describe('Total score', function () {
         it('should return the exepected score', function () {
-          const score = view_result('ASRS_TOTAL_SCORE')(outcome)
-
+          const score = outcome.ASRS_TOTAL_SCORE
           expect(score).to.eql(7)
         })
       })
       describe('Inattentive Subscale', function () {
         it('should return the exepected score', function () {
-          const score = view_result('ASRS_INATTENTIVE_SUBSCALE_SCORE')(outcome)
-
+          const score = outcome.ASRS_INATTENTIVE_SUBSCALE_SCORE
           expect(score).to.eql(4)
         })
       })
       describe('Hyperactive/Impulsive Subscale (Motor)', function () {
         it('should return the exepected score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE'
-          )(outcome)
-
+          const score = outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE
           expect(score).to.eql(2)
         })
       })
       describe('Hyperactive/Impulsive Subscale (Verbal)', function () {
         it('should return the exepected score', function () {
-          const score = view_result(
-            'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE'
-          )(outcome)
-
+          const score = outcome.ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE
           expect(score).to.eql(1)
         })
       })

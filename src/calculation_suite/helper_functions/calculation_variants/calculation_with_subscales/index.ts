@@ -1,2 +1,0 @@
-export { add_response_values_to_subscale_inputs } from './add_response_values_to_subscale_inputs/add_response_values_to_subscale_inputs'
-export { add_standardized_values_to_subscale_inputs } from './add_standardized_values_to_subscale_inputs/add_standardized_values_to_subscale_inputs'

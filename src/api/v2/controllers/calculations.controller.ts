@@ -30,6 +30,15 @@ const execute_calculation = async (req: Request, res: Response) => {
       return
     }
 
+    if (!('calculation_name' in requested_calculation)) {
+      res.status(StatusCodes.BAD_REQUEST).send({
+        error: {
+          message: `Awaiting update to v3`,
+        },
+      })
+      return
+    }
+
     /**
      * Clincal App Support:
      * The Awell Score API is strictly typed in terms of the inputs it can receive for a calculation.

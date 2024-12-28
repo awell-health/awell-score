@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import type { InputType } from '../../../../types/calculations.types'
 import { NumberInputType } from '../../../../types/calculations/inputs/calculation-inputs.types'
 
@@ -237,3 +238,44 @@ export const ACRO_INPUTS: Array<InputType> = [
     input_type: input_type_agreement,
   },
 ]
+
+const FrequencyInputSchema = z.union([
+  z.literal(NEVER),
+  z.literal(RARELY),
+  z.literal(SOMETIMES),
+  z.literal(MOST_OF_THE_TIME),
+  z.literal(ALWAYS),
+])
+
+const AgreementInputSchema = z.union([
+  z.literal(COMPLETELY_AGREE),
+  z.literal(MODERATELY_AGREE),
+  z.literal(NEITHER_AGREE_NOR_DISAGREE),
+  z.literal(MODERATELY_DISAGREE),
+  z.literal(COMPLETELY_DISAGREE),
+])
+
+export const InputSchema = z.object({
+  Q01: AgreementInputSchema.optional(),
+  Q02: FrequencyInputSchema.optional(),
+  Q03: AgreementInputSchema.optional(),
+  Q04: FrequencyInputSchema.optional(),
+  Q05: FrequencyInputSchema.optional(),
+  Q06: FrequencyInputSchema.optional(),
+  Q07: FrequencyInputSchema.optional(),
+  Q08: FrequencyInputSchema.optional(),
+  Q09: AgreementInputSchema.optional(),
+  Q10: FrequencyInputSchema.optional(),
+  Q11: FrequencyInputSchema.optional(),
+  Q12: FrequencyInputSchema.optional(),
+  Q13: AgreementInputSchema.optional(),
+  Q14: AgreementInputSchema.optional(),
+  Q15: AgreementInputSchema.optional(),
+  Q16: FrequencyInputSchema.optional(),
+  Q17: FrequencyInputSchema.optional(),
+  Q18: FrequencyInputSchema.optional(),
+  Q19: AgreementInputSchema.optional(),
+  Q20: FrequencyInputSchema.optional(),
+  Q21: FrequencyInputSchema.optional(),
+  Q22: AgreementInputSchema.optional(),
+})

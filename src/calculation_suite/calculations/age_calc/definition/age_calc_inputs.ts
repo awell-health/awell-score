@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { type InputType } from '../../../../types/calculations.types'
 
 export const AGE_CALC_INPUTS: Array<InputType> = [
@@ -15,3 +16,7 @@ export const AGE_CALC_INPUTS: Array<InputType> = [
     required: true,
   },
 ]
+
+export const InputSchema = z.object({
+  date_of_birth: z.string().date(),
+})

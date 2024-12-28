@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { type InputType } from '../../../../types/calculations.types'
 import { NumberInputType } from '../../../../types/calculations/inputs/calculation-inputs.types'
 
@@ -122,3 +123,32 @@ export const BLCS_INPUTS: Array<InputType> = [
     },
   },
 ]
+
+const InputTypeSchema = z.union([
+  z.literal(NEVER),
+  z.literal(ONCE),
+  z.literal(TWO_TO_FOUR_TIMES),
+  z.literal(MORE_THAN_WEEKLY),
+  z.literal(DAILY),
+])
+
+export const InputSchema = z.object({
+  Q01: InputTypeSchema.optional(),
+  Q02: InputTypeSchema.optional(),
+  Q03: InputTypeSchema.optional(),
+  Q04: z
+    .union([
+      z.literal(0),
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+      z.literal(6),
+      z.literal(7),
+      z.literal(8),
+      z.literal(9),
+      z.literal(10),
+    ])
+    .optional(),
+})

@@ -1,33 +1,26 @@
 import R from 'ramda'
 
-import type { InputType } from '../../../../types/calculations.types'
 import { ACRO_SUBSCALES, type SubscaleType } from '../definition/acro_subscales'
-import {
-  inputIdLens,
-  rawInputValueLens,
-} from '../../../helper_functions/calculation_variants/api/input/lenses'
-import { MISSING_MESSAGE, type MissingScoreType } from '../../../PARAMETERS'
-import { is_numeric } from '../../shared_functions'
+import { z } from 'zod'
+import { InputSchema } from '../definition'
+import _ from 'lodash'
 
 export const calculate_scores = (
-  inputs_with_answers: Array<InputType>,
+  inputs_with_answers: z.infer<typeof InputSchema>,
   subscale: SubscaleType
-): number | MissingScoreType => {
+): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ACRO_SUBSCALES[subscale]
 
-  const valid_answers_in_subscale = R.compose(
-    R.filter(is_numeric),
-    R.map(raw_value => Number(raw_value)),
-    R.map(input => R.view(rawInputValueLens, input)),
-    R.filter(input =>
-      INPUT_IDS_NEEDED_FOR_SCORING.includes(R.view(inputIdLens, input))
+  const valid_answers_in_subscale = _.compact(
+    _.filter(inputs_with_answers, (_i, key) =>
+      INPUT_IDS_NEEDED_FOR_SCORING.includes(key)
     )
-  )(inputs_with_answers)
+  )
 
   if (
     valid_answers_in_subscale.length !== INPUT_IDS_NEEDED_FOR_SCORING.length
   ) {
-    return MISSING_MESSAGE
+    return null
   }
 
   const subscaleTotal = R.sum(valid_answers_in_subscale)
@@ -38,6 +31,7 @@ export const calculate_scores = (
     PSYCHOLOGICAL_PERSONAL_RELATIONSHIPS_SUBSCALE: 35,
     TOTAL_SCORE: 110,
   }
+
   const hundred = 100
   /**
    * Original Calculcation:

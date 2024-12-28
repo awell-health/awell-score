@@ -145,22 +145,22 @@ describe('audit', function () {
       const outcome = audit_calculation({})
       it('should return the 0 as score for Consumption scale', function () {
         const score = view_result('CONSUMPTION')(outcome)
-        return expect(score).to.eql(0)
+        expect(score).to.eql(0)
       })
 
       it('should return the 0 as score for Dependence scale', function () {
         const score = view_result('DEPENDENCE')(outcome)
-        return expect(score).to.eql(0)
+        expect(score).to.eql(0)
       })
 
       it('should return the 0 as score for Alcohol Related Problem scale', function () {
         const score = view_result('ALCOHOL_RELATED_PROBLEMS')(outcome)
-        return expect(score).to.eql(0)
+        expect(score).to.eql(0)
       })
 
       it('should return the 0 as score for Total', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(0)
+        expect(score).to.eql(0)
       })
     })
   })
@@ -172,24 +172,24 @@ describe('audit', function () {
       it('should return the minimum score for Consumption scale', function () {
         const score = view_result('CONSUMPTION')(outcome)
         const CONSUMPTION_MIN_SCORE = 0
-        return expect(score).to.eql(CONSUMPTION_MIN_SCORE)
+        expect(score).to.eql(CONSUMPTION_MIN_SCORE)
       })
 
       it('should return the minimum score for Dependence scale', function () {
         const score = view_result('DEPENDENCE')(outcome)
         const DEPENDENCE_MIN_SCORE = 0
-        return expect(score).to.eql(DEPENDENCE_MIN_SCORE)
+        expect(score).to.eql(DEPENDENCE_MIN_SCORE)
       })
 
       it('should return the minimum score for Alcohol Related Problem scale', function () {
         const score = view_result('ALCOHOL_RELATED_PROBLEMS')(outcome)
         const ALCOHOL_RELATED_PROBLEMS_MIN_SCORE = 0
-        return expect(score).to.eql(ALCOHOL_RELATED_PROBLEMS_MIN_SCORE)
+        expect(score).to.eql(ALCOHOL_RELATED_PROBLEMS_MIN_SCORE)
       })
 
       it('should return the minimum score for Total', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(AUDIT_MIN_SCORE)
+        expect(score).to.eql(AUDIT_MIN_SCORE)
       })
     })
 
@@ -198,24 +198,24 @@ describe('audit', function () {
       it('should return the median score for Consumption scale', function () {
         const score = view_result('CONSUMPTION')(outcome)
         const CONSUMPTION_MEDIAN_SCORE = 6
-        return expect(score).to.eql(CONSUMPTION_MEDIAN_SCORE)
+        expect(score).to.eql(CONSUMPTION_MEDIAN_SCORE)
       })
 
       it('should return the median score for Dependence scale', function () {
         const score = view_result('DEPENDENCE')(outcome)
         const DEPENDENCE_MEDIAN_SCORE = 6
-        return expect(score).to.eql(DEPENDENCE_MEDIAN_SCORE)
+        expect(score).to.eql(DEPENDENCE_MEDIAN_SCORE)
       })
 
       it('should return the median score for Alcohol Related Problem scale', function () {
         const score = view_result('ALCOHOL_RELATED_PROBLEMS')(outcome)
         const ALCOHOL_RELATED_PROBLEMS_MEDIAN_SCORE = 8
-        return expect(score).to.eql(ALCOHOL_RELATED_PROBLEMS_MEDIAN_SCORE)
+        expect(score).to.eql(ALCOHOL_RELATED_PROBLEMS_MEDIAN_SCORE)
       })
 
       it('should return the median score for Total', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(AUDIT_MEDIAN_SCORE)
+        expect(score).to.eql(AUDIT_MEDIAN_SCORE)
       })
     })
 
@@ -225,24 +225,24 @@ describe('audit', function () {
       it('should return the max score for Consumption scale', function () {
         const score = view_result('CONSUMPTION')(outcome)
         const CONSUMPTION_MAX_SCORE = 12
-        return expect(score).to.eql(CONSUMPTION_MAX_SCORE)
+        expect(score).to.eql(CONSUMPTION_MAX_SCORE)
       })
 
       it('should return the max score for Dependence scale', function () {
         const score = view_result('DEPENDENCE')(outcome)
         const DEPENDENCE_MAX_SCORE = 12
-        return expect(score).to.eql(DEPENDENCE_MAX_SCORE)
+        expect(score).to.eql(DEPENDENCE_MAX_SCORE)
       })
 
       it('should return the max score for Alcohol Related Problem scale', function () {
         const score = view_result('ALCOHOL_RELATED_PROBLEMS')(outcome)
         const ALCOHOL_RELATED_PROBLEMS_MAX_SCORE = 16
-        return expect(score).to.eql(ALCOHOL_RELATED_PROBLEMS_MAX_SCORE)
+        expect(score).to.eql(ALCOHOL_RELATED_PROBLEMS_MAX_SCORE)
       })
 
       it('should return the max score for Total', function () {
         const score = view_result('TOTAL')(outcome)
-        return expect(score).to.eql(AUDIT_MAX_SCORE)
+        expect(score).to.eql(AUDIT_MAX_SCORE)
       })
     })
 

@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import type { InputType } from '../../../../types/calculations.types'
 
 export const TEN_METER_WALK_TEST_INPUTS: Array<InputType> = [
@@ -32,3 +33,9 @@ export const TEN_METER_WALK_TEST_INPUTS: Array<InputType> = [
     },
   },
 ]
+
+export const TEN_METER_WALK_TEST_INPUT_SCHEMA = z.object({
+  TRIAL_1: z.number(),
+  TRIAL_2: z.number().optional(),
+  TRIAL_3: z.number().optional(),
+})

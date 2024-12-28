@@ -1,9 +1,8 @@
-import type { CalculationOutputDefinition } from '../../../../types/calculations.types'
+import { z } from 'zod'
 
-export const BWCS_OUTPUT: CalculationOutputDefinition[] = [
-  {
-    subresult_id: 'BWCS_TOTAL_SCORE',
+export const BWCS_OUTPUT = {
+  BWCS_TOTAL_SCORE: {
     label: { en: 'Total score' },
-    type: 'number',
+    type: z.number(),
   },
-]
+}

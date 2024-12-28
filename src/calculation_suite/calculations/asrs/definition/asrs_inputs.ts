@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { NumberInputType } from '../../../../types/calculations/inputs/calculation-inputs.types'
 import type { ASRSInputType } from '../../../../types/calculations/inputs/custom/asrs.types'
 
@@ -187,3 +188,34 @@ export const ASRS_INPUTS: Array<ASRSInputType> = [
     positive_scores: [SOMETIMES, OFTEN, VERY_OFTEN],
   },
 ]
+
+const InputTypeSchema = z
+  .union([
+    z.literal(NEVER),
+    z.literal(RARELY),
+    z.literal(SOMETIMES),
+    z.literal(OFTEN),
+    z.literal(VERY_OFTEN),
+  ])
+  .optional()
+
+export const InputSchema = z.object({
+  Q01: InputTypeSchema,
+  Q02: InputTypeSchema,
+  Q03: InputTypeSchema,
+  Q04: InputTypeSchema,
+  Q05: InputTypeSchema,
+  Q06: InputTypeSchema,
+  Q07: InputTypeSchema,
+  Q08: InputTypeSchema,
+  Q09: InputTypeSchema,
+  Q10: InputTypeSchema,
+  Q11: InputTypeSchema,
+  Q12: InputTypeSchema,
+  Q13: InputTypeSchema,
+  Q14: InputTypeSchema,
+  Q15: InputTypeSchema,
+  Q16: InputTypeSchema,
+  Q17: InputTypeSchema,
+  Q18: InputTypeSchema,
+})

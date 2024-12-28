@@ -43,6 +43,12 @@ const get_calculation = async (req: Request, res: Response) => {
       return
     }
 
+    // Then it's a new calculation
+    if ('inputSchema' in requested_calculation) {
+      res.status(StatusCodes.OK).send(requested_calculation)
+      return
+    }
+
     res.status(StatusCodes.OK).send(
       transform_single_calculation_for_api_response({
         calculation_id,
@@ -109,6 +115,10 @@ const execute_calculation = async (req: Request, res: Response) => {
       return
     }
 
+    if ('inputSchema' in requested_calculation) {
+      return
+    }
+
     const casted_calculation_input =
       cast_incoming_calculation_input_to_exact_types({
         calculation: requested_calculation,
@@ -153,6 +163,10 @@ const simulate_calculation = async (req: Request, res: Response) => {
           message: `Calculation with id "${calculation_id}" could not be found.`,
         },
       })
+      return
+    }
+
+    if ('inputSchema' in requested_calculation) {
       return
     }
 

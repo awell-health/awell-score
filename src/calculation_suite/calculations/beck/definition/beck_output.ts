@@ -1,9 +1,8 @@
-import type { CalculationOutputDefinition } from '../../../../types/calculations.types'
+import { z } from 'zod'
 
-export const BECK_OUTPUT: CalculationOutputDefinition[] = [
-  {
-    subresult_id: 'beck',
+export const BECK_OUTPUT = {
+  beck: {
     label: { en: 'Total BDI score' },
-    type: 'number',
+    type: z.number(),
   },
-]
+}
