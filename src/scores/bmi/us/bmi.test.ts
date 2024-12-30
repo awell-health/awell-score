@@ -12,8 +12,6 @@ const valid_input = {
 describe('bmi_imperial', function () {
   const calculation = new Score(bmi_us)
 
-  console.log(calculation.description)
-
   it('bmi_imperial calculation function should be available as a calculation', function () {
     expect(ScoreLibrary).toHaveProperty('bmi_imperial')
   })
