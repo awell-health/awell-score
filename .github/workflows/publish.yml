@@ -1,8 +1,8 @@
 name: Compile and publish package
 
 on:
-  push:
-    branches: ['main', 'release/*']
+  push
+    # branches: ['main', 'release/*']
 
 jobs:
   deploy:
