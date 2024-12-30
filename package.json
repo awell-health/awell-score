@@ -6,7 +6,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "lint": "eslint --config eslint.config.js",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "jest --verbose"
   },
