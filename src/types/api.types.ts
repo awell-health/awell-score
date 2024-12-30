@@ -4,7 +4,7 @@ import type {
   CalculationScriptIdentifierType,
   IncomingCalculationInputType,
 } from './calculations.types'
-import type { LabelType } from './localization.types'
+import type { LabelType } from './Label.types'
 
 export type ApiCalculationType = {
   calculation_id: CalculationScriptIdentifierType

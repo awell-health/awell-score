@@ -1,0 +1,26 @@
+import { type BreastQConversionTableType } from '../../../../src/types/calculations/subscales/custom/breastq.types'
+
+export const TABLE: BreastQConversionTableType = {
+  '7': 0,
+  '8': 13,
+  '9': 19,
+  '10': 23,
+  '11': 27,
+  '12': 30,
+  '13': 34,
+  '14': 37,
+  '15': 40,
+  '16': 43,
+  '17': 46,
+  '18': 49,
+  '19': 53,
+  '20': 57,
+  '21': 61,
+  '22': 66,
+  '23': 70,
+  '24': 75,
+  '25': 80,
+  '26': 85,
+  '27': 91,
+  '28': 100,
+}

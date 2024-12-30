@@ -1,12 +1,30 @@
 {
   "folders": [
     {
-      "path": ".."
-    }
+      "path": "..",
+    },
   ],
   "settings": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "typescript.tsdk": "node_modules/typescript/lib"
-  }
+    "search.exclude": {
+      "**/.yarn": true,
+      "**/.pnp.*": true,
+    },
+    "eslint.nodePath": ".yarn/sdks",
+    "eslint.run": "onSave",
+    "typescript.tsdk": ".yarn/sdks/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "jest.runMode": "on-demand",
+    "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+    },
+  },
+  "extensions": {
+    "recommendations": [
+      "arcanis.vscode-zipfs",
+      "dbaeumer.vscode-eslint",
+      "orta.vscode-jest",
+    ],
+  },
 }

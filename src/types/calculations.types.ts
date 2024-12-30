@@ -1,10 +1,6 @@
-import type {
-  PossibleInputType as CalculationParameterInputType,
-  IncomingAnswerValueTypes,
-} from './calculations/inputs/calculation-inputs.types'
+import type { ScoreInputType as CalculationParameterInputType } from './ScoreInput.types'
 import type { CustomSubscaleType } from './calculations/subscales/custom'
-import type { LabelType } from './localization.types'
-import type { CalculationType as NewCalculationType } from '../api/shared/classes/Calculation'
+import type { LabelType } from './Label.types'
 
 export type CalculationInputKey = string
 export type CalculationInputValue = unknown
@@ -94,8 +90,8 @@ export type InputType = {
   input_label?: LabelType
   input_type: CalculationParameterInputType
   required?: boolean
-  raw_input_value?: IncomingAnswerValueTypes | MissingStatusType
-  std_value?: IncomingAnswerValueTypes | MissingStatusType
+  raw_input_value?: any | MissingStatusType
+  std_value?: any | MissingStatusType
   valid?: boolean
   format?: string
   inverse?: boolean // Some validated questionnaires have inputs that need to be scored in reverse
@@ -140,7 +136,7 @@ export type CalculationInputType = {
 }
 
 export type CalculationFunctionSignature = (
-  input: CalculationInputType
+  input: CalculationInputType,
 ) => CalculationOutputType[]
 
 export type CalculationType = {
@@ -153,5 +149,5 @@ export type CalculationType = {
 
 export type CalculationsLibraryType = Record<
   CalculationScriptIdentifierType,
-  CalculationType | NewCalculationType<any, any>
+  CalculationType
 >

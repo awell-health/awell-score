@@ -14,5 +14,5 @@ module.exports = {
       tsconfig: 'tsconfig.json', // Use your project's tsconfig
     },
   },
-  modulePathIgnorePatterns: ['dist'],
+  modulePathIgnorePatterns: ['dist', 'todo'],
 }

@@ -1,13 +1,13 @@
 import type { DefaultSubscaleType } from '../../../calculations.types'
 
 export type MeanFunctionSignature = (
-  item_scores: Array<number>
+  item_scores: Array<number>,
 ) => number | typeof undefined
 export type MaxFunctionSignature = (
-  item_scores: Array<number>
+  item_scores: Array<number>,
 ) => number | typeof undefined
 export type RawScoreFunctionSignature = (
-  item_scores: Array<number>
+  item_scores: Array<number>,
 ) => number | typeof undefined
 
 /**
