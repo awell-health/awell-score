@@ -1,10 +1,16 @@
 {
   "name": "@awell-health/awell-score",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library of Medical Score functions",
   "packageManager": "yarn@4.6.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "!**/*.test.ts",
+    "!**/__tests__/**",
+    "!**/__mocks__/**"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "eslint --config eslint.config.js",
@@ -15,7 +21,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.7",
     "lodash": "^4.17.21",
     "mathjs": "^14.0.1",
     "moment": "^2.30.1",
