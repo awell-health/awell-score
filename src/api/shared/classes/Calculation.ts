@@ -1,16 +1,6 @@
 import { z } from 'zod'
 import { LabelType } from '../../../types/localization.types'
-import { InputType } from '../../../types/calculations.types'
-import _ from 'lodash'
-
-type CalculationInputSchema = Record<
-  string,
-  {
-    type: z.ZodTypeAny
-    input_label?: LabelType
-    unit?: LabelType
-  }
->
+import { CalculationInputSchema } from '../../../types/calculations/inputs/calculation-inputs.types'
 
 type CalculationOutputSchema = {
   label: LabelType
@@ -21,7 +11,7 @@ type CalculationOutputSchema = {
 }
 
 // Utility function to create ZodObject from enriched schema
-const createZodObjectFromSchema = <T extends CalculationInputSchema>(
+export const createZodObjectFromSchema = <T extends CalculationInputSchema>(
   schema: T
 ): z.ZodObject<{ [K in keyof T]: T[K]['type'] }> => {
   const zodShape: Record<string, z.ZodTypeAny> = {}
@@ -41,9 +31,6 @@ export type CalculationType<
   readme_location: string
   inputSchema: InputSchema
   outputSchema: OutputSchema
-  formData?: {
-    [K in keyof InputSchema]: Pick<InputType, 'input_label' | 'format' | 'info'>
-  }
   calculate: CalculateFn<
     z.ZodObject<{ [K in keyof InputSchema]: InputSchema[K]['type'] }>,
     OutputSchema
@@ -71,10 +58,6 @@ export class Calculation<
   readme_location: string
   inputSchema: InputSchema
   outputSchema: OutputSchema
-  formData?: Record<
-    keyof InputSchema,
-    Pick<InputType, 'input_label' | 'format' | 'info'>
-  >
   _calculate: CalculateFn<
     z.ZodObject<{ [K in keyof InputSchema]: InputSchema[K]['type'] }>,
     OutputSchema
@@ -93,11 +76,8 @@ export class Calculation<
     this.readme_location = calculation.readme_location
     this.inputSchema = calculation.inputSchema
     this.outputSchema = calculation.outputSchema
-    this.formData = calculation.formData
     this._calculate = calculation.calculate
     this.inputSchemaAsObject = createZodObjectFromSchema(this.inputSchema)
-
-    this.validate()
   }
 
   calculate(opts: {
@@ -111,26 +91,5 @@ export class Calculation<
     return this._calculate({
       data: parsedData,
     })
-  }
-
-  validate() {
-    if (!this.formData) return true
-
-    const formDataKeys = Object.keys(this.formData)
-    const inputSchemaKeys = Object.keys(this.inputSchema.shape)
-
-    const missingKeys = _.difference(inputSchemaKeys, formDataKeys)
-    const extraKeys = _.difference(formDataKeys, inputSchemaKeys)
-
-    if (missingKeys.length > 0 || extraKeys.length > 0) {
-      console.error(
-        `Form data does not match input schema. Missing keys: ${missingKeys.join(
-          ', '
-        )}, Extra keys: ${extraKeys.join(', ')}`
-      )
-      throw new Error('Form data does not match input schema')
-    }
-
-    return true
   }
 }

@@ -1,6 +1,6 @@
 export type PartType = 'PART_A' | 'PART_B'
 
-export const ASRS_PARTS: { [key in PartType]: string[] } = {
+export const ASRS_PARTS: Record<PartType, string[]> = {
   PART_A: ['Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06'],
   PART_B: [
     'Q07',

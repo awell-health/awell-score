@@ -17,7 +17,7 @@ describe('age_calc', function () {
       const EXPECTED_CALCULATION_INPUT_IDS = ['date_of_birth']
 
       const configured_calculation_input_ids = Object.keys(
-        calculate_age.inputSchema.shape
+        calculate_age.inputSchemaAsObject.shape
       )
 
       expect(configured_calculation_input_ids).to.have.members(

@@ -1,6 +1,6 @@
 export type ClusterType = 'B' | 'C' | 'D' | 'E'
 
-export const CLUSTERS: { [key in ClusterType]: string[] } = {
+export const CLUSTERS: Record<ClusterType, string[]> = {
   B: ['PCL5_Q01', 'PCL5_Q02', 'PCL5_Q03', 'PCL5_Q04', 'PCL5_Q05'],
   C: ['PCL5_Q06', 'PCL5_Q07'],
   D: [

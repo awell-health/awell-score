@@ -3,7 +3,7 @@ export type DomainType =
   | 'PSYCHOLOGICAL'
   | 'CHEST_SYMPTOMS'
 
-export const KBILD_DOMAINS: { [key in DomainType]: string[] } = {
+export const KBILD_DOMAINS: Record<DomainType, string[]> = {
   BREATHLESSNESS_AND_ACTIVITIES: [
     'K_BILD_Q01',
     'K_BILD_Q04',

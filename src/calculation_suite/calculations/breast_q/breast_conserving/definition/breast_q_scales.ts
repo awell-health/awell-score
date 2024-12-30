@@ -17,7 +17,7 @@ import {
   SEXUAL_WELLBEING_TABLE,
 } from '../conversion_tables'
 
-const INPUT_TYPES: { [key in string]: NumberInputType } = {
+const INPUT_TYPES: { [key: string]: NumberInputType } = {
   default: {
     type: 'number',
     allowed_answers: [

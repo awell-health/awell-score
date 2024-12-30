@@ -6,7 +6,7 @@ type DepressionSeverityType =
   | 'Severe depression'
 
 export const PHQ9_INTERPRATION_TABLE: {
-  [key in string]: DepressionSeverityType
+  [key: string]: DepressionSeverityType
 } = {
   '0': 'None/minimal depression',
   '1': 'None/minimal depression',

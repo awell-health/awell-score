@@ -61,7 +61,7 @@ describe('asrs', function () {
         ]
 
         const configured_input_ids = Object.keys(
-          asrs_calculation.inputSchema.shape
+          asrs_calculation.inputSchemaAsObject.shape
         )
 
         expect(EXPECTED_INPUT_IDS).to.eql(configured_input_ids)

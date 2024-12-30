@@ -1,6 +1,5 @@
-import { z } from 'zod'
 import { CalculationType } from '../../../api/shared/classes/Calculation'
-import { InputSchema, BECK_OUTPUT, BECK_INPUTS } from './definition'
+import { BECK_OUTPUT, BECK_INPUTS } from './definition'
 import _ from 'lodash'
 
 /**
@@ -17,7 +16,7 @@ const RAW_ANSWER_TO_VALUE_DICT: Record<string, number> = {
 }
 
 const preprocess_beck_response = (
-  beck_inputs_with_answers: z.infer<typeof InputSchema>
+  beck_inputs_with_answers: Record<string, number>
 ): Record<string, number> => {
   const QUESTIONS_TO_PREPROCESS = ['Q16', 'Q18']
 
@@ -31,12 +30,11 @@ const preprocess_beck_response = (
   })
 }
 
-export const beck: CalculationType<typeof InputSchema, typeof BECK_OUTPUT> = {
+export const beck: CalculationType<typeof BECK_INPUTS, typeof BECK_OUTPUT> = {
   name: 'Beck Depression Inventory (BDI)',
   readme_location: __dirname,
-  inputSchema: InputSchema,
+  inputSchema: BECK_INPUTS,
   outputSchema: BECK_OUTPUT,
-  formData: BECK_INPUTS,
   calculate: ({ data }) => {
     const preprocessed_data = preprocess_beck_response(data)
     const score = _.sum(Object.values(preprocessed_data))

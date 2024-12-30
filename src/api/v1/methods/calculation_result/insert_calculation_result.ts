@@ -12,7 +12,7 @@ type FunctionType = {
   calculation_id: CalculationScriptIdentifierType
   calculation_input: IncomingCalculationInputType
   results: ApiCalculationResultsType
-  meta_data: { [key in string]: unknown }
+  meta_data: { [key: string]: unknown }
 }
 
 export const insert_calculation_result = async ({

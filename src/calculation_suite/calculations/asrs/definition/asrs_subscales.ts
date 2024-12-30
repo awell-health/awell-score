@@ -3,7 +3,7 @@ export type SubscaleType =
   | 'HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR'
   | 'HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL'
 
-export const ASRS_SUBSCALES: { [key in SubscaleType]: string[] } = {
+export const ASRS_SUBSCALES: Record<SubscaleType, string[]> = {
   INATTENTIVE_SUBSCALE: [
     'Q01',
     'Q02',

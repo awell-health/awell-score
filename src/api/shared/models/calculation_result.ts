@@ -7,7 +7,7 @@ export type ICalculationResult = {
   calculation_id: string
   calculation_input: IncomingCalculationInputType
   results: ApiCalculationResultsType
-  meta_data: { [key in string]: unknown }
+  meta_data: { [key: string]: unknown }
   created_at: Date
 } & Document
 

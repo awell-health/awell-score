@@ -15,9 +15,7 @@ export type DomainType =
   | 'EMOTIONS'
   | 'OTHER'
 
-export const MSQ_DOMAINS: {
-  [key in DomainType]: { items: string[] }
-} = {
+export const MSQ_DOMAINS: Record<DomainType, { items: string[] }> = {
   HEAD: {
     items: [
       'HEAD_Q01_HEADACHES',

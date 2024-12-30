@@ -3,19 +3,17 @@ import { round } from 'mathjs'
 import { CalculationType } from '../../../api/shared/classes/Calculation'
 import {
   TEN_METER_WALK_TEST_INPUTS,
-  TEN_METER_WALK_TEST_INPUT_SCHEMA,
   TEN_METER_WALK_TEST_OUTPUT,
 } from './definition'
 
 export const ten_meter_walk_test: CalculationType<
-  typeof TEN_METER_WALK_TEST_INPUT_SCHEMA,
+  typeof TEN_METER_WALK_TEST_INPUTS,
   typeof TEN_METER_WALK_TEST_OUTPUT
 > = {
   name: '10 Metre Walk Test (TMWT)',
   readme_location: __dirname,
-  inputSchema: TEN_METER_WALK_TEST_INPUT_SCHEMA,
+  inputSchema: TEN_METER_WALK_TEST_INPUTS,
   outputSchema: TEN_METER_WALK_TEST_OUTPUT,
-  formData: TEN_METER_WALK_TEST_INPUTS,
   calculate: ({ data }) => {
     const DISTANCE_PER_TRIAL = 10 // 10 meters per trial
     const TOTAL_DISTANCE = Object.values(data).length * DISTANCE_PER_TRIAL

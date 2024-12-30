@@ -5,7 +5,7 @@ type AnxietynSeverityType =
   | 'Severe anxiety'
 
 export const GAD7_INTERPRATION_TABLE: {
-  [key in string]: AnxietynSeverityType
+  [key: string]: AnxietynSeverityType
 } = {
   '0': 'No anxiety',
   '1': 'No anxiety',

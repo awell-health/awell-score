@@ -1,5 +1,5 @@
 import type {
-  CalculationParameterInputType,
+  PossibleInputType as CalculationParameterInputType,
   IncomingAnswerValueTypes,
 } from './calculations/inputs/calculation-inputs.types'
 import type { CustomSubscaleType } from './calculations/subscales/custom'
@@ -9,9 +9,10 @@ import type { CalculationType as NewCalculationType } from '../api/shared/classe
 export type CalculationInputKey = string
 export type CalculationInputValue = unknown
 
-export type IncomingCalculationInputType = {
-  [key in CalculationInputKey]: CalculationInputValue
-}
+export type IncomingCalculationInputType = Record<
+  CalculationInputKey,
+  CalculationInputValue
+>
 
 type InputNotApplicableIf = {
   input_id: string
@@ -150,8 +151,7 @@ export type CalculationType = {
   is_private: boolean
 }
 
-export type CalculationsLibraryType = {
-  [key in CalculationScriptIdentifierType]:
-    | CalculationType
-    | NewCalculationType<any, any>
-}
+export type CalculationsLibraryType = Record<
+  CalculationScriptIdentifierType,
+  CalculationType | NewCalculationType<any, any>
+>

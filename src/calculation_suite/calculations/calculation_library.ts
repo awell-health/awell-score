@@ -1,11 +1,11 @@
 import type { CalculationsLibraryType } from '../../types/calculations.types'
-// import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
-// import { age_calc } from './age_calc/age_calc'
-// import { asrs } from './asrs/asrs'
+import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
+import { age_calc } from './age_calc/age_calc'
+import { asrs } from './asrs/asrs'
 // import { audit } from './audit/audit'
-// import { beck } from './beck/beck'
-// import { blcs } from './blcs/blcs'
-// import { bwcs } from './bwcs/bwcs'
+import { beck } from './beck/beck'
+import { blcs } from './blcs/blcs'
+import { bwcs } from './bwcs/bwcs'
 import { bmi_metric, bmi_imperial } from './bmi'
 // import { breast_q as breast_q_conserving_therapy_pre_and_postoperative } from './breast_q/breast_conserving/breast_q'
 // import { cade_q_sv } from './cade_q'
@@ -118,21 +118,21 @@ import { bmi_metric, bmi_imperial } from './bmi'
 // import { visa_a, visa_g, visa_p } from './visa'
 // import { yp_core } from './yp_core/yp_core'
 // import { zarit_12 } from './zarit_12/zarit_12'
-// import { acro } from './acro/acro'
+import { acro } from './acro/acro'
 // import { korq } from './korq/korq'
 // import { mlks } from './mlks/mlks'
 // import { psqi } from './psqi/psqi'
 
 export const CALCULATIONS: CalculationsLibraryType = {
-  // age_calc,
-  // acro,
-  // asrs,
+  age_calc,
+  acro,
+  asrs,
   // audit,
-  // beck,
+  beck,
   bmi: bmi_metric,
   bmi_imperial,
-  // blcs,
-  // bwcs,
+  blcs,
+  bwcs,
   // breast_q_conserving_therapy_pre_and_postoperative,
   // cade_q_sv,
   // caregiver_strain_index,
@@ -247,7 +247,7 @@ export const CALCULATIONS: CalculationsLibraryType = {
   // start_back_screening_tool,
   // stop_bang,
   // tampa,
-  // ten_meter_walk_test,
+  ten_meter_walk_test,
   // visa_a,
   // visa_g,
   // visa_p,

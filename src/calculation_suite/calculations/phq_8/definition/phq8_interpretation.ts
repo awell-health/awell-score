@@ -5,9 +5,7 @@ type DepressionSeverityType =
   | 'Moderately severe depression'
   | 'Severe depression'
 
-export const PHQ8_INTERPRATION_TABLE: {
-  [key in string]: DepressionSeverityType
-} = {
+export const PHQ8_INTERPRATION_TABLE: Record<string, DepressionSeverityType> = {
   '0': 'None/minimal depression',
   '1': 'None/minimal depression',
   '2': 'None/minimal depression',

@@ -1,6 +1,6 @@
 type HealthImpactType = 'LOW' | 'MEDIUM' | 'HIGH' | 'VERY HIGH'
 
-export const CAT_INTERPRATION_TABLE: { [key in string]: HealthImpactType } = {
+export const CAT_INTERPRATION_TABLE: Record<string, HealthImpactType> = {
   '0': 'LOW',
   '1': 'LOW',
   '2': 'LOW',

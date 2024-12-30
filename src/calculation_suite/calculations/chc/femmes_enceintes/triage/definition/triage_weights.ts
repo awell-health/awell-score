@@ -1,6 +1,6 @@
 export type InputId = string
 
-export const TRIAGE_WEIGHTS: { [key in InputId]: number } = {
+export const TRIAGE_WEIGHTS: { [key: InputId]: number } = {
   Q1: 1,
   Q2: 1,
   Q3: 0.34,

@@ -6,7 +6,7 @@ type DegreeOfProblemsType =
   | 'Severe level'
 
 export const DAST10_INTERPRATION_TABLE: {
-  [key in string]: DegreeOfProblemsType
+  [key: string]: DegreeOfProblemsType
 } = {
   '0': 'No problems reported',
   '1': 'Low level',

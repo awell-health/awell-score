@@ -27,13 +27,13 @@ type UpperBoundaryType = number
 
 type BoundariesType = [LowerBoundaryType, UpperBoundaryType]
 
-export type CategoriationTableType = {
-  [key in VersionType]: {
-    [key in SubscaleIdType]: {
-      [key in CategoryThreeBandType | CategoryFourBandType]: BoundariesType
-    }
-  }
-}
+export type CategoriationTableType = Record<
+  VersionType,
+  Record<
+    SubscaleIdType,
+    Record<CategoryThreeBandType | CategoryFourBandType, BoundariesType>
+  >
+>
 
 export const TRANSLATION_TABLE_CATEGORIES = {
   NORMAL: 'Normal',

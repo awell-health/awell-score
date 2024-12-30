@@ -36,7 +36,7 @@ describe('bwcs', function () {
         const EXPECTED_INPUT_IDS = ['Q01', 'Q02', 'Q03', 'Q04', 'Q05']
 
         const configured_input_ids = Object.keys(
-          bwcs_calculation.inputSchema.shape
+          bwcs_calculation.inputSchemaAsObject.shape
         )
 
         expect(EXPECTED_INPUT_IDS).to.eql(configured_input_ids)

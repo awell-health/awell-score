@@ -2,11 +2,15 @@ import R from 'ramda'
 
 import { ACRO_SUBSCALES, type SubscaleType } from '../definition/acro_subscales'
 import { z } from 'zod'
-import { InputSchema } from '../definition'
 import _ from 'lodash'
+import { ACRO_INPUTS } from '../definition'
 
 export const calculate_scores = (
-  inputs_with_answers: z.infer<typeof InputSchema>,
+  inputs_with_answers: z.infer<
+    z.ZodObject<{
+      [K in keyof typeof ACRO_INPUTS]: typeof ACRO_INPUTS[K]['type']
+    }>
+  >,
   subscale: SubscaleType
 ): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ACRO_SUBSCALES[subscale]

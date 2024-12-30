@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import { CalculationType } from '../../../api/shared/classes/Calculation'
 import { is_numeric } from '../shared_functions'
-import { InputSchema, BLCS_OUTPUT } from './definition'
+import { BLCS_INPUTS, BLCS_OUTPUT } from './definition'
 
-export const blcs: CalculationType<typeof InputSchema, typeof BLCS_OUTPUT> = {
+export const blcs: CalculationType<typeof BLCS_INPUTS, typeof BLCS_OUTPUT> = {
   name: 'Bladder Control Scale (BLCS)',
   readme_location: __dirname,
-  inputSchema: InputSchema,
+  inputSchema: BLCS_INPUTS,
   outputSchema: BLCS_OUTPUT,
   calculate: ({ data }) => {
     const valid_answers = Object.values(data).filter(is_numeric)

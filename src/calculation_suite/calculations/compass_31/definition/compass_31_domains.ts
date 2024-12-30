@@ -6,9 +6,10 @@ export type DomainType =
   | 'BLADDER'
   | 'PUPILLOMOTOR'
 
-export const COMPASS_31_DOMAINS: {
-  [key in DomainType]: { items: string[]; weight: number }
-} = {
+export const COMPASS_31_DOMAINS: Record<
+  DomainType,
+  { items: string[]; weight: number }
+> = {
   ORTHOSTATIC_INTOLERANCE: {
     items: ['Q01', 'Q02', 'Q03', 'Q04'],
     weight: 4,

@@ -64,7 +64,7 @@ describe('beck', function () {
         ]
 
         const configured_calculation_input_ids = Object.keys(
-          beck_calculation.inputSchema.shape
+          beck_calculation.inputSchemaAsObject.shape
         )
 
         expect(EXPECTED_INPUT_IDS).to.eql(configured_calculation_input_ids)

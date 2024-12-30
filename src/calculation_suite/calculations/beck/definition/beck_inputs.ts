@@ -1,11 +1,18 @@
 import { z } from 'zod'
 
+const InputTypeSchema = z.union([
+  z.literal(0),
+  z.literal(1),
+  z.literal(2),
+  z.literal(3),
+])
+
 export const BECK_INPUTS = {
   Q01: {
-    input_label: { nl: 'Somberheid, verdriet', en: 'Sadness' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Somberheid, verdriet', en: 'Sadness' },
+    uiOptions: {
+      options: [
         {
           label: { nl: 'Ik voel me niet somber.', en: 'I do not feel sad.' },
           value: 0,
@@ -33,13 +40,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q02: {
-    input_label: { nl: 'Pessimisme', en: 'Pessimism' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Pessimisme', en: 'Pessimism' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik ben niet ontmoedigd over mijn toekomst.',
@@ -70,13 +76,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q03: {
-    input_label: { nl: 'Mislukkingen', en: 'Past Failure' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Mislukkingen', en: 'Past Failure' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik voel me geen mislukking.',
@@ -107,13 +112,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q04: {
-    input_label: { nl: 'Verlies van plezier', en: 'Loss of Pleasure' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Verlies van plezier', en: 'Loss of Pleasure' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik beleef net zo veel plezier als altijd aan de dingen die ik leuk vind.',
@@ -144,13 +148,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q05: {
-    input_label: { nl: 'Schuldgevoelens', en: 'Guilty Feelings' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Schuldgevoelens', en: 'Guilty Feelings' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik voel me niet bijzonder schuldig.',
@@ -181,13 +184,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q06: {
-    input_label: { nl: 'Gevoel gestraft te worden', en: 'Punishment Feelings' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Gevoel gestraft te worden', en: 'Punishment Feelings' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik heb niet het gevoel dat ik gestraft word.',
@@ -218,13 +220,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q07: {
-    input_label: { nl: 'Afkeer van zichzelf', en: 'Self-Dislike' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Afkeer van zichzelf', en: 'Self-Dislike' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik voel me over mezelf net als altijd.',
@@ -255,13 +256,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q08: {
-    input_label: { nl: 'Zelfkritiek', en: 'Self-Criticalness' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Zelfkritiek', en: 'Self-Criticalness' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik bekritiseer of verwijt mijzelf niet meer dan gewoonlijk.',
@@ -292,16 +292,15 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q09: {
-    input_label: {
+    type: InputTypeSchema,
+    label: {
       nl: 'Suïcidale gedachten of wensen',
       en: 'Suicidal Thoughts or Wishes',
     },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik heb geen enkele gedachte aan zelfdoding.',
@@ -332,13 +331,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q10: {
-    input_label: { nl: 'Huilen', en: 'Crying' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Huilen', en: 'Crying' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik huil niet meer dan vroeger.',
@@ -369,13 +367,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q11: {
-    input_label: { nl: 'Agitatie, onrust', en: 'Agitation' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Agitatie, onrust', en: 'Agitation' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik ben niet rustelozer of meer gespannen dan anders.',
@@ -406,13 +403,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q12: {
-    input_label: { nl: 'Verlies van interesse', en: 'Loss of Interest' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Verlies van interesse', en: 'Loss of Interest' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Mijn belangstelling voor andere mensen of activiteiten is niet verminderd.',
@@ -443,13 +439,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q13: {
-    input_label: { nl: 'Besluiteloosheid', en: 'Indecisiveness' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Besluiteloosheid', en: 'Indecisiveness' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik neem beslissingen ongeveer even makkelijk als altijd.',
@@ -480,13 +475,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q14: {
-    input_label: { nl: 'Waardeloosheid', en: 'Worthlessness' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Waardeloosheid', en: 'Worthlessness' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik heb niet het gevoel dat ik waardeloos ben.',
@@ -517,13 +511,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q15: {
-    input_label: { nl: 'Energieverlies', en: 'Loss of Energy' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Energieverlies', en: 'Loss of Energy' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik heb nog evenveel energie als altijd.',
@@ -554,16 +547,23 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q16: {
-    input_label: {
+    type: z.union([
+      z.literal(0),
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+      z.literal(6),
+    ]),
+    label: {
       nl: 'Verandering van slaappatroon',
       en: 'Changes in Sleeping Pattern',
     },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Mijn slaappatroon is niet veranderd.',
@@ -615,13 +615,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q17: {
-    input_label: { nl: 'Prikkelbaarheid', en: 'Irritability' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Prikkelbaarheid', en: 'Irritability' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik ben niet meer prikkelbaar dan anders.',
@@ -652,13 +651,20 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q18: {
-    input_label: { nl: 'Verandering van eetlust', en: 'Changes in Appetite' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(0),
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+      z.literal(6),
+    ]),
+    label: { nl: 'Verandering van eetlust', en: 'Changes in Appetite' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Mijn eetlust is niet veranderd.',
@@ -710,16 +716,15 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q19: {
-    input_label: {
+    type: InputTypeSchema,
+    label: {
       nl: 'Concentratieproblemen',
       en: 'Concentration Difficulty',
     },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik kan me net zo goed concentreren als altijd.',
@@ -750,13 +755,12 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q20: {
-    input_label: { nl: 'Moeheid', en: 'Tiredness or Fatigue' },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    type: InputTypeSchema,
+    label: { nl: 'Moeheid', en: 'Tiredness or Fatigue' },
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik ben niet meer moe of afgemat dan gewoonlijk.',
@@ -787,16 +791,15 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
   Q21: {
-    input_label: {
+    type: InputTypeSchema,
+    label: {
       nl: 'Verlies van interesse in sex',
       en: 'Loss of Interest in Sex',
     },
-    input_type: {
-      type: 'number',
-      allowed_answers: [
+    uiOptions: {
+      options: [
         {
           label: {
             nl: 'Ik heb de laatste tijd geen verandering gemerkt in mijn belangstelling voor sex.',
@@ -827,53 +830,5 @@ export const BECK_INPUTS = {
         },
       ],
     },
-    required: true,
   },
 }
-
-const InputTypeSchema = z.union([
-  z.literal(0),
-  z.literal(1),
-  z.literal(2),
-  z.literal(3),
-])
-
-export const InputSchema = z.object({
-  Q01: InputTypeSchema,
-  Q02: InputTypeSchema,
-  Q03: InputTypeSchema,
-  Q04: InputTypeSchema,
-  Q05: InputTypeSchema,
-  Q06: InputTypeSchema,
-  Q07: InputTypeSchema,
-  Q08: InputTypeSchema,
-  Q09: InputTypeSchema,
-  Q10: InputTypeSchema,
-  Q11: InputTypeSchema,
-  Q12: InputTypeSchema,
-  Q13: InputTypeSchema,
-  Q14: InputTypeSchema,
-  Q15: InputTypeSchema,
-  Q16: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-    z.literal(5),
-    z.literal(6),
-  ]),
-  Q17: InputTypeSchema,
-  Q18: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-    z.literal(5),
-    z.literal(6),
-  ]),
-  Q19: InputTypeSchema,
-  Q20: InputTypeSchema,
-  Q21: InputTypeSchema,
-})

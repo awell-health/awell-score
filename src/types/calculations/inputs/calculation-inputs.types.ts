@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import type { LabelType } from '../../localization.types'
 
 export type IncomingAnswerValueTypes =
@@ -8,59 +9,91 @@ export type IncomingAnswerValueTypes =
   | number[]
   | string[]
 
-export type BooleanInputType = {
-  type: 'boolean'
-  allowed_answers?: Array<{
-    value: boolean
-    label?: LabelType
-  }>
+type BaseInputType = {
+  label?: LabelType
+  unit?: LabelType
+}
+
+export type BooleanInputType = BaseInputType & {
+  type: z.ZodOptional<z.ZodBoolean> | z.ZodBoolean
+  uiOptions?: {
+    options?: Array<{
+      value: boolean
+      label?: LabelType
+    }>
+  }
 }
 
 export type DateInputType = {
-  type: 'date'
+  type: z.ZodOptional<z.ZodDate> | z.ZodDate
 }
 
-export type NumberInputType = {
-  type: 'number'
-  component?: 'slider' // If input is a slider
-  allowed_answers?: Array<{
-    value: number
-    label?: LabelType
-  }>
-  range?: {
-    min?: { value: number; label?: LabelType }
-    max?: { value: number; label?: LabelType }
+export type SimpleNumberInputType = {
+  type: z.ZodOptional<z.ZodNumber> | z.ZodNumber
+  uiOptions?: {
+    component?: 'slider' // If input should be a slider
+    options?: Array<{
+      value: number
+      label?: LabelType
+    }>
+  }
+}
+
+export type EnumNumberInputType = {
+  type:
+    | z.ZodUnion<[z.ZodLiteral<number>, ...z.ZodLiteral<number>[]]>
+    | z.ZodOptional<
+        z.ZodUnion<[z.ZodLiteral<number>, ...z.ZodLiteral<number>[]]>
+      >
+  uiOptions?: {
+    options?: Array<{
+      value: number
+      label?: LabelType
+    }>
   }
 }
 
 export type NumbersArrayInputType = {
-  type: 'numbers_array'
-  allowed_answers: Array<{
-    value: number
-    label?: LabelType
-  }>
+  type:
+    | z.ZodArray<z.ZodLiteral<number>>
+    | z.ZodOptional<z.ZodArray<z.ZodLiteral<number>>>
+  uiOptions?: {
+    options?: Array<{
+      value: number
+      label?: LabelType
+    }>
+  }
 }
 
 export type StringInputType = {
-  type: 'string'
-  allowed_answers?: Array<{
-    value: string
-    label?: LabelType
-  }>
+  type: z.ZodOptional<z.ZodString> | z.ZodString
+  uiOptions?: {
+    options?: Array<{
+      value: string
+      label?: LabelType
+    }>
+  }
 }
 
 export type StringsArrayInputType = {
-  type: 'strings_array'
-  allowed_answers: Array<{
-    value: string
-    label?: LabelType
-  }>
+  type:
+    | z.ZodArray<z.ZodLiteral<string>>
+    | z.ZodOptional<z.ZodArray<z.ZodLiteral<string>>>
+  uiOptions?: {
+    options?: Array<{
+      value: string
+      label?: LabelType
+    }>
+  }
 }
 
-export type CalculationParameterInputType =
+export type PossibleInputType =
   | BooleanInputType
   | StringsArrayInputType
   | StringInputType
   | DateInputType
   | NumbersArrayInputType
-  | NumberInputType
+  | SimpleNumberInputType
+  | EnumNumberInputType
+
+export type CalculationInputSchema = Record<string, PossibleInputType>

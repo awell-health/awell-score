@@ -1,12 +1,16 @@
 import R from 'ramda'
 
 import { ASRS_SUBSCALES, type SubscaleType } from '../definition/asrs_subscales'
-import { ASRS_INPUTS, InputSchema } from '../definition'
+import { ASRS_INPUTS } from '../definition'
 import { z } from 'zod'
 import _ from 'lodash'
 
 export const calculate_subscale_scores = (
-  inputs_with_answers: z.infer<typeof InputSchema>,
+  inputs_with_answers: z.infer<
+    z.ZodObject<{
+      [K in keyof typeof ASRS_INPUTS]: typeof ASRS_INPUTS[K]['type']
+    }>
+  >,
   subscale: SubscaleType
 ): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ASRS_SUBSCALES[subscale]

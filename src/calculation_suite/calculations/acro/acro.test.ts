@@ -63,7 +63,7 @@ describe('acro', function () {
         ]
 
         const configured_input_ids = Object.keys(
-          acro_calculation.inputSchema.shape
+          acro_calculation.inputSchemaAsObject.shape
         )
 
         expect(EXPECTED_INPUT_IDS).to.eql(configured_input_ids)

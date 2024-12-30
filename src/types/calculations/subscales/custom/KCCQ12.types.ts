@@ -2,9 +2,7 @@ import type { DefaultSubscaleType } from '../../../calculations.types'
 
 type DomainScoreFormula = (domain_answers: number[]) => number
 
-export type RescalingTableType = {
-  [key in string]: number
-}
+export type RescalingTableType = Record<string, number>
 
 export type RescalingFormula = (answer: number, weight: number) => number
 

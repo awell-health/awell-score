@@ -1,9 +1,7 @@
 type RawScore = string
 type NormalizedScore = number
 
-type HoosConversionTable = {
-  [key in RawScore]: NormalizedScore
-}
+type HoosConversionTable = Record<RawScore, NormalizedScore>
 
 /**
  * The conversion table reverses the score

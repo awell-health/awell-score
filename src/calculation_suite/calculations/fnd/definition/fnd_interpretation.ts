@@ -4,9 +4,7 @@ type DepedenceLevelType =
   | 'Moderate dependence'
   | 'High dependence'
 
-export const FND_INTERPRATION_TABLE: {
-  [key in string]: DepedenceLevelType
-} = {
+export const FND_INTERPRATION_TABLE: Record<string, DepedenceLevelType> = {
   '0': 'Low depedence',
   '1': 'Low depedence',
   '2': 'Low depedence',

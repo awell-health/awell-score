@@ -1,6 +1,6 @@
 export type ScaleType = 'POSITIVE_SCALE' | 'NEGATIVE_SCALE'
 
-export const PANNS_6_SCALES: { [key in ScaleType]: string[] } = {
+export const PANNS_6_SCALES: Record<ScaleType, string[]> = {
   POSITIVE_SCALE: [
     'PANSS_6_Q01_DELUSIONS',
     'PANSS_6_Q02_CONCEPTUAL_DISORGANIZATIONS',

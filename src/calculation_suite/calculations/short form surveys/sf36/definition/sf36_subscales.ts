@@ -1,7 +1,7 @@
 import { type DefaultSubscaleType } from '../../../../../types/calculations.types'
 import { NumberInputType } from '../../../../../types/calculations/inputs/calculation-inputs.types'
 
-const INPUT_TYPES: { [key in string]: NumberInputType } = {
+const INPUT_TYPES: Record<string, NumberInputType> = {
   serie_1: {
     type: 'number',
     allowed_answers: [

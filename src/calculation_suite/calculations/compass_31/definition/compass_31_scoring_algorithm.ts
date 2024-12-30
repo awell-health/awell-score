@@ -1,9 +1,10 @@
 type RawAnswer = string
 type Points = number
 
-export const COMPASS_31_SCORING_ALGORITHM_TABLE: {
-  [key in string]: { [key in RawAnswer]: Points }
-} = {
+export const COMPASS_31_SCORING_ALGORITHM_TABLE: Record<
+  string,
+  Record<RawAnswer, Points>
+> = {
   Q01: {
     '1': 1,
   },

@@ -45,7 +45,7 @@ describe('ten_meter_walk_test', function () {
         it('should have all the expected input ids configured', function () {
           const EXPECTED_INPUT_IDS = ['TRIAL_1', 'TRIAL_2', 'TRIAL_3']
           const configured_calculation_input_ids = Object.keys(
-            tmwt_calculation.inputSchema.shape
+            tmwt_calculation.inputSchemaAsObject.shape
           )
 
           expect(EXPECTED_INPUT_IDS).to.eql(configured_calculation_input_ids)

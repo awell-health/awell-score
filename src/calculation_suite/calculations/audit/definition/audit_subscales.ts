@@ -1,7 +1,6 @@
-import { NumberInputType } from '../../../../types/calculations/inputs/calculation-inputs.types'
 import type { AuditScaleType } from '../../../../types/calculations/subscales/custom/audit.types'
 
-const INPUT_TYPES: { [key in string]: NumberInputType } = {
+const INPUT_TYPES: Record<string, any> = {
   input_1: {
     type: 'number',
     allowed_answers: [

@@ -1,13 +1,12 @@
 import { CalculationType } from '../../../api/shared/classes/Calculation'
-import { ASRS_INPUTS, ASRS_OUTPUT, InputSchema } from './definition'
+import { ASRS_INPUTS, ASRS_OUTPUT } from './definition'
 import { calculate_part_scores, calculate_subscale_scores } from './helpers'
 
-export const asrs: CalculationType<typeof InputSchema, typeof ASRS_OUTPUT> = {
+export const asrs: CalculationType<typeof ASRS_INPUTS, typeof ASRS_OUTPUT> = {
   name: 'Adult ADHD Self-Report Scale (ASRS-v1.1)',
   readme_location: __dirname,
-  inputSchema: InputSchema,
+  inputSchema: ASRS_INPUTS,
   outputSchema: ASRS_OUTPUT,
-  formData: ASRS_INPUTS,
   calculate: ({ data }) => {
     const PART_A_SCORE = calculate_part_scores(data, 'PART_A')
     const PART_B_SCORE = calculate_part_scores(data, 'PART_B')

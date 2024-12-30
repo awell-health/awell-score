@@ -36,7 +36,7 @@ describe('blcs', function () {
         const EXPECTED_INPUT_IDS = ['Q01', 'Q02', 'Q03', 'Q04']
 
         const configured_input_ids = Object.keys(
-          blcs_calculation.inputSchema.shape
+          blcs_calculation.inputSchemaAsObject.shape
         )
 
         expect(EXPECTED_INPUT_IDS).to.eql(configured_input_ids)
