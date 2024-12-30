@@ -1,6 +1,6 @@
 import R from 'ramda'
 
-import { ScoreLibrary } from './calculation_library'
+import { ScoreLibrary } from './library'
 
 describe('calculation library', function () {
   describe('every calculation in the library', function () {

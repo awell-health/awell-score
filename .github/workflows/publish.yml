@@ -1,0 +1,51 @@
+name: Compile and publish package
+
+on:
+  push:
+    branches: ['main', 'release/*']
+
+jobs:
+  deploy:
+    permissions:
+      packages: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack before setting up Node
+        run: corepack enable
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Compile Typescript
+        run: yarn build
+
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmAlwaysAuth true
+          yarn config set npmAuthToken $NPM_AUTH_TOKEN
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Publish to NPM Registry
+        run: |
+          pkg_version=$(cat package.json | jq -r '.version')
+          branch=${GITHUB_REF##*/}
+
+          if [[ $branch != "main" ]]; then
+            yarn version "$pkg_version-beta$GITHUB_RUN_NUMBER"
+            yarn npm publish --tag beta --access public
+          else
+            yarn version "$pkg_version"
+            yarn npm publish --access public
+          fi
