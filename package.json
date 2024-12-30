@@ -10,9 +10,6 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "jest --verbose"
   },
-  "precommit": [
-    "lint"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

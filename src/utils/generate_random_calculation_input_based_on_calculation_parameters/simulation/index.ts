@@ -1,6 +1,0 @@
-// export { simulate_string_answer } from './simulate_string_answer'
-// export { simulate_strings_array_answer } from './simulate_strings_array_answer'
-// export { simulate_numbers_array_answer } from './simulate_numbers_array_answer'
-// export { simulate_number_answer } from './simulate_number_answer'
-// export { simulate_date_answer } from './simulate_date_answer'
-// export { simulate_boolean_answer } from './simulate_boolean_answer'
