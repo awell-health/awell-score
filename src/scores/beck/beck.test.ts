@@ -1,4 +1,4 @@
-import { ScoreLibrary } from '../calculation_library'
+import { ScoreLibrary } from '../library'
 import {
   max_response,
   median_response,

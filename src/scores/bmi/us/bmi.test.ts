@@ -1,4 +1,4 @@
-import { ScoreLibrary } from '../../calculation_library'
+import { ScoreLibrary } from '../../library'
 import { bmi_us } from './bmi'
 import { Score } from '../../../classes'
 import { ZodError } from 'zod'

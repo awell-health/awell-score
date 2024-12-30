@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-import { ScoreLibrary } from '../calculation_library'
+import { ScoreLibrary } from '../library'
 import { age_calc } from './age_calc'
 import { Score } from '../../classes'
 

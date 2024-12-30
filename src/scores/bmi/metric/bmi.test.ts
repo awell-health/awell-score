@@ -1,7 +1,7 @@
 import { bmi } from './bmi'
 import { Score } from '../../../classes'
 import { ZodError } from 'zod'
-import { ScoreLibrary } from '../../calculation_library'
+import { ScoreLibrary } from '../../library'
 
 const valid_input = {
   weight: 80,

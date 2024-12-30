@@ -1,4 +1,4 @@
-import { ScoreLibrary } from '../calculation_library'
+import { ScoreLibrary } from '../library'
 import { ten_meter_walk_test } from './10_meter_walk_test'
 import { Score } from '../../classes'
 import { ZodError } from 'zod'
