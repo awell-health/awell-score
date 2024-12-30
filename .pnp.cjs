@@ -35,7 +35,6 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/eslint-plugin", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:8.19.0"],\
           ["@typescript-eslint/parser", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:8.19.0"],\
           ["@yarnpkg/sdks", "npm:3.2.0"],\
-          ["dotenv", "npm:16.4.7"],\
           ["eslint", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:9.17.0"],\
           ["jest", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:29.7.0"],\
           ["lodash", "npm:4.17.21"],\
@@ -87,7 +86,6 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/eslint-plugin", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:8.19.0"],\
           ["@typescript-eslint/parser", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:8.19.0"],\
           ["@yarnpkg/sdks", "npm:3.2.0"],\
-          ["dotenv", "npm:16.4.7"],\
           ["eslint", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:9.17.0"],\
           ["jest", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:29.7.0"],\
           ["lodash", "npm:4.17.21"],\
