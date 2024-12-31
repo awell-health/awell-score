@@ -129,7 +129,10 @@ const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
   scoreObjects: T,
 ): { [K in keyof T]: Score<T[K]['inputSchema'], T[K]['outputSchema']> } => {
   return Object.fromEntries(
-    Object.entries(scoreObjects).map(([key, value]) => [key, new Score(value)]),
+    Object.entries(scoreObjects).map(([key, value]) => [
+      key,
+      new Score({ ...value, id: key }),
+    ]),
   ) as {
     [K in keyof T]: Score<T[K]['inputSchema'], T[K]['outputSchema']>
   }

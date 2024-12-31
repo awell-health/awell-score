@@ -2,6 +2,18 @@ import { z } from 'zod'
 import { type ScoreInputSchemaType } from './ScoreInput.types'
 import { type ScoreOutputSchemaType } from './ScoreOutput.types'
 
+export interface CategoryType {
+  coding: {
+    system: string
+    code: string
+    display: string
+  }[]
+}
+
+export interface TerminologyType {
+  category?: CategoryType[]
+}
+
 export type ScoreType<
   InputSchema extends ScoreInputSchemaType = ScoreInputSchemaType,
   OutputSchema extends ScoreOutputSchemaType = ScoreOutputSchemaType,
@@ -10,6 +22,7 @@ export type ScoreType<
   readme_location: string
   inputSchema: InputSchema
   outputSchema: OutputSchema
+  terminology?: TerminologyType
   calculate: CalculateFn<
     z.ZodObject<{ [K in keyof InputSchema]: InputSchema[K]['type'] }>,
     OutputSchema

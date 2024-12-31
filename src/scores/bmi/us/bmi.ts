@@ -8,6 +8,20 @@ export const bmi_us: ScoreType<typeof BmiInputSchema, typeof BmiOutputSchema> =
     readme_location: __dirname,
     inputSchema: BmiInputSchema,
     outputSchema: BmiOutputSchema,
+    terminology: {
+      category: [
+        {
+          coding: [
+            {
+              system:
+                'http://terminology.hl7.org/CodeSystem/observation-category',
+              code: 'vital-signs',
+              display: 'Vital Signs',
+            },
+          ],
+        },
+      ],
+    },
     calculate: ({ data }) => {
       const FEET_TO_INCHES_FACTOR = 12
       const US_BMI_FACTOR = 703

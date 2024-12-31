@@ -22,13 +22,9 @@ export interface DateInputType extends BaseInputType {
 
 export interface SimpleNumberInputType extends BaseInputType {
   type: z.ZodOptional<z.ZodNumber> | z.ZodNumber
-  // uiOptions?: {
-  //   component?: 'slider' // If input should be a slider
-  //   options?: Array<{
-  //     value: number
-  //     label?: LabelType
-  //   }>
-  // }
+  uiOptions?: {
+    component?: 'slider' // If input should be a slider
+  }
 }
 
 export interface EnumNumberInputType extends BaseInputType {
@@ -110,4 +106,5 @@ export type ScoreInputType =
   | SimpleNumberInputType
   | EnumNumberInputType
   | EnumStringInputType
+
 export type ScoreInputSchemaType = Record<string, ScoreInputType>

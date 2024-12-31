@@ -4,11 +4,14 @@ import {
   type ScoreOutputSchemaType,
   type ScoreType,
   type CalculateFn,
+  type CategoryType,
+  type TerminologyType,
 } from '../types'
 import {
   parseReadmeToHtml,
   getUnionType,
   createZodObjectFromSchema,
+  parseToAwellApiSchema,
 } from '../lib'
 import {
   tryCastToBoolean,
@@ -19,6 +22,7 @@ import {
 } from '../lib/castFunctions'
 import _ from 'lodash'
 import { simulateDateInput, simulateStringInput } from '../lib/simulation'
+import { parseToApiResultFormat } from '../lib/parseToApiResultFormat'
 
 /**
  * Class representing a Score, which calculates results based on input and output schemas.
@@ -30,6 +34,11 @@ export class Score<
   OutputSchema extends ScoreOutputSchemaType,
 > implements Omit<ScoreType<InputSchema, OutputSchema>, 'calculate'>
 {
+  /**
+   * The ID of the score.
+   */
+  id: string
+
   /**
    * The name of the score.
    */
@@ -56,6 +65,11 @@ export class Score<
   outputSchema: OutputSchema
 
   /**
+   * The FHIR terminology of the score.
+   */
+  terminology: TerminologyType | undefined
+
+  /**
    * The function to calculate the score.
    */
   private _calculate: CalculateFn<
@@ -76,15 +90,18 @@ export class Score<
    */
   public constructor(
     score: ScoreType<InputSchema, OutputSchema> & {
+      id?: string
       inputSchema: InputSchema
       outputSchema: OutputSchema
     },
   ) {
+    this.id = score.id ?? score.name
     this.name = score.name
     this.readme_location = score.readme_location
     this.description = parseReadmeToHtml(this.readme_location)
     this.inputSchema = score.inputSchema
     this.outputSchema = score.outputSchema
+    this.terminology = score.terminology
     this._calculate = score.calculate
     this.inputSchemaAsObject = createZodObjectFromSchema(this.inputSchema)
   }
@@ -103,35 +120,28 @@ export class Score<
        * @default false
        */
       strictMode?: boolean
-      /**
-       * Specifies the format of the output:
-       * - `simple`: Key-value where the key is the result ID and the value is the result.
-       * - `awell`: Enriched array format.
-       * @default 'simple'
-       */
-      outputFormat?: 'simple' | 'awell'
     }
   }): Record<
     keyof OutputSchema,
     z.infer<OutputSchema[keyof OutputSchema]['type']> | null
   > {
-    const parsedData = this.inputSchemaAsObject.parse(
+    const d = this.inputSchemaAsObject.parse(
       params?.opts?.strictMode === true
         ? params.payload
-        : this.castInputsToExactTypes(params.payload),
+        : this.tryCastInputsToExactTypes(params.payload),
     )
 
     return this._calculate({
-      data: parsedData,
+      data: d,
     })
   }
 
   /**
-   * Casts input values to their exact types based on the input schema.
+   * Tries to cast input values to their exact types based on the input schema.
    * @param input - The input data to cast.
    * @returns The cast input data.
    */
-  castInputsToExactTypes(
+  tryCastInputsToExactTypes(
     data: Record<string, unknown>,
   ): Record<string, unknown> {
     /**
@@ -204,7 +214,10 @@ export class Score<
    */
   simulate(): {
     simulatedInput: Record<string, unknown>
-    simulatedOutput: Record<string, unknown>
+    results: Record<
+      keyof OutputSchema,
+      z.infer<OutputSchema[keyof OutputSchema]['type']> | null
+    >
   } {
     const simulatedInput = _.mapValues(
       this.inputSchemaAsObject.shape,
@@ -266,7 +279,52 @@ export class Score<
 
     return {
       simulatedInput: _.pickBy(simulatedInput, value => value !== undefined),
-      simulatedOutput: this.calculate({ payload: simulatedInput }),
+      results: this.calculate({ payload: simulatedInput }),
     }
+  }
+
+  /**
+   * Formats the results of the score calculation.
+   * @param results - The results to format.
+   * @param opts - The options for formatting the results.
+   * @returns The formatted results.
+   */
+  formatResults(
+    results: Record<
+      keyof OutputSchema,
+      z.infer<OutputSchema[keyof OutputSchema]['type']> | null
+    >,
+    {
+      opts,
+    }: {
+      /**
+       * Specifies the format of the output:
+       * - `simple`: Key-value where the key is the result ID and the value is the result.
+       * - `awell`: Enriched array format.
+       * @default 'simple'
+       */
+      opts?: { format: 'simple' | 'awell' }
+    },
+  ) {
+    if (opts?.format === 'simple') {
+      return results
+    }
+
+    return parseToApiResultFormat<OutputSchema>(results, this.outputSchema)
+  }
+
+  /**
+   * Returns the API schema for the score.
+   * @returns The API schema for the score.
+   */
+  get apiSchema() {
+    return parseToAwellApiSchema({
+      scoreId: this.id,
+      scoreName: this.name,
+      scoreDescription: this.description,
+      inputSchema: this.inputSchema,
+      outputSchema: this.outputSchema,
+      terminology: this.terminology,
+    })
   }
 }
