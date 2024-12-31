@@ -122,7 +122,7 @@ describe('Score', () => {
     test('should simulate the input and return the results in the awell format', () => {
       const result = score.simulate()
       const awellResults = score.formatResults(result.results, {
-        opts: { format: 'awell' },
+        format: 'awell',
       })
 
       expect(awellResults).toEqual([

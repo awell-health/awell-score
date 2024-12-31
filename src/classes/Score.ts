@@ -294,16 +294,14 @@ export class Score<
       keyof OutputSchema,
       z.infer<OutputSchema[keyof OutputSchema]['type']> | null
     >,
-    {
-      opts,
-    }: {
+    opts: {
       /**
        * Specifies the format of the output:
        * - `simple`: Key-value where the key is the result ID and the value is the result.
        * - `awell`: Enriched array format.
        * @default 'simple'
        */
-      opts?: { format: 'simple' | 'awell' }
+      format?: 'simple' | 'awell'
     },
   ) {
     if (opts?.format === 'simple') {
