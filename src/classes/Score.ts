@@ -151,7 +151,9 @@ export class Score<
      * @returns The cast value.
      */
     const castInputToExactType = (input_value: unknown, key: string) => {
-      const inputTypeSchema = this.inputSchema[key].type
+      const inputTypeSchema = this.inputSchema[key]?.type
+
+      if (!inputTypeSchema) return input_value
 
       /**
        * Retrieves the base Zod type, unwrapping optional types if necessary.
