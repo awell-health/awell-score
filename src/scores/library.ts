@@ -124,6 +124,7 @@ import { ScoreType } from '../types'
 // import { korq } from './korq/korq'
 // import { mlks } from './mlks/mlks'
 // import { psqi } from './psqi/psqi'
+import { test_calculation } from './test_calculation/test_caculation'
 
 const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
   scoreObjects: T,
@@ -139,6 +140,7 @@ const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
 }
 
 export const ScoreLibrary = createScoreLibrary({
+  test_calculation,
   age_calc,
   acro,
   asrs,
