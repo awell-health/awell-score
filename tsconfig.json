@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2018",
+    "strict": true,
     "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
     "noImplicitAny": true,
   },
   "include": [
-    "src"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "**/scripts/*.ts",
+    "**/*.test.ts",
+    "**/__tests__/**/*.ts",
+    "**/__mocks__/**/*.ts",
+    "**/todo/**/*.ts",
+    "**/old/**/*.ts"
   ],
 }

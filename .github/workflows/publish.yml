@@ -1,0 +1,64 @@
+name: Compile and publish package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    permissions:
+      packages: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack before setting up Node
+        run: corepack enable
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Compile Typescript
+        run: yarn build
+
+      - name: Update package.json version
+        run: |
+          release_version=${GITHUB_REF_NAME#v}
+          jq ".version = \"$release_version\"" package.json > package.json.tmp
+          mv package.json.tmp package.json
+
+      - name: Commit updated package.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore: sync version with release $release_version"
+          git push
+
+      - name: Validate release version
+        run: |
+            release_version=${GITHUB_REF_NAME#v}
+            current_version=$(jq -r '.version' package.json)
+            if [ "$release_version" != "$current_version" ]; then
+              echo "Version mismatch: release tag ($release_version) does not match package.json ($current_version)."
+              exit 1
+            fi
+
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmAlwaysAuth true
+          yarn config set npmAuthToken $NPM_AUTH_TOKEN
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Publish to NPM Registry
+        run: yarn npm publish --access public

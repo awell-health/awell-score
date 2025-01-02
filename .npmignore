@@ -1,0 +1,6 @@
+/src/
+/.vscode/
+/.yarn/
+.todo/
+*.env
+*.example

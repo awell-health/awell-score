@@ -22,13 +22,13 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: yarn
 
       - name: Linting Typescript
-        run: npm run lint
+        run: yarn lint
 
       - name: Compile Typescript
-        run: npm run build
+        run: yarn build
 
       - name: Run tests
-        run: npm run test
+        run: yarn test
