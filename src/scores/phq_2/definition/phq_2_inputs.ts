@@ -1,15 +1,15 @@
-import type { InputType } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { ScoreInputSchemaType } from '../../../types'
 
-export const PHQ2_INPUTS: Array<InputType> = [
-  {
-    input_id: 'PHQ2_Q01',
+export const PHQ2_INPUTS = {
+  PHQ2_Q01: {
     label: {
       en: 'Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van weinig interesse of plezier in activiteiten?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -32,15 +32,14 @@ export const PHQ2_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'PHQ2_Q02',
+  PHQ2_Q02: {
     label: {
       en: 'Over the last 2 weeks, how often have you been bothered by feeling down, depressed, or hopeless?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van u neerslachtig, depressief of wanhopig voelen?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -63,4 +62,4 @@ export const PHQ2_INPUTS: Array<InputType> = [
       ],
     },
   },
-]
+} satisfies ScoreInputSchemaType

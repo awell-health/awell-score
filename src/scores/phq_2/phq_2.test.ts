@@ -1,45 +1,36 @@
-import { expect } from 'chai'
-
-import { InvalidInputsError } from '../../errors'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { view_status } from '../../lib/view_status'
-import { MISSING_STATUS } from '../../PARAMETERS'
-import { CALCULATIONS } from '../calculation_library'
-import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
 import {
   best_response,
   median_response,
   random_response,
   worst_response,
 } from './__testdata__/phq_2_test_responses'
-import { PHQ2_INPUTS } from './definition'
 import { phq_2 } from './phq_2'
 
 const BEST_SCORE = 0
 const MEDIAN_SCORE = 3
 const WORST_SCORE = 6
 
-const phq_2_calculation = execute_test_calculation(phq_2)
+const phq_2_calculation = new Score(phq_2)
 
 describe('phq_2', function () {
   it('phq_2 calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('phq_2')
+    expect(ScoreLibrary).toHaveProperty('phq_2')
   })
 
   describe('basic assumptions', function () {
-    const outcome = phq_2_calculation(best_response)
+    const outcome = phq_2_calculation.calculate({ payload: best_response })
 
     it('should return 1 calculation result', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the expected calculation result ids', function () {
       const EXPECTED_CALCULATION_ID = ['PHQ2_SCORE']
 
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(EXPECTED_CALCULATION_ID)
     })
@@ -50,8 +41,9 @@ describe('phq_2', function () {
       it('should have all the expected input ids configured', function () {
         const EXPECTED_INPUT_IDS = ['PHQ2_Q01', 'PHQ2_Q02']
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(PHQ2_INPUTS)
+        const configured_input_ids = Object.keys(
+          phq_2_calculation.inputSchemaAsObject.shape,
+        )
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -60,65 +52,60 @@ describe('phq_2', function () {
     describe('when an answer is not not one of the allowed answers', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          phq_2_calculation({
-            PHQ2_Q01: -1,
+          phq_2_calculation.calculate({
+            payload: {
+              PHQ2_Q01: -1,
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when called with an empty response', function () {
-      const outcome = phq_2_calculation({})
-
       it('should return undefined result and a missing status for the score', function () {
-        const score = view_result('PHQ2_SCORE')(outcome)
-        const status = view_status('PHQ2_SCORE')(outcome)
-
-        expect(score).toEqual(undefined)
-        expect(status).toEqual(MISSING_STATUS)
+        expect(() => phq_2_calculation.calculate({ payload: {} })).toThrow(
+          ZodError,
+        )
       })
     })
   })
 
   describe('score calculation', function () {
     describe('when called with the best response', function () {
-      const outcome = phq_2_calculation(best_response)
+      const outcome = phq_2_calculation.calculate({ payload: best_response })
 
       it('should return the best score', function () {
-        const score = view_result('PHQ2_SCORE')(outcome)
-
-        expect(score).toEqual(BEST_SCORE)
+        expect(outcome.PHQ2_SCORE).toEqual(BEST_SCORE)
       })
     })
 
     describe('when called with the median response', function () {
-      const outcome = phq_2_calculation(median_response)
+      const outcome = phq_2_calculation.calculate({
+        payload: median_response,
+      })
 
       it('should return the worst score', function () {
-        const score = view_result('PHQ2_SCORE')(outcome)
-
-        expect(score).toEqual(MEDIAN_SCORE)
+        expect(outcome.PHQ2_SCORE).toEqual(MEDIAN_SCORE)
       })
     })
 
     describe('when called with the worst response', function () {
-      const outcome = phq_2_calculation(worst_response)
+      const outcome = phq_2_calculation.calculate({
+        payload: worst_response,
+      })
 
       it('should return the worst score', function () {
-        const score = view_result('PHQ2_SCORE')(outcome)
-
-        expect(score).toEqual(WORST_SCORE)
+        expect(outcome.PHQ2_SCORE).toEqual(WORST_SCORE)
       })
     })
 
     describe('when called with a random response', function () {
-      const outcome = phq_2_calculation(random_response)
+      const outcome = phq_2_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the expected score', function () {
-        const score = view_result('PHQ2_SCORE')(outcome)
-        const EXPECTED_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PHQ2_SCORE).toEqual(3)
       })
     })
   })

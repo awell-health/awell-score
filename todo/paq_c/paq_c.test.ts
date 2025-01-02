@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 
-import { InvalidInputsError } from '../../src/calculation_suite/errors'
+import { Score } from '../../classes'
 import { execute_test_calculation } from '../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../lib/view_result'
-import { CALCULATIONS } from '../../src/calculation_suite/calculations/calculation_library'
+import { ScoreLibrary } from '../library'
 import { get_input_ids_from_calculation_blueprint } from '../../src/calculation_suite/calculations/shared_functions'
 import {
   highest_physical_activity_response,
