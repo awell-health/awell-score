@@ -113,7 +113,7 @@ import { sf12 } from './sf12/sf12'
 // import { spadi } from './spadi/spadi'
 import { simple_shoulder_test } from './sst/simple_shoulder_test'
 // import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
-// import { tampa } from './tampa/tampa'
+import { tampa } from './tampa/tampa'
 // import { visa_a, visa_g, visa_p } from './visa'
 // import { yp_core } from './yp_core/yp_core'
 // import { zarit_12 } from './zarit_12/zarit_12'
@@ -263,7 +263,7 @@ export const ScoreLibrary = createScoreLibrary({
   simple_shoulder_test,
   // start_back_screening_tool,
   // stop_bang,
-  // tampa,
+  tampa,
   ten_meter_walk_test,
   // visa_a,
   // visa_g,

@@ -1,12 +1,6 @@
-import { expect } from 'chai'
-import R from 'ramda'
-
+import { ZodError } from 'zod'
 import { Score } from '../../classes'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
 import { ScoreLibrary } from '../library'
-import { get_input_ids_from_calculation_blueprint } from '../../src/calculation_suite/calculations/shared_functions'
 import {
   max_response,
   median_response,
@@ -14,17 +8,16 @@ import {
   random_response,
 } from './__testdata__/tampa_test_responses'
 import { TAMPA_INPUTS } from './definition/tampa_inputs'
-// eslint-disable-next-line sort-imports
-import { tampa, TAMPA_CALCULATION_ID } from './tampa'
+import { tampa } from './tampa'
 
 const TAMPA_MIN_SCORE = 17
 const TAMPA_MAX_SCORE = 68
 
-const tampa_calculation = execute_test_calculation(tampa)
+const tampa_calculation = new Score(tampa)
 
 describe('tampa', function () {
   it('tampa calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('tampa')
+    expect(ScoreLibrary).toHaveProperty('tampa')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -49,89 +42,79 @@ describe('tampa', function () {
         'Q17',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(TAMPA_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        tampa_calculation.inputSchemaAsObject.shape,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = tampa_calculation(min_response)
+    const outcome = tampa_calculation.calculate({ payload: min_response })
 
-    it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+    it('should calculate two results', function () {
+      expect(Object.keys(outcome).length).toEqual(2)
     })
 
-    it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
-
-      expect(configured_calculation_id).toEqual(['TAMPA'])
+    it('should have the correct calculation ids', function () {
+      const configured_calculation_id = Object.keys(outcome)
+      expect(configured_calculation_id).toEqual(['TAMPA', 'INTERPRETATION'])
     })
   })
 
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when a minimum response is passed', function () {
       it('should return the minimum score', function () {
-        const score = R.compose(
-          view_result(TAMPA_CALCULATION_ID),
-          tampa_calculation,
-        )(min_response)
+        const score = tampa_calculation.calculate({ payload: min_response })
 
-        expect(score).toEqual(TAMPA_MIN_SCORE)
+        expect(score.TAMPA).toEqual(TAMPA_MIN_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const score = R.compose(
-          view_result(TAMPA_CALCULATION_ID),
-          tampa_calculation,
-        )(median_response)
+        const score = tampa_calculation.calculate({
+          payload: median_response,
+        })
 
         const EXPECTED_MEDIAN_SCORE = 43
 
-        expect(score).toEqual(EXPECTED_MEDIAN_SCORE)
+        expect(score.TAMPA).toEqual(EXPECTED_MEDIAN_SCORE)
       })
     })
 
     describe('when a maximum response is passed', function () {
       it('should return the maximum score', function () {
-        const score = R.compose(
-          view_result(TAMPA_CALCULATION_ID),
-          tampa_calculation,
-        )(max_response)
+        const score = tampa_calculation.calculate({
+          payload: max_response,
+        })
 
-        expect(score).toEqual(TAMPA_MAX_SCORE)
+        expect(score.TAMPA).toEqual(TAMPA_MAX_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
       it('should return the expected score', function () {
-        const score = R.compose(
-          view_result(TAMPA_CALCULATION_ID),
-          tampa_calculation,
-        )(random_response)
+        const score = tampa_calculation.calculate({
+          payload: random_response,
+        })
 
         const EXPECTED_SCORE = 43
 
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(score.TAMPA).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const score = R.compose(
-          view_result(TAMPA_CALCULATION_ID),
-          tampa_calculation,
-        )({})
-
-        expect(score).toEqual(undefined)
+      it('should throw a ZodError', function () {
+        expect(() => tampa_calculation.calculate({ payload: {} })).toThrow(
+          ZodError,
+        )
       })
     })
   })
@@ -140,19 +123,23 @@ describe('tampa', function () {
     describe('when an answer is not a number', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          tampa_calculation({
-            Q01: "I'm not a number",
+          tampa_calculation.calculate({
+            payload: {
+              Q01: "I'm not a number",
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is not one of the allowed answers', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          tampa_calculation({
-            Q01: 5,
+          tampa_calculation.calculate({
+            payload: {
+              Q01: 5,
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })
