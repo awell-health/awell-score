@@ -3,6 +3,7 @@ import type { LabelType } from './Label.types'
 
 interface BaseInputType {
   label?: LabelType
+  info?: LabelType
   unit?: LabelType
 }
 

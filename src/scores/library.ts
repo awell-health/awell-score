@@ -99,7 +99,7 @@ import { phq_9 } from './phq_9/phq_9'
 // import { posas_observer } from './posas_observer/posas_observer'
 // import { posas_patient } from './posas_patient/posas_patient'
 // import { pro_ctcae } from './pro_ctcae/pro_ctcae'
-// import { PRO2 } from './pro2/pro2'
+import { pro2 as PRO2 } from './pro2/pro2'
 // import { promis_10 } from './promis_10/promis_10'
 // import { prtee } from './prtee/prtee'
 // import { psk } from './psk/psk'
@@ -244,7 +244,7 @@ export const ScoreLibrary = createScoreLibrary({
   // posas_observer,
   // posas_patient,
   // pro_ctcae,
-  // PRO2,
+  PRO2,
   // promis_10,
   // prtee,
   // psk,
