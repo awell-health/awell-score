@@ -3,8 +3,8 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const CAT_INPUTS: Array<InputType> = [
   {
     input_id: '1_COUGH',
-    input_label: { en: 'Cough' },
-    input_type: {
+    label: { en: 'Cough' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -36,8 +36,8 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '2_PHLEGM',
-    input_label: { en: 'Phlegm' },
-    input_type: {
+    label: { en: 'Phlegm' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -69,8 +69,8 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '3_CHEST_TIGHTNESS',
-    input_label: { en: 'Chest tightness' },
-    input_type: {
+    label: { en: 'Chest tightness' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -102,8 +102,8 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '4_BREATHLESSNESS',
-    input_label: { en: 'Breathlessness' },
-    input_type: {
+    label: { en: 'Breathlessness' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -139,8 +139,8 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '5_ACTIVITIES',
-    input_label: { en: 'Activities' },
-    input_type: {
+    label: { en: 'Activities' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -172,10 +172,10 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '6_CONFIDENCE',
-    input_label: {
+    label: {
       en: 'Confidence',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -211,8 +211,8 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '7_SLEEP',
-    input_label: { en: 'Sleep' },
-    input_type: {
+    label: { en: 'Sleep' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -244,8 +244,8 @@ export const CAT_INPUTS: Array<InputType> = [
   },
   {
     input_id: '8_ENERGY',
-    input_label: { en: 'Energy' },
-    input_type: {
+    label: { en: 'Energy' },
+    type: {
       type: 'number',
       allowed_answers: [
         {

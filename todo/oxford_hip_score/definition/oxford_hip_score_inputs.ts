@@ -4,12 +4,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_01',
     required: true,
-    input_label: {
+    label: {
       en: 'How would you describe the pain you usually had from your hip?',
       fr: 'Comment décririez-vous la douleur que vous habituellement ressentie dans votre hanche?',
       nl: 'Hoe zou u de pijn omschrijven die u normaal in/rond uw heup heeft?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -38,12 +38,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_02',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you had any trouble with washing and drying yourself (all over) because of your hip?',
       fr: 'Avez-vous eu des difficultés pour vous laver et vous sécher le corps vous-même (des pieds à la tête) à cause de votre hanche?',
       nl: 'Heeft u, door uw heup, moeite met het wassen en afdrogen van uw hele lichaam?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -92,12 +92,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_03',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you had any trouble getting in and out of a car or using public transport because of your hip? (whichever you tend to use)',
       fr: 'Avez-vous eu des difficultés à cause de votre hanche pour entrer ou sortir d’une voiture ou pour utiliser les transports en commun (quelque soit le mode de transport utilisé)?',
       nl: 'Heeft u, door uw heup, moeite bij het in en uit stappen van de auto, trein, bus of ander openbaar vervoer?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -146,12 +146,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_04',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you been able to put on a pair of socks, stockings or tights?',
       fr: 'Avez-vous été capable de mettre seul(e) vos bas, collants ou chaussettes?',
       nl: 'Kunt u zelf uw sokken, kousen of panty`s aantrekken?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -200,12 +200,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_05',
     required: true,
-    input_label: {
+    label: {
       en: 'Could you do the household shopping on your own?',
       fr: 'Avez-vous pu faire tout(e) seul(e) des courses pour la maison?',
       nl: 'Kunt u zelf uw dagelijkse boodschappen doen?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -254,12 +254,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_06',
     required: true,
-    input_label: {
+    label: {
       en: 'For how long have you been able to walk before pain from your hip becomes severe? (with or without a stick)',
       fr: 'Combien de temps pouviez-vous marcher (sans vous arrêter) avant que la douleur dans votre hanche ne devienne très importante ? (avec ou sans canne)?',
       nl: 'Hoe lang kunt u lopen (met of zonder stok) voordat de pijn in/rond uw heup ernstig wordt?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -308,12 +308,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_07',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you been able to climb a flight of stairs?',
       fr: 'Avez-vous pu monter un étage par les escaliers?',
       nl: 'Kunt u trap lopen?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -362,12 +362,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_08',
     required: true,
-    input_label: {
+    label: {
       en: 'After a meal (sat at a table), how painful has it been for you to stand up from a chair because of your hip?',
       fr: 'Apres être resté assis (pour un repas par exemple), quel degré de douleur avez-vous ressenti en vous levant de la chaise à cause de votre hanche?',
       nl: 'Hoe pijnlijk is uw heup, als u na het eten aan tafel, uit uw stoel opstaat?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -416,12 +416,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_09',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you been limping when walking, because of your hip?',
       fr: 'Avez-vous boité en marchant, à cause de votre hanche?',
       nl: 'Trekt u, vanwege uw heup, met uw been tijdens het lopen (afgelopen 4 weken)?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -466,12 +466,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_10',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you had any sudden, severe pain - "shooting", "stabbing" or "spasms" - from the affected hip?',
       fr: 'Avez-vous ressenti au niveau de votre hanche malade (ou opérée) une douleur soudaine, vive et intense (en coup de poignard, spasme, en vrille, etc...)?',
       nl: 'Heeft u wel eens dagen waarop u plotselinge, ernstige pijn (scheuten, steken en/of krampen) in/rond uw heup heeft?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -520,12 +520,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_11',
     required: true,
-    input_label: {
+    label: {
       en: 'How much has pain from your hip interfered with your usual work (including housework)?',
       fr: 'La douleur de votre hanche vous a-t-elle gêné(e) dans votre travail ou vos activités habituelles (taches ménagères comprises)?',
       nl: 'In hoeverre beïnvloedt de pijn in uw heup uw dagelijkse werk (inclusief huishoudelijk werk)?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -551,12 +551,12 @@ export const OHS_INPUTS: Array<InputType> = [
   {
     input_id: 'ohs_12',
     required: true,
-    input_label: {
+    label: {
       en: 'Have you been troubled by pain from your hip in bed at night?',
       fr: 'Avez-vous souffert de douleurs de votre hanche au lit la nuit?',
       nl: 'Heeft u wel eens nachten waarop u in bed last heeft van pijn in/rond uw heup?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

@@ -3,8 +3,8 @@ import type { InputType } from '../../../../src/types/calculations.types'
 export const EQ5D_5L_INPUTS: Array<InputType> = [
   {
     input_id: 'eq5d_5l_mobility',
-    input_label: { nl: 'Mobiliteit', en: 'Mobility' },
-    input_type: {
+    label: { nl: 'Mobiliteit', en: 'Mobility' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -48,8 +48,8 @@ export const EQ5D_5L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_5l_selfcare',
-    input_label: { nl: 'Zelfzorg', en: 'Self-care' },
-    input_type: {
+    label: { nl: 'Zelfzorg', en: 'Self-care' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -93,11 +93,11 @@ export const EQ5D_5L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_5l_usual',
-    input_label: {
+    label: {
       nl: 'Dagelijkse activiteiten (bijv. werk, studie, huishouden, gezins- en vrijetijdsactiviteiten)',
       en: 'Usual activities (e.g. work, study, housework, family or leisure activities)',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -141,8 +141,8 @@ export const EQ5D_5L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_5l_pain',
-    input_label: { nl: 'Pijn/ongemak', en: 'Pain/discomfort' },
-    input_type: {
+    label: { nl: 'Pijn/ongemak', en: 'Pain/discomfort' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -186,8 +186,8 @@ export const EQ5D_5L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_5l_anxiety',
-    input_label: { nl: 'Angst/somberheid', en: 'Anxiety/depression' },
-    input_type: {
+    label: { nl: 'Angst/somberheid', en: 'Anxiety/depression' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -231,11 +231,11 @@ export const EQ5D_5L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_5l_vas',
-    input_label: {
+    label: {
       nl: '- We willen weten hoe goed of slecht uw gezondheid VANDAAG is.\n- Deze meetschaal loopt van 0 tot 100.\n-100 staat voor de beste gezondheid die u zich kunt voorstellen. 0 staat voor de slechtste gezondheid die u zich kunt voorstellen.\n- Duid op de meetschaal aan hoe uw gezondheid VANDAAG is.',
       en: '- We would like to know how good or bad your health is TODAY.\n- This scale is numbered from 0 to 100\n- 100 means the best health you can imagine; 0 means the worst health you can imagine\n- Indicate on the scale how your health is TODAY.',
     },
-    input_type: {
+    type: {
       type: 'number',
       component: 'slider',
       range: {

@@ -6,11 +6,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'Q01_PAIN_SCORE',
-        input_label: {
+        label: {
           en: 'Score the highest pain level that you have experienced in your shoulder during ordinary activities within the last 24 hours.',
           nl: 'Wat is de hoogste pijnscore die u de laatste 24u heeft ervaren in uw schouder tijdens het uitvoeren van normale activiteiten?',
         },
-        input_type: {
+        type: {
           type: 'number',
           component: 'slider',
           range: {
@@ -32,11 +32,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'Q03_WORK_ADL_SCORE',
-        input_label: {
+        label: {
           en: 'How much of your normal daily work does your shoulder allow you to perform?',
           nl: 'Hoeveel van uw normale dagelijkse werk laat uw schouder toe om te doen?',
         },
-        input_type: {
+        type: {
           type: 'number',
           component: 'slider',
           range: {
@@ -53,11 +53,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q04_SPORTS_HOBBY_SCORE',
-        input_label: {
+        label: {
           en: 'How much of your normal recreational activity does your shoulder allow you to perform?',
           nl: 'Hoeveel van uw normale recreationale activiteiten laat uw schouder toe om te doen?',
         },
-        input_type: {
+        type: {
           type: 'number',
           component: 'slider',
           range: {
@@ -74,11 +74,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q02_SLEEP_SCORE',
-        input_label: {
+        label: {
           en: 'Is	your sleep disturbed by your shoulder?',
           nl: 'Is je slaap verstoord door uw schouder?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -104,11 +104,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q05_ADL_FUNCTIONING_SCORE',
-        input_label: {
+        label: {
           en: 'To which level can you use your hand comfortably?',
           nl: 'Tot welke hoogte kan u uw hand comfortabel gebruiken?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -151,11 +151,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'Q06_FLEXION_ROM',
-        input_label: {
+        label: {
           en: 'Forward flexion',
           nl: 'Elevatie',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -193,11 +193,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q07_ABDUCTION_ROM',
-        input_label: {
+        label: {
           en: 'Lateral elevation (abduction)',
           nl: 'Abductie',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -235,14 +235,14 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q08_ENDOROTATION_ROM',
-        input_label: {
+        label: {
           en: 'Internal rotation',
           nl: 'Interne rotatie',
         },
         info: {
           en: 'Patient points to anatomical landmarks with thumb',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -286,11 +286,11 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q09_EXOROTATION_ROM',
-        input_label: {
+        label: {
           en: 'External rotation (check all that apply)',
           nl: 'Externe rotatie (check all that apply)',
         },
-        input_type: {
+        type: {
           type: 'numbers_array',
           allowed_answers: [
             {
@@ -338,8 +338,8 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'Q10_ATTEMPT_1',
-        input_label: { en: 'Stength - Attempt 1', nl: 'Kracht - Poging 1' },
-        input_type: {
+        label: { en: 'Stength - Attempt 1', nl: 'Kracht - Poging 1' },
+        type: {
           type: 'number',
         },
         info: {
@@ -350,8 +350,8 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q11_ATTEMPT_2',
-        input_label: { en: 'Stength - Attempt 2', nl: 'Kracht - Poging 2' },
-        input_type: {
+        label: { en: 'Stength - Attempt 2', nl: 'Kracht - Poging 2' },
+        type: {
           type: 'number',
         },
         info: {
@@ -362,8 +362,8 @@ export const CMS_SUBSCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'Q12_ATTEMPT_3',
-        input_label: { en: 'Stength - Attempt 3', nl: 'Kracht - Poging 3' },
-        input_type: {
+        label: { en: 'Stength - Attempt 3', nl: 'Kracht - Poging 3' },
+        type: {
           type: 'number',
         },
         info: {

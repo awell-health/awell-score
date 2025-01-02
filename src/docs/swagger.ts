@@ -300,7 +300,7 @@ export const swaggerDefinition = {
             type: 'string',
           },
           label: { $ref: '#/components/schemas/label' },
-          input_type: {
+          type: {
             oneOf: [
               {
                 $ref: '#/components/schemas/booleanInputType',

@@ -3,8 +3,8 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   {
     input_id: '1_AGE',
-    input_label: { en: 'Age' },
-    input_type: {
+    label: { en: 'Age' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -24,8 +24,8 @@ export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   },
   {
     input_id: '2_SEX',
-    input_label: { en: 'Sex' },
-    input_type: {
+    label: { en: 'Sex' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -41,8 +41,8 @@ export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   },
   {
     input_id: '3_CHF_HISTORY',
-    input_label: { en: 'CHF history' },
-    input_type: {
+    label: { en: 'CHF history' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -58,8 +58,8 @@ export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   },
   {
     input_id: '4_HYPERTENSION_HISTORY',
-    input_label: { en: 'Hypertension history' },
-    input_type: {
+    label: { en: 'Hypertension history' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -75,8 +75,8 @@ export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   },
   {
     input_id: '5_STROKE_TIA_THROMBOEMBOLISM_HISTORY',
-    input_label: { en: 'Stroke/TIA/thromboembolism history' },
-    input_type: {
+    label: { en: 'Stroke/TIA/thromboembolism history' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -92,10 +92,10 @@ export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   },
   {
     input_id: '6_VASCULAR_DISEASE_HISTORY',
-    input_label: {
+    label: {
       en: 'Vascular disease history (prior MI, peripheral artery disease, or aortic plaque)',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -111,8 +111,8 @@ export const CHA2DS2_VASC_SCORE_INPUTS: Array<InputType> = [
   },
   {
     input_id: '7_DIABETES_HISTORY',
-    input_label: { en: 'Diabetes history' },
-    input_type: {
+    label: { en: 'Diabetes history' },
+    type: {
       type: 'number',
       allowed_answers: [
         {

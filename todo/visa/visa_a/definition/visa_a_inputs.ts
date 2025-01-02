@@ -1,7 +1,7 @@
 import type { InputType } from '../../../../src/types/calculations.types'
 import { NumberInputType } from '../../../../src/types/calculations/inputs/calculation-inputs.types'
 
-const DEFAULT_INPUT_TYPE: NumberInputType = {
+const DEFAULT_type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0 },
@@ -21,37 +21,37 @@ const DEFAULT_INPUT_TYPE: NumberInputType = {
 export const VISA_A_INPUTS: Array<InputType> = [
   {
     input_id: 'VISA_A_Q1',
-    input_type: DEFAULT_INPUT_TYPE,
+    type: DEFAULT_INPUT_TYPE,
     required: true,
   },
   {
     input_id: 'VISA_A_Q02',
-    input_type: DEFAULT_INPUT_TYPE,
+    type: DEFAULT_INPUT_TYPE,
     required: true,
   },
   {
     input_id: 'VISA_A_Q03',
-    input_type: DEFAULT_INPUT_TYPE,
+    type: DEFAULT_INPUT_TYPE,
     required: true,
   },
   {
     input_id: 'VISA_A_Q04',
-    input_type: DEFAULT_INPUT_TYPE,
+    type: DEFAULT_INPUT_TYPE,
     required: true,
   },
   {
     input_id: 'VISA_A_Q05',
-    input_type: DEFAULT_INPUT_TYPE,
+    type: DEFAULT_INPUT_TYPE,
     required: true,
   },
   {
     input_id: 'VISA_A_Q06',
-    input_type: DEFAULT_INPUT_TYPE,
+    type: DEFAULT_INPUT_TYPE,
     required: true,
   },
   {
     input_id: 'VISA_A_Q07',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -64,10 +64,10 @@ export const VISA_A_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_A_Q08',
-    input_label: {
+    label: {
       en: "Select what's applicable",
     },
-    input_type: {
+    type: {
       type: 'string',
       allowed_answers: [
         {
@@ -97,7 +97,7 @@ export const VISA_A_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_A_Q08_A',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -116,7 +116,7 @@ export const VISA_A_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_A_Q08_B',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -137,7 +137,7 @@ export const VISA_A_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_A_Q08_C',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },

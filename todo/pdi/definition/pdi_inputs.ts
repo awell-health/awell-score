@@ -1,7 +1,7 @@
 import { type InputType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   component: 'slider',
   range: {
@@ -19,7 +19,7 @@ const input_type: NumberInputType = {
 export const PDI_INPUTS: Array<InputType> = [
   {
     input_id: 'Q01',
-    input_label: {
+    label: {
       en: 'Family and home responsibilities: activities related to home and family',
       nl: 'Familiare en huishoudelijke verantwoordelijkheden: Deze categorie houdt activiteiten in die te maken hebben met huishoudelijke werkzaamheden in en rond het huis (b.v. tuinieren e.d.) en verplichtingen ten aanzien van andere familieleden (b.v. kinderen naar school brengen e.d.).',
     },
@@ -27,7 +27,7 @@ export const PDI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q02',
-    input_label: {
+    label: {
       en: 'Recreation: hobbies sports and other leisure time activities',
       nl: 'Recreatie: Deze categorie omvat activiteiten zoals hobby’s, sport en andere vrije tijdsbestedingen.',
     },
@@ -35,7 +35,7 @@ export const PDI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q03',
-    input_label: {
+    label: {
       en: 'Social activity: participation with friends and acquaintances other than family members',
       nl: 'Sociale activiteiten: Deze categorie heeft te maken met samen met vrienden en/of familie uit te voeren activiteiten, zoals feestjes, theater of concertbezoek, uit eten gaan en andere sociale gelegenheden.',
     },
@@ -43,7 +43,7 @@ export const PDI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q04',
-    input_label: {
+    label: {
       en: 'Occupation: activities partly or directly related to working including housework or volunteering',
       nl: 'Beroep: Deze categorie omvat activiteiten die geheel of gedeeltelijk te maken hebben met uw beroep. Ook niet-betaald werk, zoals huishouden of vrijwilligers werk, hoort hierbij.',
     },
@@ -51,7 +51,7 @@ export const PDI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q05',
-    input_label: {
+    label: {
       en: 'Sexual behavior: frequency and quality of sex life?',
       nl: 'Sexuele activiteiten: Deze categorie vraagt naar de invloed op de frequentie en de kwaliteit van uw sexleven.',
     },
@@ -59,7 +59,7 @@ export const PDI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q06',
-    input_label: {
+    label: {
       en: 'Self care: personal maintenance and independent daily living (bathing dressing etc.)',
       nl: 'Zelfverzorging: Deze categorie omvat activiteiten op het gebied van persoonlijke verzorging en onafhankelijke kunnen uitvoeren van allerlei dagelijkse activiteiten (b.v. douchen, aankleden, autorijden)',
     },
@@ -67,7 +67,7 @@ export const PDI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q07',
-    input_label: {
+    label: {
       en: 'Life-support activity: basic life-supporting behaviors (eating sleeping breathing etc.)',
       nl: 'Basale levensbehoeftes: Deze categorie omvat activiteiten die de vitale levensfuncties omvatten, zoals eten, slapen en ademhalen.',
     },

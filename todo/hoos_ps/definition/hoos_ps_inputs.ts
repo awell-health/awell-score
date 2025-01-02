@@ -1,7 +1,7 @@
 import type { InputType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Absente' } },
@@ -15,7 +15,7 @@ const input_type: NumberInputType = {
 export const HOOS_PS_INPUTS: Array<InputType> = [
   {
     input_id: '1_stairs',
-    input_label: {
+    label: {
       nl: 'Trap aflopen',
       en: 'Descending stairs',
       fr: 'Descendre les escaliers',
@@ -25,7 +25,7 @@ export const HOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '2_bath_shower',
-    input_label: {
+    label: {
       nl: 'In/uit bad of douche gaan',
       en: 'Getting in/out of bath or shower',
       fr: 'Entrer ou sortir d’une baignoire',
@@ -35,19 +35,19 @@ export const HOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '3_sit',
-    input_label: { nl: 'Zitten', en: 'Sitting', fr: 'Rester assis(e)' },
+    label: { nl: 'Zitten', en: 'Sitting', fr: 'Rester assis(e)' },
     input_type,
     required: true,
   },
   {
     input_id: '4_running',
-    input_label: { nl: 'Hardlopen', en: 'Running', fr: 'Courir' },
+    label: { nl: 'Hardlopen', en: 'Running', fr: 'Courir' },
     input_type,
     required: true,
   },
   {
     input_id: '5_turn_on_leg',
-    input_label: {
+    label: {
       nl: 'Draaien op een belast been',
       en: 'Twisting/pivoting on your loaded leg',
       fr: 'Tourner, pivoter sur votre jambe',

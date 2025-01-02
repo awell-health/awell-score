@@ -10,13 +10,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DLQI_Q01',
-        input_label: {
+        label: {
           nl: 'Hoe jeukerig, pijnlijk of branderig is uw huid geweest, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how itchy, sore, painful or stinging has your skin been?',
           fr: 'Au cours des 7 derniers jours, votre peau vous a-t-elle démangé(e), fait souffrir ou brûlé(e) ?',
           de: 'Wie sehr hat Ihre Haut in den vergangenen 7 Tagen gejuckt, war wund, hat geschmerzt oder gebrannt?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -60,13 +60,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'DLQI_Q02',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft u zich vanwege uw huid opgelaten of ongemakkelijk gevoeld, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how embarrassed or self conscious have you been because of your skin?',
           fr: 'Au cours des 7 derniers jours, vous êtes-vous senti(e) gêné(e) ou complexé(e) par votre problème de peau ?',
           de: 'Wie sehr hat Ihre Hauterkrankung Sie in den vergangenen 7 Tagen verlegen oder befangen gemacht?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -115,13 +115,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DLQI_Q03',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft uw huid u gehinderd bij het winkelen of het werken in uw huis of tuin, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how much has your skin interfered with you going shopping or looking after your home or garden?',
           fr: 'Au cours des 7 derniers jours, votre problème de peau vous a-t-il gêné(e) pour faire des courses, vous occuper de votre maison ou pour jardiner ?',
           de: 'Wie sehr hat Ihre Hauterkrankung Sie in den vergangenen 7 Tagen bei Einkäufen oder bei Haus- oder Gartenarbeit behindert?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -174,13 +174,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'DLQI_Q04',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft uw huid invloed gehad op de kleren die u droeg, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how much has your skin influenced the clothes you wear?',
           fr: 'Au cours des 7 derniers jours, votre problème de peau vous a-t-il influencé(e) dans le choix des vêtements que vous portiez ?',
           de: 'Wie sehr hat Ihre Hauterkrankung die Wahl der Kleidung beeinflußt, die Sie in den vergangenen 7 Tagen getragen haben?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -238,13 +238,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DLQI_Q05',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft uw huid een nadelige invloed gehad op uw sociale activiteiten of vrijetijdsbesteding, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how much has your skin affected any social or leisure activities?',
           fr: 'Au cours des 7 derniers jours, votre problème de peau a-t-il affecté vos activités avec les autres ou vos loisirs ?',
           de: 'Wie sehr hat Ihre Hauterkrankung in den vergangenen 7 Tagen Ihre Aktivitäten mit anderen Menschen oder Ihre Freizeitgestaltung beeinflußt?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -297,13 +297,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'DLQI_Q06',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft uw huid het u bemoeilijkt om te sporten, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how much has your skin made it difficult for you to do any sport?',
           fr: 'Au cours des 7 derniers jours, avez-vous eu du mal à faire du sport à cause de votre problème de peau ?',
           de: 'Wie sehr hat Ihre Hauterkrankung es Ihnen in den vergangenen 7 Tagen erschwert, sportlich aktiv zu sein?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -361,13 +361,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DLQI_Q07',
-        input_label: {
+        label: {
           nl: 'Heeft uw huid u ervan weerhouden om te werken of te studeren, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, has your skin prevented you from working or studying?',
           fr: "Au cours des 7 derniers jours, votre problème de peau vous a-t-il complètement empêché(e) de travailler ou d'étudier ?",
           de: 'Hat Ihre Hauterkrankung in den vergangenen 7 Tagen dazu geführt, daß Sie Ihrer beruflichen Tätigkeit nicht nachgehen oder nicht studieren konnten?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -392,13 +392,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'DLQI_Q07_SUB',
-        input_label: {
+        label: {
           nl: 'Zo "nee": In welke mate is uw huid een probleem voor u geweest tijdens uw werk of studie, gedurende de afgelopen 7 dagen?',
           en: 'If "No", over the last week how much has your skin been a problem at work or studying?',
           fr: 'Si la réponse est "non" : au cours des 7 derniers jours, votre problème de peau vous a-t-il gêné(e) dans votre travail ou dans vos études ?',
           de: 'Falls "nein", wie sehr ist Ihre Hauterkrankung in den vergangenen 7 Tagen ein Problem bei Ihrer beruflichen Tätigkeit bzw. Ihrem Studium gewesen?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -442,13 +442,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DLQI_Q08',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft uw huid problemen veroorzaakt met uw partner, goede vrienden of familie, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how much has your skin created problems with your partner or any of your close friends or relatives?',
           fr: 'Au cours des 7 derniers jours, votre problème de peau a-t-il rendu difficiles vos relations avec votre conjoint(e), vos amis proches ou votre famille ?',
           de: 'Wie sehr hat Ihre Hauterkrankung in den vergangenen 7 Tagen Probleme im Umgang mit Ihrem Partner, Freunden oder Verwandten verursacht?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -501,13 +501,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'DLQI_Q09',
-        input_label: {
+        label: {
           nl: 'In welke mate heeft uw huid voor seksuele problemen gezorgd, gedurende de afgelopen 7 dagen?',
           en: 'Over the last week, how much has your skin caused any sexual difficulties?',
           fr: 'Au cours des 7 derniers jours, votre problème de peau a-t-il rendu votre vie sexuelle difficile ?',
           de: 'Wie sehr hat Ihre Hauterkrankung in den vergangenen 7 Tagen Ihr Liebesleben beeinträchtigt?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -565,13 +565,13 @@ export const DLQI_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DLQI_Q10',
-        input_label: {
+        label: {
           nl: 'In welke mate is de behandeling van uw huid een probleem geweest, gedurende de afgelopen 7 dagen, bijvoorbeeld omdat de behandeling veel tijd kost, of doordat uw huis er vies van wordt?',
           en: 'Over the last week, how much of a problem has the treatment for your skin been, for example by making your home messy, or by taking up time?',
           fr: 'Au cours des 7 derniers jours, le traitement que vous utilisez pour votre peau a-t-il été un problème, par exemple en prenant trop de votre temps ou en salissant votre maison ?',
           de: 'Inwieweit war die Behandlung Ihrer Haut in den vergangenen 7 Tagen für Sie mit Problemen verbunden (z. B. weil die Behandlung Zeit in Anspruch nahm oder dadurch Ihr Haushalt unsauber wurde)?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {

@@ -4,7 +4,7 @@ import { NumberInputType } from '../../../src/types/calculations/inputs/calculat
 const NO_ANSWER = 0
 const YES_ANSWER = 1
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: NO_ANSWER, label: { en: 'No', nl: 'Nee' } },
@@ -15,7 +15,7 @@ const input_type: NumberInputType = {
 export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   {
     input_id: 'CSI_Q01',
-    input_label: {
+    label: {
       nl: 'Mijn nachtrust is verstoord.',
       en: 'My sleep is disturbed (e.g., because the person I care for is in and out of bed or wanders around at night)',
     },
@@ -24,7 +24,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q02',
-    input_label: {
+    label: {
       nl: 'Hem of haar helpen kost me nogal wat moeite en tijd.',
       en: 'Caregiving is inconvenient (e.g., helping takes so much time or it’s a long drive over to help)',
     },
@@ -33,7 +33,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q03',
-    input_label: {
+    label: {
       nl: 'Ik vind het lichamelijk zwaar.',
       en: 'It is a physical strain (e.g., because of lifting in and out of a chair; effort or concentration is required)',
     },
@@ -42,7 +42,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q04',
-    input_label: {
+    label: {
       nl: 'Het beperkt me in andere dingen die ik wil doen.',
       en: 'Caregiving is confining (e.g., helping restricts free time or cannot go visiting)',
     },
@@ -51,7 +51,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q05',
-    input_label: {
+    label: {
       nl: 'Wij hebben onze dagelijkse manier van doen moeten aanpassen.',
       en: 'There have been family adjustments (e.g., because helping has disrupted routine; there has been no privacy)',
     },
@@ -60,7 +60,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q06',
-    input_label: {
+    label: {
       nl: 'Wij hebben onze plannen moeten wijzigen.',
       en: 'There have been changes in personal plans (e.g., had to turn down a job; could not go on vacation)',
     },
@@ -69,7 +69,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q07',
-    input_label: {
+    label: {
       nl: 'Er zijn ook andere zaken waaraan ik mijn tijd moet besteden.',
       en: 'There have been other demands on my time (e.g., other family members need me)',
     },
@@ -78,7 +78,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q08',
-    input_label: {
+    label: {
       nl: 'Emotioneel gedragen we ons anders ten opzichte van elkaar.',
       en: 'There have been emotional adjustments (e.g., because of severe arguments)',
     },
@@ -87,7 +87,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q09',
-    input_label: {
+    label: {
       nl: 'Het gedrag van mijn man/vrouw maakt me soms van streek.',
       en: 'Some behavior is upsetting (e.g., because of incontinence; the person I care for has trouble remembering things; or the person I care for accuses people of taking things)',
     },
@@ -96,7 +96,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q10',
-    input_label: {
+    label: {
       nl: 'Het is pijnlijk te moeten zien dat hij/zij een ander persoon is geworden.',
       en: 'It is upsetting to find that he/she has changed so much from his/her former self (e.g., he/she is a different person than he/she used to be)',
     },
@@ -105,7 +105,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q11',
-    input_label: {
+    label: {
       nl: 'Ik heb mijn werk/baan moeten aanpassen aan de situatie.',
       en: 'There have been work adjustments (e.g., because of having to take time off)',
     },
@@ -114,7 +114,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q12',
-    input_label: {
+    label: {
       nl: 'Ik word geheel door deze situatie in beslag genomen.',
       en: "I'm feeling completely overwhelmed (e.g., because of worry about the person I care for; concerns about how you I will manage)",
     },
@@ -123,7 +123,7 @@ export const CAREGIVER_STRAIN_INDEX_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CSI_Q13',
-    input_label: {
+    label: {
       nl: 'We leven onder financiële druk.',
       en: 'It is a financial strain',
     },

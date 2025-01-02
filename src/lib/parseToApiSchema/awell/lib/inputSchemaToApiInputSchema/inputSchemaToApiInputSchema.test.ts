@@ -17,7 +17,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'boolean',
             required: true,
             allowed_answers: [
@@ -48,7 +48,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'boolean',
             required: false,
             allowed_answers: [
@@ -75,7 +75,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'date',
             required: false,
           },
@@ -98,7 +98,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'string',
             required: true,
           },
@@ -124,7 +124,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            input_type: {
+            type: {
               type: 'string',
               required: true,
               allowed_answers: [
@@ -162,7 +162,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            input_type: {
+            type: {
               type: 'string',
               required: false,
               allowed_answers: [
@@ -191,7 +191,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: { type: 'number', required: true },
+          type: { type: 'number', required: true },
         },
       ])
     })
@@ -213,7 +213,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'number',
             required: false,
             component: 'slider',
@@ -237,7 +237,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'number',
             required: true,
             range: { min: { value: 10 } },
@@ -259,7 +259,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'number',
             required: true,
             range: { max: { value: 999 } },
@@ -281,7 +281,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'number',
             required: true,
             range: {
@@ -311,7 +311,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            input_type: {
+            type: {
               type: 'number',
               required: true,
               allowed_answers: [{ value: 1 }, { value: 2 }, { value: 3 }],
@@ -341,7 +341,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            input_type: {
+            type: {
               type: 'number',
               required: false,
               allowed_answers: [
@@ -376,7 +376,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'strings_array',
             required: false,
             allowed_answers: [
@@ -409,7 +409,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          input_type: {
+          type: {
             type: 'numbers_array',
             required: true,
             allowed_answers: [

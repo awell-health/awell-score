@@ -3,11 +3,11 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const GAD2_INPUTS: Array<InputType> = [
   {
     input_id: 'GAD2_Q01',
-    input_label: {
+    label: {
       en: 'Over the last two weeks, how often have you been bothered by feeling nervous, anxious, or on edge?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van uzelf zenuwachtig, angstig of gespannen te voelen?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -34,11 +34,11 @@ export const GAD2_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'GAD2_Q02',
-    input_label: {
+    label: {
       en: 'Over the last two weeks, how often have you been bothered by not being able to stop or control worrying?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van niet in staat te zijn om te stoppen met piekeren of om controle te krijgen over het piekeren?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

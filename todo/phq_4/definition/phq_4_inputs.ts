@@ -3,10 +3,10 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const PHQ4_INPUTS: Array<InputType> = [
   {
     input_id: 'PHQ4_Q01',
-    input_label: {
+    label: {
       en: 'Over the last two weeks, how often have you been bothered by feeling nervous, anxious or on edge?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -33,10 +33,10 @@ export const PHQ4_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'PHQ4_Q02',
-    input_label: {
+    label: {
       en: 'Over the last 2 weeks, how often have you been bothered by not being able to stop or control worrying?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -63,10 +63,10 @@ export const PHQ4_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'PHQ4_Q03',
-    input_label: {
+    label: {
       en: 'Over the last 2 weeks, how often have you been bothered by feeling down, depressed or hopeless?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -93,10 +93,10 @@ export const PHQ4_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'PHQ4_Q04',
-    input_label: {
+    label: {
       en: 'Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

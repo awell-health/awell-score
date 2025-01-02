@@ -11,7 +11,7 @@ const ALLOWED_ANSWERS = [
 //@ts-expect-error to do
 const add_allowed_answers = input => ({
   ...input,
-  input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
+  type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
 })
 
 export const SCL90R_SUBSCALES: Array<DefaultSubscaleType> = [

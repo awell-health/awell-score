@@ -1,4 +1,6 @@
-export * from './getUnionType'
+export * from './zod/getUnionType'
+export * from './zod/stripOptionalFromZodObject'
 export * from './parseReadmeToHtml'
 export * from './createZodObjectFromInputSchema'
 export * from './parseToApiSchema'
+export * from './shared'

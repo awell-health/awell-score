@@ -1,7 +1,7 @@
 import type { InputType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     {
@@ -50,42 +50,42 @@ const input_type: NumberInputType = {
 export const PANSS_6_INPUTS: Array<InputType> = [
   {
     input_id: 'PANSS_6_Q01_DELUSIONS',
-    input_label: {
+    label: {
       en: 'Delusions',
     },
     input_type,
   },
   {
     input_id: 'PANSS_6_Q02_CONCEPTUAL_DISORGANIZATIONS',
-    input_label: {
+    label: {
       en: 'Conceptual disorganization',
     },
     input_type,
   },
   {
     input_id: 'PANSS_6_Q03_HALLUCINATORY_BEHAVIOR',
-    input_label: {
+    label: {
       en: 'Hallucinatory behavior',
     },
     input_type,
   },
   {
     input_id: 'PANSS_6_Q04_BLUNTED_AFFECT',
-    input_label: {
+    label: {
       en: 'Blunted affect',
     },
     input_type,
   },
   {
     input_id: 'PANSS_6_Q05_PASSIVE_SOCIAL_WITHDRAWAL',
-    input_label: {
+    label: {
       en: 'Passive/apathetic social withdrawal',
     },
     input_type,
   },
   {
     input_id: 'PANSS_6_Q06_LACK_OF_SPONTANEITY',
-    input_label: {
+    label: {
       en: 'Lack of spontaneity and flow of conversation',
     },
     input_type,

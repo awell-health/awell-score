@@ -10,7 +10,7 @@ export const SUBSCORE_QUESTIONS = ['STOOL_FREQUENCY', 'ABDOMINAL_PAIN']
 export const PRO2_INPUTS: Array<PRO2InputType> = [
   {
     input_id: 'STOOL_FREQUENCY',
-    input_type: {
+    type: {
       type: 'number',
       range: {
         min: { value: 0 },
@@ -25,7 +25,7 @@ export const PRO2_INPUTS: Array<PRO2InputType> = [
   },
   {
     input_id: 'ABDOMINAL_PAIN',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'None' } },
@@ -42,7 +42,7 @@ export const PRO2_INPUTS: Array<PRO2InputType> = [
   },
   {
     input_id: 'GENERAL_WELL_BEING',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'Generally well' } },
@@ -60,7 +60,7 @@ export const PRO2_INPUTS: Array<PRO2InputType> = [
   },
   {
     input_id: 'JOINT_PROBLEMS',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },
@@ -72,7 +72,7 @@ export const PRO2_INPUTS: Array<PRO2InputType> = [
   },
   {
     input_id: 'SKIN_PROBLEMS',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },
@@ -84,7 +84,7 @@ export const PRO2_INPUTS: Array<PRO2InputType> = [
   },
   {
     input_id: 'EYE_PROBLEMS',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },
@@ -96,7 +96,7 @@ export const PRO2_INPUTS: Array<PRO2InputType> = [
   },
   {
     input_id: 'MOUTH_SORES',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },

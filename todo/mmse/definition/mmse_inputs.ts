@@ -3,7 +3,7 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const MMSE_INPUTS: Array<InputType> = [
   {
     input_id: 'ORIENTATION_TO_TIME',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -18,7 +18,7 @@ export const MMSE_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ORIENTATION_TO_PLACE',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -33,7 +33,7 @@ export const MMSE_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'REGISTRATION',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }],
     },
@@ -41,7 +41,7 @@ export const MMSE_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ATTENTION_AND_CALCULATION',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -56,7 +56,7 @@ export const MMSE_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'RECALL',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }],
     },
@@ -64,7 +64,7 @@ export const MMSE_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'LANGUAGE',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -82,7 +82,7 @@ export const MMSE_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'CONSTRUCT',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [{ value: 0 }, { value: 1 }],
     },

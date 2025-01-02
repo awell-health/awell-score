@@ -1,7 +1,7 @@
 import type { InputType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-export const input_type: NumberInputType = {
+export const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0 },
@@ -17,7 +17,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q01',
     input_type,
-    input_label: {
+    label: {
       en: 'Pain Intensity',
       nl: '',
     },
@@ -26,7 +26,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q02',
     input_type,
-    input_label: {
+    label: {
       en: 'Personal Care (Washing, Dressing, etc.)',
       nl: '',
     },
@@ -35,7 +35,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q03',
     input_type,
-    input_label: {
+    label: {
       en: 'Lifting',
       nl: '',
     },
@@ -44,7 +44,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q04',
     input_type,
-    input_label: {
+    label: {
       en: 'Reading',
       nl: '',
     },
@@ -53,7 +53,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q05',
     input_type,
-    input_label: {
+    label: {
       en: 'Headaches',
       nl: '',
     },
@@ -62,7 +62,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q06',
     input_type,
-    input_label: {
+    label: {
       en: 'Concentration',
       nl: '',
     },
@@ -71,7 +71,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q07',
     input_type,
-    input_label: {
+    label: {
       en: 'Work',
       nl: '',
     },
@@ -80,7 +80,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q08',
     input_type,
-    input_label: {
+    label: {
       en: 'Driving',
       nl: '',
     },
@@ -89,7 +89,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q09',
     input_type,
-    input_label: {
+    label: {
       en: 'Sleeping',
       nl: '',
     },
@@ -98,7 +98,7 @@ export const NDI_INPUTS: Array<InputType> = [
   {
     input_id: 'NDI_Q10',
     input_type,
-    input_label: {
+    label: {
       en: 'Recreation',
       nl: '',
     },

@@ -3,8 +3,8 @@ import type { InputType } from '../../../../src/types/calculations.types'
 export const EQ5D_3L_INPUTS: Array<InputType> = [
   {
     input_id: 'eq5d_3l_mobility',
-    input_label: { nl: 'Mobiliteit', en: 'Mobility' },
-    input_type: {
+    label: { nl: 'Mobiliteit', en: 'Mobility' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -31,8 +31,8 @@ export const EQ5D_3L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_3l_selfcare',
-    input_label: { nl: 'Zelfzorg', en: 'Self-Care' },
-    input_type: {
+    label: { nl: 'Zelfzorg', en: 'Self-Care' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -62,11 +62,11 @@ export const EQ5D_3L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_3l_usual',
-    input_label: {
+    label: {
       nl: 'Dagelijkse activiteiten (bijv. werk, studie, huishouden, gezins- en vrijetijdsactiviteiten)',
       en: 'Usual activities (e.g. work, study, housework, family or leisure activities)',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -96,8 +96,8 @@ export const EQ5D_3L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_3l_pain',
-    input_label: { nl: 'Pijn/klachten', en: 'Pain/Discomfort' },
-    input_type: {
+    label: { nl: 'Pijn/klachten', en: 'Pain/Discomfort' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -127,8 +127,8 @@ export const EQ5D_3L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_3l_anxiety',
-    input_label: { nl: 'Stemming', en: 'Anxiety/Depression' },
-    input_type: {
+    label: { nl: 'Stemming', en: 'Anxiety/Depression' },
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -158,11 +158,11 @@ export const EQ5D_3L_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eq5d_3l_vas',
-    input_label: {
+    label: {
       nl: 'Om mensen te helpen bij het aangeven hoe goed of hoe slecht een gezondheidstoestand is, hebben we een meetschaal (te vergelijken met een thermometer) gemaakt. Op de meetschaal hiernaast betekent “100” de beste  gezondheidstoestand die u zich kunt voorstellen, en “0” de slechtste gezondheidstoestand die u zich kunt voorstellen.\n\nWe willen u vragen op deze meetschaal aan te geven hoe goed of hoe slecht volgens u uw eigen gezondheidstoestand vandaag is.',
       en: 'To help people say how good or bad a health state is, we have drawn a scale (rather like a thermometer) on which the best state you can imagine.\n\nWe would like you to indicate on this scale how good or bad your own health is today, in your opinion.',
     },
-    input_type: {
+    type: {
       type: 'number',
       component: 'slider',
       range: {

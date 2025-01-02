@@ -11,11 +11,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'item_1a',
-        input_label: {
+        label: {
           en: 'How severe was your neck pain in the last week?',
           nl: 'Hoe erg was uw nekpijn in de afgelopen week?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { en: 'No pain', nl: 'Geen pijn' } },
@@ -40,11 +40,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
       },
       {
         input_id: 'item_1b',
-        input_label: {
+        label: {
           en: 'How severe was your arm/shoulder pain in the last week?',
           nl: 'Hoe erg was uw arm/schouder pijn in de afgelopen week?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { en: 'No pain', nl: 'Geen pijn' } },
@@ -75,11 +75,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'item_2',
-        input_label: {
+        label: {
           en: 'During the past week, how much did your neck problem interfere with your normal work (including both work outside the home and housework)?',
           nl: 'In welke mate hinderde uw nekproblemen uw normale werk (zowel uw job als huishoudelijk werk) in de afgelopen week?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all' } },
@@ -101,11 +101,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'item_3',
-        input_label: {
+        label: {
           en: 'If you had to spend the rest of your life with the symptoms you have right now, how would you feel about it?',
           nl: 'Hoe zou u er zich bij voelen indien u de rest van uw leven zou moeten doorbrengen met de klachten die u nu voelt?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Zeer tevreden', en: 'Very satisfied' } },
@@ -142,11 +142,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'item_4',
-        input_label: {
+        label: {
           en: 'Please reflect on the last week. How would you rate your quality of life?',
           nl: 'Als u aan de afgelopen week terugdenkt, hoe zou u uw levenskwaliteit inschatten/beoordelen?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Zeer goed', en: 'Very good' } },
@@ -165,11 +165,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'item_5',
-        input_label: {
+        label: {
           en: 'During the past 4 weeks, how many days did you cut down on the things you usually do (work, housework, school, recreational activities) because of your neck problem?',
           nl: 'Hoeveel dagen van de laatste 4 weken werden activiteiten die u normaal doet (uw job, huishoudelijk werk, school, recreatieve activiteiten) ingekort/verminderd omwille van uw nekprobleem?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Geen', en: 'None' } },
@@ -200,11 +200,11 @@ export const COMI_NECK_DOMAINS: Array<COMIDomainType> = [
       },
       {
         input_id: 'item_6',
-        input_label: {
+        label: {
           en: 'During the past 4 weeks, how many days did your neck problem keep you from going to work (job, school, housework)?',
           nl: 'Hoeveel dagen van de laatste 4 weken heeft uw nekprobleem u belet om te gaan werken (uw job, huishoudelijk werk, school)?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Geen', en: 'None' } },

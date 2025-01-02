@@ -4,7 +4,7 @@ import { NumberInputType } from '../../../src/types/calculations/inputs/calculat
 const DISAGREE_ANSWER = 0
 const AGREE_ANSWER = 1
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: DISAGREE_ANSWER, label: { en: 'Disagree', nl: 'Oneens' } },
@@ -15,7 +15,7 @@ const input_type: NumberInputType = {
 export const START_BACK_INPUTS: Array<InputType> = [
   {
     input_id: 'Q01',
-    input_label: {
+    label: {
       en: 'My back pain has spread down my leg(s) at some time in the last 2 weeks',
       nl: 'In de laatste 2 weken straalde mijn rugpijn wel eens uit naar één of beide benen.',
     },
@@ -24,7 +24,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q02',
-    input_label: {
+    label: {
       en: 'I have had pain in the shoulder or neck at some time in the last 2 weeks',
       nl: 'In de laatste 2 weken heb ik wel eens pijn in mijn schouder of nek gehad.',
     },
@@ -33,7 +33,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q03',
-    input_label: {
+    label: {
       en: 'I have only walked short distances because of my back pain',
       nl: 'Vanwege mijn rugpijn liep ik alleen korte afstanden.',
     },
@@ -42,7 +42,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q04',
-    input_label: {
+    label: {
       en: 'In the last 2 weeks, I have dressed more slowly than usual because of back pain',
       nl: 'In de laatste 2 weken kleedde ik me trager dan gewoonlijk aan vanwege mijn rugpijn.',
     },
@@ -51,7 +51,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q05',
-    input_label: {
+    label: {
       en: `It's not really safe for a person with a condition like mine to  be physically active`,
       nl: 'Voor iemand in mijn toestand is het echt niet veilig om lichamelijk actief te zijn.',
     },
@@ -60,7 +60,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q06',
-    input_label: {
+    label: {
       en: 'Worrying thoughts have been going through my mind a lot of the time',
       nl: 'Ongeruste gedachten gingen vaak door mijn hoofd.',
     },
@@ -69,7 +69,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q07',
-    input_label: {
+    label: {
       en: `I feel that my back pain is terrible and it's never going to get any better`,
       nl: 'Ik vind dat mijn rugpijn verschrikkelijk is en ik geloof dat het nooit meer beter zal worden.',
     },
@@ -78,7 +78,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q08',
-    input_label: {
+    label: {
       en: 'In general I have not enjoyed all the things I used to enjoy',
       nl: 'Over het geheel genomen heb ik niet genoten van alle dingen waar ik vroeger wel van genoot.',
     },
@@ -87,7 +87,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q09',
-    input_label: {
+    label: {
       en: 'Overall, how bothersome has your back pain been in th last 2 weeks?',
       nl: 'Over het geheel genomen, hoe hinderlijk was uw rugpijn in de laatste 2 weken ?',
     },
@@ -95,7 +95,7 @@ export const START_BACK_INPUTS: Array<InputType> = [
      * Answer values 1 and 2 will be recoded to 0
      * Answer values 3 and 4 will be recoded to 1
      */
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'Not at all', nl: 'In het geheel niet' } },

@@ -26,7 +26,7 @@ const NOT_APPLICABLE = { value: 888, label: { en: 'Not applicable' } }
 //@ts-expect-error to do
 const add_allowed_answers = input => ({
   ...input,
-  input_type: { type: 'number', allowed_answers: DEFAULT_ALLOWED_ANSWERS },
+  type: { type: 'number', allowed_answers: DEFAULT_ALLOWED_ANSWERS },
 })
 
 /**
@@ -69,7 +69,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_5_voice_quality_changes_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -145,7 +145,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_12_gas_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -293,7 +293,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_24_rash_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -329,7 +329,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_29_hives_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -347,7 +347,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_31_nail_loss_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -359,7 +359,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_32_nail_ridging_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -371,7 +371,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_33_nail_discoloration_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -383,7 +383,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_34_sensitivity_to_sunlight_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -395,7 +395,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_35_bed_pressure_sores_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -407,7 +407,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_36_radiation_skin_reaction_severity',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [...DEFAULT_ALLOWED_ANSWERS, NOT_APPLICABLE],
         },
@@ -419,7 +419,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_37_skin_darkening_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -431,7 +431,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_38_stretch_marks_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -482,7 +482,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_42_flashing_lights_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -494,7 +494,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_43_visual_floaters_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -717,7 +717,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_57_irregular_periods_vaginal_bleeding_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [...ALLOWED_ANSWERS_FOR_BOOLEAN, NOT_APPLICABLE],
         },
@@ -729,7 +729,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_58_missed_expected_menstruation_period_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [...ALLOWED_ANSWERS_FOR_BOOLEAN, NOT_APPLICABLE],
         },
@@ -785,7 +785,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_64_change_in_usual_urine_color_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -810,7 +810,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_66_achieve_and_maintain_erection_severity',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             ...DEFAULT_ALLOWED_ANSWERS,
@@ -826,7 +826,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_67_ejaculation_frequency',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             ...DEFAULT_ALLOWED_ANSWERS,
@@ -842,7 +842,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_68_decreased_libido_severity',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             ...DEFAULT_ALLOWED_ANSWERS,
@@ -858,7 +858,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_69_delayed_orgasm_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             ...ALLOWED_ANSWERS_FOR_BOOLEAN,
@@ -874,7 +874,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_70_unable_to_have_orgasm_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             ...ALLOWED_ANSWERS_FOR_BOOLEAN,
@@ -890,7 +890,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_71_pain_w_sexual_intercourse_severity',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             ...DEFAULT_ALLOWED_ANSWERS,
@@ -912,7 +912,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_73_bruising_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -950,7 +950,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_76_decreased_sweating_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },
@@ -988,7 +988,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_79_pain_and_swelling_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [...ALLOWED_ANSWERS_FOR_BOOLEAN, NOT_APPLICABLE],
         },
@@ -1006,7 +1006,7 @@ export const PRO_CTCAE_SYMPTOMS: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'proctcae_81_other_symptoms_boolean',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_FOR_BOOLEAN,
         },

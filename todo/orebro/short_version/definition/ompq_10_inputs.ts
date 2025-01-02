@@ -1,7 +1,7 @@
 import type { InputType } from '../../../../src/types/calculations.types'
 import { NumberInputType } from '../../../../src/types/calculations/inputs/calculation-inputs.types'
 
-export const input_type: NumberInputType = {
+export const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0 },
@@ -21,7 +21,7 @@ export const input_type: NumberInputType = {
 export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_01',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -101,7 +101,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_02',
     input_type,
-    input_label: {
+    label: {
       en: 'How would you rate the pain that you have had during the past week? Circle one.',
       nl: '',
     },
@@ -110,7 +110,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_03',
     input_type,
-    input_label: {
+    label: {
       en: 'I can do light work for an hour.',
       nl: '',
     },
@@ -119,7 +119,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_04',
     input_type,
-    input_label: {
+    label: {
       en: 'I can sleep at night.',
       nl: '',
     },
@@ -128,7 +128,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_05',
     input_type,
-    input_label: {
+    label: {
       en: 'How tense or anxious have you felt in the past week? Circle one.',
       nl: '',
     },
@@ -137,7 +137,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_06',
     input_type,
-    input_label: {
+    label: {
       en: 'How much have you been bothered by feeling depressed in the past week? Circle one.',
       nl: '',
     },
@@ -146,7 +146,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_07',
     input_type,
-    input_label: {
+    label: {
       en: 'In your view, how large is the risk that your current pain may become persistent?',
       nl: '',
     },
@@ -155,7 +155,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_08',
     input_type,
-    input_label: {
+    label: {
       en: 'In your estimation, what are the chances you will be working your normal duties in 3 months',
       nl: '',
     },
@@ -164,7 +164,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_09',
     input_type,
-    input_label: {
+    label: {
       en: 'An increase in pain is an indication that I should stop what I’m doing until the pain decreases.',
       nl: '',
     },
@@ -173,7 +173,7 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
   {
     input_id: 'OREBRO_10',
     input_type,
-    input_label: {
+    label: {
       en: 'I should not do my normal work with my present pain.',
       nl: '',
     },

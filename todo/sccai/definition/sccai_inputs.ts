@@ -3,7 +3,7 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const SCCAI_INPUTS: Array<InputType> = [
   {
     input_id: 'number_of_stools_during_day', // Bowel frequency (day)
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: '0-3' } },
@@ -16,7 +16,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'nbr_stools_during_night', // Bowel frequency (night)
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: '0' } },
@@ -28,7 +28,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'urgency_of_going_to_toilet',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No urgency' } },
@@ -41,7 +41,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'blood_in_stool',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No blood' } },
@@ -54,7 +54,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'general_wellness',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'Very well' } },
@@ -68,7 +68,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'joint_pain',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },
@@ -79,7 +79,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'eye_problems',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },
@@ -90,7 +90,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'deep_skin_problems',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },
@@ -101,7 +101,7 @@ export const SCCAI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'surface_skin_problems',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { en: 'No' } },

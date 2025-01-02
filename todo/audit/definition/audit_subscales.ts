@@ -80,16 +80,16 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'AUDIT_Q01',
-        input_type: INPUT_TYPES.input_1,
-        input_label: {
+        type: INPUT_TYPES.input_1,
+        label: {
           nl: 'Hoe vaak drink je alcohol?',
           en: 'How often do you have a drink containing alcohol?',
         },
       },
       {
         input_id: 'AUDIT_Q02',
-        input_type: INPUT_TYPES.input_2,
-        input_label: {
+        type: INPUT_TYPES.input_2,
+        label: {
           nl: 'Wanneer je drinkt, hoeveel standaardglazen* drink je dan gewoonlijk op een dag?',
           en: 'How many standard drinks do you have on a typical day when you are drinking?',
         },
@@ -100,8 +100,8 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
       },
       {
         input_id: 'AUDIT_Q03',
-        input_type: INPUT_TYPES.inputs_3_to_8,
-        input_label: {
+        type: INPUT_TYPES.inputs_3_to_8,
+        label: {
           nl: 'Hoe vaak gebeurt het dat je zes of meer standaardglazen drinkt bij één enkele gelegenheid?',
           en: 'How often do you have six or more standard drinks on one occasion?',
         },
@@ -120,8 +120,8 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'AUDIT_Q04',
-        input_type: INPUT_TYPES.inputs_3_to_8,
-        input_label: {
+        type: INPUT_TYPES.inputs_3_to_8,
+        label: {
           nl: 'Hoe vaak had je het afgelopen jaar het gevoel dat je, van zodra je begon, niet meer kon stoppen met drinken?',
           en: 'How often during the last year have you found that you were not able to stop drinking once you had started?',
         },
@@ -129,8 +129,8 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
       },
       {
         input_id: 'AUDIT_Q05',
-        input_type: INPUT_TYPES.inputs_3_to_8,
-        input_label: {
+        type: INPUT_TYPES.inputs_3_to_8,
+        label: {
           nl: 'Hoe vaak ben je er, door je drinkgedrag, het afgelopen jaar niet in geslaagd te doen wat normaal van je werd verwacht?',
           en: 'How often during the last year have you failed to do what was normally expected of you because of drinking?',
         },
@@ -138,8 +138,8 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
       },
       {
         input_id: 'AUDIT_Q06',
-        input_type: INPUT_TYPES.inputs_3_to_8,
-        input_label: {
+        type: INPUT_TYPES.inputs_3_to_8,
+        label: {
           nl: 'Hoe vaak heb je het afgelopen jaar ’s morgens behoefte gehad aan alcohol om jezelf er weer bovenop te helpen nadat je zwaar was doorgezakt?',
           en: 'How often during the last year have you needed a first drink in the morning to get yourself going after a heavy drinking session?',
         },
@@ -155,8 +155,8 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'AUDIT_Q07',
-        input_type: INPUT_TYPES.inputs_3_to_8,
-        input_label: {
+        type: INPUT_TYPES.inputs_3_to_8,
+        label: {
           nl: 'Hoe vaak heb je het afgelopen jaar schuld of berouw gevoeld nadat je gedronken had?',
           en: 'How often during the last year have you had a feeling of guilt or remorse after drinking?',
         },
@@ -164,8 +164,8 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
       },
       {
         input_id: 'AUDIT_Q08',
-        input_type: INPUT_TYPES.inputs_3_to_8,
-        input_label: {
+        type: INPUT_TYPES.inputs_3_to_8,
+        label: {
           nl: 'Hoe vaak kon je je het afgelopen jaar de gebeurtenissen van de avond voordien niet herinneren omdat je gedronken had?',
           en: 'How often during the last year have you been unable to remember what happened the night before because you had been drinking?',
         },
@@ -173,16 +173,16 @@ export const AUDIT_SUBSCALES: Array<AuditScaleType> = [
       },
       {
         input_id: 'AUDIT_Q09',
-        input_type: INPUT_TYPES.inputs_9_and_10,
-        input_label: {
+        type: INPUT_TYPES.inputs_9_and_10,
+        label: {
           nl: 'Raakte jij zelf of iemand anders ooit gewond ten gevolge van je drinkgedrag?',
           en: 'Have you or someone else been injured because of your drinking?',
         },
       },
       {
         input_id: 'AUDIT_Q10',
-        input_type: INPUT_TYPES.inputs_9_and_10,
-        input_label: {
+        type: INPUT_TYPES.inputs_9_and_10,
+        label: {
           nl: 'Heeft een vriend, dokter of andere gezondheidswerker zich ooit zorgen gemaakt over je drinkgedrag of je aangeraden minder te drinken?',
           en: 'Has a relative, friend, doctor, or other health care worker been concerned about your drinking or suggested you cut down?',
         },

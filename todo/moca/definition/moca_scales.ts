@@ -6,21 +6,21 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'ALTERNATING_TRAIL_MARKING',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }],
         },
       },
       {
         input_id: 'VISUOCONSTRUCTIONAL_SKILLS_CUBE',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }],
         },
       },
       {
         input_id: 'VISUOCONSTRUCTIONAL_SKILLS_CLOCK',
-        input_type: {
+        type: {
           type: 'numbers_array',
           allowed_answers: [
             { value: 0, label: { en: 'Contour' } },
@@ -36,7 +36,7 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'NAMING',
-        input_type: {
+        type: {
           type: 'numbers_array',
           allowed_answers: [
             { value: 0, label: { en: 'Lion' } },
@@ -52,28 +52,28 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'FORWARD_DIGIT_SPAN',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }],
         },
       },
       {
         input_id: 'BACKWARD_DIGIT_SPAN',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }],
         },
       },
       {
         input_id: 'VIGILANCE',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }],
         },
       },
       {
         input_id: 'SERIAL_7S',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0 },
@@ -90,14 +90,14 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'SENTENCE_REPETITION',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }, { value: 2 }],
         },
       },
       {
         input_id: 'VERBAL_FLUENCY',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }],
         },
@@ -109,7 +109,7 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'ABSTRACTION',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [{ value: 0 }, { value: 1 }, { value: 2 }],
         },
@@ -121,7 +121,7 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'DELAYED_RECALL',
-        input_type: {
+        type: {
           type: 'numbers_array',
           allowed_answers: [
             { value: 0, label: { en: 'Face' } },
@@ -139,7 +139,7 @@ export const MOCA_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'ORIENTATION',
-        input_type: {
+        type: {
           type: 'numbers_array',
           allowed_answers: [
             { value: 0, label: { en: 'Date' } },

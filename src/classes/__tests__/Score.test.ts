@@ -163,14 +163,14 @@ describe('Score', () => {
           input_definition: [
             {
               id: 'simpleNumberInput',
-              input_type: {
+              type: {
                 type: 'number',
                 required: false,
               },
             },
             {
               id: 'simpleNumberInputWithRange',
-              input_type: {
+              type: {
                 type: 'number',
                 range: {
                   min: {
@@ -185,7 +185,7 @@ describe('Score', () => {
             },
             {
               id: 'enumNumberInput',
-              input_type: {
+              type: {
                 type: 'number',
                 required: false,
                 allowed_answers: [
@@ -197,21 +197,21 @@ describe('Score', () => {
             },
             {
               id: 'dateInput',
-              input_type: {
+              type: {
                 type: 'date',
                 required: false,
               },
             },
             {
               id: 'stringInput',
-              input_type: {
+              type: {
                 type: 'string',
                 required: false,
               },
             },
             {
               id: 'enumStringInput',
-              input_type: {
+              type: {
                 type: 'string',
                 required: false,
                 allowed_answers: [
@@ -229,7 +229,7 @@ describe('Score', () => {
             },
             {
               id: 'booleanInput',
-              input_type: {
+              type: {
                 type: 'boolean',
                 required: false,
                 allowed_answers: [
@@ -250,7 +250,7 @@ describe('Score', () => {
             },
             {
               id: 'numbersArrayInput',
-              input_type: {
+              type: {
                 type: 'numbers_array',
                 required: false,
                 allowed_answers: [
@@ -268,7 +268,7 @@ describe('Score', () => {
             },
             {
               id: 'stringsArrayInput',
-              input_type: {
+              type: {
                 type: 'strings_array',
                 required: false,
                 allowed_answers: [

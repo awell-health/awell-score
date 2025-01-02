@@ -3,10 +3,10 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const ISI_INPUTS: Array<InputType> = [
   {
     input_id: 'ISI_Q01',
-    input_label: {
+    label: {
       en: 'Difficulty falling asleep',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -42,10 +42,10 @@ export const ISI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ISI_Q02',
-    input_label: {
+    label: {
       en: 'Difficulty staying asleep',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -81,10 +81,10 @@ export const ISI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ISI_Q03',
-    input_label: {
+    label: {
       en: 'Problems waking up too early',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -120,10 +120,10 @@ export const ISI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ISI_Q04',
-    input_label: {
+    label: {
       en: 'How SATISFIED/DISSATISFIED are you with your CURRENT sleep pattern?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -159,10 +159,10 @@ export const ISI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ISI_Q05',
-    input_label: {
+    label: {
       en: 'How NOTICEABLE to others do you think your sleep problem is in terms of impairing the quality of your life?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -198,10 +198,10 @@ export const ISI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ISI_Q06',
-    input_label: {
+    label: {
       en: 'How WORRIED/DISTRESSED are you about your current sleep problem?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -237,10 +237,10 @@ export const ISI_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ISI_Q07',
-    input_label: {
+    label: {
       en: 'To what extent do you consider your sleep problem to INTERFERE with your daily functioning (e.g. daytime fatigue, mood, ability to function at work/daily chores, concentration, memory, mood, etc.) CURRENTLY?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

@@ -9,8 +9,8 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     input_ids_in_subscale: [
       {
         input_id: 'MINI_BEST_TEST_Q01',
-        input_label: { nl: 'Van zit naar stand', en: 'Sit to stand' },
-        input_type: {
+        label: { nl: 'Van zit naar stand', en: 'Sit to stand' },
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -39,8 +39,8 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q02',
-        input_label: { nl: 'Op de tenen staan', en: 'Rise to toes' },
-        input_type: {
+        label: { nl: 'Op de tenen staan', en: 'Rise to toes' },
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -65,11 +65,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       {
         input_id: 'MINI_BEST_TEST_Q03_LEFT',
         bilateral: true,
-        input_label: {
+        label: {
           nl: 'Op één been staan (links)',
           en: 'Stand on one leg (left)',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 2, label: { nl: 'Normaal: 20 sec', en: 'Normal: 20 s' } },
@@ -88,11 +88,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       {
         input_id: 'MINI_BEST_TEST_Q03_RIGHT',
         bilateral: true,
-        input_label: {
+        label: {
           nl: 'Op één been staan (rechts)',
           en: 'Stand on one leg (right)',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 2, label: { nl: 'Normaal: 20 sec', en: 'Normal: 20 s' } },
@@ -114,11 +114,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     input_ids_in_subscale: [
       {
         input_id: 'MINI_BEST_TEST_Q04',
-        input_label: {
+        label: {
           nl: 'Corrigerende stappen ter compensatie - vooruit',
           en: 'Compensatory stepping correction - forward',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -147,11 +147,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q05',
-        input_label: {
+        label: {
           nl: 'Corrigerende stappen ter compensatie – achteruit (=Push & Release test)',
           en: 'Compensatory stepping correction - backward',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -181,11 +181,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       {
         input_id: 'MINI_BEST_TEST_Q06_LEFT',
         bilateral: true,
-        input_label: {
+        label: {
           nl: 'Corrigerende stappen ter compensatie naar links',
           en: 'Compensatory stepping correction - lateral (left)',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -215,11 +215,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       {
         input_id: 'MINI_BEST_TEST_Q06_RIGHT',
         bilateral: true,
-        input_label: {
+        label: {
           nl: 'Corrigerende stappen ter compensatie naar rechts',
           en: 'Compensatory stepping correction - lateral (right)',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -253,11 +253,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     input_ids_in_subscale: [
       {
         input_id: 'MINI_BEST_TEST_Q07',
-        input_label: {
+        label: {
           nl: 'Staan (voeten naast elkaar); ogen open, op stevige ondergrond',
           en: 'Stance (feet together); eyes open, firm surface',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 2, label: { nl: 'Normaal: 30 sec', en: 'Normal: 30 s' } },
@@ -274,11 +274,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q08',
-        input_label: {
+        label: {
           nl: 'Staan (voeten naast elkaar); ogen dicht, op schuimrubber',
           en: 'Stance (feet together); eyes closed, foam surface',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 2, label: { nl: 'Normaal: 30 sec', en: 'Normal: 30 s' } },
@@ -295,11 +295,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q09',
-        input_label: {
+        label: {
           nl: 'Helling - ogen dicht',
           en: 'Incline - Eyes closed',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -330,11 +330,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
     input_ids_in_subscale: [
       {
         input_id: 'MINI_BEST_TEST_Q10',
-        input_label: {
+        label: {
           nl: 'Veranderen van loopsnelheid',
           en: 'Change in gait speed',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -363,11 +363,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q11',
-        input_label: {
+        label: {
           nl: 'Lopen met draaien van het hoofd - naar links en rechts',
           en: 'Walk with head turns - horizontal',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -396,11 +396,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q12',
-        input_label: {
+        label: {
           nl: 'Lopen met draai om de as',
           en: 'Walk with pivot turns',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -429,11 +429,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q13',
-        input_label: {
+        label: {
           nl: 'Over een obstakel stappen',
           en: 'Step over obstacles',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -462,11 +462,11 @@ export const MINI_BEST_TEST_SECTIONS: Array<MiniBestSectionType> = [
       },
       {
         input_id: 'MINI_BEST_TEST_Q14',
-        input_label: {
+        label: {
           nl: 'Timed Get-up & Go met dubbeltaak [loopafstand 3 meter]',
           en: 'Timed Up & Go with dual task [3 meter walk]',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {

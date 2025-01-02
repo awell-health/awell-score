@@ -34,7 +34,7 @@ const ALLOWED_ANSWERS_IMPACT = [
 //@ts-expect-error to do
 const add_allowed_answers_impact_part = input => ({
   ...input,
-  input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_IMPACT },
+  type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_IMPACT },
 })
 
 export const SDQ_SUBSCALES: DefaultSubscaleType[] = [
@@ -43,23 +43,23 @@ export const SDQ_SUBSCALES: DefaultSubscaleType[] = [
     input_ids_in_subscale: [
       {
         input_id: 'EMOTIONAL_PROBLEMS_Q01',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'EMOTIONAL_PROBLEMS_Q02',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'EMOTIONAL_PROBLEMS_Q03',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'EMOTIONAL_PROBLEMS_Q04',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'EMOTIONAL_PROBLEMS_Q05',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
     ],
   },
@@ -68,26 +68,26 @@ export const SDQ_SUBSCALES: DefaultSubscaleType[] = [
     input_ids_in_subscale: [
       {
         input_id: 'CONDUCT_PROBLEMS_Q01',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'CONDUCT_PROBLEMS_Q02',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_INVERTED,
         },
       },
       {
         input_id: 'CONDUCT_PROBLEMS_Q03',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'CONDUCT_PROBLEMS_Q04',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'CONDUCT_PROBLEMS_Q05',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
     ],
   },
@@ -96,26 +96,26 @@ export const SDQ_SUBSCALES: DefaultSubscaleType[] = [
     input_ids_in_subscale: [
       {
         input_id: 'HYPERACTIVITY_Q01',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'HYPERACTIVITY_Q02',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'HYPERACTIVITY_Q03',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'HYPERACTIVITY_Q04',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_INVERTED,
         },
       },
       {
         input_id: 'HYPERACTIVITY_Q05',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_INVERTED,
         },
@@ -127,29 +127,29 @@ export const SDQ_SUBSCALES: DefaultSubscaleType[] = [
     input_ids_in_subscale: [
       {
         input_id: 'PEER_PROBLEMS_Q01',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'PEER_PROBLEMS_Q02',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_INVERTED,
         },
       },
       {
         input_id: 'PEER_PROBLEMS_Q03',
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS_INVERTED,
         },
       },
       {
         input_id: 'PEER_PROBLEMS_Q04',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'PEER_PROBLEMS_Q05',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
     ],
   },
@@ -158,23 +158,23 @@ export const SDQ_SUBSCALES: DefaultSubscaleType[] = [
     input_ids_in_subscale: [
       {
         input_id: 'PROSOCIAL_Q01',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'PROSOCIAL_Q02',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'PROSOCIAL_Q03',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'PROSOCIAL_Q04',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
       {
         input_id: 'PROSOCIAL_Q05',
-        input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
+        type: { type: 'number', allowed_answers: ALLOWED_ANSWERS_NORMAL },
       },
     ],
   },

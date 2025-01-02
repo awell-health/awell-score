@@ -1,7 +1,7 @@
 import { type DefaultSubscaleType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   component: 'slider',
   range: {
@@ -20,7 +20,7 @@ export const DRI_SUBSCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DRI_01',
         input_type,
-        input_label: {
+        label: {
           nl: 'Aankleden (zonder hulp)',
           en: 'Dressing (without help)',
         },
@@ -28,17 +28,17 @@ export const DRI_SUBSCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DRI_02',
         input_type,
-        input_label: { nl: 'Buitenshuis lopen', en: 'Outdoor walks' },
+        label: { nl: 'Buitenshuis lopen', en: 'Outdoor walks' },
       },
       {
         input_id: 'DRI_03',
         input_type,
-        input_label: { nl: 'Traplopen', en: 'Climbing stairs' },
+        label: { nl: 'Traplopen', en: 'Climbing stairs' },
       },
       {
         input_id: 'DRI_04',
         input_type,
-        input_label: { nl: 'Langere tijd zitten', en: 'Sitting longer time' },
+        label: { nl: 'Langere tijd zitten', en: 'Sitting longer time' },
       },
     ],
   },
@@ -48,7 +48,7 @@ export const DRI_SUBSCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DRI_05',
         input_type,
-        input_label: {
+        label: {
           nl: 'Voorovergebogen staan',
           en: 'Standing bent over a sink',
         },
@@ -56,17 +56,17 @@ export const DRI_SUBSCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DRI_06',
         input_type,
-        input_label: { nl: 'Het dragen van een tas', en: 'Carrying a bag' },
+        label: { nl: 'Het dragen van een tas', en: 'Carrying a bag' },
       },
       {
         input_id: 'DRI_07',
         input_type,
-        input_label: { nl: 'Bedden opmaken', en: 'Making a bed' },
+        label: { nl: 'Bedden opmaken', en: 'Making a bed' },
       },
       {
         input_id: 'DRI_08',
         input_type,
-        input_label: { nl: 'Hardlopen', en: 'Running' },
+        label: { nl: 'Hardlopen', en: 'Running' },
       },
     ],
   },
@@ -76,17 +76,17 @@ export const DRI_SUBSCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DRI_09',
         input_type,
-        input_label: { nl: 'Lichte werkzaamheden', en: 'Light work' },
+        label: { nl: 'Lichte werkzaamheden', en: 'Light work' },
       },
       {
         input_id: 'DRI_10',
         input_type,
-        input_label: { nl: 'Zware werkzaamheden', en: 'Heavy work' },
+        label: { nl: 'Zware werkzaamheden', en: 'Heavy work' },
       },
       {
         input_id: 'DRI_11',
         input_type,
-        input_label: {
+        label: {
           nl: 'Tillen van zware voorwerpen',
           en: 'Lifting heavy objects',
         },
@@ -94,7 +94,7 @@ export const DRI_SUBSCALES: Array<DefaultSubscaleType> = [
       {
         input_id: 'DRI_12',
         input_type,
-        input_label: {
+        label: {
           nl: 'Sport of gymnastiek',
           en: 'Participating in exercise/sports',
         },

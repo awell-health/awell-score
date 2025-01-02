@@ -6,7 +6,7 @@ import {
   ScoreInputType,
 } from '../../../../../types'
 import { ApiInputType } from '../../types'
-import { getUnionType } from '../../../../getUnionType'
+import { getUnionType } from '../../../../zod/getUnionType'
 
 const getBooleanAllowedAnswers = (
   value: ScoreInputType,
@@ -84,7 +84,7 @@ export const inputSchemaToApiInputSchema = (
     if (inputType instanceof z.ZodBoolean) {
       jsonSchema[key] = {
         ...baseJson,
-        input_type: {
+        type: {
           type: 'boolean',
           required: !isOptional,
           allowed_answers: getBooleanAllowedAnswers(value),
@@ -118,7 +118,7 @@ export const inputSchemaToApiInputSchema = (
 
       jsonSchema[key] = {
         ...baseJson,
-        input_type: {
+        type: {
           ...tempSchema,
           required: !isOptional,
           // @ts-expect-error this is fine
@@ -133,7 +133,7 @@ export const inputSchemaToApiInputSchema = (
       if (isDate) {
         jsonSchema[key] = {
           ...baseJson,
-          input_type: {
+          type: {
             type: 'date',
             required: !isOptional,
           },
@@ -141,7 +141,7 @@ export const inputSchemaToApiInputSchema = (
       } else {
         jsonSchema[key] = {
           ...baseJson,
-          input_type: {
+          type: {
             type: 'string',
             required: !isOptional,
           },
@@ -156,7 +156,7 @@ export const inputSchemaToApiInputSchema = (
       if (unionType === 'string') {
         jsonSchema[key] = {
           ...baseJson,
-          input_type: {
+          type: {
             type: 'string',
             required: !isOptional,
             allowed_answers: getStringEnumAllowedAnswers(inputType, value),
@@ -167,7 +167,7 @@ export const inputSchemaToApiInputSchema = (
       if (unionType === 'number') {
         jsonSchema[key] = {
           ...baseJson,
-          input_type: {
+          type: {
             type: 'number',
             required: !isOptional,
             allowed_answers: getNumberEnumAllowedAnswers(inputType, value),
@@ -187,7 +187,7 @@ export const inputSchemaToApiInputSchema = (
         if (unionType === 'string') {
           jsonSchema[key] = {
             ...baseJson,
-            input_type: {
+            type: {
               type: 'strings_array',
               required: !isOptional,
               allowed_answers: getStringEnumAllowedAnswers(itemType, value),
@@ -198,7 +198,7 @@ export const inputSchemaToApiInputSchema = (
         if (unionType === 'number') {
           jsonSchema[key] = {
             ...baseJson,
-            input_type: {
+            type: {
               type: 'numbers_array',
               required: !isOptional,
               allowed_answers: getNumberEnumAllowedAnswers(itemType, value),

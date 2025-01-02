@@ -17,12 +17,12 @@ export const TWENTY_FIVE = 25
 export const MLKS_INPUTS: Array<InputType> = [
   {
     input_id: 'Q01_LIMP',
-    input_label: {
+    label: {
       en: 'Limp',
       nl: 'Afwijkend looppatroon, mank lopen',
       fr: 'Boiterie',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -54,12 +54,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q02_CANE_OR_CRUTCHES',
-    input_label: {
+    label: {
       en: 'Using cane or crutches',
       nl: 'Steun',
       fr: 'Utiliser une canne ou des béquilles',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -91,12 +91,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q03_LOCKING_KNEE',
-    input_label: {
+    label: {
       en: 'Locking sensation in the knee',
       nl: 'Blokkades/slotverschijnselen',
       fr: 'Sensation de blocage dans le genou',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -144,12 +144,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q04_GIVING_WAY_SENSATION_KNEE',
-    input_label: {
+    label: {
       en: 'Giving way sensation from the knee',
       nl: 'Door de knie zakken',
       fr: 'Sensation de cèder au niveau du genou',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -205,12 +205,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q05_PAIN',
-    input_label: {
+    label: {
       en: 'Pain',
       nl: 'Pijn',
       fr: 'Douleur',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -266,12 +266,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q06_SWELLING',
-    input_label: {
+    label: {
       en: 'Swelling',
       nl: 'Zwelling',
       fr: 'Gonflement',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -311,12 +311,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q07_CLIMBING_STAIRS',
-    input_label: {
+    label: {
       en: 'Climbing stairs',
       nl: 'Traplopen',
       fr: 'Monter les escaliers',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -356,12 +356,12 @@ export const MLKS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'Q08_SQUATTING',
-    input_label: {
+    label: {
       en: 'Squatting',
       nl: 'Hurkzit',
       fr: 'Accroupissement',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

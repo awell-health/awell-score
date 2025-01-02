@@ -11,7 +11,7 @@ const ALLOWED_ANSWERS = [
 //@ts-expect-error to do
 const add_allowed_answers = input => ({
   ...input,
-  input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
+  type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
 })
 
 export const IAS_SCALES: Array<DefaultSubscaleType> = [
@@ -20,74 +20,74 @@ export const IAS_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'IAS_Q02',
-        input_label: {
+        label: {
           nl: 'Bent u bezorgd dat u in de toekomst een ernstige ziekte zou kunnen krijgen?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q03',
-        input_label: {
+        label: {
           nl: 'Maakt de gedachte aan een ernstige ziekte u bang?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q04',
-        input_label: {
+        label: {
           nl: 'Als u pijn heeft, maakt u zich dan zorgen dat het mogelijk door een ernstige ziekte wordt veroorzaakt?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q06',
-        input_label: {
+        label: {
           nl: 'Als pijn een week of langer aanhoudt, gelooft u dan dat u een ernstige ziekte heeft?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q13',
-        input_label: {
+        label: {
           nl: 'Bent u bang voor nieuws dat u aan de dood herinnert (zoals begrafenissen, rouw-advertenties)?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q14',
-        input_label: { nl: 'Maakt de gedachte aan de dood u bang?', en: '' },
+        label: { nl: 'Maakt de gedachte aan de dood u bang?', en: '' },
       },
       {
         input_id: 'IAS_Q15',
-        input_label: {
+        label: {
           nl: 'Bent u bang dat u spoedig zou kunnen overlijden?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q16',
-        input_label: {
+        label: {
           nl: 'Bent u bang dat u kanker zou kunnen hebben?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q17',
-        input_label: {
+        label: {
           nl: 'Bent u bang dat u een ziekte aan uw hart zou kunnen hebben?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q19',
-        input_label: {
+        label: {
           nl: 'Als u leest of hoort over een ziekte, krijgt u dan verschijnselen die vergelijkbaar zijn met die van de ziekte?',
           en: '',
         },
       },
       {
         input_id: 'IAS_Q21',
-        input_label: {
+        label: {
           nl: 'Als u iets in uw lichaam voelt, maakt u zich daar dan zorgen over?',
           en: '',
         },
@@ -99,8 +99,8 @@ export const IAS_SCALES: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'IAS_Q23',
-        input_label: { nl: 'Hoe vaak gaat u naar een arts?', en: '' },
-        input_type: {
+        label: { nl: 'Hoe vaak gaat u naar een arts?', en: '' },
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Bijna nooit' } },
@@ -113,11 +113,11 @@ export const IAS_SCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'IAS_Q24',
-        input_label: {
+        label: {
           nl: 'Bij hoeveel verschillende artsen, homeopaten of andere genezers bent u in het afgelopen jaar geweest?',
           en: '',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Geen' } },
@@ -130,11 +130,11 @@ export const IAS_SCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'IAS_Q25',
-        input_label: {
+        label: {
           nl: 'Hoe vaak bent u in het afgelopen jaar behandeld? (Bijvoorbeeld medicijnen, verandering van medicijnen, operatie, enz.)',
           en: '',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Helemaal niet' } },
@@ -147,33 +147,33 @@ export const IAS_SCALES: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'IAS_Q27',
-        input_label: {
+        label: {
           nl: 'Verhinderen uw lichamelijke klachten u te werken?',
           en: '',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS,
         },
       },
       {
         input_id: 'IAS_Q28',
-        input_label: {
+        label: {
           nl: 'Verhinderen uw lichamelijk klachten u om u te concentreren op wat u aan het doen bent?',
           en: '',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS,
         },
       },
       {
         input_id: 'IAS_Q29',
-        input_label: {
+        label: {
           nl: 'Verhinderen uw lichamelijke klachten u om uzelf te vermaken?',
           en: '',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: ALLOWED_ANSWERS,
         },

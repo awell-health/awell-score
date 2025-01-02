@@ -6,7 +6,7 @@ const NO_ANSWER = 0
 const NOT_SURE_ANSWER = 2
 export const NO_TREATMENT = 999
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: NO_ANSWER, label: { en: 'No' } },
@@ -18,7 +18,7 @@ const input_type: NumberInputType = {
 export const IBD_CONTROL_INPUTS: Array<InputType> = [
   {
     input_id: 'ibd_control_1a',
-    input_label: {
+    label: {
       nl: 'Gelooft u dat uw darmaandoening goed onder controle is de laatste 2 weken?',
       en: 'Do you believe that your IBD has been well controlled in the past two weeks?',
     },
@@ -27,11 +27,11 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_1b',
-    input_label: {
+    label: {
       nl: 'Gelooft u dat uw huidige behandeling nuttig is voor de controle van uw darmklachten?',
       en: 'Do you believe that your current treatment is useful in controlling IBD?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: NO_ANSWER, label: { en: 'No' } },
@@ -53,7 +53,7 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_3a',
-    input_label: {
+    label: {
       nl: 'Hebt u in de laatste 2 weken geplande activiteiten gemist omwille van uw darmaandoening (school/werk/uitstap/…)?',
       en: 'In the past 2 weeks, did you miss any planned activities because of IBD?',
     },
@@ -62,7 +62,7 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_3b',
-    input_label: {
+    label: {
       nl: 'Bent u in de laatste 2 weken ’s nachts wakker geworden omwille van uw darmklachten?',
       en: 'In the past 2 weeks, did you wake up at night because of symptoms of IBD?',
     },
@@ -71,7 +71,7 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_3c',
-    input_label: {
+    label: {
       nl: 'Hebt u in de laatste 2 weken last gehad van pijn of ongemak?',
       en: 'In the past 2 weeks, did you suffer from signifcant pain or discomfort?',
     },
@@ -80,7 +80,7 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_3d',
-    input_label: {
+    label: {
       nl: 'Hebt u in de laatste 2 weken vaak (= meer dan de helft van de tijd) een gebrek aan energie bemerkt (vermoeidheid)?',
       en: 'In the past 2 weeks, did youoften feel lacking in energy (fatigued)?',
     },
@@ -89,7 +89,7 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_3e',
-    input_label: {
+    label: {
       nl: 'Hebt u in de laatste 2 weken vaak een angstig of depressief gevoel gehad omwille van uw darmaandoening?',
       en: 'In the past 2 weeks, did you feel anxious or depressed because of your IBD?',
     },
@@ -98,7 +98,7 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_3f',
-    input_label: {
+    label: {
       nl: 'Hebt u in de laatste 2 weken gedacht dat uw behandeling dient te worden aangepast?',
       en: 'In the past 2 weeks, did you think you needed a change to your treatment?',
     },
@@ -107,11 +107,11 @@ export const IBD_CONTROL_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'ibd_control_5', // IBD-Control-VAS input
-    input_label: {
+    label: {
       nl: 'Hoe scoort u de totale controle van uw darmprobleem over de laatste 2 weken? Gelieve een punt op onderstaande lijn te markeren door het bolletje te verschuiven.',
       en: 'How would you rate your OVERALL control of your IBD in the past two weeks?',
     },
-    input_type: {
+    type: {
       type: 'number',
       component: 'slider',
       range: {

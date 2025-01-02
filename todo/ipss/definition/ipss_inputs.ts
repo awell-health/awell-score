@@ -1,7 +1,7 @@
 import type { InputType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0, label: { nl: 'Nooit', en: 'Not at all' } },
@@ -37,7 +37,7 @@ const input_type: NumberInputType = {
 export const IPSS_INPUTS: Array<InputType> = [
   {
     input_id: 'IPSS_Q01',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand had u het gevoel dat uw blaas na het plassen nog niet helemaal leeg was?',
       en: 'Over the past month, how often have you had a sensation of not emptying your bladder completely after you finish urinating?',
     },
@@ -46,7 +46,7 @@ export const IPSS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'IPSS_Q02',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand moest u binnen twee uur na het plassen opnieuw plassen?',
       en: 'Over the past month, how often have you had to urinate again less than two hours after you finished urinating?',
     },
@@ -55,7 +55,7 @@ export const IPSS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'IPSS_Q03',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand gebeurde het tijdens het plassen dat de straal enige keren stopte en dan weer begon?',
       en: 'Over the past month, how often have you found you stopped and started again several times when you urinated?',
     },
@@ -64,7 +64,7 @@ export const IPSS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'IPSS_Q04',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand had u moeite om het plassen uit te stellen?',
       en: 'Over the last month, how difficult have you found it to postpone urination?',
     },
@@ -73,7 +73,7 @@ export const IPSS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'IPSS_Q05',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand had u een slappe straal bij het plassen?',
       en: 'Over the past month, how often have you had a weak urinary stream?',
     },
@@ -82,7 +82,7 @@ export const IPSS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'IPSS_Q06',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand moest u persen voordat de urinestraal op gang kwam?',
       en: 'Over the past month, how often have you had to push or strain to begin urination?',
     },
@@ -91,11 +91,11 @@ export const IPSS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'IPSS_Q07',
-    input_label: {
+    label: {
       nl: 'Hoe vaak in de afgelopen maand moest u gemiddeld per nacht het bed uit om te plassen?',
       en: 'Over the past month, many times did you most typically get up to urinate from the time you went to bed until the time you got up in the morning?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0, label: { nl: '0 keer', en: 'None' } },

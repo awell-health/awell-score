@@ -1,7 +1,7 @@
 import type { InputType } from '../../../../types/calculations.types'
 import { NumberInputType } from '../../../../types/calculations/inputs/calculation-inputs.types'
 
-const input_type: NumberInputType = {
+const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Jamais' } },
@@ -15,7 +15,7 @@ const input_type: NumberInputType = {
 export const KOOS_PS_INPUTS: Array<InputType> = [
   {
     input_id: '1_rise_from_bed',
-    input_label: {
+    label: {
       nl: 'Opstaan vanuit bed',
       en: 'Rising from bed',
       fr: 'Se lever du lit',
@@ -25,7 +25,7 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '2_socks',
-    input_label: {
+    label: {
       nl: 'Sokken / kousen aantrekken',
       en: 'Putting on socks/stockings',
       fr: 'Mettre des chaussettes/bas',
@@ -35,7 +35,7 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '3_rise_from_chair',
-    input_label: {
+    label: {
       nl: 'Opstaan vanuit een stoel',
       en: 'Rising from sitting',
       fr: 'Se lever d`une chaise',
@@ -45,7 +45,7 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '4_pickup_from_floor',
-    input_label: {
+    label: {
       nl: 'Bukken naar de grond/iets oppakken van de grond',
       en: 'Bending to floor',
       fr: 'Ramasser quelque chose du sol',
@@ -55,7 +55,7 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '5_turn_on_knee',
-    input_label: {
+    label: {
       nl: 'Draaien op een belaste knie',
       en: 'Twisting/pivoting on your injured knee',
       fr: 'Tourner sur un genou blessé',
@@ -65,13 +65,13 @@ export const KOOS_PS_INPUTS: Array<InputType> = [
   },
   {
     input_id: '6_kneel',
-    input_label: { nl: 'Knielen', en: 'Kneeling', fr: 's`agenouiller' },
+    label: { nl: 'Knielen', en: 'Kneeling', fr: 's`agenouiller' },
     input_type,
     required: true,
   },
   {
     input_id: '7_staying_squat',
-    input_label: {
+    label: {
       nl: 'Op uw hurken zitten',
       en: 'Squatting',
       fr: 'S`accroupir',

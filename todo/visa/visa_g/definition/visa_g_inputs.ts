@@ -3,7 +3,7 @@ import type { InputType } from '../../../../src/types/calculations.types'
 export const VISA_G_INPUTS: Array<InputType> = [
   {
     input_id: 'VISA_G_Q01',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -23,7 +23,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q02',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -37,7 +37,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q03',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -51,7 +51,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q04',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -65,7 +65,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q05',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -79,7 +79,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q06',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -93,7 +93,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q07',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -106,10 +106,10 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q08',
-    input_label: {
+    label: {
       en: "Select what's applicable",
     },
-    input_type: {
+    type: {
       type: 'string',
       allowed_answers: [
         {
@@ -139,7 +139,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q08_A',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -158,7 +158,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q08_B',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 0 },
@@ -179,7 +179,7 @@ export const VISA_G_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'VISA_G_Q08_C',
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         { value: 6 },

@@ -3,11 +3,11 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const PHQ2_INPUTS: Array<InputType> = [
   {
     input_id: 'PHQ2_Q01',
-    input_label: {
+    label: {
       en: 'Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van weinig interesse of plezier in activiteiten?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -34,11 +34,11 @@ export const PHQ2_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'PHQ2_Q02',
-    input_label: {
+    label: {
       en: 'Over the last 2 weeks, how often have you been bothered by feeling down, depressed, or hopeless?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van u neerslachtig, depressief of wanhopig voelen?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

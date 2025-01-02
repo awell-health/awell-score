@@ -6,11 +6,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'HADS_01',
-        input_label: {
+        label: {
           nl: 'Ik voel me de laatste tijd gespannen',
           en: "I feel tense or 'wound up'",
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 3, label: { nl: 'Meestal', en: 'Most of the time' } },
@@ -28,11 +28,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_03',
-        input_label: {
+        label: {
           nl: 'Ik krijg de laatste tijd het angstige gevoel alsof er elk moment iets vreselijks zal gebeuren',
           en: 'I get a sort of frightened feeling as if something awful is about to happen',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -62,11 +62,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_05',
-        input_label: {
+        label: {
           nl: 'Ik maak me de laatste tijd ongerust.',
           en: 'Worrying thoughts go through my mind',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -87,11 +87,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_07',
-        input_label: {
+        label: {
           nl: 'Ik kan de laatste tijd rustig zitten en me ontspannen',
           en: 'I can sit at ease and feel relaxed',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Zeker', en: 'Definitely' } },
@@ -103,11 +103,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_09',
-        input_label: {
+        label: {
           nl: 'Ik krijg de laatste tijd een soort benauwd, gespannen gevoel in mijn maag.',
           en: "I get a sort of frightened feeling like 'butterflies' in the stomach",
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all' } },
@@ -119,11 +119,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_11',
-        input_label: {
+        label: {
           nl: 'Ik voel me de laatste tijd rusteloos',
           en: 'I feel restless as I have to be on the move',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 3, label: { nl: 'Heel erg', en: 'Very much indeed' } },
@@ -135,11 +135,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_13',
-        input_label: {
+        label: {
           nl: 'Ik krijg de laatste tijd plotseling gevoelens van angst of paniek',
           en: 'I get sudden feelings of panic',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 3, label: { nl: 'Zeer vaak', en: 'Very often indeed' } },
@@ -156,11 +156,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
     input_ids_in_subscale: [
       {
         input_id: 'HADS_02',
-        input_label: {
+        label: {
           nl: 'Ik geniet nog steeds van de dingen waar ik vroeger van genoot',
           en: 'I still enjoy the things I used to enjoy',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -178,11 +178,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_04',
-        input_label: {
+        label: {
           nl: 'Ik kan lachen en de dingen van de vrolijke kant zien.',
           en: 'I can laugh and see the funny side of things',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -209,11 +209,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_06',
-        input_label: {
+        label: {
           nl: 'Ik voel me de laatste tijd opgewekt',
           en: 'I feel cheerful',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 3, label: { nl: 'Helmaal niet', en: 'Not at all' } },
@@ -225,11 +225,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_08',
-        input_label: {
+        label: {
           nl: 'Ik voel me de laatste tijd alsof alles moeizamer gaat',
           en: 'I feel as if I am slowed down',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -244,11 +244,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_10',
-        input_label: {
+        label: {
           nl: 'Ik heb de laatste tijd geen interesse meer in mijn uiterlijk',
           en: 'I have lost interest in my appearance',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 3, label: { nl: 'Zeker', en: 'Definitely' } },
@@ -278,11 +278,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_12',
-        input_label: {
+        label: {
           nl: 'Ik verheug me van tevoren al op dingen',
           en: 'I look forward with enjoyment to things',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -312,11 +312,11 @@ export const HADS_subscales: Array<DefaultSubscaleType> = [
       },
       {
         input_id: 'HADS_14',
-        input_label: {
+        label: {
           nl: 'Ik kan van een goed boek genieten of een radio- of televisieprogramma.',
           en: 'I can enjoy a good book or radio or TV program',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             { value: 0, label: { nl: 'Vaak', en: 'Often' } },

@@ -3,13 +3,13 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const PACKYEARS_INPUTS: Array<InputType> = [
   {
     input_id: 'cigarettes_per_day',
-    input_label: {
+    label: {
       nl: 'Hoeveel sigaretten rook of rookte je gemiddeld per dag?',
       en: 'On average, how many cigarettes do or did you smoke per day?',
       fr: 'En moyenne, combien de cigarettes fumiez-vous ou fumiez-vous par jour?',
       de: 'Wie viele Zigaretten haben oder haben Sie durchschnittlich pro Tag geraucht?',
     },
-    input_type: {
+    type: {
       type: 'number',
       range: { min: { value: 0 }, max: { value: 100 } },
     },
@@ -24,13 +24,13 @@ export const PACKYEARS_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'number_years_smoking',
-    input_label: {
+    label: {
       nl: 'Hoeveel jaar rook je of heb je gerookt?',
       en: 'For how many years have you been smoking or have you smoked?',
       fr: "Depuis combien d'années fumez-vous ou fumez-vous?",
       de: 'Seit wie vielen Jahren rauchst du oder hast du geraucht?',
     },
-    input_type: {
+    type: {
       type: 'number',
       range: { min: { value: 0 }, max: { value: 100 } },
     },

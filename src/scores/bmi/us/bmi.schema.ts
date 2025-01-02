@@ -3,21 +3,21 @@ import { z } from 'zod'
 export const BmiInputSchema = {
   weight_pounds: {
     type: z.number().min(0).max(500),
-    input_label: {
+    label: {
       en: 'Weight (lbs)',
     },
     unit: { en: 'pounds' },
   },
   height_feet: {
     type: z.number().min(0).max(8),
-    input_label: {
+    label: {
       en: 'Height (feet)',
     },
     unit: { en: 'feet' },
   },
   height_inches: {
     type: z.number().min(0).max(50),
-    input_label: {
+    label: {
       en: 'Height (inches)',
     },
     unit: { en: 'inches' },

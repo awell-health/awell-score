@@ -3,10 +3,10 @@ import type { InputType } from '../../../src/types/calculations.types'
 export const FND_INPUTS: Array<InputType> = [
   {
     input_id: 'FAGERSTROM_Q01',
-    input_label: {
+    label: {
       en: 'How soon after you wake up do you smoke your first cigarette?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -32,10 +32,10 @@ export const FND_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'FAGERSTROM_Q02',
-    input_label: {
+    label: {
       en: 'Do you find it difficult to refrain from smoking in places where it is forbidden (e.g., in church, at the library, in the cinema)?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -51,10 +51,10 @@ export const FND_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'FAGERSTROM_Q03',
-    input_label: {
+    label: {
       en: 'Which cigarette would you hate most to give up?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -70,10 +70,10 @@ export const FND_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'FAGERSTROM_Q04',
-    input_label: {
+    label: {
       en: 'How many cigarettes per day do you smoke?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -97,10 +97,10 @@ export const FND_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'FAGERSTROM_Q05',
-    input_label: {
+    label: {
       en: 'Do you smoke more frequently during the first hours after waking than during the rest of the day?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {
@@ -116,10 +116,10 @@ export const FND_INPUTS: Array<InputType> = [
   },
   {
     input_id: 'FAGERSTROM_Q06',
-    input_label: {
+    label: {
       en: 'Do you smoke when you are so ill that you are in bed most of the day?',
     },
-    input_type: {
+    type: {
       type: 'number',
       allowed_answers: [
         {

@@ -77,7 +77,7 @@ export type PossibleApiInputTypes =
 export interface ApiInputType {
   id: string
   label?: LabelType
-  input_type: PossibleApiInputTypes
+  type: PossibleApiInputTypes
   format?: string
   info?: LabelType
 }

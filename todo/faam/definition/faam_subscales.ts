@@ -60,7 +60,7 @@ const add_allowed_answers = (
   input: Pick<InputType, 'input_label' | 'input_id'>,
 ): InputType => ({
   ...input,
-  input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
+  type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
 })
 
 export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
@@ -69,7 +69,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
     // 21 items
     input_ids_in_subscale: [
       {
-        input_label: {
+        label: {
           nl: 'Staan',
           en: 'Standing',
           fr: 'Se tenir debout',
@@ -77,7 +77,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q01',
       },
       {
-        input_label: {
+        label: {
           nl: 'Lopen op een vlakke ondergrond',
           en: 'Walking on even Ground',
           fr: 'Marcher sur un terrain régulier',
@@ -85,7 +85,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q02',
       },
       {
-        input_label: {
+        label: {
           nl: 'Lopen op een vlakke ondergrond zonder schoenen',
           en: 'Walking on even ground without shoes',
           fr: 'Marcher pied nu sur un terrain régulier',
@@ -93,7 +93,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q03',
       },
       {
-        input_label: {
+        label: {
           nl: 'Een helling op lopen',
           en: 'Walking up hills',
           fr: 'Monter une pente',
@@ -101,7 +101,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q04',
       },
       {
-        input_label: {
+        label: {
           nl: 'Een helling af lopen',
           en: 'Walking down hills',
           fr: 'Descendre une pente',
@@ -109,7 +109,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q05',
       },
       {
-        input_label: {
+        label: {
           nl: 'Een trap oplopen',
           en: 'Going up stairs',
           fr: 'Monter les escaliers',
@@ -117,7 +117,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q06',
       },
       {
-        input_label: {
+        label: {
           nl: 'Een trap aflopen',
           en: 'Going down stairs',
           fr: 'Descendre les escaliers',
@@ -125,7 +125,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q07',
       },
       {
-        input_label: {
+        label: {
           nl: 'Lopen op oneffen terrein',
           en: 'Walking on uneven ground',
           fr: 'Marcher sur un terrain irrégulier',
@@ -133,7 +133,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q08',
       },
       {
-        input_label: {
+        label: {
           nl: 'De stoep op en af stappen',
           en: 'Stepping up and down curbs',
           fr: 'Monter et descendre d’un trottoir',
@@ -141,7 +141,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q09',
       },
       {
-        input_label: {
+        label: {
           nl: 'Hurken',
           en: 'Squatting',
           fr: 'S’accroupir',
@@ -149,7 +149,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q10',
       },
       {
-        input_label: {
+        label: {
           nl: 'Op uw tenen gaan staan',
           en: 'Coming up on your toes',
           fr: 'Se mettre sur la pointe des pieds',
@@ -157,7 +157,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q11',
       },
       {
-        input_label: {
+        label: {
           nl: 'Als u begint te lopen',
           en: 'Walking initially',
           fr: 'Faire les premiers pas (le matin au réveil/ après une position assise prolongée',
@@ -165,7 +165,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q12',
       },
       {
-        input_label: {
+        label: {
           nl: 'Ongeveer 5 minuten wandelen',
           en: 'Walking 5 minutes or less',
           fr: 'Marcher 5 minutes ou moins',
@@ -173,7 +173,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q13',
       },
       {
-        input_label: {
+        label: {
           nl: 'Ongeveer 10 minuten wandelen',
           en: 'Walking approximately 10 minutes',
           fr: 'Marcher environ 10 minutes',
@@ -181,7 +181,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q14',
       },
       {
-        input_label: {
+        label: {
           nl: 'Langer dan 15 minuten wandelen',
           en: 'Walking 15 minutes or greater',
           fr: 'Marcher 15 minutes ou plus',
@@ -189,7 +189,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q15',
       },
       {
-        input_label: {
+        label: {
           nl: 'Huishoudelijke taken',
           en: 'Home responsibilities',
           fr: 'Les tâches ménagères',
@@ -197,7 +197,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q16',
       },
       {
-        input_label: {
+        label: {
           nl: 'Activiteiten in het algemene dagelijkse leven',
           en: 'Activities of daily living',
           fr: 'Les activités de la vie quotidienne',
@@ -205,7 +205,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q17',
       },
       {
-        input_label: {
+        label: {
           nl: 'Persoonlijke verzorging',
           en: 'Personal care',
           fr: 'Les soins personnels',
@@ -213,7 +213,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q18',
       },
       {
-        input_label: {
+        label: {
           nl: 'Licht tot matig zwaar werk(staan, lopen)',
           en: 'Light to moderate work (standing, walking)',
           fr: 'Un travail léger à modéré (se tenir debout, marcher)',
@@ -221,7 +221,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q19',
       },
       {
-        input_label: {
+        label: {
           nl: 'Zwaar werk (trekken/duwen,klimmen, sjouwen)',
           en: 'Heavy work (push/pulling,climbing, carrying)',
           fr: 'Un travail lourd (pousser/tirer, grimper, porter)',
@@ -229,7 +229,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'ADL_Q20',
       },
       {
-        input_label: {
+        label: {
           nl: 'Recreatieve activiteiten',
           en: 'Recreational activities',
           fr: 'Les activités de loisirs',
@@ -251,7 +251,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
 
     input_ids_in_subscale: [
       {
-        input_label: {
+        label: {
           nl: 'Hardlopen',
           en: 'Running',
           fr: 'Courir',
@@ -259,7 +259,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'SPORTS_Q01',
       },
       {
-        input_label: {
+        label: {
           nl: 'Springen',
           en: 'Jumping',
           fr: 'Sauter',
@@ -267,7 +267,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'SPORTS_Q02',
       },
       {
-        input_label: {
+        label: {
           nl: 'Landen na een sprong',
           en: 'Landing',
           fr: 'Se réceptionner d’un saut ',
@@ -275,7 +275,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'SPORTS_Q03',
       },
       {
-        input_label: {
+        label: {
           nl: 'Snel starten of stoppen met rennen',
           en: 'Starting and stopping quickly',
           fr: 'Démarrer et s’arrêter rapidement',
@@ -283,7 +283,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'SPORTS_Q04',
       },
       {
-        input_label: {
+        label: {
           nl: 'Zijwaarts bewegen/afzetten',
           en: 'Cutting/lateral Movements',
           fr: 'Faire des pas chassés/ des déplacements latéraux',
@@ -291,7 +291,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'SPORTS_Q05',
       },
       {
-        input_label: {
+        label: {
           nl: 'Lichte sportieve activiteiten',
           en: 'Low impact activities',
           fr: 'Activités sportives à faible impact (peu de chocs)',
@@ -299,7 +299,7 @@ export const FAAM_SUBSCALES: Array<DefaultSubscaleType> = [
         input_id: 'SPORTS_Q06',
       },
       {
-        input_label: {
+        label: {
           nl: 'Sporten zoals u normaal zou doen.',
           en: 'Ability to perform activity with your normal technique',
           fr: 'Capacité à exécuter votre activité sportive avec votre technique habituelle',

@@ -3,19 +3,19 @@ import type { InputType } from '../../../../src/types/calculations.types'
 export const SUBTRACT_INPUTS: Array<InputType> = [
   {
     input_id: 'MINUEND',
-    input_label: {
+    label: {
       en: 'Minuend',
     },
-    input_type: {
+    type: {
       type: 'number',
     },
   },
   {
     input_id: 'SUBTRAHEND',
-    input_label: {
+    label: {
       en: 'Subtrahend',
     },
-    input_type: {
+    type: {
       type: 'number',
     },
   },

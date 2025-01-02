@@ -17,8 +17,8 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'KCCQ12_Q1_A',
-        input_label: { nl: '', en: 'Showering/bathing' },
-        input_type: {
+        label: { nl: '', en: 'Showering/bathing' },
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -62,8 +62,8 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q1_B',
-        input_label: { nl: '', en: 'Walking 1 block on level ground' },
-        input_type: {
+        label: { nl: '', en: 'Walking 1 block on level ground' },
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -107,11 +107,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q1_C',
-        input_label: {
+        label: {
           nl: '',
           en: 'Hurrying or jogging (as if to catch a bus)',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -163,11 +163,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'KCCQ12_Q2',
-        input_label: {
+        label: {
           nl: '',
           en: 'Over the past 2 weeks, how many times did you have swelling in your feet, ankles or legs when you woke up in the morning?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -205,11 +205,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q3',
-        input_label: {
+        label: {
           nl: '',
           en: 'Over the past 2 weeks, on average, how many times has fatigue limited your ability to do what you wanted?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -259,11 +259,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q4',
-        input_label: {
+        label: {
           nl: '',
           en: 'Over the past 2 weeks, on average, how many times has shortness of breath limited your ability to do what you wanted?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -313,11 +313,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q5',
-        input_label: {
+        label: {
           nl: '',
           en: 'Over the past 2 weeks, on average, how many times have you been forced to sleep sitting up in a chair or with at least 3 pillows to prop you up because of shortness of breath?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -365,11 +365,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'KCCQ12_Q6',
-        input_label: {
+        label: {
           nl: '',
           en: 'Over the past 2 weeks, how much has your heart failure limited your enjoyment of life?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -407,11 +407,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q7',
-        input_label: {
+        label: {
           nl: '',
           en: 'If you had to spend the rest of your life with your heart failure the way it is right now, how would you feel about this?',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -456,11 +456,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
     input_ids_in_subscale: [
       {
         input_id: 'KCCQ12_Q8_A',
-        input_label: {
+        label: {
           nl: '',
           en: 'How much does your heart failure affect your lifestyle? Please indicate how your heart failure may have limited your participation in the following activities over the past 2 weeks: Hobbies, recreational activities',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -504,8 +504,8 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q8_B',
-        input_label: { nl: '', en: 'Working or doing household chores' },
-        input_type: {
+        label: { nl: '', en: 'Working or doing household chores' },
+        type: {
           type: 'number',
           allowed_answers: [
             {
@@ -549,11 +549,11 @@ export const KCCQ_12_DOMAINS: Array<KCCQ12DomainType> = [
       },
       {
         input_id: 'KCCQ12_Q8_C',
-        input_label: {
+        label: {
           nl: '',
           en: 'Visiting family or friends out of your home',
         },
-        input_type: {
+        type: {
           type: 'number',
           allowed_answers: [
             {

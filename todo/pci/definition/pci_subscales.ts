@@ -5,7 +5,7 @@ const ALLOWED_ANSWERS = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }]
 //@ts-expect-error to do
 const add_allowed_answers = input => ({
   ...input,
-  input_type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
+  type: { type: 'number', allowed_answers: ALLOWED_ANSWERS },
 })
 
 export const PCI_SUBSCALES: DefaultSubscaleType[] = [

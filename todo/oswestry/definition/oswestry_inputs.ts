@@ -1,7 +1,7 @@
 import type { InputType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-export const input_type: NumberInputType = {
+export const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0 },
@@ -16,7 +16,7 @@ export const input_type: NumberInputType = {
 export const OSWESTRY_INPUTS: Array<InputType> = [
   {
     input_id: '1_pain',
-    input_label: {
+    label: {
       en: 'Pain intensity',
       nl: '',
     },
@@ -25,7 +25,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '2_personal_care',
-    input_label: {
+    label: {
       en: 'Personal care (washing, dressing etc)',
       nl: '',
     },
@@ -34,7 +34,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '3_lifting',
-    input_label: {
+    label: {
       en: 'Lifting',
       nl: '',
     },
@@ -43,7 +43,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '4_running',
-    input_label: {
+    label: {
       en: 'Walking',
       nl: '',
     },
@@ -52,7 +52,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '5_sitting',
-    input_label: {
+    label: {
       en: 'Sitting',
       nl: '',
     },
@@ -61,7 +61,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '6_standing',
-    input_label: {
+    label: {
       en: 'Standing',
       nl: '',
     },
@@ -70,7 +70,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '7_sleep',
-    input_label: {
+    label: {
       en: 'Sleeping',
       nl: '',
     },
@@ -79,7 +79,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '8_sex_life',
-    input_label: {
+    label: {
       en: 'Sex life (if applicable)',
       nl: '',
     },
@@ -88,7 +88,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '9_social_life',
-    input_label: {
+    label: {
       en: 'Social life',
       nl: '',
     },
@@ -97,7 +97,7 @@ export const OSWESTRY_INPUTS: Array<InputType> = [
   },
   {
     input_id: '10_travel',
-    input_label: {
+    label: {
       en: 'Travelling',
       nl: '',
     },

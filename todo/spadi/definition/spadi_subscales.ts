@@ -1,7 +1,7 @@
 import { type DefaultSubscaleType } from '../../../src/types/calculations.types'
 import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
 
-export const input_type: NumberInputType = {
+export const type: NumberInputType = {
   type: 'number',
   allowed_answers: [
     { value: 0 },
