@@ -1,14 +1,14 @@
-import type { InputType } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { ScoreInputSchemaType } from '../../../types'
 
-export const GAD7_INPUTS: Array<InputType> = [
-  {
-    input_id: 'GAD7_Q01',
+export const GAD7_INPUTS = {
+  GAD7_Q01: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by feeling nervous, anxious, or on edge?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -31,14 +31,13 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD7_Q02',
+  GAD7_Q02: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by not being able to stop or control worrying?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -61,14 +60,13 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD7_Q03',
+  GAD7_Q03: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by worrying too much about different things?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -91,14 +89,13 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD7_Q04',
+  GAD7_Q04: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by trouble relaxing?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -121,14 +118,13 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD7_Q05',
+  GAD7_Q05: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by being so restless that it is hard to sit still?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -151,14 +147,13 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD7_Q06',
+  GAD7_Q06: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by becoming easily annoyed or irritable?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -181,14 +176,13 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD7_Q07',
+  GAD7_Q07: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by feeling afraid, as if something awful might happen?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -211,4 +205,4 @@ export const GAD7_INPUTS: Array<InputType> = [
       ],
     },
   },
-]
+} satisfies ScoreInputSchemaType

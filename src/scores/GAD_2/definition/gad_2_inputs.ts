@@ -1,15 +1,15 @@
-import type { InputType } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { ScoreInputSchemaType } from '../../../types'
 
-export const GAD2_INPUTS: Array<InputType> = [
-  {
-    input_id: 'GAD2_Q01',
+export const GAD2_INPUTS = {
+  GAD2_Q01: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by feeling nervous, anxious, or on edge?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van uzelf zenuwachtig, angstig of gespannen te voelen?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -32,15 +32,14 @@ export const GAD2_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'GAD2_Q02',
+  GAD2_Q02: {
     label: {
       en: 'Over the last two weeks, how often have you been bothered by not being able to stop or control worrying?',
       nl: 'Hoe vaak hebt u in de afgelopen 2 weken last gehad van niet in staat te zijn om te stoppen met piekeren of om controle te krijgen over het piekeren?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           label: { en: 'Not at all', nl: 'Helemaal niet' },
           value: 0,
@@ -63,4 +62,4 @@ export const GAD2_INPUTS: Array<InputType> = [
       ],
     },
   },
-]
+} satisfies ScoreInputSchemaType

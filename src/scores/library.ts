@@ -49,8 +49,8 @@ import { bmi_metric, bmi_imperial } from './bmi'
 // } from './forgotten_joint_score_12'
 // import { pss_4 } from './pss_4/pss_4'
 // import { stop_bang } from './stop_bang/stop_bang'
-// import { gad_2 } from './GAD_2/gad_2'
-// import { gad_7 } from './GAD_7/gad_7'
+import { gad_2 } from './GAD_2/gad_2'
+import { gad_7 } from './GAD_7/gad_7'
 // import { ghq_12 } from './ghq_12/ghq_12'
 // import { hads } from './hads/HADS_score'
 // import { harris_hip_score } from './harris_hip_score/harris_hip_score'
@@ -188,8 +188,8 @@ export const ScoreLibrary = createScoreLibrary({
   // foot_function_index_5pt,
   // forgotten_joint_score_hip,
   // forgotten_joint_score_knee,
-  // gad_2,
-  // gad_7,
+  gad_2,
+  gad_7,
   // ghq_12,
   // hads,
   // harris_hip_score,
