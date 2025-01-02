@@ -40,5 +40,5 @@ jobs:
       - name: Publish to NPM Registry
         run: |
           release_version=${GITHUB_REF##*/}
-          yarn version --new-version "$release_version"
+          yarn version "$release_version"
           yarn npm publish --access public
