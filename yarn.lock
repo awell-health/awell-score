@@ -39,6 +39,7 @@ __metadata:
     "@yarnpkg/sdks": "npm:^3.2.0"
     cpx: "npm:^1.5.0"
     eslint: "npm:^9.17.0"
+    husky: "npm:^9.1.7"
     jest: "npm:^29.7.0"
     lodash: "npm:^4.17.21"
     mathjs: "npm:^14.0.1"
@@ -3280,6 +3281,15 @@ __metadata:
   version: 2.1.0
   resolution: "human-signals@npm:2.1.0"
   checksum: 10/df59be9e0af479036798a881d1f136c4a29e0b518d4abb863afbd11bf30efa3eeb1d0425fc65942dcc05ab3bf40205ea436b0ff389f2cd20b75b8643d539bf86
+  languageName: node
+  linkType: hard
+
+"husky@npm:^9.1.7":
+  version: 9.1.7
+  resolution: "husky@npm:9.1.7"
+  bin:
+    husky: bin.js
+  checksum: 10/c2412753f15695db369634ba70f50f5c0b7e5cb13b673d0826c411ec1bd9ddef08c1dad89ea154f57da2521d2605bd64308af748749b27d08c5f563bcd89975f
   languageName: node
   linkType: hard
 
