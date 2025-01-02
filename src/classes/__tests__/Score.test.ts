@@ -5,7 +5,7 @@ import { CalculationResultStatus } from '../../lib/parseToApiResultFormat/types'
 const score = new Score({
   id: 'test_score',
   name: 'Test Score',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: {
     simpleNumberInput: { type: z.number().optional() },
     simpleNumberInputWithRange: {
@@ -280,6 +280,18 @@ describe('Score', () => {
                 en: 'Result',
               },
               type: 'number',
+              terminology: {
+                code: {
+                  coding: [
+                    {
+                      system: 'http://awellhealth.com/scores/results',
+                      code: 'result',
+                      display: 'Result',
+                    },
+                  ],
+                  text: 'Result',
+                },
+              },
             },
           ],
         },

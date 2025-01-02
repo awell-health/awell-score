@@ -11,7 +11,7 @@ export const ten_meter_walk_test: ScoreType<
   typeof TEN_METER_WALK_TEST_OUTPUT
 > = {
   name: '10 Metre Walk Test (TMWT)',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: TEN_METER_WALK_TEST_INPUTS,
   outputSchema: TEN_METER_WALK_TEST_OUTPUT,
   calculate: ({ data }) => {

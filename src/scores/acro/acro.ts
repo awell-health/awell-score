@@ -4,7 +4,7 @@ import { ScoreType } from '../../types'
 
 export const acro: ScoreType<typeof ACRO_INPUTS, typeof ACRO_OUTPUT> = {
   name: 'Acromegaly Quality of Life Questionnaire (AcroQoL)',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: ACRO_INPUTS,
   outputSchema: ACRO_OUTPUT,
   calculate: ({ data }) => {

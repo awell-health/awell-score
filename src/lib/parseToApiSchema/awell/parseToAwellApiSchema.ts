@@ -23,6 +23,22 @@ export const parseToAwellApiSchema = ({
   outputSchema: ScoreOutputSchemaType
   terminology?: TerminologyType
 }): ApiScoreType => {
+  const DEFAULT_SCORE_TERMINOLOGY = {
+    category: [
+      {
+        coding: [
+          {
+            system:
+              'http://terminology.hl7.org/CodeSystem/observation-category',
+            code: 'survey',
+            display: 'Survey',
+          },
+        ],
+        text: 'Survey',
+      },
+    ],
+  }
+
   return {
     calculation_id: scoreId,
     calculation_name: { en: scoreName },
@@ -31,6 +47,6 @@ export const parseToAwellApiSchema = ({
       input_definition: inputSchemaToApiInputSchema(inputSchema),
       output_definition: outputSchemaToApiOutputSchema(outputSchema),
     },
-    terminology,
+    terminology: terminology ?? DEFAULT_SCORE_TERMINOLOGY,
   }
 }

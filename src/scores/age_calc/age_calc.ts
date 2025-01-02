@@ -7,7 +7,7 @@ export const age_calc: ScoreType<
   typeof AGE_CALC_OUTPUT
 > = {
   name: 'Age Calculator',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: AGE_CALC_INPUTS,
   outputSchema: AGE_CALC_OUTPUT,
   calculate: ({ data }) => {

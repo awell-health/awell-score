@@ -19,6 +19,18 @@ describe('outputSchemaToApiOutputSchema', () => {
           subresult_id: 'resultId',
           label: { en: 'Result' },
           type: 'boolean',
+          terminology: {
+            code: {
+              coding: [
+                {
+                  system: 'http://awellhealth.com/scores/results',
+                  code: 'resultId',
+                  display: 'Result',
+                },
+              ],
+              text: 'Result',
+            },
+          },
         },
       ])
     })
@@ -41,6 +53,18 @@ describe('outputSchemaToApiOutputSchema', () => {
           subresult_id: 'resultId',
           label: { en: 'Result' },
           type: 'string',
+          terminology: {
+            code: {
+              coding: [
+                {
+                  system: 'http://awellhealth.com/scores/results',
+                  code: 'resultId',
+                  display: 'Result',
+                },
+              ],
+              text: 'Result',
+            },
+          },
         },
       ])
     })
@@ -63,6 +87,18 @@ describe('outputSchemaToApiOutputSchema', () => {
           subresult_id: 'resultId',
           label: { en: 'Result' },
           type: 'number',
+          terminology: {
+            code: {
+              coding: [
+                {
+                  system: 'http://awellhealth.com/scores/results',
+                  code: 'resultId',
+                  display: 'Result',
+                },
+              ],
+              text: 'Result',
+            },
+          },
         },
       ])
     })
@@ -108,6 +144,11 @@ describe('outputSchemaToApiOutputSchema', () => {
           terminology: {
             code: {
               coding: [
+                {
+                  system: 'http://awellhealth.com/scores/results',
+                  code: 'resultId',
+                  display: 'Result',
+                },
                 {
                   system: 'http://example.com',
                   code: '123',

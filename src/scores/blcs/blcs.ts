@@ -5,7 +5,7 @@ import { ScoreType } from '../../types'
 
 export const blcs: ScoreType<typeof BLCS_INPUTS, typeof BLCS_OUTPUT> = {
   name: 'Bladder Control Scale (BLCS)',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: BLCS_INPUTS,
   outputSchema: BLCS_OUTPUT,
   calculate: ({ data }) => {

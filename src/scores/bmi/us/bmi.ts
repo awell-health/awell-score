@@ -5,7 +5,7 @@ import { ScoreType } from '../../../types'
 export const bmi_us: ScoreType<typeof BmiInputSchema, typeof BmiOutputSchema> =
   {
     name: 'BMI (imperial)',
-    readme_location: __dirname,
+    readmeLocation: __dirname,
     inputSchema: BmiInputSchema,
     outputSchema: BmiOutputSchema,
     terminology: {

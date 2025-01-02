@@ -4,7 +4,7 @@ import { ScoreType } from '../../types'
 
 export const asrs: ScoreType<typeof ASRS_INPUTS, typeof ASRS_OUTPUT> = {
   name: 'Adult ADHD Self-Report Scale (ASRS-v1.1)',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: ASRS_INPUTS,
   outputSchema: ASRS_OUTPUT,
   calculate: ({ data }) => {

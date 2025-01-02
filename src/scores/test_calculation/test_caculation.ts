@@ -1,5 +1,3 @@
-import _ from 'lodash'
-import { is_numeric } from '../../lib/shared'
 import { ScoreType } from '../../types'
 import { z } from 'zod'
 
@@ -47,7 +45,7 @@ export const test_calculation: ScoreType<
   typeof outputSchema
 > = {
   name: 'Test Calculation',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema,
   outputSchema,
   calculate: ({ data }) => {

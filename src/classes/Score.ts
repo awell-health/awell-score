@@ -52,7 +52,7 @@ export class Score<
   /**
    * The location of the score's README file.
    */
-  readme_location: string
+  readmeLocation: string
 
   /**
    * The input schema defining the expected structure of the input data.
@@ -97,8 +97,8 @@ export class Score<
   ) {
     this.id = score.id ?? score.name
     this.name = score.name
-    this.readme_location = score.readme_location
-    this.description = parseReadmeToHtml(this.readme_location)
+    this.readmeLocation = score.readmeLocation
+    this.description = parseReadmeToHtml(this.readmeLocation)
     this.inputSchema = score.inputSchema
     this.outputSchema = score.outputSchema
     this.terminology = score.terminology

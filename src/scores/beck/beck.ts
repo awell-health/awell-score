@@ -32,7 +32,7 @@ const preprocess_beck_response = (
 
 export const beck: ScoreType<typeof BECK_INPUTS, typeof BECK_OUTPUT> = {
   name: 'Beck Depression Inventory (BDI)',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: BECK_INPUTS,
   outputSchema: BECK_OUTPUT,
   calculate: ({ data }) => {

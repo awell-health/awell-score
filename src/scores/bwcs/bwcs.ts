@@ -5,7 +5,7 @@ import { ScoreType } from '../../types'
 
 export const bwcs: ScoreType<typeof BWCS_INPUTS, typeof BWCS_OUTPUT> = {
   name: 'Bowel Control Scale (BWCS)',
-  readme_location: __dirname,
+  readmeLocation: __dirname,
   inputSchema: BWCS_INPUTS,
   outputSchema: BWCS_OUTPUT,
   calculate: ({ data }) => {

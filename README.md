@@ -5,36 +5,26 @@
 </h1>
 
 <p align="center">
-  <strong>An open source API</strong><br>
-  to perform clinically validated score calculations.
+  <strong>A library of clinically validated score calculations</strong><br>
+  for (para)medical use.
 </p>
 
 <p align="center">
-  <i>This project is licensed under the terms of the MIT license.</i>
+  <i>Licensed under the MIT license.</i>
 </p>
 
 <p align="center">
-    <img src="https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555" alt="Built with Typescript" />
+    <img src="https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555" alt="Built with TypeScript" />
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
 </p>
 
-<h3 align="center" style='margin-bottom: 24px;'>
-  <a href="https://developers.awellhealth.com/awell-score">Documentation</a>
-  <span> · </span>
-  <a href="https://developers.awellhealth.com/awell-score/developer-tools/api-playground">API playground</a>
-  <span> · </span>
-  <a href="https://score.awellhealth.com">Playground app</a>
-</h3>
+**Awell Score** is a library of clinically validated score calculations designed for easy integration into proprietary software systems. It helps developers and healthcare professionals save time and ensure accuracy when incorporating clinical scoring algorithms into their applications.
 
-Awell Score is a microservice and API developed by the [Awell](http://awell.health/) team used to calculate validated scores for clinical and patient-reported outcome measures or perform other clinical algorithms. **The API currently has a library of over 100 validated scores.**
+### Key Benefits:
 
-It was initially developed as an in-house microservice used by our products.
-
-With Awell Score, you can avoid building clinical score calculations yourself which has a couple of benefits:
-
-- ⏱️ **Save time and resources.** There's no longer a need to build these scoring algorithms yourself, which can be a time-consuming process.
-- 📏 **Reliability & validity.** Score calculations can be openly peer-reviewed and clinically assured, resulting in a higher level of scrutiny and verifiability.
-- 🧑‍🤝‍🧑 **Contributions.** Clinicians, developers, health care organizations, ... can contribute knowledge to a single, shared knowledgebase.
+- **⏱️ Save time and resources**: No need to build scoring algorithms from scratch.
+- **📏 Reliability and validity**: Open peer review ensures high-quality, clinically assured calculations.
+- **🧑‍🤝‍🧑 Collaboration**: Contribute to and benefit from a shared knowledge base.
 
 ## Contents
 
@@ -42,66 +32,143 @@ With Awell Score, you can avoid building clinical score calculations yourself wh
 - [Documentation](#-documentation)
 - [Installation and running the app](#-installation-and-running-the-app)
 - [Test suite](#-test-suite)
-- [License policy](#-license-policy)
 - [How to Contribute](#-how-to-contribute)
+- [License policy](#-license-policy)
 
 ## 📜 Background
 
-Patient-Reported Outcome Measures (PROMs) and clinical scores are commonly utilized to evaluate patients' health conditions.  Platforms like [MDCalc](https://www.mdcalc.com/) provide access to numerous such assessments through a user interface (UI). However, a UI is not practical for integrating these score calculations within your proprietary software systems. An API would be more appropriate, allowing these calculations to be embedded directly into your software.
+Patient-Reported Outcome Measures (PROMs) and clinical scores are widely used to assess health conditions. While platforms like [MDCalc](https://www.mdcalc.com/) offer UI-based solutions, these are not ideal for direct integration into custom software. Awell Score bridges this gap by providing a package of scoring functions for seamless integration.
 
 ## 📖 Documentation
 
-Documentation for Awell Score can be found on [Awell's Developer hub](https://developers.awellhealth.com/awell-score/docs/getting-started/what-is-awell-score).
+### 🎉 Installation
 
-## 🎉 Installation and running the app
+Install the package using your preferred package manager:
 
-The API runs on Node and is built with Express and Typescript. NPM is used as the package manager. The API needs to be connected to a MongoDb database as it writes request logs and calculation results into it.
+```bash
+npm install @awell-health/awell-score
+```
 
-**Installation guide:**
+```bash
+yarn add @awell-health/awell-score
+```
 
-1. Run `npm i` to install all the packages.
-2. Create an `.env` file at the root of the project. Have a look at `.env.example` for the variables you need to run the app.
-3. Ensure MongoDB is running on your machine (see instructions below).
-4. Run the app via the `npm run dev` command.
+### Usage
 
-### MongoDb
+Import the `ScoreLibrary` and access the scores you need.
 
-- [Installation instructions for Mac](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-- [Installation instructions for Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-- [Installation instructions for Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+```typescript
+import { ScoreLibrary } from '@awell-health/awell-score'
 
-## 🧪 Test suite
+const bmiScore = ScoreLibrary.bmi
+const result = bmi.calculate({
+  payload: {
+    height: 180,
+    weight: 70,
+  },
+})
 
-All calculations are covered with an extensive test suite to ensure reliable and valid results.
+console.log(result) // { BMI: 21.6 }
+```
 
-Run all tests via the `npm run test` command.
+You can browse all availables scores in the [Github repository](https://github.com/awell-health/awell-score/tree/main/src/scores) here or use [Awell's Playground](https://score.awellhealth.com).
 
-## 🪪 License policy
+### Simulation
 
-This open-source library supports calculations for various clinical questionnaires, some of which may have licensing requirements. **Users are responsible for ensuring they have the appropriate licenses** to use these questionnaires. We do not provide or manage licenses for you to use the questionnaires. Failure to secure necessary licenses or comply with their terms is solely the user's liability.
+Each score includes a simulate method to generate example inputs and results:
 
-Please ensure you have all necessary permissions before using this library.
+```typescript
+import { ScoreLibrary } from '@awell-health/awell-score'
+
+const simulation = ScoreLibrary.bmi.simulate()
+
+console.log(simulation)
+// {
+//   simulatedInput: {
+//     height: 122,
+//     weight: 75,
+//   },
+//   results: {
+//     BMI: 21.604938271604937
+//   }
+// }
+```
 
 ## 👏 How to Contribute
 
-We want to make contributing to this project as easy and transparent as possible, and we are grateful to the community for contributing bug fixes and improvements. You can read below to learn how you can take part in improving Awell Score.
+We welcome contributions from the community to improve and expand the Awell Score library. Here's how you can get involved:
 
-### Contributing Guide
+### Adding a new Score
 
-### Known issues
+Use the provided SDK to create new scores in the src/scores/library folder. Define your score like this:
 
-The first version of the API—which was only used by Awell internally—was built in December 2020 with JavaScript and Flow for static type checking. When we decided to make the API publicly available, we migrated the app to Typescript
+```typescript
+import { ScoreType } from '../../types'
+import { z } from 'zod'
 
-However, not all code passed Typescript's validation, and quite a few `//@ts-expect-error` comments had to be added in several places. Removing all of the errors will take some time and will be a gradual and progressive effort. Given the extensive test coverage, there's a high confidence that there's no impact on the reliability and validity of scores.
+const inputSchema = {
+  weight: {
+    type: z.number(),
+    label: { en: 'Weight' },
+  },
+  height: {
+    type: z.number(),
+    label: { en: 'Height' },
+  },
+}
 
-### Contributors ✨
+const outputSchema = {
+  bmi: {
+    type: z.number(),
+    label: { en: 'BMI' },
+  },
+}
 
-Awell Score was made possible by the following people:
+export const bmi: ScoreType<
+  typeof inputSchema,
+  typeof outputSchema
+> = {
+  name: 'BMI',
+  readmeLocation: __dirname,
+  inputSchema,
+  outputSchema,
+  calculate: ({ data }) => {
+    // Your calculation logic here
+    const numeric_height_in_m = data.height / 100
+    const BMI = data.weight / numeric_height_in_m ** 2
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href="https://www.linkedin.com/in/nckhell/"><img src="https://media-exp1.licdn.com/dms/image/C4D03AQEYDXgdp2oo9Q/profile-displayphoto-shrink_800_800/0/1539797053431?e=1669852800&v=beta&t=fR7HyaFffJOw3obemS-aw611YwQiHNbCAj_7GVlPIPY" width="100px;" alt=""/><br /><sub><b>Nick Hellemans</b></sub></a></td>
-    </tr>
-  </tbody>
-</table>
+    return {
+      BMI,
+    }
+  },
+}
+```
+
+#### Input schema
+
+The following types are supported:
+
+- `z.boolean()` for boolean inputs
+- `z.number()` for numeric inputs (supports defining a range with `.min()` and `.max()`)
+- `z.string()` for string inputs
+- `z.string().date()` for date inputs
+- `z.union([z.literal(number), z.literal(number), ...])` for numeric inputs with a fixed set of options
+- `z.union([z.literal(string), z.literal(string), ...])` for string inputs with a fixed set of options
+- `z.array(z.union([z.literal(number), z.literal(number), ...]))` for numeric arrays with a fixed set of options
+- `z.array(z.union([z.literal(string), z.literal(string), ...]))` for string arrays with a fixed set of options
+
+Every type can be optional with `.optional()`. If not set, the input is required and the score will not be able if the input is not provided. If you'd like to handle missing inputs inside the score calculation, you can set the input to `z.number().optional()`.
+
+#### Output schema
+
+Output types are limited to `z.number()`, `z.string()`, and `z.boolean()`. They cannot be optional.
+
+#### Calculate function
+
+The calculate function is a function that takes the input data and returns the output data (=the calculated score with one or more results).
+
+It always needs to return an object with the same keys as the output schema and values of the correct types. However, the value can also be set to `null` if the score cannot be calculated.
+
+## 🪪 License policy
+
+Awell Score is open-source and supports various clinical questionnaires. Some questionnaires may have licensing requirements. Users are responsible for ensuring they hold the appropriate licenses. We do not manage or provide these licenses. Misuse of licensed questionnaires is the sole responsibility of the user.

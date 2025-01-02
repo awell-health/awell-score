@@ -19,7 +19,7 @@ export type ScoreType<
   OutputSchema extends ScoreOutputSchemaType = ScoreOutputSchemaType,
 > = {
   name: string
-  readme_location: string
+  readmeLocation: string
   inputSchema: InputSchema
   outputSchema: OutputSchema
   terminology?: TerminologyType

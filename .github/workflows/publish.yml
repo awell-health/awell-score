@@ -1,8 +1,8 @@
 name: Compile and publish package
 
 on:
-  push
-    # branches: ['main', 'release/*']
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -30,6 +30,29 @@ jobs:
       - name: Compile Typescript
         run: yarn build
 
+      - name: Update package.json version
+        run: |
+          release_version=${GITHUB_REF_NAME#v}
+          jq ".version = \"$release_version\"" package.json > package.json.tmp
+          mv package.json.tmp package.json
+
+      - name: Commit updated package.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore: sync version with release $release_version"
+          git push
+
+      - name: Validate release version
+        run: |
+            release_version=${GITHUB_REF_NAME#v}
+            current_version=$(jq -r '.version' package.json)
+            if [ "$release_version" != "$current_version" ]; then
+              echo "Version mismatch: release tag ($release_version) does not match package.json ($current_version)."
+              exit 1
+            fi
+
       - name: Setup .yarnrc.yml
         run: |
           yarn config set npmAlwaysAuth true
@@ -38,14 +61,4 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       - name: Publish to NPM Registry
-        run: |
-          pkg_version=$(cat package.json | jq -r '.version')
-          branch=${GITHUB_REF##*/}
-
-          if [[ $branch != "main" ]]; then
-            yarn version "$pkg_version-beta$GITHUB_RUN_NUMBER"
-            yarn npm publish --tag beta --access public
-          else
-            yarn version "$pkg_version"
-            yarn npm publish --access public
-          fi
+        run: yarn npm publish --access public
