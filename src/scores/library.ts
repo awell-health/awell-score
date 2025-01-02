@@ -105,7 +105,7 @@ import { pro2 as PRO2 } from './pro2/pro2'
 // import { psk } from './psk/psk'
 // import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
-// import { sccai } from './sccai/sccai'
+import { sccai } from './sccai/sccai'
 // import { scl90 } from './scl90/scl90'
 // import { scl90r } from './scl90r/scl90r'
 // import { sdq } from './sdq/sdq'
@@ -252,7 +252,7 @@ export const ScoreLibrary = createScoreLibrary({
   // pss_4,
   // qol_stoma,
   // quickdash,
-  // sccai,
+  sccai,
   // scl90,
   // scl90r,
   // sdq,
