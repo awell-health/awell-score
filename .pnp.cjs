@@ -38,6 +38,7 @@ const RAW_RUNTIME_STATE =
           ["@yarnpkg/sdks", "npm:3.2.0"],\
           ["cpx", "npm:1.5.0"],\
           ["eslint", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:9.17.0"],\
+          ["husky", "npm:9.1.7"],\
           ["jest", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:29.7.0"],\
           ["lodash", "npm:4.17.21"],\
           ["mathjs", "npm:14.0.1"],\
@@ -90,6 +91,7 @@ const RAW_RUNTIME_STATE =
           ["@yarnpkg/sdks", "npm:3.2.0"],\
           ["cpx", "npm:1.5.0"],\
           ["eslint", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:9.17.0"],\
+          ["husky", "npm:9.1.7"],\
           ["jest", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:29.7.0"],\
           ["lodash", "npm:4.17.21"],\
           ["mathjs", "npm:14.0.1"],\
@@ -4301,6 +4303,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/human-signals-npm-2.1.0-f75815481d-df59be9e0a.zip/node_modules/human-signals/",\
         "packageDependencies": [\
           ["human-signals", "npm:2.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["husky", [\
+      ["npm:9.1.7", {\
+        "packageLocation": "./.yarn/cache/husky-npm-9.1.7-5b02eaabc4-c2412753f1.zip/node_modules/husky/",\
+        "packageDependencies": [\
+          ["husky", "npm:9.1.7"]\
         ],\
         "linkType": "HARD"\
       }]\
