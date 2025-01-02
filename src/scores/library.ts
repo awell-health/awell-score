@@ -115,7 +115,7 @@ import { simple_shoulder_test } from './sst/simple_shoulder_test'
 // import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
 import { tampa } from './tampa/tampa'
 // import { visa_a, visa_g, visa_p } from './visa'
-// import { yp_core } from './yp_core/yp_core'
+import { yp_core } from './yp_core/yp_core'
 // import { zarit_12 } from './zarit_12/zarit_12'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
@@ -268,6 +268,6 @@ export const ScoreLibrary = createScoreLibrary({
   // visa_a,
   // visa_g,
   // visa_p,
-  // yp_core,
+  yp_core,
   // zarit_12,
 })

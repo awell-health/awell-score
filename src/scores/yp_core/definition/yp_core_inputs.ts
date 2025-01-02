@@ -1,131 +1,141 @@
-import type { InputType } from '../../../src/types/calculations.types'
-import { NumberInputType } from '../../../src/types/calculations/inputs/calculation-inputs.types'
+import { z } from 'zod'
+import { EnumNumberInputType, ScoreInputSchemaType } from '../../../types'
 
-const ANSWERS: NumberInputType = {
-  type: 'number',
-  allowed_answers: [
-    {
-      label: { en: 'Not at all' },
-      value: 0,
-    },
-    {
-      label: { en: 'Only occasionally' },
-      value: 1,
-    },
-    {
-      label: {
-        en: 'Sometimes',
+const type = {
+  type: z
+    .union([
+      z.literal(0),
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+    ])
+    .optional(),
+  uiOptions: {
+    options: [
+      {
+        label: { en: 'Not at all' },
+        value: 0,
       },
-      value: 2,
-    },
-    {
-      label: { en: 'Often' },
-      value: 3,
-    },
-    {
-      label: { en: 'Most or all of the time' },
-      value: 4,
-    },
-  ],
-}
-
-const ANSWERS_INVERSE: NumberInputType = {
-  type: 'number',
-  allowed_answers: [
-    {
-      label: { en: 'Not at all' },
-      value: 4,
-    },
-    {
-      label: { en: 'Only occasionally' },
-      value: 3,
-    },
-    {
-      label: {
-        en: 'Sometimes',
+      {
+        label: { en: 'Only occasionally' },
+        value: 1,
       },
-      value: 2,
-    },
-    {
-      label: { en: 'Often' },
-      value: 1,
-    },
-    {
-      label: { en: 'Most or all of the time' },
-      value: 0,
-    },
-  ],
-}
+      {
+        label: {
+          en: 'Sometimes',
+        },
+        value: 2,
+      },
+      {
+        label: { en: 'Often' },
+        value: 3,
+      },
+      {
+        label: { en: 'Most or all of the time' },
+        value: 4,
+      },
+    ],
+  },
+} satisfies EnumNumberInputType
 
-export const YP_CORE_INPUTS: Array<InputType> = [
-  {
-    input_id: 'YP_CORE_Q01',
+const typeInverse = {
+  type: z
+    .union([
+      z.literal(4),
+      z.literal(3),
+      z.literal(2),
+      z.literal(1),
+      z.literal(0),
+    ])
+    .optional(),
+  uiOptions: {
+    options: [
+      {
+        label: { en: 'Not at all' },
+        value: 4,
+      },
+      {
+        label: { en: 'Only occasionally' },
+        value: 3,
+      },
+      {
+        label: {
+          en: 'Sometimes',
+        },
+        value: 2,
+      },
+      {
+        label: { en: 'Often' },
+        value: 1,
+      },
+      {
+        label: { en: 'Most or all of the time' },
+        value: 0,
+      },
+    ],
+  },
+} satisfies EnumNumberInputType
+
+export const YP_CORE_INPUTS = {
+  YP_CORE_Q01: {
     label: {
       en: 'Over the last week, I’ve felt edgy or nervous',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q02',
+  YP_CORE_Q02: {
     label: {
       en: 'Over the last week, I haven’t felt like talking to anyone',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q03',
+  YP_CORE_Q03: {
     label: {
       en: 'Over the last week, I’ve felt able to cope when things go wrong',
     },
-    type: ANSWERS_INVERSE,
+    ...typeInverse,
   },
-  {
-    input_id: 'YP_CORE_Q04',
+  YP_CORE_Q04: {
     label: {
       en: 'Over the last week, I’ve thought of hurting myself',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q05',
+  YP_CORE_Q05: {
     label: {
       en: 'Over the last week, there’s been someone I felt able to ask for help',
     },
-    type: ANSWERS_INVERSE,
+    ...typeInverse,
   },
-  {
-    input_id: 'YP_CORE_Q06',
+  YP_CORE_Q06: {
     label: {
       en: 'Over the last week, my thoughts and feelings distressed me',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q07',
+  YP_CORE_Q07: {
     label: {
       en: 'Over the last week, my problems have felt too much for me',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q08',
+  YP_CORE_Q08: {
     label: {
       en: 'Over the last week, it’s been hard to go to sleep or stay asleep',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q09',
+  YP_CORE_Q09: {
     label: {
       en: 'Over the last week, I’ve felt unhappy',
     },
-    type: ANSWERS,
+    ...type,
   },
-  {
-    input_id: 'YP_CORE_Q10',
+  YP_CORE_Q10: {
     label: {
       en: 'Over the last week, I’ve done all the things I wanted to',
     },
-    type: ANSWERS_INVERSE,
+    ...typeInverse,
   },
-]
+} satisfies ScoreInputSchemaType

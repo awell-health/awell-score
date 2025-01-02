@@ -1,15 +1,6 @@
-import { expect } from 'chai'
-
-import { InvalidInputsError } from '../../errors'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { MISSING_STATUS } from '../../PARAMETERS'
-import { CALCULATIONS } from '../calculation_library'
-import {
-  get_input_ids_from_calculation_blueprint,
-  view_status,
-} from '../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
 import {
   best_response,
   median_response,
@@ -19,7 +10,7 @@ import {
 import { YP_CORE_INPUTS } from './definition'
 import { yp_core } from './yp_core'
 
-const yp_core_calculation = execute_test_calculation(yp_core)
+const yp_core_calculation = new Score(yp_core)
 
 const BEST_SCORE = 0
 const MEDIAN_SCORE = 20
@@ -27,11 +18,11 @@ const WORST_SCORE = 40
 
 describe('yp_core', function () {
   it('yp_core calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('yp_core')
+    expect(ScoreLibrary).toHaveProperty('yp_core')
   })
 
   describe('basic assumptions', function () {
-    const outcome = yp_core_calculation(best_response)
+    const outcome = yp_core_calculation.calculate({ payload: best_response })
 
     it('should have the expected calculation result ids', function () {
       const EXPECTED_CALCULATION_ID = [
@@ -39,8 +30,7 @@ describe('yp_core', function () {
         'YP_CORE_INTERPRETATION',
       ]
 
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(EXPECTED_CALCULATION_ID)
     })
@@ -62,8 +52,9 @@ describe('yp_core', function () {
           'YP_CORE_Q10',
         ]
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(YP_CORE_INPUTS)
+        const configured_input_ids = Object.keys(
+          yp_core_calculation.inputSchema,
+        )
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -72,118 +63,98 @@ describe('yp_core', function () {
     describe('when an answer is not not one of the allowed answers', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          yp_core_calculation({
-            YP_CORE_Q01: -1,
+          yp_core_calculation.calculate({
+            payload: {
+              YP_CORE_Q01: -1,
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when called with an empty response', function () {
-      const outcome = yp_core_calculation({})
+      const outcome = yp_core_calculation.calculate({ payload: {} })
 
-      it('should return undefined result and a missing status for the total socre', function () {
-        const score = view_result('YP_CORE_TOTAL_SCORE')(outcome)
-        const status = view_status('YP_CORE_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(undefined)
-        expect(status).toEqual(MISSING_STATUS)
+      it('should return null for the total score', function () {
+        expect(outcome.YP_CORE_TOTAL_SCORE).toEqual(null)
       })
 
-      it('should return undefined result and a missing status for the interpretation', function () {
-        const score = view_result('YP_CORE_INTERPRETATION')(outcome)
-        const status = view_status('YP_CORE_INTERPRETATION')(outcome)
-
-        expect(score).toEqual(undefined)
-        expect(status).toEqual(MISSING_STATUS)
+      it('should return null for the interpretation', function () {
+        expect(outcome.YP_CORE_INTERPRETATION).toEqual(null)
       })
     })
   })
 
   describe('score calculation', function () {
     describe('when called with the best response', function () {
-      const outcome = yp_core_calculation(best_response)
+      const outcome = yp_core_calculation.calculate({ payload: best_response })
 
       it('should return the best total score', function () {
-        const score = view_result('YP_CORE_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(BEST_SCORE)
+        expect(outcome.YP_CORE_TOTAL_SCORE).toEqual(BEST_SCORE)
       })
 
       it('should return "Healthy" as the interpretation of the total score', function () {
-        const score = view_result('YP_CORE_INTERPRETATION')(outcome)
-
-        expect(score).toEqual('Healthy')
+        expect(outcome.YP_CORE_INTERPRETATION).toEqual('Healthy')
       })
     })
 
     describe('when called with the median response', function () {
-      const outcome = yp_core_calculation(median_response)
+      const outcome = yp_core_calculation.calculate({
+        payload: median_response,
+      })
 
       it('should return the median total score', function () {
-        const score = view_result('YP_CORE_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(MEDIAN_SCORE)
+        expect(outcome.YP_CORE_TOTAL_SCORE).toEqual(MEDIAN_SCORE)
       })
 
       it('should return "Moderate-to-severe" as the interpretation of the total score', function () {
-        const score = view_result('YP_CORE_INTERPRETATION')(outcome)
-
-        expect(score).toEqual('Moderate-to-severe')
+        expect(outcome.YP_CORE_INTERPRETATION).toEqual('Moderate-to-severe')
       })
     })
 
     describe('when called with the worst response', function () {
-      const outcome = yp_core_calculation(worst_response)
+      const outcome = yp_core_calculation.calculate({
+        payload: worst_response,
+      })
 
       it('should return the WORST total score', function () {
-        const score = view_result('YP_CORE_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(WORST_SCORE)
+        expect(outcome.YP_CORE_TOTAL_SCORE).toEqual(WORST_SCORE)
       })
 
       it('should return "Severe" as the interpretation of the total score', function () {
-        const score = view_result('YP_CORE_INTERPRETATION')(outcome)
-
-        expect(score).toEqual('Severe')
+        expect(outcome.YP_CORE_INTERPRETATION).toEqual('Severe')
       })
     })
 
     describe('when called with a random response', function () {
-      const outcome = yp_core_calculation(random_response)
+      const outcome = yp_core_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the expected total score', function () {
-        const score = view_result('YP_CORE_TOTAL_SCORE')(outcome)
-        const EXPECTED_SCORE = 15
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.YP_CORE_TOTAL_SCORE).toEqual(15)
       })
 
       it('should return "Moderate" as the interpretation of the total score', function () {
-        const score = view_result('YP_CORE_INTERPRETATION')(outcome)
-
-        expect(score).toEqual('Moderate')
+        expect(outcome.YP_CORE_INTERPRETATION).toEqual('Moderate')
       })
     })
 
     describe('when called with an incomplete response', function () {
-      const outcome = yp_core_calculation({
-        YP_CORE_Q01: 2,
-        YP_CORE_Q02: 1,
-        YP_CORE_Q03: 0,
+      const outcome = yp_core_calculation.calculate({
+        payload: {
+          YP_CORE_Q01: 2,
+          YP_CORE_Q02: 1,
+          YP_CORE_Q03: 0,
+        },
       })
 
       it('should return the expected total score', function () {
-        const score = view_result('YP_CORE_TOTAL_SCORE')(outcome)
-        const EXPECTED_SCORE = 10
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.YP_CORE_TOTAL_SCORE).toEqual(10)
       })
 
       it('should return "Moderate" as the interpretation of the total score', function () {
-        const score = view_result('YP_CORE_INTERPRETATION')(outcome)
-
-        expect(score).toEqual('Low')
+        expect(outcome.YP_CORE_INTERPRETATION).toEqual('Low')
       })
     })
   })
