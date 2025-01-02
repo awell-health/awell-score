@@ -111,7 +111,7 @@ import { sccai } from './sccai/sccai'
 // import { sdq } from './sdq/sdq'
 import { sf12 } from './sf12/sf12'
 // import { spadi } from './spadi/spadi'
-// import { simple_shoulder_test } from './sst/simple_shoulder_test'
+import { simple_shoulder_test } from './sst/simple_shoulder_test'
 // import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
 // import { tampa } from './tampa/tampa'
 // import { visa_a, visa_g, visa_p } from './visa'
@@ -260,7 +260,7 @@ export const ScoreLibrary = createScoreLibrary({
   // sf36,
   // short_fes_i,
   // spadi,
-  // simple_shoulder_test,
+  simple_shoulder_test,
   // start_back_screening_tool,
   // stop_bang,
   // tampa,

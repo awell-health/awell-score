@@ -1,14 +1,6 @@
-import { expect } from 'chai'
-import R from 'ramda'
-
-import { InvalidInputsError } from '../../errors'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { view_status } from '../../lib/view_status'
-import { MISSING_STATUS } from '../../PARAMETERS'
-import { CALCULATIONS } from '../calculation_library'
-import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
 import {
   best_response,
   median_response,
@@ -22,11 +14,11 @@ const BEST_SCORE = 100
 const MEDIAN_SCORE = 50
 const WORST_SCORE = 0
 
-const sst_calculation = execute_test_calculation(simple_shoulder_test)
+const sst_calculation = new Score(simple_shoulder_test)
 
 describe('simple_shoulder_test', function () {
   it('simple_shoulder_test calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('simple_shoulder_test')
+    expect(ScoreLibrary).toHaveProperty('simple_shoulder_test')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -46,25 +38,25 @@ describe('simple_shoulder_test', function () {
         'Q12',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(SST_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        sst_calculation.inputSchemaAsObject.shape,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = sst_calculation(best_response)
+    const outcome = sst_calculation.calculate({ payload: best_response })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['SST'])
     })
@@ -73,58 +65,50 @@ describe('simple_shoulder_test', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when worst response is passed', function () {
       it('should return the worst score', function () {
-        const outcome = R.compose(
-          view_result(),
-          sst_calculation,
-        )(worst_response)
-
-        expect(outcome).toEqual(WORST_SCORE)
+        const outcome = sst_calculation.calculate({ payload: worst_response })
+        expect(outcome.SST).toEqual(WORST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const outcome = R.compose(
-          view_result(),
-          sst_calculation,
-        )(median_response)
+        const outcome = sst_calculation.calculate({
+          payload: median_response,
+        })
 
-        expect(outcome).toEqual(MEDIAN_SCORE)
+        expect(outcome.SST).toEqual(MEDIAN_SCORE)
       })
     })
 
     describe('when best response is passed', function () {
       it('should return the best score', function () {
-        const outcome = R.compose(view_result(), sst_calculation)(best_response)
+        const outcome = sst_calculation.calculate({
+          payload: best_response,
+        })
 
-        expect(outcome).toEqual(BEST_SCORE)
+        expect(outcome.SST).toEqual(BEST_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
       it('should return the expected score', function () {
-        const outcome = R.compose(
-          view_result(),
-          sst_calculation,
-        )(random_response)
+        const outcome = sst_calculation.calculate({
+          payload: random_response,
+        })
 
         const EXPECTED_SCORE = 58.33
 
-        expect(outcome).toEqual(EXPECTED_SCORE)
+        expect(outcome.SST).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      const outcome = sst_calculation({})
+      const outcome = sst_calculation.calculate({ payload: {} })
 
-      it('should return undefined as the result and a missing status', function () {
-        const result = view_result()(outcome)
-        const status = view_status()(outcome)
-
-        expect(result).toEqual(undefined)
-        expect(status).toEqual(MISSING_STATUS)
+      it('should return null as the result', function () {
+        expect(outcome.SST).toEqual(null)
       })
     })
   })
@@ -133,28 +117,34 @@ describe('simple_shoulder_test', function () {
     describe('when an answer is not a number', function () {
       it('should throw an error', function () {
         expect(() =>
-          sst_calculation({
-            Q01: "I'm not a number",
+          sst_calculation.calculate({
+            payload: {
+              Q01: "I'm not a number",
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is below one of the expected answers', function () {
       it('should throw an error', function () {
         expect(() =>
-          sst_calculation({
-            Q01: -1,
+          sst_calculation.calculate({
+            payload: {
+              Q01: -1,
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is above one of the expected answers', function () {
       it('should throw an InvalidInputsError', function () {
         expect(() =>
-          sst_calculation({
-            Q01: 3,
+          sst_calculation.calculate({
+            payload: {
+              Q01: 3,
+            },
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })
