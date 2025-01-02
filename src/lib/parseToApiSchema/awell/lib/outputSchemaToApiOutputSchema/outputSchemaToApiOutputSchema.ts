@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { type ApiOutputType } from '../../types'
 import { ScoreOutputSchemaType } from '../../../../../types'
 
-const getDefaultTerminology = (
+export const getDefaultTerminology = (
   id: string,
   label: string,
 ): {

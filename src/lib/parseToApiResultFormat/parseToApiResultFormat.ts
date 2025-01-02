@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { CalculationResultStatus, type ApiResultType } from './types'
 import { type ScoreOutputSchemaType } from '../../types'
+import { getDefaultTerminology } from '../parseToApiSchema/awell/lib/outputSchemaToApiOutputSchema/outputSchemaToApiOutputSchema'
 
 export const parseToApiResultFormat = <
   OutputSchema extends ScoreOutputSchemaType,
@@ -21,6 +22,12 @@ export const parseToApiResultFormat = <
     return 'string'
   }
   const apiResults = Object.entries(results).map(([key, value]) => {
+    const existingCodes = outputSchema[key]?.terminology?.code?.coding ?? []
+    const codeText =
+      outputSchema[key]?.terminology?.code?.text ??
+      outputSchema[key]?.label?.en ??
+      'unknown'
+
     return {
       subresult_id: key,
       label: outputSchema[key].label,
@@ -32,7 +39,18 @@ export const parseToApiResultFormat = <
           ? CalculationResultStatus.MISSING
           : CalculationResultStatus.CALCULATED,
       interpretation: outputSchema[key].interpretation,
-      terminology: outputSchema[key].terminology,
+      terminology: {
+        code: {
+          coding: [
+            getDefaultTerminology(
+              key,
+              outputSchema[key].label?.en ?? 'unknown',
+            ),
+            ...existingCodes,
+          ],
+          text: codeText,
+        },
+      },
     } satisfies ApiResultType
   })
 

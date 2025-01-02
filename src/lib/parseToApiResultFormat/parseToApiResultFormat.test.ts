@@ -28,6 +28,11 @@ describe('parseToApiResultFormat', () => {
                 display: 'Disability Index',
                 code: 'DI',
               },
+              {
+                system: 'http://awellhealth.com/scores/results',
+                display: 'Disability Index',
+                code: 'DI',
+              },
             ],
             text: 'HAQ score (Disability Index)',
           },
@@ -44,6 +49,18 @@ describe('parseToApiResultFormat', () => {
         type: 'boolean',
         result: true,
         status: CalculationResultStatus.CALCULATED,
+        terminology: {
+          code: {
+            coding: [
+              {
+                system: 'http://awellhealth.com/scores/results',
+                code: 'result1',
+                display: 'Result 1',
+              },
+            ],
+            text: 'Result 1',
+          },
+        },
       },
       {
         subresult_id: 'result2',
@@ -51,6 +68,18 @@ describe('parseToApiResultFormat', () => {
         type: 'number',
         result: 2,
         status: CalculationResultStatus.CALCULATED,
+        terminology: {
+          code: {
+            coding: [
+              {
+                system: 'http://awellhealth.com/scores/results',
+                code: 'result2',
+                display: 'Result 2',
+              },
+            ],
+            text: 'Result 2',
+          },
+        },
       },
       {
         subresult_id: 'result3',
@@ -58,6 +87,18 @@ describe('parseToApiResultFormat', () => {
         type: 'string',
         result: 'hello',
         status: CalculationResultStatus.CALCULATED,
+        terminology: {
+          code: {
+            coding: [
+              {
+                system: 'http://awellhealth.com/scores/results',
+                code: 'result3',
+                display: 'Result 3',
+              },
+            ],
+            text: 'Result 3',
+          },
+        },
       },
       {
         subresult_id: 'result4',
@@ -70,6 +111,16 @@ describe('parseToApiResultFormat', () => {
         terminology: {
           code: {
             coding: [
+              {
+                system: 'http://awellhealth.com/scores/results',
+                display: 'Result 4',
+                code: 'result4',
+              },
+              {
+                system: 'http://awellhealth.com/scores/results',
+                display: 'Disability Index',
+                code: 'DI',
+              },
               {
                 system: 'http://awellhealth.com/scores/results',
                 display: 'Disability Index',

@@ -132,6 +132,18 @@ describe('Score', () => {
           type: 'number',
           result: 999,
           status: CalculationResultStatus.CALCULATED,
+          terminology: {
+            code: {
+              coding: [
+                {
+                  system: 'http://awellhealth.com/scores/results',
+                  code: 'result',
+                  display: 'Result',
+                },
+              ],
+              text: 'Result',
+            },
+          },
         },
       ])
     })
