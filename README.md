@@ -29,9 +29,7 @@
 ## Contents
 
 - [Background](#-background)
-- [Documentation](#-documentation)
-- [Installation and running the app](#-installation-and-running-the-app)
-- [Test suite](#-test-suite)
+- [Installation and usage](#-documentation)
 - [How to Contribute](#-how-to-contribute)
 - [License policy](#-license-policy)
 
