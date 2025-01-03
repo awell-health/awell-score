@@ -8,6 +8,7 @@ describe('inputSchemaToApiInputSchema', () => {
       const inputSchema = {
         inputId: {
           label: { en: 'inputId' },
+          info: { en: 'Some info here' },
           type: z.boolean(),
         },
       }
@@ -17,7 +18,8 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          info: { en: 'Some info here' },
+          input_type: {
             type: 'boolean',
             required: true,
             allowed_answers: [
@@ -48,7 +50,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'boolean',
             required: false,
             allowed_answers: [
@@ -75,7 +77,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'date',
             required: false,
           },
@@ -98,7 +100,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'string',
             required: true,
           },
@@ -124,7 +126,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            type: {
+            input_type: {
               type: 'string',
               required: true,
               allowed_answers: [
@@ -162,7 +164,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            type: {
+            input_type: {
               type: 'string',
               required: false,
               allowed_answers: [
@@ -191,7 +193,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: { type: 'number', required: true },
+          input_type: { type: 'number', required: true },
         },
       ])
     })
@@ -204,6 +206,10 @@ describe('inputSchemaToApiInputSchema', () => {
           unit: { en: 'cm' },
           uiOptions: {
             component: 'slider',
+            range: {
+              min: { label: { en: 'Min label' } },
+              max: { label: { en: 'Max label' } },
+            },
           },
         } satisfies SimpleNumberInputType,
       }
@@ -213,11 +219,14 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'number',
             required: false,
             component: 'slider',
-            range: { min: { value: 0 }, max: { value: 100 } },
+            range: {
+              min: { value: 0, label: { en: 'Min label' } },
+              max: { value: 100, label: { en: 'Max label' } },
+            },
           },
           format: 'cm',
         },
@@ -237,7 +246,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'number',
             required: true,
             range: { min: { value: 10 } },
@@ -259,7 +268,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'number',
             required: true,
             range: { max: { value: 999 } },
@@ -281,7 +290,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'number',
             required: true,
             range: {
@@ -311,7 +320,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            type: {
+            input_type: {
               type: 'number',
               required: true,
               allowed_answers: [{ value: 1 }, { value: 2 }, { value: 3 }],
@@ -341,7 +350,7 @@ describe('inputSchemaToApiInputSchema', () => {
           {
             id: 'inputId',
             label: { en: 'inputId' },
-            type: {
+            input_type: {
               type: 'number',
               required: false,
               allowed_answers: [
@@ -376,7 +385,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'strings_array',
             required: false,
             allowed_answers: [
@@ -409,7 +418,7 @@ describe('inputSchemaToApiInputSchema', () => {
         {
           id: 'inputId',
           label: { en: 'inputId' },
-          type: {
+          input_type: {
             type: 'numbers_array',
             required: true,
             allowed_answers: [

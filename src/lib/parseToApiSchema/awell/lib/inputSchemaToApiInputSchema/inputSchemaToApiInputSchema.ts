@@ -78,13 +78,14 @@ export const inputSchemaToApiInputSchema = (
     const baseJson = {
       id: key,
       label: value.label,
+      info: value.info,
       format: value.unit?.en,
     }
 
     if (inputType instanceof z.ZodBoolean) {
       jsonSchema[key] = {
         ...baseJson,
-        type: {
+        input_type: {
           type: 'boolean',
           required: !isOptional,
           allowed_answers: getBooleanAllowedAnswers(value),
@@ -100,11 +101,15 @@ export const inputSchemaToApiInputSchema = (
       const range: any = {}
 
       if (!isNil(min)) {
-        range.min = { value: min }
+        // @ts-expect-error this is fine
+        const minLabel = value.uiOptions?.range?.min?.label
+        range.min = { value: min, label: minLabel }
       }
 
       if (!isNil(max)) {
-        range.max = { value: max }
+        // @ts-expect-error this is fine
+        const maxLabel = value.uiOptions?.range?.max?.label
+        range.max = { value: max, label: maxLabel }
       }
 
       const tempSchema: any = {
@@ -118,7 +123,7 @@ export const inputSchemaToApiInputSchema = (
 
       jsonSchema[key] = {
         ...baseJson,
-        type: {
+        input_type: {
           ...tempSchema,
           required: !isOptional,
           // @ts-expect-error this is fine
@@ -133,7 +138,7 @@ export const inputSchemaToApiInputSchema = (
       if (isDate) {
         jsonSchema[key] = {
           ...baseJson,
-          type: {
+          input_type: {
             type: 'date',
             required: !isOptional,
           },
@@ -141,7 +146,7 @@ export const inputSchemaToApiInputSchema = (
       } else {
         jsonSchema[key] = {
           ...baseJson,
-          type: {
+          input_type: {
             type: 'string',
             required: !isOptional,
           },
@@ -156,7 +161,7 @@ export const inputSchemaToApiInputSchema = (
       if (unionType === 'string') {
         jsonSchema[key] = {
           ...baseJson,
-          type: {
+          input_type: {
             type: 'string',
             required: !isOptional,
             allowed_answers: getStringEnumAllowedAnswers(inputType, value),
@@ -167,7 +172,7 @@ export const inputSchemaToApiInputSchema = (
       if (unionType === 'number') {
         jsonSchema[key] = {
           ...baseJson,
-          type: {
+          input_type: {
             type: 'number',
             required: !isOptional,
             allowed_answers: getNumberEnumAllowedAnswers(inputType, value),
@@ -187,7 +192,7 @@ export const inputSchemaToApiInputSchema = (
         if (unionType === 'string') {
           jsonSchema[key] = {
             ...baseJson,
-            type: {
+            input_type: {
               type: 'strings_array',
               required: !isOptional,
               allowed_answers: getStringEnumAllowedAnswers(itemType, value),
@@ -198,7 +203,7 @@ export const inputSchemaToApiInputSchema = (
         if (unionType === 'number') {
           jsonSchema[key] = {
             ...baseJson,
-            type: {
+            input_type: {
               type: 'numbers_array',
               required: !isOptional,
               allowed_answers: getNumberEnumAllowedAnswers(itemType, value),

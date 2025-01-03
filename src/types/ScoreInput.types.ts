@@ -25,6 +25,14 @@ export interface SimpleNumberInputType extends BaseInputType {
   type: z.ZodOptional<z.ZodNumber> | z.ZodNumber
   uiOptions?: {
     component?: 'slider' // If input should be a slider
+    range?: {
+      min?: {
+        label?: LabelType
+      }
+      max?: {
+        label?: LabelType
+      }
+    }
   }
 }
 

@@ -19,13 +19,13 @@ import { bmi_metric, bmi_imperial } from './bmi'
 // import { compass_31 } from './compass_31/compass_31'
 // import { constant_murley_score_orthotoolkit } from './constant_murley_score'
 // import { core_om } from './core_om/core_om'
-// import { cpdi } from './cpdi/cpdi'
+import { cpdi } from './cpdi/cpdi'
 // import { csi } from './csi/csi'
-// import { dast_10 } from './dast_10/dast_10'
+import { dast_10 } from './dast_10/dast_10'
 // import { demo_calculation } from './demo_calculation/demo_calculation'
 // import { difference_calc } from './difference_calc/difference_calc'
 // import { dlqi } from './dlqi/dlqi'
-// import { dn4 } from './dn4/dn4'
+import { dn4 } from './dn4/dn4'
 // import { dri } from './dri/dri'
 // import {
 //   eortc_qlq_br23,
@@ -37,25 +37,25 @@ import { bmi_metric, bmi_imperial } from './bmi'
 //   eortc_qlq_pr25,
 // } from './eortc'
 // import { epic_26 } from './epic_26/epic_26'
-// import { eq5d_3l, eq5d_5l } from './eq5d'
+import { eq5d_3l, eq5d_5l } from './eq5d'
 // import { ess } from './ess/ess'
 // import { faam } from './faam/faam'
 // import { short_fes_i } from './fes_i'
-// import { fnd } from './fnd/fnd'
+import { fnd } from './fnd/fnd'
 // import { foot_function_index_5pt } from './foot_function_index'
 // import {
 //   forgotten_joint_score_hip,
 //   forgotten_joint_score_knee,
 // } from './forgotten_joint_score_12'
-// import { pss_4 } from './pss_4/pss_4'
-// import { stop_bang } from './stop_bang/stop_bang'
+import { pss_4 } from './pss_4/pss_4'
+import { stop_bang } from './stop_bang/stop_bang'
 import { gad_2 } from './GAD_2/gad_2'
 import { gad_7 } from './GAD_7/gad_7'
 // import { ghq_12 } from './ghq_12/ghq_12'
 // import { hads } from './hads/HADS_score'
 // import { harris_hip_score } from './harris_hip_score/harris_hip_score'
 // import { hoos_extended } from './hoos_extended/hoos_extended'
-// import { hoos_ps } from './hoos_ps/hoos_ps'
+import { hoos_ps } from './hoos_ps/hoos_ps'
 // import { hos } from './hos/hos'
 // import { hrqol_4 } from './hrqol'
 // import { ias } from './ias/ias'
@@ -67,7 +67,7 @@ import { gad_7 } from './GAD_7/gad_7'
 // import { isi } from './isi/isi'
 // import { k_bild } from './k_bild/k_bild'
 // import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
-// import { koos_ps } from './koos_ps/koos_ps'
+import { koos_ps } from './koos_ps/koos_ps'
 // import { math_divide, math_multiply, math_subtract, math_sum } from './math'
 // import { mds_updrs } from './mds_updrs/mds_updrs'
 // import { mini_best_test } from './mini_best_test/mini_best_test'
@@ -83,8 +83,8 @@ import { gad_7 } from './GAD_7/gad_7'
 // import { oswestry } from './oswestry/oswestry'
 // import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
 // import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
-// import { packyears } from './packyears/packyears'
-// import { panss_6 } from './panss_6/panss_6'
+import { packyears } from './packyears/packyears'
+import { panss_6 } from './panss_6/panss_6'
 // import { paq_c } from './paq_c/paq_c'
 // import { pci } from './pci/pci'
 // import { pcl_5 } from './pcl_5/pcl_5'
@@ -164,13 +164,13 @@ export const ScoreLibrary = createScoreLibrary({
   // compass_31,
   // constant_murley_score_orthotoolkit,
   // core_om,
-  // cpdi,
+  cpdi,
   // csi,
-  // dast_10,
+  dast_10,
   // demo_calculation,
   // difference_calc,
   // dlqi,
-  // dn4,
+  dn4,
   // dri,
   // eortc_qlq_br23,
   // eortc_qlq_br45,
@@ -180,11 +180,11 @@ export const ScoreLibrary = createScoreLibrary({
   // eortc_qlq_lc29,
   // eortc_qlq_pr25,
   // epic_26,
-  // eq5d_3l,
-  // eq5d_5l,
+  eq5d_3l,
+  eq5d_5l,
   // ess,
   // faam,
-  // fnd,
+  fnd,
   // foot_function_index_5pt,
   // forgotten_joint_score_hip,
   // forgotten_joint_score_knee,
@@ -194,7 +194,7 @@ export const ScoreLibrary = createScoreLibrary({
   // hads,
   // harris_hip_score,
   // hoos_extended,
-  // hoos_ps,
+  hoos_ps,
   // hos,
   // hrqol_4,
   // ias,
@@ -206,7 +206,7 @@ export const ScoreLibrary = createScoreLibrary({
   // ipss,
   // k_bild,
   // KCCQ_12,
-  // koos_ps,
+  koos_ps,
   // korq,
   // math_divide,
   // math_multiply,
@@ -228,8 +228,8 @@ export const ScoreLibrary = createScoreLibrary({
   // oswestry,
   // oxford_hip_score,
   // oxford_knee_score,
-  // packyears,
-  // panss_6,
+  packyears,
+  panss_6,
   // paq_c,
   // pci,
   // pcl_5,
@@ -249,7 +249,7 @@ export const ScoreLibrary = createScoreLibrary({
   // prtee,
   // psk,
   // psqi,
-  // pss_4,
+  pss_4,
   // qol_stoma,
   // quickdash,
   sccai,
@@ -262,7 +262,7 @@ export const ScoreLibrary = createScoreLibrary({
   // spadi,
   simple_shoulder_test,
   // start_back_screening_tool,
-  // stop_bang,
+  stop_bang,
   tampa,
   ten_meter_walk_test,
   // visa_a,
