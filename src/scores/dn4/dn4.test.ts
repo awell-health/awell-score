@@ -63,7 +63,7 @@ describe('dn4', function () {
     })
 
     describe('when an answer is not a boolean', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           dn4_calculation.calculate({
             payload: {

@@ -1,9 +1,7 @@
-import R from 'ramda'
-
 import { ASRS_SUBSCALES, type SubscaleType } from '../definition/asrs_subscales'
 import { ASRS_INPUTS, POSITIVE_SCORES } from '../definition'
 import { z } from 'zod'
-import _ from 'lodash'
+import { sum, map, pick } from 'lodash'
 
 export const calculate_subscale_scores = (
   inputs_with_answers: z.infer<
@@ -15,12 +13,12 @@ export const calculate_subscale_scores = (
 ): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ASRS_SUBSCALES[subscale]
 
-  const inputs_in_subscale = _.pick(
+  const inputs_in_subscale = pick(
     inputs_with_answers,
     INPUT_IDS_NEEDED_FOR_SCORING,
   )
 
-  const standardized_input_scores = _.map(inputs_in_subscale, (_i, key) => {
+  const standardized_input_scores = map(inputs_in_subscale, (_i, key) => {
     const positive_scores = POSITIVE_SCORES[key as keyof typeof POSITIVE_SCORES]
 
     if (positive_scores === undefined || _i === undefined) return null
@@ -32,5 +30,5 @@ export const calculate_subscale_scores = (
 
   if (standardized_input_scores.length === 0) return null
 
-  return R.sum(standardized_input_scores as number[])
+  return sum(standardized_input_scores as number[])
 }

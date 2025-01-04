@@ -141,7 +141,7 @@ describe('stop_bang', function () {
         })
 
         describe('when an answer is below 0', function () {
-          it('should throw an InvalidInputsError', function () {
+          it('should throw an ZodError', function () {
             expect(() =>
               stop_bang_calculation.calculate({
                 payload: {
@@ -166,7 +166,7 @@ describe('stop_bang', function () {
           })
         })
         describe('when an answer is above maximum allowed value', function () {
-          it('should throw an InvalidInputsError', function () {
+          it('should throw an ZodError', function () {
             expect(() =>
               stop_bang_calculation.calculate({
                 payload: {

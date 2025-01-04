@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { InvalidInputsError } from '../../../errors'
+import { ZodError } from '../../../errors'
 import { execute_test_calculation } from '../../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../../lib/view_result'
@@ -79,32 +79,32 @@ describe('cade_q_sv', function () {
     })
 
     describe('when an answer is below the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           cade_q_calculation({
             Q01: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when called with a response where there are above the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           cade_q_calculation({
             Q01: 3,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when called with a response where there are non-numerical answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           cade_q_calculation({
             Q01: "I'm not a number",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 

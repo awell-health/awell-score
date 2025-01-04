@@ -4,7 +4,7 @@ import {
   YP_CORE_OUTPUT,
 } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const yp_core: ScoreType<typeof YP_CORE_INPUTS, typeof YP_CORE_OUTPUT> =
   {
@@ -18,7 +18,7 @@ export const yp_core: ScoreType<typeof YP_CORE_INPUTS, typeof YP_CORE_OUTPUT> =
       if (validInputs.length === 0)
         return { YP_CORE_TOTAL_SCORE: null, YP_CORE_INTERPRETATION: null }
 
-      const totalScore = (_.sum(validInputs) / validInputs.length) * 10
+      const totalScore = (sum(validInputs) / validInputs.length) * 10
 
       return {
         YP_CORE_TOTAL_SCORE: totalScore,

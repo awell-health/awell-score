@@ -1,7 +1,6 @@
 import { PANSS_6_INPUTS, PANNS_6_OUTPUT } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
-
+import { sum } from 'lodash'
 export const panss_6: ScoreType<typeof PANSS_6_INPUTS, typeof PANNS_6_OUTPUT> =
   {
     name: 'Positive and Negative Syndrome Scale (PANSS-6)',
@@ -21,8 +20,8 @@ export const panss_6: ScoreType<typeof PANSS_6_INPUTS, typeof PANNS_6_OUTPUT> =
         data.PANSS_6_Q06_LACK_OF_SPONTANEITY,
       ]
 
-      const positiveScaleScore = _.sum(positiveScaleScores)
-      const negativeScaleScore = _.sum(negativeScaleScores)
+      const positiveScaleScore = sum(positiveScaleScores)
+      const negativeScaleScore = sum(negativeScaleScores)
 
       return {
         PANNS_6_POSITIVE_SCALE_SCORE: positiveScaleScore,

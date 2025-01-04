@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../../errors'
+import { ZodError } from '../../../errors'
 import { execute_test_calculation } from '../../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../../lib/view_result'
@@ -400,30 +400,30 @@ describe('sf36', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           sf36_calculation({
             SF36_Q01: "I'm not a number",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           sf36_calculation({
             SF36_Q01: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           sf36_calculation({
             SF36_Q01: 6,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })

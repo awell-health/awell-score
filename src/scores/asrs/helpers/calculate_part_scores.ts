@@ -1,8 +1,6 @@
-import R from 'ramda'
-
 import { ASRS_PARTS, type PartType } from '../definition/asrs_parts'
 import { ASRS_INPUTS, POSITIVE_SCORES } from '../definition'
-import _ from 'lodash'
+import { sum, map, pick } from 'lodash'
 import { z } from 'zod'
 
 export const calculate_part_scores = (
@@ -15,11 +13,8 @@ export const calculate_part_scores = (
 ): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ASRS_PARTS[part]
 
-  const inputs_in_part = _.pick(
-    inputs_with_answers,
-    INPUT_IDS_NEEDED_FOR_SCORING,
-  )
-  const standardized_input_scores = _.map(inputs_in_part, (_i, key: string) => {
+  const inputs_in_part = pick(inputs_with_answers, INPUT_IDS_NEEDED_FOR_SCORING)
+  const standardized_input_scores = map(inputs_in_part, (_i, key: string) => {
     const positive_scores = POSITIVE_SCORES[key as keyof typeof POSITIVE_SCORES]
 
     if (positive_scores === undefined || _i === undefined) return null
@@ -31,5 +26,5 @@ export const calculate_part_scores = (
 
   if (standardized_input_scores.length === 0) return null
 
-  return R.sum(standardized_input_scores as number[])
+  return sum(standardized_input_scores as number[])
 }

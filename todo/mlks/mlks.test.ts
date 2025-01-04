@@ -66,42 +66,42 @@ describe('MLKS', function () {
   })
 
   describe('when an answer is below the expected range', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         mlks_calculation({
           Q01_LIMP: -1,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
   })
 
   describe('when an answer is above the expected range', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         mlks_calculation({
           Q01_LIMP: 30,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
   })
 
   describe('when an answer is above the expected range for Q01_LIMP', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         mlks_calculation({
           Q04_GIVING_WAY_SENSATION_KNEE: 7,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
   })
 
   describe('when there are non-numerical answers', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         mlks_calculation({
           Q01_LIMP: "I'm not a number",
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
   })
 

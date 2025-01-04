@@ -4,7 +4,7 @@ import {
   hoos_conversion_table,
 } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const hoos_ps: ScoreType<typeof HOOS_PS_INPUTS, typeof HOOS_PS_OUTPUT> =
   {
@@ -13,7 +13,7 @@ export const hoos_ps: ScoreType<typeof HOOS_PS_INPUTS, typeof HOOS_PS_OUTPUT> =
     inputSchema: HOOS_PS_INPUTS,
     outputSchema: HOOS_PS_OUTPUT,
     calculate: ({ data }) => {
-      const totalScore = _.sum(Object.values(data))
+      const totalScore = sum(Object.values(data))
       return {
         HOOS_PS: hoos_conversion_table[totalScore.toString()],
       }

@@ -1,6 +1,5 @@
 import { EQ5D_3L_INPUTS, EQ5D_3L_OUTPUT } from './definition'
 import { ScoreType } from '../../../types'
-import _ from 'lodash'
 
 export const eq5d_3l: ScoreType<typeof EQ5D_3L_INPUTS, typeof EQ5D_3L_OUTPUT> =
   {

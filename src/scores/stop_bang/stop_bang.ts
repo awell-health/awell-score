@@ -4,7 +4,7 @@ import {
   STOP_BANG_INTERPRETATION_TABLE,
 } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const stop_bang: ScoreType<
   typeof STOP_BANG_INPUTS,
@@ -39,7 +39,7 @@ export const stop_bang: ScoreType<
       genderPoint,
     ]
 
-    const totalScore = _.sum(values)
+    const totalScore = sum(values)
 
     return {
       STOP_BANG: totalScore,

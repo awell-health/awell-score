@@ -1,6 +1,6 @@
 import { DN4_INPUTS, DN4_OUTPUT } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const dn4: ScoreType<typeof DN4_INPUTS, typeof DN4_OUTPUT> = {
   name: 'Douleur Neuropathique 4 (DN4)',
@@ -31,8 +31,8 @@ export const dn4: ScoreType<typeof DN4_INPUTS, typeof DN4_OUTPUT> = {
       v => v !== undefined,
     )
 
-    const patientInterviewScore = _.sum(definedPatientInterviewInputs)
-    const patientExaminationScore = _.sum(definedPatientExaminationInputs)
+    const patientInterviewScore = sum(definedPatientInterviewInputs)
+    const patientExaminationScore = sum(definedPatientExaminationInputs)
     const patientTotalScore = patientInterviewScore + patientExaminationScore
 
     return {

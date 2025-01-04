@@ -140,7 +140,7 @@ describe('asrs', function () {
     })
 
     describe('when an answer is below the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           asrs_calculation.calculate({
             payload: {
@@ -152,7 +152,7 @@ describe('asrs', function () {
     })
 
     describe('when an answer is above the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           asrs_calculation.calculate({
             payload: {
@@ -164,7 +164,7 @@ describe('asrs', function () {
     })
 
     describe('when there are non-numerical answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           asrs_calculation.calculate({
             payload: {

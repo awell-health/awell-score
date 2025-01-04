@@ -1,9 +1,7 @@
-import moment from 'moment'
-
 import { ScoreLibrary } from '../library'
 import { age_calc } from './age_calc'
 import { Score } from '../../classes'
-
+import MockDate from 'mockdate'
 const calculate_age = new Score(age_calc)
 
 describe('age_calc', function () {
@@ -45,12 +43,12 @@ describe('age_calc', function () {
   describe('each calculated score shall include the correct formula and output the correct result', function () {
     it('should return correct result age', function () {
       const dob = '1993-11-30'
+      MockDate.set('2025-01-01T00:00:00Z')
+      const EXPECTED_AGE = 31
 
       const result = calculate_age.calculate({
         payload: { date_of_birth: '1993-11-30' },
       })
-
-      const EXPECTED_AGE = moment().diff(dob, 'years')
 
       expect(result.AGE).toEqual(EXPECTED_AGE)
     })

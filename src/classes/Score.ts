@@ -4,7 +4,6 @@ import {
   type ScoreOutputSchemaType,
   type ScoreType,
   type CalculateFn,
-  type CategoryType,
   type TerminologyType,
 } from '../types'
 import {
@@ -20,7 +19,7 @@ import {
   tryCastToStringsArray,
   tryCastToNumbersArray,
 } from '../lib/castFunctions'
-import _ from 'lodash'
+import { mapValues, sample, random, sampleSize, pickBy } from 'lodash'
 import { simulateDateInput, simulateStringInput } from '../lib/simulation'
 import { parseToApiResultFormat } from '../lib/parseToApiResultFormat'
 
@@ -207,7 +206,7 @@ export class Score<
       return input_value
     }
 
-    return _.mapValues(data, castInputToExactType)
+    return mapValues(data, castInputToExactType)
   }
 
   /**
@@ -221,7 +220,7 @@ export class Score<
       z.infer<OutputSchema[keyof OutputSchema]['type']> | null
     >
   } {
-    const simulatedInput = _.mapValues(
+    const simulatedInput = mapValues(
       this.inputSchemaAsObject.shape,
       zodType => {
         const getZodType = () => {
@@ -247,19 +246,19 @@ export class Score<
         }
 
         if (inputType instanceof z.ZodBoolean) {
-          return _.sample([true, false])
+          return sample([true, false])
         }
 
         if (inputType instanceof z.ZodNumber) {
           const min = inputType.minValue
           const max = inputType.maxValue
 
-          return _.random(min ?? 0, max ?? 100, false)
+          return random(min ?? 0, max ?? 100, false)
         }
 
         if (inputType instanceof z.ZodUnion) {
           const optionValues = inputType.options.map(option => option.value)
-          return _.sample(optionValues)
+          return sample(optionValues)
         }
 
         if (inputType instanceof z.ZodArray) {
@@ -267,11 +266,8 @@ export class Score<
 
           if (itemType instanceof z.ZodUnion) {
             const optionValues = itemType.options.map(option => option.value)
-            const randomNumberBetweenOneAndMax = _.random(
-              1,
-              optionValues.length,
-            )
-            return _.sampleSize(optionValues, randomNumberBetweenOneAndMax)
+            const randomNumberBetweenOneAndMax = random(1, optionValues.length)
+            return sampleSize(optionValues, randomNumberBetweenOneAndMax)
           }
         }
 
@@ -280,7 +276,7 @@ export class Score<
     )
 
     return {
-      simulatedInput: _.pickBy(simulatedInput, value => value !== undefined),
+      simulatedInput: pickBy(simulatedInput, value => value !== undefined),
       results: this.calculate({ payload: simulatedInput }),
     }
   }

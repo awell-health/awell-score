@@ -333,7 +333,7 @@ describe('moca', function () {
               moca_calculation({
                 VISUOCONSTRUCTIONAL_SKILLS_CLOCK: [],
               }),
-            ).to.not.throw(InvalidInputsError)
+            ).to.not.throw(ZodError)
           })
         })
 
@@ -343,7 +343,7 @@ describe('moca', function () {
               moca_calculation({
                 VISUOCONSTRUCTIONAL_SKILLS_CLOCK: ["I'm unexpected"],
               }),
-            ).toThrow(InvalidInputsError)
+            ).toThrow(ZodError)
           })
         })
       })
@@ -355,7 +355,7 @@ describe('moca', function () {
               moca_calculation({
                 ALTERNATING_TRAIL_MARKING: -1,
               }),
-            ).toThrow(InvalidInputsError)
+            ).toThrow(ZodError)
           })
         })
         describe('when an answer is not allowed (e.g. is above the expected range)', function () {
@@ -364,7 +364,7 @@ describe('moca', function () {
               moca_calculation({
                 ALTERNATING_TRAIL_MARKING: 2,
               }),
-            ).toThrow(InvalidInputsError)
+            ).toThrow(ZodError)
           })
         })
       })

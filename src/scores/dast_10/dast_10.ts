@@ -4,7 +4,7 @@ import {
   DAST10_INTERPRETATION_TABLE,
 } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const dast_10: ScoreType<typeof DAST10_INPUTS, typeof DAST10_OUTPUT> = {
   name: 'Drug Abuse Screening Test (DAST-10)',
@@ -23,7 +23,7 @@ export const dast_10: ScoreType<typeof DAST10_INPUTS, typeof DAST10_OUTPUT> = {
       }
     }
 
-    const totalScore = _.sum(definedInputs)
+    const totalScore = sum(definedInputs)
 
     return {
       DAST10_SCORE: totalScore,

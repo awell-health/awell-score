@@ -72,7 +72,7 @@ describe('beck', function () {
 
     describe('when called with a response with answers out of the expected [0,3] range', function () {
       describe('when an answer is not a number', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             beck_calculation.calculate({
               payload: {
@@ -83,7 +83,7 @@ describe('beck', function () {
         })
       })
       describe('when an answer is below the expected [0,3] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             beck_calculation.calculate({
               payload: {
@@ -95,7 +95,7 @@ describe('beck', function () {
       })
 
       describe('when an answer is above the expected [0,3] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             beck_calculation.calculate({
               payload: {

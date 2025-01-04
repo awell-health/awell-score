@@ -1,10 +1,9 @@
-import R from 'ramda'
-import { round } from 'mathjs'
 import { ScoreType } from '../../types'
 import {
   TEN_METER_WALK_TEST_INPUTS,
   TEN_METER_WALK_TEST_OUTPUT,
 } from './definition'
+import { sum, round, mean } from 'lodash'
 
 export const ten_meter_walk_test: ScoreType<
   typeof TEN_METER_WALK_TEST_INPUTS,
@@ -16,12 +15,14 @@ export const ten_meter_walk_test: ScoreType<
   outputSchema: TEN_METER_WALK_TEST_OUTPUT,
   calculate: ({ data }) => {
     const DISTANCE_PER_TRIAL = 10 // 10 meters per trial
-    const TOTAL_DISTANCE = Object.values(data).length * DISTANCE_PER_TRIAL
-    const TOTAL_TIME = R.sum(Object.values(data))
+    const TOTAL_DISTANCE =
+      Object.values(data).filter(v => v !== undefined).length *
+      DISTANCE_PER_TRIAL
+    const TOTAL_TIME = sum(Object.values(data))
 
     const ROUND_TO = 2
 
-    const MEAN_IN_SECONDS_RESULT = round(R.mean(Object.values(data)), ROUND_TO)
+    const MEAN_IN_SECONDS_RESULT = round(mean(Object.values(data)), ROUND_TO)
 
     /**
      * Calculate average speed in meters per second

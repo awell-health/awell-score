@@ -43,7 +43,7 @@ describe('blcs', function () {
   })
 
   describe('when an answer is below the expected range', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         blcs_calculation.calculate({
           payload: {
@@ -55,7 +55,7 @@ describe('blcs', function () {
   })
 
   describe('when an answer is above the expected range', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         blcs_calculation.calculate({
           payload: {
@@ -67,7 +67,7 @@ describe('blcs', function () {
   })
 
   describe('when an answer is above the expected range for Q04', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         blcs_calculation.calculate({
           payload: {
@@ -79,7 +79,7 @@ describe('blcs', function () {
   })
 
   describe('when there are non-numerical answers', function () {
-    it('should throw an InvalidInputsError', function () {
+    it('should throw an ZodError', function () {
       expect(() =>
         blcs_calculation.calculate({
           payload: {

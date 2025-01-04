@@ -4,7 +4,7 @@ import {
   koos_conversion_table,
 } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const koos_ps: ScoreType<typeof KOOS_PS_INPUTS, typeof KOOS_PS_OUTPUT> =
   {
@@ -13,7 +13,7 @@ export const koos_ps: ScoreType<typeof KOOS_PS_INPUTS, typeof KOOS_PS_OUTPUT> =
     inputSchema: KOOS_PS_INPUTS,
     outputSchema: KOOS_PS_OUTPUT,
     calculate: ({ data }) => {
-      const totalScore = _.sum(Object.values(data))
+      const totalScore = sum(Object.values(data))
       return {
         KOOS_PS: koos_conversion_table[totalScore.toString()],
       }

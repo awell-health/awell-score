@@ -1,6 +1,6 @@
 import { PSS4_INPUTS, PSS4_OUTPUTS } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const pss_4: ScoreType<typeof PSS4_INPUTS, typeof PSS4_OUTPUTS> = {
   name: 'Perceived Stress Scale 4 (PSS-4)',
@@ -13,7 +13,7 @@ export const pss_4: ScoreType<typeof PSS4_INPUTS, typeof PSS4_OUTPUTS> = {
     const reversedValues = reversedInputs.map(i => MAX_SCORE - i)
 
     const allValues = [data.PSS4_Q01, ...reversedValues, data.PSS4_Q04]
-    const totalScore = _.sum(allValues)
+    const totalScore = sum(allValues)
 
     return {
       PSS4_SCORE: totalScore,

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../../errors'
+import { ZodError } from '../../../errors'
 import { execute_test_calculation } from '../../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../../lib/view_result'
@@ -83,48 +83,48 @@ describe('ompq', function () {
 
   describe('validation', function () {
     describe('when question 5 is not passed as an array', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           ompq_calculation({
             OMPQ_Q05: 'neck',
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when question 6 has an invalid minimum score', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           ompq_calculation({
             OMPQ_Q06: 0,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when question 7 has an invalid minimum score', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           ompq_calculation({
             OMPQ_Q07: 0,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when any other input has an invalid minimum score', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           ompq_calculation({
             OMPQ_Q10: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when any other input has an invalid maximum score', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           ompq_calculation({
             OMPQ_Q10: 11,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })

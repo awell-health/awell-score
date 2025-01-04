@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 
 export const is_numeric = (val: unknown): boolean =>
   typeof val === 'number' && !Number.isNaN(val)
@@ -15,7 +15,7 @@ type RemoveUndefined<T> = {
 export const areAllValuesDefined = <T extends Record<string, unknown>>(
   data: T,
 ): data is RemoveUndefined<T> => {
-  if (_.isEmpty(data)) {
+  if (isEmpty(data)) {
     return false
   }
   return Object.values(data).every(value => value !== undefined)

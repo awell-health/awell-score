@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { sum } from 'lodash'
 import { BWCS_INPUTS, BWCS_OUTPUT } from './definition'
 import { ScoreType } from '../../types'
 
@@ -13,7 +13,7 @@ export const bwcs: ScoreType<typeof BWCS_INPUTS, typeof BWCS_OUTPUT> = {
     if (valid_answers.length === 0) return { BWCS_TOTAL_SCORE: null }
 
     return {
-      BWCS_TOTAL_SCORE: _.sum(valid_answers),
+      BWCS_TOTAL_SCORE: sum(valid_answers),
     }
   },
 }

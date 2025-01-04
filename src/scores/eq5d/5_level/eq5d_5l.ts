@@ -1,6 +1,5 @@
 import { EQ5D_5L_INPUTS, EQ5D_5L_OUTPUT } from './definition'
 import { ScoreType } from '../../../types'
-import _ from 'lodash'
 import { calculate_be_utility_value } from './calculate_utility_values/Belgium/calculate_be_utility_value'
 
 export const eq5d_5l: ScoreType<typeof EQ5D_5L_INPUTS, typeof EQ5D_5L_OUTPUT> =

@@ -1,6 +1,4 @@
-// import R from 'ramda'
-
-import _ from 'lodash'
+import { sample } from 'lodash'
 
 export const simulateStringInput = (): string => {
   const DEFAULT_SIMULATION = [
@@ -11,5 +9,5 @@ export const simulateStringInput = (): string => {
     'Tony’s turtle told tall tales',
   ] as const
 
-  return _.sample(DEFAULT_SIMULATION)
+  return sample(DEFAULT_SIMULATION)
 }

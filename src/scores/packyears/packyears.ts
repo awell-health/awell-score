@@ -1,6 +1,5 @@
 import { PACKYEARS_INPUTS, PACKYEARS_OUTPUT } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
 
 export const packyears: ScoreType<
   typeof PACKYEARS_INPUTS,

@@ -241,7 +241,7 @@ describe('paq_c', function () {
             paq_c_calculation({
               ITEM_1_ACTIVITY_01: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is not allowed (e.g. is below the expected range)', function () {
@@ -250,7 +250,7 @@ describe('paq_c', function () {
             paq_c_calculation({
               ITEM_1_ACTIVITY_01: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is not allowed (e.g. is above the expected range)', function () {
@@ -259,7 +259,7 @@ describe('paq_c', function () {
             paq_c_calculation({
               ITEM_1_ACTIVITY_01: 6,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

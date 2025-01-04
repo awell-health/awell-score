@@ -121,7 +121,7 @@ describe('tampa', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           tampa_calculation.calculate({
             payload: {
@@ -132,7 +132,7 @@ describe('tampa', function () {
       })
     })
     describe('when an answer is not one of the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           tampa_calculation.calculate({
             payload: {

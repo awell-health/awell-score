@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../errors'
+import { ZodError } from '../../errors'
 import { execute_test_calculation } from '../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../lib/view_result'
@@ -132,65 +132,65 @@ describe('mmse', function () {
           mmse_calculation({
             ORIENTATION_TO_TIME: "I'm not a number, you can't do math with me",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when called with a response where there are answers that are not allowed', function () {
-      it('should throw an InvalidInputsError when value on "ORIENTATION_TO_TIME" is out of the expected [0, 5] range', function () {
+      it('should throw an ZodError when value on "ORIENTATION_TO_TIME" is out of the expected [0, 5] range', function () {
         expect(() =>
           mmse_calculation({
             ORIENTATION_TO_TIME: 6,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when value on "ORIENTATION_TO_PLACE" is out of the expected [0, 5] range', function () {
+      it('should throw an ZodError when value on "ORIENTATION_TO_PLACE" is out of the expected [0, 5] range', function () {
         expect(() =>
           mmse_calculation({
             ORIENTATION_TO_PLACE: 6,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when value on "REGISTRATION" is out of the expected [0, 3] range', function () {
+      it('should throw an ZodError when value on "REGISTRATION" is out of the expected [0, 3] range', function () {
         expect(() =>
           mmse_calculation({
             REGISTRATION: 4,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when value on "ATTENTION_AND_CALCULATION" is out of the expected [0, 5] range', function () {
+      it('should throw an ZodError when value on "ATTENTION_AND_CALCULATION" is out of the expected [0, 5] range', function () {
         expect(() =>
           mmse_calculation({
             ATTENTION_AND_CALCULATION: 6,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when value on "RECALL" is out of the expected [0, 3] range', function () {
+      it('should throw an ZodError when value on "RECALL" is out of the expected [0, 3] range', function () {
         expect(() =>
           mmse_calculation({
             RECALL: 4,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when value on "LANGUAGE" is out of the expected [0, 8] range', function () {
+      it('should throw an ZodError when value on "LANGUAGE" is out of the expected [0, 8] range', function () {
         expect(() =>
           mmse_calculation({
             LANGUAGE: 9,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when value on "CONSTRUCT" is out of the expected [0, 1] range', function () {
+      it('should throw an ZodError when value on "CONSTRUCT" is out of the expected [0, 1] range', function () {
         expect(() =>
           mmse_calculation({
             CONSTRUCT: 2,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })

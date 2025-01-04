@@ -1,6 +1,6 @@
 import { SST_INPUTS, SST_OUTPUT } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum, round } from 'lodash'
 
 export const simple_shoulder_test: ScoreType<
   typeof SST_INPUTS,
@@ -21,12 +21,12 @@ export const simple_shoulder_test: ScoreType<
       }
     }
 
-    const totalScore = _.sum(Object.values(data))
+    const totalScore = sum(Object.values(data))
     const percentageScore = (totalScore / totalQuestions) * 100
     const ROUND_TO = 2
 
     return {
-      SST: _.round(percentageScore, ROUND_TO),
+      SST: round(percentageScore, ROUND_TO),
     }
   },
 }

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { InvalidInputsError } from '../../errors'
+import { ZodError } from '../../errors'
 import { execute_test_calculation } from '../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../lib/view_result'
@@ -222,12 +222,12 @@ describe('oas', function () {
     })
 
     describe('when an answer is not not one of the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           oas_calculation({
             OAS_Q01: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 

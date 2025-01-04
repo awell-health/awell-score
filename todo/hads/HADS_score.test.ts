@@ -112,21 +112,21 @@ describe('hads', function () {
 
   describe('when called with a response where there are answers out of the expected [0-3] range', function () {
     describe('when an answer is below the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           hads_calculation({
             HADS_01: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is above the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           hads_calculation({
             HADS_01: 4,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../errors'
+import { ZodError } from '../../errors'
 import { execute_test_calculation } from '../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../lib/view_result'
@@ -367,7 +367,7 @@ describe('hoos_extended', function () {
             hoos_calculation({
               a1: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is not allowed (e.g. is below the expected range)', function () {
@@ -376,7 +376,7 @@ describe('hoos_extended', function () {
             hoos_calculation({
               a1: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is not allowed (e.g. is above the expected range)', function () {
@@ -385,7 +385,7 @@ describe('hoos_extended', function () {
             hoos_calculation({
               a1: 5,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

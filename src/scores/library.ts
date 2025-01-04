@@ -8,17 +8,17 @@ import { bwcs } from './bwcs/bwcs'
 import { bmi_metric, bmi_imperial } from './bmi'
 // import { breast_q as breast_q_conserving_therapy_pre_and_postoperative } from './breast_q/breast_conserving/breast_q'
 // import { cade_q_sv } from './cade_q'
-// import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
+import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
 // import { cat } from './cat/cat'
 // import { ccq } from './ccq/ccq'
 // import { cdlqi } from './cdlqi/cdlqi'
-// import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
+import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { chc_preop_brochure_triage } from './chc'
 // import { femmes_enceintes_triage } from './chc/femmes_enceintes/triage/triage'
 // import { comi_back, comi_neck } from './comi'
 // import { compass_31 } from './compass_31/compass_31'
 // import { constant_murley_score_orthotoolkit } from './constant_murley_score'
-// import { core_om } from './core_om/core_om'
+import { core_om } from './core_om/core_om'
 import { cpdi } from './cpdi/cpdi'
 // import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
@@ -38,20 +38,20 @@ import { dn4 } from './dn4/dn4'
 // } from './eortc'
 // import { epic_26 } from './epic_26/epic_26'
 import { eq5d_3l, eq5d_5l } from './eq5d'
-// import { ess } from './ess/ess'
+import { ess } from './ess/ess'
 // import { faam } from './faam/faam'
 // import { short_fes_i } from './fes_i'
 import { fnd } from './fnd/fnd'
 // import { foot_function_index_5pt } from './foot_function_index'
-// import {
-//   forgotten_joint_score_hip,
-//   forgotten_joint_score_knee,
-// } from './forgotten_joint_score_12'
+import {
+  forgotten_joint_score_hip,
+  forgotten_joint_score_knee,
+} from './forgotten_joint_score_12'
 import { pss_4 } from './pss_4/pss_4'
 import { stop_bang } from './stop_bang/stop_bang'
 import { gad_2 } from './GAD_2/gad_2'
 import { gad_7 } from './GAD_7/gad_7'
-// import { ghq_12 } from './ghq_12/ghq_12'
+import { ghq_12 } from './ghq_12/ghq_12'
 // import { hads } from './hads/HADS_score'
 // import { harris_hip_score } from './harris_hip_score/harris_hip_score'
 // import { hoos_extended } from './hoos_extended/hoos_extended'
@@ -59,8 +59,8 @@ import { hoos_ps } from './hoos_ps/hoos_ps'
 // import { hos } from './hos/hos'
 // import { hrqol_4 } from './hrqol'
 // import { ias } from './ias/ias'
-// import { IBD_control } from './IBD_control/IBD_control'
-// import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
+import { IBD_control } from './IBD_control/IBD_control'
+import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
 // import { iief5 } from './iief5/iief5'
 // import { ikdc } from './ikdc/ikdc'
 // import { ipss } from './ipss/ipss'
@@ -119,7 +119,6 @@ import { yp_core } from './yp_core/yp_core'
 // import { zarit_12 } from './zarit_12/zarit_12'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
-import _ from 'lodash'
 import { ScoreType } from '../types'
 // import { korq } from './korq/korq'
 // import { mlks } from './mlks/mlks'
@@ -152,18 +151,18 @@ export const ScoreLibrary = createScoreLibrary({
   bwcs,
   // breast_q_conserving_therapy_pre_and_postoperative,
   // cade_q_sv,
-  // caregiver_strain_index,
+  caregiver_strain_index,
   // cat,
   // ccq,
   // cdlqi,
-  // CHA2DS2_VASc_Score,
+  CHA2DS2_VASc_Score,
   // chc_preop_brochure_triage,
   // femmes_enceintes_triage,
   // comi_back,
   // comi_neck,
   // compass_31,
   // constant_murley_score_orthotoolkit,
-  // core_om,
+  core_om,
   cpdi,
   // csi,
   dast_10,
@@ -182,15 +181,15 @@ export const ScoreLibrary = createScoreLibrary({
   // epic_26,
   eq5d_3l,
   eq5d_5l,
-  // ess,
+  ess,
   // faam,
   fnd,
   // foot_function_index_5pt,
-  // forgotten_joint_score_hip,
-  // forgotten_joint_score_knee,
+  forgotten_joint_score_hip,
+  forgotten_joint_score_knee,
   gad_2,
   gad_7,
-  // ghq_12,
+  ghq_12,
   // hads,
   // harris_hip_score,
   // hoos_extended,
@@ -198,8 +197,8 @@ export const ScoreLibrary = createScoreLibrary({
   // hos,
   // hrqol_4,
   // ias,
-  // IBD_control,
-  // ibd_disk_total_score,
+  IBD_control,
+  ibd_disk_total_score,
   // iief5,
   // ikdc,
   // isi,

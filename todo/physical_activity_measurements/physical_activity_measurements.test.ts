@@ -161,30 +161,30 @@ describe('physical_activity_measurement', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           physical_activity_measurement_calculation({
             LIGHT_PA_DAYS_PER_WEEK: "I'm not a number",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is not one of the allowed answers (e.g. is below the expected range)', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           physical_activity_measurement_calculation({
             LIGHT_PA_DAYS_PER_WEEK: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is not allowed one of the allowed answers (e.g. is above the expected range)', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           physical_activity_measurement_calculation({
             LIGHT_PA_DAYS_PER_WEEK: 8,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })

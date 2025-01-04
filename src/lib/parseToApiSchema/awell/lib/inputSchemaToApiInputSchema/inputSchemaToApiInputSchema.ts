@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import _, { isNil } from 'lodash'
+import { isNil } from 'lodash'
 import {
   LabelType,
   ScoreInputSchemaType,

@@ -180,31 +180,31 @@ describe('cdlqi', function () {
 
     describe('when called with a response with answers out of the expected [0,3] range', function () {
       describe('when an answer is not a number', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             cdlqi_calculation({
               CDLQI_Q01: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is below the expected [0,3] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             cdlqi_calculation({
               CDLQI_Q01: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
 
       describe('when an answer is above the expected [0,3] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             cdlqi_calculation({
               CDLQI_Q01: 5,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

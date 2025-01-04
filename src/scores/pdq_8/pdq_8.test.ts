@@ -110,7 +110,7 @@ describe('pdq_8', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           pdq8_calculation.calculate({
             payload: {
@@ -121,7 +121,7 @@ describe('pdq_8', function () {
       })
     })
     describe('when an answer is below one of the expected answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           pdq8_calculation.calculate({
             payload: {
@@ -132,7 +132,7 @@ describe('pdq_8', function () {
       })
     })
     describe('when an answer is above one of the expected answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           pdq8_calculation.calculate({
             payload: {

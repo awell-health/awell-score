@@ -8,7 +8,6 @@ import {
   random_response,
 } from './__testdata__/cpdi_test_responses'
 import { cpdi } from './cpdi'
-import { compose } from 'ramda'
 
 const CPDI_MIN_SCORE = 0
 const CPDI_MEDIAN_SCORE = 50
@@ -72,7 +71,7 @@ describe('cpdi', function () {
       })
     })
     describe('when an answer is below the expected [0,4] range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           cpid_calculation.calculate({
             payload: {
@@ -84,7 +83,7 @@ describe('cpdi', function () {
     })
 
     describe('when called with a response where there are answers out of the expected [0, 4] range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           cpid_calculation.calculate({
             payload: {
@@ -95,7 +94,7 @@ describe('cpdi', function () {
       })
     })
     describe('when called with a response where there are non-numerical answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           cpid_calculation.calculate({
             payload: {

@@ -49,7 +49,7 @@ describe('fnd', function () {
     })
 
     describe('when an answer is not not one of the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           fnd_calculation.calculate({
             payload: {

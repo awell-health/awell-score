@@ -1,5 +1,5 @@
 import { BmiOutputSchema, BmiInputSchema } from './bmi.schema'
-import { round } from 'mathjs'
+import { round } from 'lodash'
 import { ScoreType } from '../../../types'
 
 export const bmi_us: ScoreType<typeof BmiInputSchema, typeof BmiOutputSchema> =

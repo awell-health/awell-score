@@ -384,30 +384,30 @@ describe('KCCQ_12', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           kccq12_calculation({
             KCCQ12_Q1_A: "I'm not a number",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is below the expected [1,6] range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           kccq12_calculation({
             KCCQ12_Q1_A: 0,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when an answer is above the expected [1,6] range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           kccq12_calculation({
             KCCQ12_Q1_A: 7,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
   })

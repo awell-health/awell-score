@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../../errors'
+import { ZodError } from '../../../errors'
 import { execute_test_calculation } from '../../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../../lib/view_result'
@@ -2060,7 +2060,7 @@ describe('eortc_qlq_cr29', function () {
             eortc_qlq_cr29_calculation({
               EORTCQLQCR29_Q31: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is below the expected [1,4] range', function () {
@@ -2069,7 +2069,7 @@ describe('eortc_qlq_cr29', function () {
             eortc_qlq_cr29_calculation({
               EORTCQLQCR29_Q31: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is above the expected [1,4] range', function () {
@@ -2078,7 +2078,7 @@ describe('eortc_qlq_cr29', function () {
             eortc_qlq_cr29_calculation({
               EORTCQLQCR29_Q31: 999,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

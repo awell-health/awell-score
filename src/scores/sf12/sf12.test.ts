@@ -95,31 +95,31 @@ describe('sf12', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges for question 1', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           score.calculate({ payload: { SF12_Q01: "I'm not a number" } }),
         ).toThrow(ZodError)
       })
     })
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() => score.calculate({ payload: { SF12_Q01: -1 } })).toThrow(
           ZodError,
         )
       })
     })
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() => score.calculate({ payload: { SF12_Q01: 6 } })).toThrow(
           ZodError,
         )
       })
-      it('should throw an InvalidInputsError for question 4', function () {
+      it('should throw an ZodError for question 4', function () {
         expect(() => score.calculate({ payload: { SF12_Q04: 3 } })).toThrow(
           ZodError,
         )
       })
-      it('should throw an InvalidInputsError for question 9', function () {
+      it('should throw an ZodError for question 9', function () {
         expect(() => score.calculate({ payload: { SF12_Q09: 7 } })).toThrow(
           ZodError,
         )

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../../errors'
+import { ZodError } from '../../../errors'
 import { execute_test_calculation } from '../../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../../lib/view_result'
@@ -61,32 +61,32 @@ describe('eortc_qlq_br23', function () {
   describe('validation', function () {
     describe('values entered by the user shall be checked to verify they are inside specified ranges', function () {
       describe('when an answer is not a number', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             eortc_qlq_br23_calculation({
               EORTC_QLQ_BR23_Q01: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
 
       describe('when an answer is below the expected [1,4] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             eortc_qlq_br23_calculation({
               EORTC_QLQ_BR23_Q01: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
 
       describe('when an answer is above the expected [1,4] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             eortc_qlq_br23_calculation({
               EORTC_QLQ_BR23_Q01: 999,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

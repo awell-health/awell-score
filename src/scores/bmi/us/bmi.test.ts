@@ -74,7 +74,7 @@ describe('bmi_imperial', function () {
         ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when "weight" is not in the expected range', function () {
+      it('should throw an ZodError when "weight" is not in the expected range', function () {
         expect(() =>
           calculation.calculate({
             payload: {
@@ -86,7 +86,7 @@ describe('bmi_imperial', function () {
         ).toThrow(ZodError)
       })
 
-      it('should throw an InvalidInputsError when "height" is not in the expected range', function () {
+      it('should throw an ZodError when "height" is not in the expected range', function () {
         expect(() =>
           calculation.calculate({
             payload: {

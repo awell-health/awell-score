@@ -1,5 +1,3 @@
-import R from 'ramda'
-
 import { ScoreLibrary } from './library'
 
 describe('calculation library', function () {

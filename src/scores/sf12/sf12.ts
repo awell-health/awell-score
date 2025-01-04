@@ -1,7 +1,7 @@
 import { areAllValuesDefined } from '../../lib'
 import { ScoreType } from '../../types'
 import { SF12_INPUT, SF12_OUTPUT } from './definition'
-import _ from 'lodash'
+import { round } from 'lodash'
 
 export const sf12: ScoreType<typeof SF12_INPUT, typeof SF12_OUTPUT> = {
   name: '12-Item Short Form Survey (SF12)',
@@ -161,8 +161,8 @@ export const sf12: ScoreType<typeof SF12_INPUT, typeof SF12_OUTPUT> = {
       60.75781
 
     return {
-      PHYSICAL_COMPONENT_SCORE: _.round(RAWPCS12, 5),
-      MENTAL_COMPONENT_SCORE: _.round(RAWMCS12, 5),
+      PHYSICAL_COMPONENT_SCORE: round(RAWPCS12, 5),
+      MENTAL_COMPONENT_SCORE: round(RAWMCS12, 5),
     }
   },
 }

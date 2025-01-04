@@ -74,31 +74,31 @@ describe('harris_hip_score', function () {
       })
     })
     describe('when an answer is below the expected [0,4] range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           harris_hip_score_calculation({
             PAIN: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when called with a response where there are answers out of the expected [0, 4] range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           harris_hip_score_calculation({
             PAIN: 100,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when called with a response where there are non-numerical answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           harris_hip_score_calculation({
             PAIN: "I'm not a number",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
     describe('when called with an empty response', function () {

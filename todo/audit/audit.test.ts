@@ -59,28 +59,26 @@ describe('audit', function () {
   describe('validation', function () {
     describe('when called with a response where there are answers out of the expected [0-4] range', function () {
       describe('when an answer is above the expected [0,4] range', function () {
-        it('should throw an InvalidInputsError', function () {
-          expect(() => audit_calculation({ AUDIT_Q01: 10 })).toThrow(
-            InvalidInputsError,
-          )
+        it('should throw an ZodError', function () {
+          expect(() => audit_calculation({ AUDIT_Q01: 10 })).toThrow(ZodError)
         })
       })
       describe('when an answer is not a number', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             audit_calculation({
               AUDIT_Q01: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
       describe('when an answer is below the expected [0,4] range', function () {
-        it('should throw an InvalidInputsError', function () {
+        it('should throw an ZodError', function () {
           expect(() =>
             audit_calculation({
               AUDIT_Q01: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

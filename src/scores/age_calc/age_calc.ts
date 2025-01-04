@@ -1,4 +1,3 @@
-import moment from 'moment'
 import { ScoreType } from '../../types'
 import { AGE_CALC_OUTPUT, AGE_CALC_INPUTS } from './definition'
 
@@ -11,11 +10,19 @@ export const age_calc: ScoreType<
   inputSchema: AGE_CALC_INPUTS,
   outputSchema: AGE_CALC_OUTPUT,
   calculate: ({ data }) => {
-    const dobMoment = moment(data.date_of_birth, moment.ISO_8601)
-    const age = moment().diff(dobMoment, 'years')
+    const dateOfBirth = new Date(data.date_of_birth)
+    const today = new Date()
+
+    const age = today.getFullYear() - dateOfBirth.getFullYear()
+    const isBirthdayPassed =
+      today.getMonth() > dateOfBirth.getMonth() ||
+      (today.getMonth() === dateOfBirth.getMonth() &&
+        today.getDate() >= dateOfBirth.getDate())
+
+    const adjustedAge = isBirthdayPassed ? age : age - 1
 
     return {
-      AGE: age,
+      AGE: adjustedAge,
     }
   },
 }

@@ -1,6 +1,6 @@
 import { PRO2_INPUTS, PRO2_OUTPUT } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum, omit } from 'lodash'
 import {
   GENERAL_WELL_BEING_FACTOR,
   STOOL_FREQUENCY_FACTOR,
@@ -18,12 +18,12 @@ export const pro2: ScoreType<typeof PRO2_INPUTS, typeof PRO2_OUTPUT> = {
     const weightedGeneralWellBeing =
       data.GENERAL_WELL_BEING * GENERAL_WELL_BEING_FACTOR
 
-    const totalScore = _.sum([
+    const totalScore = sum([
       weightedAbdominalPain,
       weightedStoolFrequency,
       weightedGeneralWellBeing,
       ...Object.values(
-        _.omit(data, [
+        omit(data, [
           // We use the weighted values for the total score
           'STOOL_FREQUENCY',
           'ABDOMINAL_PAIN',

@@ -141,52 +141,52 @@ describe('psqi', function () {
   })
 
   describe('Input validations', function () {
-    it('when an answer is below the expected range for question with hours: should throw an InvalidInputsError', function () {
+    it('when an answer is below the expected range for question with hours: should throw an ZodError', function () {
       expect(() =>
         psqi_calculation({
           Q01: -1,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
 
-    it('when an answer is above the expected range for question with hours: should throw an InvalidInputsError', function () {
+    it('when an answer is above the expected range for question with hours: should throw an ZodError', function () {
       expect(() =>
         psqi_calculation({
           Q01: 25,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
 
-    it('when there are non-numerical answers: should throw an InvalidInputsError', function () {
+    it('when there are non-numerical answers: should throw an ZodError', function () {
       expect(() =>
         psqi_calculation({
           Q01: "I'm not a number",
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
 
-    it('when an answer is below the expected range for question with standard input: should throw an InvalidInputsError', function () {
+    it('when an answer is below the expected range for question with standard input: should throw an ZodError', function () {
       expect(() =>
         psqi_calculation({
           Q06: -1,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
 
-    it('when an answer is above the expected range for question with standard input: should throw an InvalidInputsError', function () {
+    it('when an answer is above the expected range for question with standard input: should throw an ZodError', function () {
       expect(() =>
         psqi_calculation({
           Q06: 5,
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
 
-    it('when there are non-numerical answers with standard input: should throw an InvalidInputsError', function () {
+    it('when there are non-numerical answers with standard input: should throw an ZodError', function () {
       expect(() =>
         psqi_calculation({
           Q06: "I'm not a number",
         }),
-      ).toThrow(InvalidInputsError)
+      ).toThrow(ZodError)
     })
   })
 

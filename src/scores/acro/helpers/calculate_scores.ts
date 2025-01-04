@@ -1,24 +1,22 @@
-import R from 'ramda'
-
 import { ACRO_SUBSCALES, type SubscaleType } from '../definition/acro_subscales'
 import { z } from 'zod'
-import _ from 'lodash'
+import { sum, compact, filter } from 'lodash'
 import { ACRO_INPUTS } from '../definition'
 
 export const calculate_scores = (
   inputs_with_answers: z.infer<
     z.ZodObject<{
-      [K in keyof typeof ACRO_INPUTS]: typeof ACRO_INPUTS[K]['type']
+      [K in keyof typeof ACRO_INPUTS]: (typeof ACRO_INPUTS)[K]['type']
     }>
   >,
-  subscale: SubscaleType
+  subscale: SubscaleType,
 ): number | null => {
   const INPUT_IDS_NEEDED_FOR_SCORING = ACRO_SUBSCALES[subscale]
 
-  const valid_answers_in_subscale = _.compact(
-    _.filter(inputs_with_answers, (_i, key) =>
-      INPUT_IDS_NEEDED_FOR_SCORING.includes(key)
-    )
+  const valid_answers_in_subscale = compact(
+    filter(inputs_with_answers, (_i, key) =>
+      INPUT_IDS_NEEDED_FOR_SCORING.includes(key),
+    ),
   )
 
   if (
@@ -27,7 +25,7 @@ export const calculate_scores = (
     return null
   }
 
-  const subscaleTotal = R.sum(valid_answers_in_subscale)
+  const subscaleTotal = sum(valid_answers_in_subscale)
 
   const bestScores = {
     PHYSICAL_SUBSCALE: 40,

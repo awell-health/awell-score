@@ -57,7 +57,7 @@ describe('phq_8', function () {
     })
 
     describe('when an answer is not not one of the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           phq_8_calculation.calculate({
             payload: {

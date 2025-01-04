@@ -133,7 +133,7 @@ describe('sccai', function () {
       })
     })
     describe('when an answer is above one of the expected answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           sccai_calculation.calculate({
             payload: {

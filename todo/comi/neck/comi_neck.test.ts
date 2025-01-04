@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import R from 'ramda'
 
-import { InvalidInputsError } from '../../../errors'
+import { ZodError } from '../../../errors'
 import { execute_test_calculation } from '../../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../../lib/view_result'
@@ -79,27 +79,21 @@ describe('comi_neck', function () {
 
     describe('when answer on item 1a is out of the expected range', function () {
       describe('when answer < 0', function () {
-        it('should throw an InvalidInputsError', function () {
-          expect(() => comi_neck_calculation({ item_1a: -1 })).toThrow(
-            InvalidInputsError,
-          )
+        it('should throw an ZodError', function () {
+          expect(() => comi_neck_calculation({ item_1a: -1 })).toThrow(ZodError)
         })
       })
 
       describe('when answer > 10', function () {
-        it('should throw an InvalidInputsError', function () {
-          expect(() => comi_neck_calculation({ item_1a: 11 })).toThrow(
-            InvalidInputsError,
-          )
+        it('should throw an ZodError', function () {
+          expect(() => comi_neck_calculation({ item_1a: 11 })).toThrow(ZodError)
         })
       })
     })
 
     describe('when answer on item 3 is not expected', function () {
-      it('should throw an InvalidInputsError', function () {
-        expect(() => comi_neck_calculation({ item_3: 4 })).toThrow(
-          InvalidInputsError,
-        )
+      it('should throw an ZodError', function () {
+        expect(() => comi_neck_calculation({ item_3: 4 })).toThrow(ZodError)
       })
     })
 

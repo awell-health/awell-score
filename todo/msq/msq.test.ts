@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { InvalidInputsError } from '../../errors'
+import { ZodError } from '../../errors'
 import { execute_test_calculation } from '../../lib/execute_test_calculation'
 import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
 import { view_result } from '../../lib/view_result'
@@ -348,32 +348,32 @@ describe('msq', function () {
     })
 
     describe('when an answer is below the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           msq_calculation({
             DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: -1,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when an answer is above the expected range', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           msq_calculation({
             DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: 5,
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 
     describe('when there are non-numerical answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           msq_calculation({
             DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: "I'm not a number",
           }),
-        ).toThrow(InvalidInputsError)
+        ).toThrow(ZodError)
       })
     })
 

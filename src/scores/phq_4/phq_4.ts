@@ -1,6 +1,5 @@
 import { PHQ4_INPUTS, PHQ4_OUTPUT, PHQ4_INTERPRATION_TABLE } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
 
 export const phq_4: ScoreType<typeof PHQ4_INPUTS, typeof PHQ4_OUTPUT> = {
   name: 'Patient Health Questionnaire-4 (PHQ-4)',

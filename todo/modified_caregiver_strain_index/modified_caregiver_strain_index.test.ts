@@ -150,7 +150,7 @@ describe('modified_caregiver_strain_index', function () {
             modified_caregiver_strain_index_calculation({
               CSI_Q01: "I'm not a number",
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
 
@@ -160,7 +160,7 @@ describe('modified_caregiver_strain_index', function () {
             modified_caregiver_strain_index_calculation({
               CSI_Q01: -1,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
 
@@ -170,7 +170,7 @@ describe('modified_caregiver_strain_index', function () {
             modified_caregiver_strain_index_calculation({
               CSI_Q01: 3,
             }),
-          ).toThrow(InvalidInputsError)
+          ).toThrow(ZodError)
         })
       })
     })

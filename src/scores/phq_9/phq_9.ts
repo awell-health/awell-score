@@ -1,6 +1,6 @@
 import { PHQ9_INPUTS, PHQ9_OUTPUT, PHQ9_INTERPRATION_TABLE } from './definition'
 import { ScoreType } from '../../types'
-import _ from 'lodash'
+import { sum } from 'lodash'
 
 export const phq_9: ScoreType<typeof PHQ9_INPUTS, typeof PHQ9_OUTPUT> = {
   name: 'Patient Health Questionnaire-9 (PHQ-9)',
@@ -8,7 +8,7 @@ export const phq_9: ScoreType<typeof PHQ9_INPUTS, typeof PHQ9_OUTPUT> = {
   inputSchema: PHQ9_INPUTS,
   outputSchema: PHQ9_OUTPUT,
   calculate: ({ data }) => {
-    const total_score = _.sum(Object.values(data))
+    const total_score = sum(Object.values(data))
 
     return {
       PHQ9_SCORE: total_score,

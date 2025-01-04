@@ -129,7 +129,7 @@ describe('eq5d_3l', function () {
 
   describe('values entered by the user are checked to verify they are inside specified ranges', function () {
     describe('when an answer is not a number', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           eq5d_3l_calculation.calculate({
             payload: {
@@ -140,7 +140,7 @@ describe('eq5d_3l', function () {
       })
     })
     describe('when an answer is below the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           eq5d_3l_calculation.calculate({
             payload: {
@@ -151,7 +151,7 @@ describe('eq5d_3l', function () {
       })
     })
     describe('when an answer is above the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+      it('should throw an ZodError', function () {
         expect(() =>
           eq5d_3l_calculation.calculate({
             payload: {
