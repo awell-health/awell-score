@@ -7,7 +7,7 @@ import { blcs } from './blcs/blcs'
 import { bwcs } from './bwcs/bwcs'
 import { bmi_metric, bmi_imperial } from './bmi'
 // import { breast_q as breast_q_conserving_therapy_pre_and_postoperative } from './breast_q/breast_conserving/breast_q'
-// import { cade_q_sv } from './cade_q'
+import { cade_q_sv } from './cade_q'
 import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
 // import { cat } from './cat/cat'
 // import { ccq } from './ccq/ccq'
@@ -20,7 +20,7 @@ import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { constant_murley_score_orthotoolkit } from './constant_murley_score'
 import { core_om } from './core_om/core_om'
 import { cpdi } from './cpdi/cpdi'
-// import { csi } from './csi/csi'
+import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
 // import { demo_calculation } from './demo_calculation/demo_calculation'
 // import { difference_calc } from './difference_calc/difference_calc'
@@ -150,7 +150,7 @@ export const ScoreLibrary = createScoreLibrary({
   blcs,
   bwcs,
   // breast_q_conserving_therapy_pre_and_postoperative,
-  // cade_q_sv,
+  cade_q_sv,
   caregiver_strain_index,
   // cat,
   // ccq,
@@ -164,7 +164,7 @@ export const ScoreLibrary = createScoreLibrary({
   // constant_murley_score_orthotoolkit,
   core_om,
   cpdi,
-  // csi,
+  csi,
   dast_10,
   // demo_calculation,
   // difference_calc,
