@@ -9,7 +9,7 @@ import { bmi_metric, bmi_imperial } from './bmi'
 // import { breast_q as breast_q_conserving_therapy_pre_and_postoperative } from './breast_q/breast_conserving/breast_q'
 import { cade_q_sv } from './cade_q'
 import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
-// import { cat } from './cat/cat'
+import { cat } from './cat/cat'
 // import { ccq } from './ccq/ccq'
 // import { cdlqi } from './cdlqi/cdlqi'
 import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
@@ -40,7 +40,7 @@ import { dn4 } from './dn4/dn4'
 import { eq5d_3l, eq5d_5l } from './eq5d'
 import { ess } from './ess/ess'
 // import { faam } from './faam/faam'
-// import { short_fes_i } from './fes_i'
+import { short_fes_i } from './fes_i'
 import { fnd } from './fnd/fnd'
 // import { foot_function_index_5pt } from './foot_function_index'
 import {
@@ -64,7 +64,7 @@ import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_scor
 // import { iief5 } from './iief5/iief5'
 // import { ikdc } from './ikdc/ikdc'
 // import { ipss } from './ipss/ipss'
-// import { isi } from './isi/isi'
+import { isi } from './isi/isi'
 // import { k_bild } from './k_bild/k_bild'
 // import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
 import { koos_ps } from './koos_ps/koos_ps'
@@ -152,7 +152,7 @@ export const ScoreLibrary = createScoreLibrary({
   // breast_q_conserving_therapy_pre_and_postoperative,
   cade_q_sv,
   caregiver_strain_index,
-  // cat,
+  cat,
   // ccq,
   // cdlqi,
   CHA2DS2_VASc_Score,
@@ -201,7 +201,7 @@ export const ScoreLibrary = createScoreLibrary({
   ibd_disk_total_score,
   // iief5,
   // ikdc,
-  // isi,
+  isi,
   // ipss,
   // k_bild,
   // KCCQ_12,
@@ -257,7 +257,7 @@ export const ScoreLibrary = createScoreLibrary({
   // sdq,
   sf12,
   // sf36,
-  // short_fes_i,
+  short_fes_i,
   // spadi,
   simple_shoulder_test,
   start_back_screening_tool,

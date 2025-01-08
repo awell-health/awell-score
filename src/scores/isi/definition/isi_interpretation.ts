@@ -4,7 +4,7 @@ type IsiSeverityType =
   | 'Clinical insomnia (moderate severity)'
   | 'Clinical insomnia (severe)'
 
-export const ISI_INTERPRATION_TABLE: { [key: string]: IsiSeverityType } = {
+export const ISI_INTERPRATION_TABLE: Record<string, IsiSeverityType> = {
   '0': 'No clinically significant insomnia',
   '1': 'No clinically significant insomnia',
   '2': 'No clinically significant insomnia',
