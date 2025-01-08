@@ -112,11 +112,11 @@ import { sccai } from './sccai/sccai'
 import { sf12 } from './sf12/sf12'
 // import { spadi } from './spadi/spadi'
 import { simple_shoulder_test } from './sst/simple_shoulder_test'
-// import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
+import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
 import { tampa } from './tampa/tampa'
-// import { visa_a, visa_g, visa_p } from './visa'
+import { visa_a, visa_g, visa_p } from './visa'
 import { yp_core } from './yp_core/yp_core'
-// import { zarit_12 } from './zarit_12/zarit_12'
+import { zarit_12 } from './zarit_12/zarit_12'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
 import { ScoreType } from '../types'
@@ -260,13 +260,13 @@ export const ScoreLibrary = createScoreLibrary({
   // short_fes_i,
   // spadi,
   simple_shoulder_test,
-  // start_back_screening_tool,
+  start_back_screening_tool,
   stop_bang,
   tampa,
   ten_meter_walk_test,
-  // visa_a,
-  // visa_g,
-  // visa_p,
+  visa_a,
+  visa_g,
+  visa_p,
   yp_core,
-  // zarit_12,
+  zarit_12,
 })
