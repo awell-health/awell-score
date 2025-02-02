@@ -121,7 +121,7 @@ import { acro } from './acro/acro'
 import { Score } from '../classes'
 import { ScoreType } from '../types'
 // import { korq } from './korq/korq'
-// import { mlks } from './mlks/mlks'
+import { mlks } from './mlks/mlks'
 // import { psqi } from './psqi/psqi'
 import { test_calculation } from './test_calculation/test_caculation'
 
@@ -214,7 +214,7 @@ export const ScoreLibrary = createScoreLibrary({
   // mds_updrs,
   // mini_best_test,
   // mfis,
-  // mlks,
+  mlks,
   // mmse,
   // moca,
   // modified_caregiver_strain_index,

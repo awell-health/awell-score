@@ -1,22 +1,15 @@
-import { expect } from 'chai'
-
+import { ZodError } from 'zod'
 import { Score } from '../../classes'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { MISSING_STATUS } from '../../PARAMETERS'
 import { ScoreLibrary } from '../library'
-import { get_input_ids_from_calculation_blueprint } from '../../src/calculation_suite/calculations/shared_functions'
 import {
   best_response,
   median_response,
   random_response,
   worst_response,
 } from './__testdata__/mlks_test_responses'
-import { MLKS_INPUTS } from './definition'
 import { mlks } from './mlks'
 
-const mlks_calculation = execute_test_calculation(mlks)
+const mlks_calculation = new Score(mlks)
 
 const scores = {
   best: 100,
@@ -27,18 +20,16 @@ const scores = {
 
 describe('MLKS', function () {
   it('MLKS calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('mlks')
+    expect(ScoreLibrary).toHaveProperty('mlks')
   })
 
   describe('basic assumptions', function () {
-    const outcome = mlks_calculation(best_response)
+    const outcome = mlks_calculation.calculate({ payload: best_response })
 
     it('should have the expected result ids', function () {
       const EXPECTED_RESULT_IDS = ['MLKS_TOTAL_SCORE']
 
-      const configured_calculation_ids =
-        get_result_ids_from_calculation_output(outcome)
-
+      const configured_calculation_ids = Object.keys(outcome)
       expect(configured_calculation_ids).toEqual(EXPECTED_RESULT_IDS)
     })
   })
@@ -57,9 +48,7 @@ describe('MLKS', function () {
           'Q08_SQUATTING',
         ]
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(MLKS_INPUTS)
-
+        const configured_input_ids = Object.keys(mlks_calculation.inputSchema)
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
     })
@@ -68,8 +57,10 @@ describe('MLKS', function () {
   describe('when an answer is below the expected range', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        mlks_calculation({
-          Q01_LIMP: -1,
+        mlks_calculation.calculate({
+          payload: {
+            Q01_LIMP: -1,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -78,8 +69,10 @@ describe('MLKS', function () {
   describe('when an answer is above the expected range', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        mlks_calculation({
-          Q01_LIMP: 30,
+        mlks_calculation.calculate({
+          payload: {
+            Q01_LIMP: 30,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -88,8 +81,10 @@ describe('MLKS', function () {
   describe('when an answer is above the expected range for Q01_LIMP', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        mlks_calculation({
-          Q04_GIVING_WAY_SENSATION_KNEE: 7,
+        mlks_calculation.calculate({
+          payload: {
+            Q04_GIVING_WAY_SENSATION_KNEE: 7,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -98,58 +93,52 @@ describe('MLKS', function () {
   describe('when there are non-numerical answers', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        mlks_calculation({
-          Q01_LIMP: "I'm not a number",
+        mlks_calculation.calculate({
+          payload: {
+            Q01_LIMP: "I'm not a number",
+          },
         }),
       ).toThrow(ZodError)
     })
   })
 
   describe('when called with an empty response', function () {
-    const outcome = mlks_calculation({})
-
-    it('should return missing status for the score', function () {
-      expect(outcome[0].status).toEqual(MISSING_STATUS)
+    it('should throw a ZodError', function () {
+      expect(() => mlks_calculation.calculate({ payload: {} })).toThrow(
+        ZodError,
+      )
     })
   })
 
   describe('score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = mlks_calculation(worst_response)
+      const outcome = mlks_calculation.calculate({ payload: worst_response })
 
       it('should return the worst score', function () {
-        const score = view_result('MLKS_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.worst)
+        expect(outcome.MLKS_TOTAL_SCORE).toEqual(scores.worst)
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = mlks_calculation(best_response)
+      const outcome = mlks_calculation.calculate({ payload: best_response })
       it('should return the best score', function () {
-        const score = view_result('MLKS_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.best)
+        expect(outcome.MLKS_TOTAL_SCORE).toEqual(scores.best)
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = mlks_calculation(median_response)
+      const outcome = mlks_calculation.calculate({ payload: median_response })
 
       it('should return the median score', function () {
-        const score = view_result('MLKS_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.median)
+        expect(outcome.MLKS_TOTAL_SCORE).toEqual(scores.median)
       })
     })
 
     describe('when called with the random response', function () {
-      const outcome = mlks_calculation(random_response)
+      const outcome = mlks_calculation.calculate({ payload: random_response })
 
       it('should return the exepected score', function () {
-        const score = view_result('MLKS_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.random)
+        expect(outcome.MLKS_TOTAL_SCORE).toEqual(scores.random)
       })
     })
   })

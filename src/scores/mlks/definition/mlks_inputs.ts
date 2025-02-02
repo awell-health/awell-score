@@ -1,4 +1,5 @@
-import { type InputType } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { ScoreInputSchemaType } from '../../../types'
 
 export const ZERO = 0
 export const TWO = 2
@@ -11,20 +12,16 @@ export const FIFTEEN = 15
 export const TWENTY = 20
 export const TWENTY_FIVE = 25
 
-/**
- * Make sure to update all the input labels with MLKS labels
- */
-export const MLKS_INPUTS: Array<InputType> = [
-  {
-    input_id: 'Q01_LIMP',
+export const MLKS_INPUTS = {
+  Q01_LIMP: {
     label: {
       en: 'Limp',
       nl: 'Afwijkend looppatroon, mank lopen',
       fr: 'Boiterie',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(FIVE), z.literal(THREE), z.literal(ZERO)]),
+    uiOptions: {
+      options: [
         {
           value: FIVE,
           label: {
@@ -52,16 +49,15 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q02_CANE_OR_CRUTCHES',
+  Q02_CANE_OR_CRUTCHES: {
     label: {
       en: 'Using cane or crutches',
       nl: 'Steun',
       fr: 'Utiliser une canne ou des béquilles',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(FIVE), z.literal(TWO), z.literal(ZERO)]),
+    uiOptions: {
+      options: [
         {
           value: FIVE,
           label: {
@@ -89,16 +85,21 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q03_LOCKING_KNEE',
+  Q03_LOCKING_KNEE: {
     label: {
       en: 'Locking sensation in the knee',
       nl: 'Blokkades/slotverschijnselen',
       fr: 'Sensation de blocage dans le genou',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(FIFTEEN),
+      z.literal(TEN),
+      z.literal(SIX),
+      z.literal(TWO),
+      z.literal(ZERO),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: FIFTEEN,
           label: {
@@ -142,16 +143,22 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q04_GIVING_WAY_SENSATION_KNEE',
+  Q04_GIVING_WAY_SENSATION_KNEE: {
     label: {
       en: 'Giving way sensation from the knee',
       nl: 'Door de knie zakken',
       fr: 'Sensation de cèder au niveau du genou',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(TWENTY_FIVE),
+      z.literal(TWENTY),
+      z.literal(FIFTEEN),
+      z.literal(TEN),
+      z.literal(FIVE),
+      z.literal(ZERO),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: TWENTY_FIVE,
           label: {
@@ -203,16 +210,22 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q05_PAIN',
+  Q05_PAIN: {
     label: {
       en: 'Pain',
       nl: 'Pijn',
       fr: 'Douleur',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(TWENTY_FIVE),
+      z.literal(TWENTY),
+      z.literal(FIFTEEN),
+      z.literal(TEN),
+      z.literal(FIVE),
+      z.literal(ZERO),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: TWENTY_FIVE,
           label: {
@@ -264,16 +277,20 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q06_SWELLING',
+  Q06_SWELLING: {
     label: {
       en: 'Swelling',
       nl: 'Zwelling',
       fr: 'Gonflement',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(TEN),
+      z.literal(SIX),
+      z.literal(TWO),
+      z.literal(ZERO),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: TEN,
           label: {
@@ -309,16 +326,20 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q07_CLIMBING_STAIRS',
+  Q07_CLIMBING_STAIRS: {
     label: {
       en: 'Climbing stairs',
       nl: 'Traplopen',
       fr: 'Monter les escaliers',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(TEN),
+      z.literal(SIX),
+      z.literal(TWO),
+      z.literal(ZERO),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: TEN,
           label: {
@@ -354,16 +375,20 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q08_SQUATTING',
+  Q08_SQUATTING: {
     label: {
       en: 'Squatting',
       nl: 'Hurkzit',
       fr: 'Accroupissement',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(FIVE),
+      z.literal(FOUR),
+      z.literal(TWO),
+      z.literal(ZERO),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: FIVE,
           label: {
@@ -399,4 +424,4 @@ export const MLKS_INPUTS: Array<InputType> = [
       ],
     },
   },
-]
+} satisfies ScoreInputSchemaType
