@@ -65,7 +65,7 @@ import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_scor
 // import { ikdc } from './ikdc/ikdc'
 // import { ipss } from './ipss/ipss'
 import { isi } from './isi/isi'
-// import { k_bild } from './k_bild/k_bild'
+import { k_bild } from './k_bild/k_bild'
 // import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
 import { koos_ps } from './koos_ps/koos_ps'
 // import { math_divide, math_multiply, math_subtract, math_sum } from './math'
@@ -203,7 +203,7 @@ export const ScoreLibrary = createScoreLibrary({
   // ikdc,
   isi,
   // ipss,
-  // k_bild,
+  k_bild,
   // KCCQ_12,
   koos_ps,
   // korq,
