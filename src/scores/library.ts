@@ -74,7 +74,7 @@ import { koos_ps } from './koos_ps/koos_ps'
 // import { mfis } from './mfis/mfis'
 // import { mmse } from './mmse/mmse'
 // import { moca } from './moca/moca'
-// import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
+import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
 // import { mpi } from './mpi/mpi'
 // import { msq } from './msq/msq'
 // import { ndi } from './ndi/ndi'
@@ -217,7 +217,7 @@ export const ScoreLibrary = createScoreLibrary({
   mlks,
   // mmse,
   // moca,
-  // modified_caregiver_strain_index,
+  modified_caregiver_strain_index,
   // mpi,
   // msq,
   // ndi,
