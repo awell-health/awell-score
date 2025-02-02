@@ -1,29 +1,20 @@
-import { expect } from 'chai'
-import R from 'ramda'
-
+import { ZodError } from 'zod'
 import { Score } from '../../classes'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
 import { ScoreLibrary } from '../library'
-import {
-  get_input_ids_for_specific_subscale,
-  get_input_ids_in_subscale,
-} from '../../src/calculation_suite/calculations/shared_functions'
 import {
   max_response,
   median_response,
   min_response,
   random_response,
 } from './__testdata__/ias_test_responses'
-import { IAS_SCALES } from './definition/ias_scales'
+import { IAS_SUBSCALES } from './definition/ias_scales'
 import { ias } from './ias'
 
-const ias_calclation = execute_test_calculation(ias)
+const ias_calclation = new Score(ias)
 
 describe('ias', function () {
   it('ias calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('ias')
+    expect(ScoreLibrary).toHaveProperty('ias')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -60,16 +51,14 @@ describe('ias', function () {
         'IAS_Q29',
       ].sort()
 
-      const configured_input_ids = R.compose(
-        (input_ids: string[]) => input_ids.sort(),
-        R.flatten,
-        R.map(get_input_ids_in_subscale),
-      )(IAS_SCALES)
+      const configured_input_ids = Object.keys(
+        ias_calclation.inputSchema,
+      ).sort()
 
       expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
     })
 
-    it('should have the expected input idss configured for the "Health anxiety" subscale', function () {
+    it('should have the expected input ids configured for the "Health anxiety" subscale', function () {
       const EXPECTED_INPUT_IDS = [
         'IAS_Q02',
         'IAS_Q03',
@@ -84,9 +73,7 @@ describe('ias', function () {
         'IAS_Q21',
       ].sort()
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('HEALTH_ANXIETY')(IAS_SCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(IAS_SUBSCALES.HEALTH_ANXIETY)
     })
 
     it('should have the expected input idss configured for the "Ilness behaviour" subscale', function () {
@@ -99,62 +86,55 @@ describe('ias', function () {
         'IAS_Q29',
       ].sort()
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('ILNESS_BEHAVIOUR')(IAS_SCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(IAS_SUBSCALES.ILNESS_BEHAVIOUR)
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = ias_calclation(min_response)
+    const outcome = ias_calclation.calculate({ payload: min_response })
 
     it('should calculate a score for both subscales (n=2)', function () {
       const AMOUNT_OF_SCORES = 2
-      expect(outcome).toHaveLength(AMOUNT_OF_SCORES)
+      expect(Object.keys(outcome)).toHaveLength(AMOUNT_OF_SCORES)
     })
 
     it('should return the correct scale ids', function () {
       const EXPECTED_SCALE_IDS = ['HEALTH_ANXIETY', 'ILNESS_BEHAVIOUR']
 
-      const EXTRACTED_SCALE_IDS_FROM_RESULT =
-        get_result_ids_from_calculation_output(outcome)
+      const EXTRACTED_SCALE_IDS_FROM_RESULT = Object.keys(outcome)
 
-      expect(EXTRACTED_SCALE_IDS_FROM_RESULT).to.have.members(
-        EXPECTED_SCALE_IDS,
-      )
+      expect(EXTRACTED_SCALE_IDS_FROM_RESULT).toEqual(EXPECTED_SCALE_IDS)
     })
   })
 
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when all inputs are answered with the min response', function () {
       const MIN_SCORE = 0
-      const outcome = ias_calclation(min_response)
+      const outcome = ias_calclation.calculate({ payload: min_response })
 
       it('should return the min score on the "Health anxiety" subscale', function () {
-        const score = view_result('HEALTH_ANXIETY')(outcome)
-
+        const score = outcome.HEALTH_ANXIETY
         expect(score).toEqual(MIN_SCORE)
       })
 
       it('should return the min score on the "Ilness behaviour" subscale', function () {
-        const score = view_result('ILNESS_BEHAVIOUR')(outcome)
-
+        const score = outcome.ILNESS_BEHAVIOUR
         expect(score).toEqual(MIN_SCORE)
       })
     })
 
     describe('when all inputs are answered with the median response', function () {
-      const outcome = ias_calclation(median_response)
+      const outcome = ias_calclation.calculate({ payload: median_response })
 
       it('should return the median score on the "Health anxiety" subscale', function () {
-        const score = view_result('HEALTH_ANXIETY')(outcome)
+        const score = outcome.HEALTH_ANXIETY
         const MEDIAN_SCORE = 22
 
         expect(score).toEqual(MEDIAN_SCORE)
       })
 
       it('should return the median score on the "Ilness behaviour" subscale', function () {
-        const score = view_result('ILNESS_BEHAVIOUR')(outcome)
+        const score = outcome.ILNESS_BEHAVIOUR
         const MEDIAN_SCORE = 12
 
         expect(score).toEqual(MEDIAN_SCORE)
@@ -162,17 +142,17 @@ describe('ias', function () {
     })
 
     describe('when all inputs are answered with the max response', function () {
-      const outcome = ias_calclation(max_response)
+      const outcome = ias_calclation.calculate({ payload: max_response })
 
       it('should return the maximum score on the "Health anxiety" subscale', function () {
-        const score = view_result('HEALTH_ANXIETY')(outcome)
+        const score = outcome.HEALTH_ANXIETY
         const MAX_SCORE = 44
 
         expect(score).toEqual(MAX_SCORE)
       })
 
       it('should return the maximum score on the "Ilness behaviour" subscale', function () {
-        const score = view_result('ILNESS_BEHAVIOUR')(outcome)
+        const score = outcome.ILNESS_BEHAVIOUR
         const MAX_SCORE = 24
 
         expect(score).toEqual(MAX_SCORE)
@@ -180,17 +160,17 @@ describe('ias', function () {
     })
 
     describe('when a random response is passed', function () {
-      const outcome = ias_calclation(random_response)
+      const outcome = ias_calclation.calculate({ payload: random_response })
 
       it('should return the expected score on the "Health anxiety" subscale', function () {
-        const score = view_result('HEALTH_ANXIETY')(outcome)
+        const score = outcome.HEALTH_ANXIETY
         const EXPECTED_SCORE = 20
 
         expect(score).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score on the "Ilness behaviour" subscale', function () {
-        const score = view_result('ILNESS_BEHAVIOUR')(outcome)
+        const score = outcome.ILNESS_BEHAVIOUR
         const EXPECTED_SCORE = 8
 
         expect(score).toEqual(EXPECTED_SCORE)
@@ -200,18 +180,10 @@ describe('ias', function () {
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      const outcome = ias_calclation({})
-
-      it('should return MISSING_MESSAGE as the score on the "Health anxiety" subscale', function () {
-        const score = view_result('HEALTH_ANXIETY')(outcome)
-
-        expect(score).toEqual(undefined)
-      })
-
-      it('should return MISSING_MESSAGE as the on the "Ilness behaviour" subscale', function () {
-        const score = view_result('ILNESS_BEHAVIOUR')(outcome)
-
-        expect(score).toEqual(undefined)
+      it('should throw a ZodError', function () {
+        expect(() => ias_calclation.calculate({ payload: {} })).toThrow(
+          ZodError,
+        )
       })
     })
   })
@@ -220,8 +192,10 @@ describe('ias', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ias_calclation({
-            IAS_Q02: "I'm not a number",
+          ias_calclation.calculate({
+            payload: {
+              IAS_Q02: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -229,8 +203,10 @@ describe('ias', function () {
     describe('when an answer is below the expected [0,4] range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ias_calclation({
-            IAS_Q02: -1,
+          ias_calclation.calculate({
+            payload: {
+              IAS_Q02: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -238,8 +214,10 @@ describe('ias', function () {
     describe('when an answer is above the expected [0,4] range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ias_calclation({
-            IAS_Q02: 5,
+          ias_calclation.calculate({
+            payload: {
+              IAS_Q02: 5,
+            },
           }),
         ).toThrow(ZodError)
       })

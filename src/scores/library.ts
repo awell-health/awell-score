@@ -58,7 +58,7 @@ import { ghq_12 } from './ghq_12/ghq_12'
 import { hoos_ps } from './hoos_ps/hoos_ps'
 // import { hos } from './hos/hos'
 // import { hrqol_4 } from './hrqol'
-// import { ias } from './ias/ias'
+import { ias } from './ias/ias'
 import { IBD_control } from './IBD_control/IBD_control'
 import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
 // import { iief5 } from './iief5/iief5'
@@ -80,7 +80,7 @@ import { koos_ps } from './koos_ps/koos_ps'
 // import { ndi } from './ndi/ndi'
 // import { oas } from './oas/oas'
 // import { ompq, ompq_10 } from './orebro'
-// import { oswestry } from './oswestry/oswestry'
+import { oswestry } from './oswestry/oswestry'
 // import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
 // import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
 import { packyears } from './packyears/packyears'
@@ -196,7 +196,7 @@ export const ScoreLibrary = createScoreLibrary({
   hoos_ps,
   // hos,
   // hrqol_4,
-  // ias,
+  ias,
   IBD_control,
   ibd_disk_total_score,
   // iief5,
@@ -224,7 +224,7 @@ export const ScoreLibrary = createScoreLibrary({
   // oas,
   // ompq,
   // ompq_10,
-  // oswestry,
+  oswestry,
   // oxford_hip_score,
   // oxford_knee_score,
   packyears,
