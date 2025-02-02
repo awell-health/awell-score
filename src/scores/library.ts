@@ -78,7 +78,7 @@ import { modified_caregiver_strain_index } from './modified_caregiver_strain_ind
 // import { mpi } from './mpi/mpi'
 // import { msq } from './msq/msq'
 // import { ndi } from './ndi/ndi'
-// import { oas } from './oas/oas'
+import { oas } from './oas/oas'
 // import { ompq, ompq_10 } from './orebro'
 import { oswestry } from './oswestry/oswestry'
 // import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
@@ -221,7 +221,7 @@ export const ScoreLibrary = createScoreLibrary({
   // mpi,
   // msq,
   // ndi,
-  // oas,
+  oas,
   // ompq,
   // ompq_10,
   oswestry,

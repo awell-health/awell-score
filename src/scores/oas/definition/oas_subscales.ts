@@ -1,4 +1,13 @@
-export const OAS_SUBSCALE_ITEMS = {
+export type OasSubscale =
+  | 'DAILY_ACTIVITIES'
+  | 'KNOWLEDGE_AND_SKILLS'
+  | 'SELF_ESTEEM'
+  | 'PSYCHOLOGICAL_EXISTENTIAL'
+  | 'HEALTH'
+  | 'HEALTH_PROFESSIONALS'
+  | 'SEXUALITY'
+  | 'TOTAL'
+export const OAS_SUBSCALE_ITEMS: Record<OasSubscale, string[]> = {
   DAILY_ACTIVITIES: [
     'OAS_Q01',
     'OAS_Q02',
