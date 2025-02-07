@@ -1,29 +1,57 @@
-import type { InputType } from '../../../../src/types/calculations.types'
-import { NumberInputType } from '../../../../src/types/calculations/inputs/calculation-inputs.types'
+import {
+  ScoreInputSchemaType,
+  type EnumNumberInputType,
+} from '../../../../types'
+import { z } from 'zod'
 
-export const type: NumberInputType = {
-  type: 'number',
-  allowed_answers: [
-    { value: 0 },
-    { value: 1 },
-    { value: 2 },
-    { value: 3 },
-    { value: 4 },
-    { value: 5 },
-    { value: 6 },
-    { value: 7 },
-    { value: 8 },
-    { value: 9 },
-    { value: 10 },
-  ],
-}
+export const type = {
+  type: z.union([
+    z.literal(0),
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+    z.literal(5),
+    z.literal(6),
+    z.literal(7),
+    z.literal(8),
+    z.literal(9),
+    z.literal(10),
+  ]),
+  uiOptions: {
+    options: [
+      { value: 0 },
+      { value: 1 },
+      { value: 2 },
+      { value: 3 },
+      { value: 4 },
+      { value: 5 },
+      { value: 6 },
+      { value: 7 },
+      { value: 8 },
+      { value: 9 },
+      { value: 10 },
+    ],
+  },
+} satisfies EnumNumberInputType
 
-export const OMPQ_10_INPUTS: Array<InputType> = [
-  {
-    input_id: 'OREBRO_01',
-    type: {
-      type: 'number',
-      allowed_answers: [
+export const OMPQ_10_INPUTS = {
+  OREBRO_01: {
+    type: z.union([
+      z.literal(0),
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+      z.literal(6),
+      z.literal(7),
+      z.literal(8),
+      z.literal(9),
+      z.literal(10),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: {
@@ -95,88 +123,69 @@ export const OMPQ_10_INPUTS: Array<InputType> = [
           },
         },
       ],
-    }, // Scored from 1 to 10
-    required: true,
+    },
   },
-  {
-    input_id: 'OREBRO_02',
-    input_type,
+  OREBRO_02: {
+    ...type,
     label: {
       en: 'How would you rate the pain that you have had during the past week? Circle one.',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_03',
-    input_type,
+  OREBRO_03: {
+    ...type,
     label: {
       en: 'I can do light work for an hour.',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_04',
-    input_type,
+  OREBRO_04: {
+    ...type,
     label: {
       en: 'I can sleep at night.',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_05',
-    input_type,
+  OREBRO_05: {
+    ...type,
     label: {
       en: 'How tense or anxious have you felt in the past week? Circle one.',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_06',
-    input_type,
+  OREBRO_06: {
+    ...type,
     label: {
       en: 'How much have you been bothered by feeling depressed in the past week? Circle one.',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_07',
-    input_type,
+  OREBRO_07: {
+    ...type,
     label: {
       en: 'In your view, how large is the risk that your current pain may become persistent?',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_08',
-    input_type,
+  OREBRO_08: {
+    ...type,
     label: {
       en: 'In your estimation, what are the chances you will be working your normal duties in 3 months',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_09',
-    input_type,
+  OREBRO_09: {
+    ...type,
     label: {
       en: 'An increase in pain is an indication that I should stop what I’m doing until the pain decreases.',
       nl: '',
     },
-    required: true,
   },
-  {
-    input_id: 'OREBRO_10',
-    input_type,
+  OREBRO_10: {
+    ...type,
     label: {
       en: 'I should not do my normal work with my present pain.',
       nl: '',
     },
-    required: true,
   },
-]
+} satisfies ScoreInputSchemaType
