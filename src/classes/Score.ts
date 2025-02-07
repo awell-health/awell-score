@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 import {
   type ScoreInputSchemaType,
   type ScoreOutputSchemaType,
@@ -119,20 +119,40 @@ export class Score<
        * @default false
        */
       strictMode?: boolean
+      /**
+       * If true, the function will return null for missing inputs.
+       * ZodErrors only occur when the input data is invalid (e.g. mismatch in type, required fields missing)
+       * @default false
+       */
+      returnMissingOnZodError?: boolean
     }
   }): Record<
     keyof OutputSchema,
     z.infer<OutputSchema[keyof OutputSchema]['type']> | null
   > {
-    const d = this.inputSchemaAsObject.parse(
-      params?.opts?.strictMode === true
-        ? params.payload
-        : this.tryCastInputsToExactTypes(params.payload),
-    )
+    try {
+      const d = this.inputSchemaAsObject.parse(
+        params?.opts?.strictMode === true
+          ? params.payload
+          : this.tryCastInputsToExactTypes(params.payload),
+      )
 
-    return this._calculate({
-      data: d,
-    })
+      const results = this._calculate({ data: d })
+      return results
+    } catch (err) {
+      if (err instanceof ZodError) {
+        if (params?.opts?.returnMissingOnZodError === true) {
+          const allZodIssues = err.issues
+          const hasMissingInputs = allZodIssues.some(issue =>
+            issue.message.toLowerCase().includes('required'),
+          )
+          if (hasMissingInputs) {
+            return mapValues(this.outputSchema, () => null)
+          }
+        }
+      }
+      throw err
+    }
   }
 
   /**
