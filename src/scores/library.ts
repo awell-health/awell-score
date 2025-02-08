@@ -17,7 +17,7 @@ import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { femmes_enceintes_triage } from './chc/femmes_enceintes/triage/triage'
 // import { comi_back, comi_neck } from './comi'
 // import { compass_31 } from './compass_31/compass_31'
-// import { constant_murley_score_orthotoolkit } from './constant_murley_score'
+import { constant_murley_score_orthotoolkit } from './constant_murley_score'
 import { core_om } from './core_om/core_om'
 import { cpdi } from './cpdi/cpdi'
 import { csi } from './csi/csi'
@@ -161,7 +161,7 @@ export const ScoreLibrary = createScoreLibrary({
   // comi_back,
   // comi_neck,
   // compass_31,
-  // constant_murley_score_orthotoolkit,
+  constant_murley_score_orthotoolkit,
   core_om,
   cpdi,
   csi,

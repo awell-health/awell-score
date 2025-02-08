@@ -1,0 +1,18 @@
+export type ScaleType = 'PAIN' | 'ADL' | 'MOBILITY' | 'STRENGTH'
+
+export const CMS_SUBSCALES: Record<ScaleType, string[]> = {
+  PAIN: ['Q01_PAIN_SCORE'],
+  ADL: [
+    'Q03_WORK_ADL_SCORE',
+    'Q04_SPORTS_HOBBY_SCORE',
+    'Q02_SLEEP_SCORE',
+    'Q05_ADL_FUNCTIONING_SCORE',
+  ],
+  MOBILITY: [
+    'Q06_FLEXION_ROM',
+    'Q07_ABDUCTION_ROM',
+    'Q08_ENDOROTATION_ROM',
+    'Q09_EXOROTATION_ROM',
+  ],
+  STRENGTH: ['Q10_ATTEMPT_1', 'Q11_ATTEMPT_2', 'Q12_ATTEMPT_3'],
+}
