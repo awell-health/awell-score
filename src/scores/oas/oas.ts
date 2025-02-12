@@ -27,6 +27,7 @@ export const oas: ScoreType<typeof OAS_INPUTS, typeof OAS_OUTPUT> = {
     }
 
     return {
+      OAS_TOTAL_SUM_SCORE: calculate_total_score(recoded_data, 'TOTAL'),
       OAS_DAILY_ACTIVITIES_SUM_SCORE: calculate_total_score(
         recoded_data,
         'DAILY_ACTIVITIES',
@@ -71,7 +72,6 @@ export const oas: ScoreType<typeof OAS_INPUTS, typeof OAS_OUTPUT> = {
       ),
       OAS_SEXUALITY_SUM_SCORE: calculate_total_score(recoded_data, 'SEXUALITY'),
       OAS_SEXUALITY_MEAN_SCORE: calculate_mean_score(recoded_data, 'SEXUALITY'),
-      OAS_TOTAL_SUM_SCORE: calculate_total_score(recoded_data, 'TOTAL'),
       OAS_MEAN_SCORE: calculate_mean_score(recoded_data, 'TOTAL'),
     }
   },

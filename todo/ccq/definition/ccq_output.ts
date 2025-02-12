@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const CCQ_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL_SCORE',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'SYMPTOMS',
     label: { en: 'Symptoms' },
     type: 'number',
@@ -14,11 +19,6 @@ export const CCQ_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'MENTAL_STATE',
     label: { en: 'Mental state' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL_SCORE',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

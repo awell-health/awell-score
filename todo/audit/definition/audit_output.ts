@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const AUDIT_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total AUDIT score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'CONSUMPTION',
     label: { en: 'Consumption score' },
     type: 'number',
@@ -14,11 +19,6 @@ export const AUDIT_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'ALCOHOL_RELATED_PROBLEMS',
     label: { en: 'Alcohol-related problems score' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total AUDIT score' },
     type: 'number',
   },
 ]

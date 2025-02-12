@@ -55,11 +55,11 @@ export const constant_murley_score: ScoreType<
     const pain_score = data.Q01_PAIN_SCORE
 
     return {
+      TS: pain_score + adl_score + mobility_score + (strength_score ?? 0),
       PAIN: pain_score,
       ADL: adl_score,
       MOBILITY: mobility_score,
       STRENGTH: strength_score ?? null,
-      TS: pain_score + adl_score + mobility_score + (strength_score ?? 0),
     }
   },
 }

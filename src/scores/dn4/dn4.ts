@@ -36,6 +36,11 @@ export const dn4: ScoreType<typeof DN4_INPUTS, typeof DN4_OUTPUT> = {
     const patientTotalScore = patientInterviewScore + patientExaminationScore
 
     return {
+      PATIENT_TOTAL_SCORE:
+        definedPatientInterviewInputs.length === 0 &&
+        definedPatientExaminationInputs.length === 0
+          ? null
+          : patientTotalScore,
       PATIENT_INTERVIEW_SCORE:
         definedPatientInterviewInputs.length === 0
           ? null
@@ -44,11 +49,6 @@ export const dn4: ScoreType<typeof DN4_INPUTS, typeof DN4_OUTPUT> = {
         definedPatientExaminationInputs.length === 0
           ? null
           : patientExaminationScore,
-      PATIENT_TOTAL_SCORE:
-        definedPatientInterviewInputs.length === 0 &&
-        definedPatientExaminationInputs.length === 0
-          ? null
-          : patientTotalScore,
     }
   },
 }

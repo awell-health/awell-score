@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const SPADI_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'PAIN',
     label: { en: 'Pain dimension' },
     type: 'number',
@@ -9,11 +14,6 @@ export const SPADI_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'DISABILITY',
     label: { en: 'Disability dimension' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

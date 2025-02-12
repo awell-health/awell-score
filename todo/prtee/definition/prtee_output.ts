@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const PRTEE_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'PAIN',
     label: { en: 'Pain' },
     type: 'number',
@@ -9,11 +14,6 @@ export const PRTEE_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'FUNCTION',
     label: { en: 'Function' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]
