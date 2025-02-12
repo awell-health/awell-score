@@ -11,7 +11,6 @@ import { cade_q_sv } from './cade_q'
 import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
 import { cat } from './cat/cat'
 // import { ccq } from './ccq/ccq'
-// import { cdlqi } from './cdlqi/cdlqi'
 import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { chc_preop_brochure_triage } from './chc'
 // import { femmes_enceintes_triage } from './chc/femmes_enceintes/triage/triage'
@@ -24,7 +23,6 @@ import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
 // import { demo_calculation } from './demo_calculation/demo_calculation'
 // import { difference_calc } from './difference_calc/difference_calc'
-// import { dlqi } from './dlqi/dlqi'
 import { dn4 } from './dn4/dn4'
 // import { dri } from './dri/dri'
 // import {
@@ -154,7 +152,6 @@ export const ScoreLibrary = createScoreLibrary({
   caregiver_strain_index,
   cat,
   // ccq,
-  // cdlqi,
   CHA2DS2_VASc_Score,
   // chc_preop_brochure_triage,
   // femmes_enceintes_triage,
@@ -168,7 +165,6 @@ export const ScoreLibrary = createScoreLibrary({
   dast_10,
   // demo_calculation,
   // difference_calc,
-  // dlqi,
   dn4,
   // dri,
   // eortc_qlq_br23,
