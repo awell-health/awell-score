@@ -1,0 +1,93 @@
+// @flow
+export const best_response = {
+  SNAP_Q01: 0,
+  SNAP_Q02: 0,
+  SNAP_Q03: 0,
+  SNAP_Q04: 0,
+  SNAP_Q05: 0,
+  SNAP_Q06: 0,
+  SNAP_Q07: 0,
+  SNAP_Q08: 0,
+  SNAP_Q09: 0,
+  SNAP_Q10: 0,
+  SNAP_Q11: 0,
+  SNAP_Q12: 0,
+  SNAP_Q13: 0,
+  SNAP_Q14: 0,
+  SNAP_Q15: 0,
+  SNAP_Q16: 0,
+  SNAP_Q17: 0,
+  SNAP_Q18: 0,
+  SNAP_Q19: 0,
+  SNAP_Q20: 0,
+  SNAP_Q21: 0,
+  SNAP_Q22: 0,
+  SNAP_Q23: 0,
+  SNAP_Q24: 0,
+  SNAP_Q25: 0,
+  SNAP_Q26: 0
+}
+
+export const worst_response = {
+  SNAP_Q01: 3,
+  SNAP_Q02: 3,
+  SNAP_Q03: 3,
+  SNAP_Q04: 3,
+  SNAP_Q05: 3,
+  SNAP_Q06: 3,
+  SNAP_Q07: 3,
+  SNAP_Q08: 3,
+  SNAP_Q09: 3,
+  SNAP_Q10: 3,
+  SNAP_Q11: 3,
+  SNAP_Q12: 3,
+  SNAP_Q13: 3,
+  SNAP_Q14: 3,
+  SNAP_Q15: 3,
+  SNAP_Q16: 3,
+  SNAP_Q17: 3,
+  SNAP_Q18: 3,
+  SNAP_Q19: 3,
+  SNAP_Q20: 3,
+  SNAP_Q21: 3,
+  SNAP_Q22: 3,
+  SNAP_Q23: 3,
+  SNAP_Q24: 3,
+  SNAP_Q25: 3,
+  SNAP_Q26: 3
+}
+
+/**
+ * Expected total score: 37
+ * SNAP_INATTENTION_SUBSET_SCORE: 11
+ * SNAP_HYPERACTIVITY_IMPULSIVITY_SUBSET_SCORE: 17
+ * SNAP_OPPOSITION_DEFIANCE_SUBSET_SCORE: 9
+ */
+export const random_response = {
+  SNAP_Q01: 3,
+  SNAP_Q02: 0,
+  SNAP_Q03: 0,
+  SNAP_Q04: 3,
+  SNAP_Q05: 2,
+  SNAP_Q06: 1,
+  SNAP_Q07: 0,
+  SNAP_Q08: 0,
+  SNAP_Q09: 2,
+  SNAP_Q10: 3,
+  SNAP_Q11: 3,
+  SNAP_Q12: 2,
+  SNAP_Q13: 3,
+  SNAP_Q14: 0,
+  SNAP_Q15: 0,
+  SNAP_Q16: 1,
+  SNAP_Q17: 3,
+  SNAP_Q18: 2,
+  SNAP_Q19: 1,
+  SNAP_Q20: 0,
+  SNAP_Q21: 0,
+  SNAP_Q22: 0,
+  SNAP_Q23: 3,
+  SNAP_Q24: 2,
+  SNAP_Q25: 2,
+  SNAP_Q26: 1
+}
