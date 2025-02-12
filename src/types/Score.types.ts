@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { type ScoreInputSchemaType } from './ScoreInput.types'
 import { type ScoreOutputSchemaType } from './ScoreOutput.types'
 
-export interface CategoryType {
+export interface CodeType {
   coding: {
     system: string
     code: string
@@ -11,7 +11,8 @@ export interface CategoryType {
 }
 
 export interface TerminologyType {
-  category?: CategoryType[]
+  category?: CodeType[]
+  code?: CodeType & { text?: string }
 }
 
 export type ScoreType<

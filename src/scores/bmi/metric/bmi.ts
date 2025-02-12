@@ -19,6 +19,21 @@ export const bmi: ScoreType<typeof BmiInputSchema, typeof BmiOutputSchema> = {
         ],
       },
     ],
+    code: {
+      coding: [
+        {
+          system: 'http://loinc.org',
+          code: '39156-5',
+          display: 'Body mass index (BMI) [Ratio]',
+        },
+        {
+          system: 'http://snomed.info/sct',
+          code: '60621009',
+          display: 'Body mass index (observable entity)',
+        },
+      ],
+      text: 'Body Mass Index',
+    },
   },
   calculate: ({ data }) => {
     const numeric_height_in_m = data.height / 100
