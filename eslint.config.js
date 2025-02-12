@@ -4,6 +4,7 @@ module.exports = {
     'jest.config.js',
     '.yarn',
     '**/*/*.test.ts',
-    '*pnp*'
+    '*pnp*',
+    'todo/**',
   ],
 }
