@@ -55,9 +55,9 @@ export const pro2: ScoreType<typeof PRO2_INPUTS, typeof PRO2_OUTPUT> = {
     const remission = getRemission()
 
     return {
+      TOTAL_SCORE: totalScore,
       STOOL_FREQUENCY_AND_ABDOMINAL_PAIN_SUBSCORE:
         weightedAbdominalPain + weightedStoolFrequency,
-      TOTAL_SCORE: totalScore,
       REMISSION: remission,
     }
   },

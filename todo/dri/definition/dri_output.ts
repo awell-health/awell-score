@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const DRI_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'DRI',
+    label: { en: 'Total DRI score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'BASIC_ACTIVITIES',
     label: { en: 'Common basic activities' },
     type: 'number',
@@ -14,11 +19,6 @@ export const DRI_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'WORK_RELATED_ACTIVITIES',
     label: { en: 'More vigorous activities' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'DRI',
-    label: { en: 'Total DRI score' },
     type: 'number',
   },
 ]

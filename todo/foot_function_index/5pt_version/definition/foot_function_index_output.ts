@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../../src/types/calculat
 
 export const FFI_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score', nl: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'LIMITATION',
     label: { en: 'Limitation', nl: 'Beperkingen van activiteiten' },
     type: 'number',
@@ -14,11 +19,6 @@ export const FFI_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'DISABILITY',
     label: { en: 'Disability', nl: 'Moeite met activiteiten' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score', nl: 'Total score' },
     type: 'number',
   },
 ]
