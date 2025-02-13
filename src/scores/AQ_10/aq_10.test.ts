@@ -70,7 +70,7 @@ describe('aq_10', function () {
 
     describe('when called with an empty response', function () {
       const outcome = aq_10_calculation.calculate({
-        payload: { AQ10_Q01: -1 },
+        payload: {},
         opts: {
           returnMissingOnZodError: true,
         },

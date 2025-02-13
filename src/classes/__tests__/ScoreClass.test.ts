@@ -602,30 +602,6 @@ describe('Score', () => {
         )
       })
 
-      test('Required input is missing (empty array)', () => {
-        expect(() =>
-          createScore({
-            input: {
-              type: z.array(z.union([z.literal(1), z.literal(2)])),
-            },
-          }).calculate({
-            payload: { input: [] },
-          }),
-        ).toThrow(
-          expect.objectContaining({
-            issues: [
-              {
-                code: 'invalid_type',
-                expected: 'array',
-                received: 'undefined',
-                path: ['input'],
-                message: 'Required',
-              },
-            ],
-          }),
-        )
-      })
-
       test('Input is invalid', () => {
         expect(() =>
           createScore({
@@ -642,6 +618,45 @@ describe('Score', () => {
                 path: ['input', 2],
                 message: 'Invalid input',
               },
+            ],
+          }),
+        )
+      })
+    })
+
+    describe('Mixed inputs', () => {
+      test('should throw', () => {
+        expect(() =>
+          createScore({
+            inputOne: { type: z.array(z.union([z.literal(1), z.literal(2)])) },
+            inputTwo: {
+              type: z.array(z.union([z.literal(1), z.literal(2)])).optional(),
+            },
+            inputThree: { type: z.number() },
+          }).calculate({
+            payload: {
+              inputTwo: [2],
+            },
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_type',
+                expected: 'array',
+                received: 'undefined',
+                path: ['inputOne'],
+                message: 'Required',
+              },
+              {
+                code: 'invalid_type',
+                expected: 'number',
+                received: 'undefined',
+                path: ['inputThree'],
+                message: 'Required',
+              },
+              // Does not contain the invalid inputTwo
+              // as we first preprocess the payload and check for missing inputs
             ],
           }),
         )

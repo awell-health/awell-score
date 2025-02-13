@@ -4,7 +4,7 @@ import { z } from 'zod'
 export const preprocessPayload = (
   inputSchema: z.ZodObject<{ [key: string]: z.ZodTypeAny }>,
   payload: Record<string, unknown>,
-) => {
+): z.ZodIssue[] => {
   const issues: z.ZodIssue[] = []
 
   // Check for missing required fields based on inputSchema
@@ -38,8 +38,5 @@ export const preprocessPayload = (
     }
   }
 
-  // If there are any validation issues, throw them all at once
-  if (issues.length > 0) {
-    throw new z.ZodError(issues)
-  }
+  return issues
 }

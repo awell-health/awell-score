@@ -20,17 +20,9 @@ import {
   tryCastToStringsArray,
   tryCastToNumbersArray,
 } from '../lib/castFunctions'
-import {
-  mapValues,
-  sample,
-  random,
-  sampleSize,
-  pickBy,
-  isNil,
-  isEmpty,
-} from 'lodash'
+import { mapValues, sample, random, sampleSize, pickBy } from 'lodash'
 import { simulateDateInput, simulateStringInput } from '../lib/simulation'
-import { preprocessPayload } from '../lib/zod'
+import { deduplicateZodIssues, preprocessPayload } from '../lib/zod'
 
 /**
  * Class representing a Score, which calculates results based on input and output schemas.
@@ -140,17 +132,26 @@ export class Score<
     z.infer<OutputSchema[keyof OutputSchema]['type']> | null
   > {
     try {
-      preprocessPayload(this.inputSchemaAsObject, params.payload)
+      const zodMissingIssues = preprocessPayload(
+        this.inputSchemaAsObject,
+        params.payload,
+      )
 
       const _payload = params?.opts?.strictMode
         ? params.payload
         : this.tryCastInputsToExactTypes(params.payload)
 
-      // Validate inputs
-      const d = this.inputSchemaAsObject.parse(_payload)
+      const result = this.inputSchemaAsObject.safeParse(_payload)
 
-      const results = this._calculate({ data: d })
-      return results
+      if (!result.success) {
+        const deduplicatedIssues = deduplicateZodIssues([
+          ...zodMissingIssues,
+          ...result.error.issues,
+        ])
+        throw new ZodError(deduplicatedIssues)
+      }
+
+      return this._calculate({ data: result.data })
     } catch (err) {
       if (err instanceof ZodError) {
         if (params?.opts?.returnMissingOnZodError === true) {
