@@ -8,6 +8,7 @@ export interface CodeType {
     code: string
     display: string
   }[]
+  text?: string
 }
 
 export interface TerminologyType {

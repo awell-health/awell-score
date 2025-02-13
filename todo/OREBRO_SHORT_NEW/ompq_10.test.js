@@ -25,7 +25,7 @@ const ompq_10_calculation = execute_test_calculation(ompq_10)
 
 describe('ompq_short_form (OMPQ 10)', function () {
   it('ompq_short_form calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).to.include.key('ompq_short_form')
+    expect(CALCULATIONS).toHaveProperty('ompq_short_form')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -46,7 +46,7 @@ describe('ompq_short_form (OMPQ 10)', function () {
       const configured_calculation_input_ids =
         get_input_ids_from_calculation_blueprint(OMPQ_10_INPUTS)
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS
       )
     })
@@ -63,7 +63,7 @@ describe('ompq_short_form (OMPQ 10)', function () {
       const configured_calculation_id =
         get_result_ids_from_calculation_output(outcome)
 
-      expect(configured_calculation_id).to.have.members(['OREBRO'])
+      expect(configured_calculation_id).toEqual(['OREBRO'])
     })
   })
 
