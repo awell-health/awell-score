@@ -3,6 +3,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 export const SDQ_OUTPUT: CalculationOutputDefinition[] = [
   {
     type: 'number',
+    subresult_id: 'TOTAL',
+    label: { en: 'Total difficulties score' },
+  },
+  {
+    type: 'number',
     subresult_id: 'EMOTIONAL_PROBLEMS',
     label: { en: 'Emotional problems' },
   },
@@ -40,11 +45,6 @@ export const SDQ_OUTPUT: CalculationOutputDefinition[] = [
     type: 'number',
     subresult_id: 'IMPACT_SELF_REPORTED',
     label: { en: 'Impact - Self reported' },
-  },
-  {
-    type: 'number',
-    subresult_id: 'TOTAL',
-    label: { en: 'Total difficulties score' },
   },
   {
     type: 'number',

@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const KCCQ_12_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'KCCQ12',
+    label: { en: 'Summary score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'KCCQ12-PL',
     label: { en: 'Physical Limitation Score' },
     type: 'number',
@@ -19,11 +24,6 @@ export const KCCQ_12_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'KCCQ12-SL',
     label: { en: 'Social Limitation Score' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'KCCQ12',
-    label: { en: 'Summary score' },
     type: 'number',
   },
 ]

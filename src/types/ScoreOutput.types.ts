@@ -1,14 +1,6 @@
 import { z } from 'zod'
 import { type LabelType } from './Label.types'
-
-export interface CodeType {
-  coding: {
-    system: string
-    code: string
-    display: string
-  }[]
-  text: string
-}
+import { type CodeType } from './Score.types'
 
 export interface ScoreOutputType {
   label: LabelType

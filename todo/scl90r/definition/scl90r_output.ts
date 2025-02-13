@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const SCL90R_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'SOMATIZATION',
     label: { en: 'Somatization' },
     type: 'number',
@@ -49,11 +54,6 @@ export const SCL90R_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'ADDITIONAL_ITEMS',
     label: { en: 'Additional items' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

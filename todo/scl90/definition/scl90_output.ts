@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const SCL90_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'PSNEUR',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'AGO',
     label: { en: 'Agoraphobia' },
     type: 'number',
@@ -44,11 +49,6 @@ export const SCL90_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'ADD',
     label: { en: 'Additional items' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'PSNEUR',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

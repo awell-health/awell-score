@@ -2,6 +2,8 @@ import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
 import { age_calc } from './age_calc/age_calc'
 import { asrs } from './asrs/asrs'
 // import { audit } from './audit/audit'
+import { basdai } from './basdai/basdai'
+import { basfi } from './basfi/basfi'
 import { beck } from './beck/beck'
 import { blcs } from './blcs/blcs'
 import { bwcs } from './bwcs/bwcs'
@@ -18,6 +20,7 @@ import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { compass_31 } from './compass_31/compass_31'
 import { constant_murley_score_orthotoolkit } from './constant_murley_score'
 import { core_om } from './core_om/core_om'
+import { cdr } from './cdr/cdr'
 import { cpdi } from './cpdi/cpdi'
 import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
@@ -52,6 +55,7 @@ import { gad_7 } from './GAD_7/gad_7'
 import { ghq_12 } from './ghq_12/ghq_12'
 // import { hads } from './hads/HADS_score'
 // import { harris_hip_score } from './harris_hip_score/harris_hip_score'
+import { haq } from './haq/haq'
 // import { hoos_extended } from './hoos_extended/hoos_extended'
 import { hoos_ps } from './hoos_ps/hoos_ps'
 // import { hos } from './hos/hos'
@@ -142,6 +146,8 @@ export const ScoreLibrary = createScoreLibrary({
   acro,
   asrs,
   // audit,
+  basdai,
+  basfi,
   beck,
   bmi: bmi_metric,
   bmi_imperial,
@@ -160,6 +166,7 @@ export const ScoreLibrary = createScoreLibrary({
   // compass_31,
   constant_murley_score_orthotoolkit,
   core_om,
+  cdr,
   cpdi,
   csi,
   dast_10,
@@ -188,6 +195,7 @@ export const ScoreLibrary = createScoreLibrary({
   ghq_12,
   // hads,
   // harris_hip_score,
+  haq,
   // hoos_extended,
   hoos_ps,
   // hos,

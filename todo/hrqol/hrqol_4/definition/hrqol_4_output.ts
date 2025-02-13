@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../../src/types/calculat
 
 export const HRQOL_4_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'HRQOL_4_UNHEALTHY_DAYS_INDEX',
+    label: { en: 'HRQOL-4 - Unhealthy Days Index' },
+    type: 'number',
+  },
+  {
     subresult_id: 'HRQOL_4_GENERAL_HEALTH_STATUS',
     label: { en: 'HRQOL-4 - General Health Status' },
     type: 'number',
@@ -19,11 +24,6 @@ export const HRQOL_4_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'HRQOL_4_ACTIVITY_LIMITATION_DAYS',
     label: { en: 'HRQOL-4 - Activity Limitation Days' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'HRQOL_4_UNHEALTHY_DAYS_INDEX',
-    label: { en: 'HRQOL-4 - Unhealthy Days Index' },
     type: 'number',
   },
   {

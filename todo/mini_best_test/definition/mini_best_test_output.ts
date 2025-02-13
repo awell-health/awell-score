@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const MINI_BEST_TEST_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'ANTICIPATORY_POSTURAL_ADJUSTEMENTS',
     label: { en: 'Anticipatory postural adjustments' },
     type: 'number',
@@ -19,11 +24,6 @@ export const MINI_BEST_TEST_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'DYNAMIC_GAIT',
     label: { en: 'Dynamic gait' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]
