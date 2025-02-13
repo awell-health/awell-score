@@ -105,6 +105,7 @@ import { phq_9 } from './phq_9/phq_9'
 import { pro2 as PRO2 } from './pro2/pro2'
 // import { promis_10 } from './promis_10/promis_10'
 // import { prtee } from './prtee/prtee'
+import { paid_20 } from './PAID_20/paid_20'
 // import { psk } from './psk/psk'
 // import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
@@ -255,6 +256,7 @@ export const ScoreLibrary = createScoreLibrary({
   PRO2,
   // promis_10,
   // prtee,
+  paid_20,
   // psk,
   // psqi,
   pss_4,

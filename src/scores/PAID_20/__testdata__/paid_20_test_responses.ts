@@ -1,5 +1,3 @@
-// @flow
-
 export const best_response = {
   PAID20_Q01: 0,
   PAID20_Q02: 0,
@@ -20,7 +18,7 @@ export const best_response = {
   PAID20_Q17: 0,
   PAID20_Q18: 0,
   PAID20_Q19: 0,
-  PAID20_Q20: 0
+  PAID20_Q20: 0,
 }
 
 // 100
@@ -44,7 +42,7 @@ export const worst_response = {
   PAID20_Q17: 4,
   PAID20_Q18: 4,
   PAID20_Q19: 4,
-  PAID20_Q20: 4
+  PAID20_Q20: 4,
 }
 
 /**
@@ -71,5 +69,5 @@ export const random_response = {
   PAID20_Q17: 3,
   PAID20_Q18: 2,
   PAID20_Q19: 0,
-  PAID20_Q20: 1
+  PAID20_Q20: 1,
 }
