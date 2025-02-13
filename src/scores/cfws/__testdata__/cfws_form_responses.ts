@@ -1,4 +1,3 @@
-// @flow
 export const best_response = {
   Q01: 5,
   Q02: 5,
@@ -14,7 +13,7 @@ export const best_response = {
   Q12: 5,
   Q13: 5,
   Q14: 5,
-  Q15: 5
+  Q15: 5,
 }
 
 export const median_response = {
@@ -32,7 +31,7 @@ export const median_response = {
   Q12: 3,
   Q13: 3,
   Q14: 3,
-  Q15: 3
+  Q15: 3,
 }
 
 export const worst_response = {
@@ -50,5 +49,5 @@ export const worst_response = {
   Q12: 1,
   Q13: 1,
   Q14: 1,
-  Q15: 1
+  Q15: 1,
 }
