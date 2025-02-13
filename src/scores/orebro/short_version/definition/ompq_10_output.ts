@@ -6,8 +6,4 @@ export const OMPQ_10_OUTPUT = {
     label: { en: 'Total' },
     type: z.number(),
   },
-  INTERPRETATION: {
-    label: { en: 'Interpretation' },
-    type: z.string(),
-  },
 } satisfies ScoreOutputSchemaType

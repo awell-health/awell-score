@@ -143,10 +143,20 @@ export class Score<
       if (err instanceof ZodError) {
         if (params?.opts?.returnMissingOnZodError === true) {
           const allZodIssues = err.issues
-          const hasMissingInputs = allZodIssues.some(issue =>
+
+          // We need to handle union errors better in the future
+          // We currently can't make a distinction between a missing input and an invalid union value
+          const hasUnionErrors = allZodIssues.some(
+            issue => issue.code === 'invalid_union',
+          )
+
+          // Check if all issues are related to missing inputs
+          // Other type of issues we still want to throw
+          const hasOnlyMissingInputs = allZodIssues.every(issue =>
             issue.message.toLowerCase().includes('required'),
           )
-          if (hasMissingInputs) {
+
+          if (hasOnlyMissingInputs || hasUnionErrors) {
             return mapValues(this.outputSchema, () => null)
           }
         }

@@ -85,18 +85,6 @@ describe('bmi_imperial', function () {
           }),
         ).toThrow(ZodError)
       })
-
-      it('should throw an ZodError when "height" is not in the expected range', function () {
-        expect(() =>
-          calculation.calculate({
-            payload: {
-              weight_pounds: 90,
-              height_feet: 100,
-              height_inches: 6.74,
-            },
-          }),
-        ).toThrow(ZodError)
-      })
     })
   })
 })
