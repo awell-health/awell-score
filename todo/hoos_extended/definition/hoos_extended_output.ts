@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const HOOS_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'S',
     label: { en: 'Symptoms' },
     type: 'number',
@@ -24,11 +29,6 @@ export const HOOS_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'QOL',
     label: { en: 'Hip related quality of life' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

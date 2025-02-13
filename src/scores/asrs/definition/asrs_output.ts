@@ -2,16 +2,16 @@ import { z } from 'zod'
 import { ScoreOutputSchemaType } from '../../../types'
 
 export const ASRS_OUTPUT = {
+  ASRS_TOTAL_SCORE: {
+    label: { en: 'ASRS - Total Score' },
+    type: z.number(),
+  },
   ASRS_PART_A_SCORE: {
     label: { en: 'ASRS - Part A' },
     type: z.number(),
   },
   ASRS_PART_B_SCORE: {
     label: { en: 'ASRS - Part B' },
-    type: z.number(),
-  },
-  ASRS_TOTAL_SCORE: {
-    label: { en: 'ASRS - Total Score' },
     type: z.number(),
   },
   ASRS_INATTENTIVE_SUBSCALE_SCORE: {

@@ -29,9 +29,9 @@ describe('dn4', function () {
 
     it('should have the expected calculation result ids', function () {
       const EXPECTED_CALCULATION_ID = [
+        'PATIENT_TOTAL_SCORE',
         'PATIENT_INTERVIEW_SCORE',
         'PATIENT_EXAMINIATION_SCORE',
-        'PATIENT_TOTAL_SCORE',
       ]
 
       const configured_calculation_id = Object.keys(outcome)

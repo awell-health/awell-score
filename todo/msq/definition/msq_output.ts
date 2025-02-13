@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const MSQ_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'MSQ_GRAND_TOTAL',
+    label: { en: 'MSQ - Grand total' },
+    type: 'number',
+  },
+  {
     subresult_id: 'MSQ_HEAD_TOTAL',
     label: { en: 'MSQ - Head total' },
     type: 'number',
@@ -76,11 +81,6 @@ export const MSQ_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'MSQ_OTHER_TOTAL',
     label: { en: 'MSQ - Other total' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'MSQ_GRAND_TOTAL',
-    label: { en: 'MSQ - Grand total' },
     type: 'number',
   },
   {

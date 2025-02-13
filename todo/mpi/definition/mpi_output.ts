@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const MPI_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'MPI_TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'MPI_PSYCHOSOCIAL',
     label: { en: 'Psychological/Psychosocial aspects of pain' },
     type: 'number',
@@ -14,11 +19,6 @@ export const MPI_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'MPI_ADL',
     label: { en: 'Participation in daily activities' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'MPI_TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

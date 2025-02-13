@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../../src/types/calculat
 
 export const COMI_BACK_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'COMI Back total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'PAIN',
     label: { en: 'Pain' },
     type: 'number',
@@ -24,11 +29,6 @@ export const COMI_BACK_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'DISABILITY',
     label: { en: 'Disability' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'COMI Back total score' },
     type: 'number',
   },
 ]

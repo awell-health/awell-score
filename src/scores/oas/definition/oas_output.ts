@@ -2,6 +2,10 @@ import { z } from 'zod'
 import { ScoreOutputSchemaType } from '../../../types'
 
 export const OAS_OUTPUT = {
+  OAS_TOTAL_SUM_SCORE: {
+    label: { en: 'OAS Total Sum Score' },
+    type: z.number(),
+  },
   OAS_DAILY_ACTIVITIES_SUM_SCORE: {
     label: { en: 'OAS Daily Activities Sum Score' },
     type: z.number(),
@@ -56,10 +60,6 @@ export const OAS_OUTPUT = {
   },
   OAS_SEXUALITY_MEAN_SCORE: {
     label: { en: 'OAS Sexuality Mean Score' },
-    type: z.number(),
-  },
-  OAS_TOTAL_SUM_SCORE: {
-    label: { en: 'OAS Total Sum Score' },
     type: z.number(),
   },
   OAS_MEAN_SCORE: {

@@ -49,8 +49,8 @@ describe('PRO2', function () {
 
     it('should have all the correct calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
-        'STOOL_FREQUENCY_AND_ABDOMINAL_PAIN_SUBSCORE',
         'TOTAL_SCORE',
+        'STOOL_FREQUENCY_AND_ABDOMINAL_PAIN_SUBSCORE',
         'REMISSION',
       ]
 

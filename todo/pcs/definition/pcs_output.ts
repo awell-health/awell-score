@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const PCS_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total PCS score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'RUMINATION',
     label: { en: 'Rumination' },
     type: 'number',
@@ -14,11 +19,6 @@ export const PCS_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'HELPLESSNESS',
     label: { en: 'Helplessness' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total PCS score' },
     type: 'number',
   },
 ]
