@@ -5,6 +5,6 @@ module.exports = {
     '.yarn',
     '**/*/*.test.ts',
     '*pnp*',
-    'todo/**/*',
+    'todo/**',
   ],
 }

@@ -119,6 +119,7 @@ import { tampa } from './tampa/tampa'
 import { visa_a, visa_g, visa_p } from './visa'
 import { yp_core } from './yp_core/yp_core'
 import { zarit_12 } from './zarit_12/zarit_12'
+import { womac } from './womac/womac'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
 import { ScoreType } from '../types'
@@ -273,4 +274,5 @@ export const ScoreLibrary = createScoreLibrary({
   visa_p,
   yp_core,
   zarit_12,
+  womac,
 })
