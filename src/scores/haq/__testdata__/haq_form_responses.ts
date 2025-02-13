@@ -1,4 +1,3 @@
-// @flow
 export const min_response = {
   DRESSING_1: 0,
   DRESSING_2: 0,
@@ -23,7 +22,7 @@ export const min_response = {
   ACTIVITIES_2: 0,
   ACTIVITIES_3: 0,
   AIDS_OR_DEVICES_PART_2: [],
-  NEED_HELP_PART_2: []
+  NEED_HELP_PART_2: [],
 }
 
 export const max_response = {
@@ -44,7 +43,7 @@ export const max_response = {
     'devices_used_for_dressing',
     'built_up_or_special_utensils',
     'special_or_built_up_chair',
-    'other'
+    'other',
   ],
   NEED_HELP_PART_1: ['dressing', 'arising', 'eating', 'walking'],
   HYGIENE_1: 3,
@@ -65,9 +64,9 @@ export const max_response = {
     'long_handled_appliances_for_reach',
     'long_handled_appliances_in_bathroom',
     'bathtub_bar',
-    'other'
+    'other',
   ],
-  NEED_HELP_PART_2: ['hygiene', 'reach', 'grip', 'activities']
+  NEED_HELP_PART_2: ['hygiene', 'reach', 'grip', 'activities'],
 }
 
 /**
@@ -85,7 +84,7 @@ export const random_response = {
   WALKING_2: 1, // 2 because help is needed with walking
   AIDS_OR_DEVICES_PART_1: [
     'devices_used_for_dressing',
-    'special_or_built_up_chair'
+    'special_or_built_up_chair',
   ],
   NEED_HELP_PART_1: ['dressing', 'arising', 'walking'],
   HYGIENE_1: 0,
@@ -100,5 +99,5 @@ export const random_response = {
   ACTIVITIES_2: 0,
   ACTIVITIES_3: 1, // 1
   AIDS_OR_DEVICES_PART_2: ['raised_toilet_seat'],
-  NEED_HELP_PART_2: ['hygiene']
+  NEED_HELP_PART_2: ['hygiene'],
 }

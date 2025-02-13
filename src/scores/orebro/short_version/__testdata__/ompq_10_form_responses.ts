@@ -1,4 +1,3 @@
-// @flow
 export const min_response = {
   OREBRO_DURATION: 1,
   OREBRO_PAIN_EXPERIENCE: 0,
@@ -9,7 +8,7 @@ export const min_response = {
   OREBRO_PAIN_FEAR_AVOIDANCE: 0,
   OREBRO_NORMAL_WORK_WITH_PAIN: 0,
   OREBRO_LIGHT_WORK: 10, // inverse scoring
-  OREBRO_SLEEP_AT_NIGHT: 10 // inverse scoring
+  OREBRO_SLEEP_AT_NIGHT: 10, // inverse scoring
 }
 
 export const median_response = {
@@ -22,7 +21,7 @@ export const median_response = {
   OREBRO_PAIN_FEAR_AVOIDANCE: 5,
   OREBRO_NORMAL_WORK_WITH_PAIN: 5,
   OREBRO_LIGHT_WORK: 5, // inverse scoring
-  OREBRO_SLEEP_AT_NIGHT: 5 // inverse scoring
+  OREBRO_SLEEP_AT_NIGHT: 5, // inverse scoring
 }
 
 export const max_response = {
@@ -35,7 +34,7 @@ export const max_response = {
   OREBRO_PAIN_FEAR_AVOIDANCE: 10,
   OREBRO_NORMAL_WORK_WITH_PAIN: 10,
   OREBRO_LIGHT_WORK: 0, // inverse scoring
-  OREBRO_SLEEP_AT_NIGHT: 0 // inverse scoring
+  OREBRO_SLEEP_AT_NIGHT: 0, // inverse scoring
 }
 
 /**
@@ -51,5 +50,5 @@ export const random_response = {
   OREBRO_PAIN_FEAR_AVOIDANCE: 0,
   OREBRO_NORMAL_WORK_WITH_PAIN: 2,
   OREBRO_LIGHT_WORK: 6, // inverse scoring
-  OREBRO_SLEEP_AT_NIGHT: 9 // inverse scoring
+  OREBRO_SLEEP_AT_NIGHT: 9, // inverse scoring
 }

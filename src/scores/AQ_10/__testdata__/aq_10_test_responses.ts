@@ -1,4 +1,3 @@
-// @flow
 export const best_response = {
   AQ10_Q01: 0,
   AQ10_Q02: 0,
@@ -9,7 +8,7 @@ export const best_response = {
   AQ10_Q07: 0,
   AQ10_Q08: 0,
   AQ10_Q09: 0,
-  AQ10_Q10: 0
+  AQ10_Q10: 0,
 }
 
 export const worst_response = {
@@ -22,7 +21,7 @@ export const worst_response = {
   AQ10_Q07: 1,
   AQ10_Q08: 1,
   AQ10_Q09: 1,
-  AQ10_Q10: 1
+  AQ10_Q10: 1,
 }
 
 /**
@@ -38,5 +37,5 @@ export const random_response = {
   AQ10_Q07: 1,
   AQ10_Q08: 1,
   AQ10_Q09: 0,
-  AQ10_Q10: 1
+  AQ10_Q10: 1,
 }
