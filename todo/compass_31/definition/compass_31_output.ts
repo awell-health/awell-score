@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const COMPASS_13_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'COMPASS_13_TOTAL_SCORE',
+    label: { en: 'COMPASS 31 Total Score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'COMPASS_13_ORTHOSTATIC_INTOLERANCE',
     label: { en: 'COMPASS 31 - Orthostatic Intolerance' },
     type: 'number',
@@ -31,11 +36,6 @@ export const COMPASS_13_OUTPUT: CalculationOutputDefinition[] = [
     label: {
       en: 'COMPASS 31 - Pupillomotor',
     },
-    type: 'number',
-  },
-  {
-    subresult_id: 'COMPASS_13_TOTAL_SCORE',
-    label: { en: 'COMPASS 31 Total Score' },
     type: 'number',
   },
 ]

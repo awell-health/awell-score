@@ -72,11 +72,11 @@ describe('constant_murley_score_orthotoolkit', function () {
 
       it('should have all the correct calculation ids', function () {
         const EXPECTED_CALCULATION_IDS = [
+          'TS',
           'PAIN',
           'ADL',
           'MOBILITY',
           'STRENGTH',
-          'TS',
         ]
 
         const extracted_calculation_ids_from_outcome = Object.keys(outcome)

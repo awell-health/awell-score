@@ -76,6 +76,7 @@ describe('core_om', function () {
       const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual([
+        'TOTAL_RAW',
         'SUBJECTIVE_WELL_BEING_DEFICITS_RAW',
         'SUBJECTIVE_WELL_BEING_DEFICITS_MEAN',
         'PROBLEMS_SYMPTOMS_RAW',
@@ -84,7 +85,6 @@ describe('core_om', function () {
         'LIFE_FUNCTIONING_DIFFICULTIES_MEAN',
         'RISK_HARM_RAW',
         'RISK_HARM_MEAN',
-        'TOTAL_RAW',
         'TOTAL_MEAN',
       ])
     })

@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const MDS_UPDRS_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'MDS_UPDRS_TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
     label: { en: 'Part I: non-motor experiences of daily living (nM-EDL)' },
     type: 'number',
@@ -19,11 +24,6 @@ export const MDS_UPDRS_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'PART_4_MOTOR_COMPLICATIONS',
     label: { en: 'Part IV: motor complications' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'MDS_UPDRS_TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

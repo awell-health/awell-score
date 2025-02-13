@@ -2,6 +2,10 @@ import { z } from 'zod'
 import { type ScoreOutputSchemaType } from '../../../../types'
 
 export const CMS_OUTPUT = {
+  TS: {
+    label: { en: 'Total score' },
+    type: z.number(),
+  },
   PAIN: {
     label: { en: 'Pain', nl: 'Pijn' },
     type: z.number(),
@@ -25,10 +29,6 @@ export const CMS_OUTPUT = {
       en: 'Strength',
       nl: 'Kracht',
     },
-    type: z.number(),
-  },
-  TS: {
-    label: { en: 'Total score' },
     type: z.number(),
   },
 } satisfies ScoreOutputSchemaType

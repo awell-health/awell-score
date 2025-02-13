@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const MOCA_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'TOTAL',
+    label: { en: 'Total score' },
+    type: 'number',
+  },
+  {
     subresult_id: 'VISUOSPATIAL_EXECUTIVE',
     label: { en: 'Visuospatial / executive' },
     type: 'number',
@@ -34,11 +39,6 @@ export const MOCA_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'ORIENTATION',
     label: { en: 'Orientation' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'TOTAL',
-    label: { en: 'Total score' },
     type: 'number',
   },
 ]

@@ -21,6 +21,7 @@ describe('oas', function () {
 
     it('should have the expected calculation result ids', function () {
       const EXPECTED_CALCULATION_ID = [
+        'OAS_TOTAL_SUM_SCORE',
         'OAS_DAILY_ACTIVITIES_SUM_SCORE',
         'OAS_DAILY_ACTIVITIES_MEAN_SCORE',
         'OAS_KNOWLEDGE_AND_SKILLS_SUM_SCORE',
@@ -35,7 +36,6 @@ describe('oas', function () {
         'OAS_HEALTH_PROFESSIONALS_MEAN_SCORE',
         'OAS_SEXUALITY_SUM_SCORE',
         'OAS_SEXUALITY_MEAN_SCORE',
-        'OAS_TOTAL_SUM_SCORE',
         'OAS_MEAN_SCORE',
       ]
 

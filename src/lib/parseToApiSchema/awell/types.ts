@@ -1,9 +1,4 @@
-import {
-  CategoryType,
-  CodeType,
-  TerminologyType,
-  type LabelType,
-} from '../../../types'
+import { CodeType, TerminologyType, type LabelType } from '../../../types'
 
 interface BooleanInputApiType {
   type: 'boolean'
