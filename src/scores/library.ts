@@ -14,6 +14,7 @@ import { cade_q_sv } from './cade_q'
 import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
 import { cat } from './cat/cat'
 // import { ccq } from './ccq/ccq'
+import { cfws } from './cfws/cfws'
 import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { chc_preop_brochure_triage } from './chc'
 // import { femmes_enceintes_triage } from './chc/femmes_enceintes/triage/triage'
@@ -162,6 +163,7 @@ export const ScoreLibrary = createScoreLibrary({
   caregiver_strain_index,
   cat,
   // ccq,
+  cfws,
   CHA2DS2_VASc_Score,
   // chc_preop_brochure_triage,
   // femmes_enceintes_triage,
