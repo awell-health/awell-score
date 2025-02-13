@@ -1,0 +1,73 @@
+export const best_response = {
+  PAID20_Q01: 0,
+  PAID20_Q02: 0,
+  PAID20_Q03: 0,
+  PAID20_Q04: 0,
+  PAID20_Q05: 0,
+  PAID20_Q06: 0,
+  PAID20_Q07: 0,
+  PAID20_Q08: 0,
+  PAID20_Q09: 0,
+  PAID20_Q10: 0,
+  PAID20_Q11: 0,
+  PAID20_Q12: 0,
+  PAID20_Q13: 0,
+  PAID20_Q14: 0,
+  PAID20_Q15: 0,
+  PAID20_Q16: 0,
+  PAID20_Q17: 0,
+  PAID20_Q18: 0,
+  PAID20_Q19: 0,
+  PAID20_Q20: 0,
+}
+
+// 100
+export const worst_response = {
+  PAID20_Q01: 4,
+  PAID20_Q02: 4,
+  PAID20_Q03: 4,
+  PAID20_Q04: 4,
+  PAID20_Q05: 4,
+  PAID20_Q06: 4,
+  PAID20_Q07: 4,
+  PAID20_Q08: 4,
+  PAID20_Q09: 4,
+  PAID20_Q10: 4,
+  PAID20_Q11: 4,
+  PAID20_Q12: 4,
+  PAID20_Q13: 4,
+  PAID20_Q14: 4,
+  PAID20_Q15: 4,
+  PAID20_Q16: 4,
+  PAID20_Q17: 4,
+  PAID20_Q18: 4,
+  PAID20_Q19: 4,
+  PAID20_Q20: 4,
+}
+
+/**
+ * Score = 29
+ * Expected score: 36.25
+ */
+export const random_response = {
+  PAID20_Q01: 3,
+  PAID20_Q02: 0,
+  PAID20_Q03: 1,
+  PAID20_Q04: 2,
+  PAID20_Q05: 0,
+  PAID20_Q06: 0,
+  PAID20_Q07: 1,
+  PAID20_Q08: 2,
+  PAID20_Q09: 4,
+  PAID20_Q10: 1,
+  PAID20_Q11: 2,
+  PAID20_Q12: 0,
+  PAID20_Q13: 4,
+  PAID20_Q14: 1,
+  PAID20_Q15: 2,
+  PAID20_Q16: 0,
+  PAID20_Q17: 3,
+  PAID20_Q18: 2,
+  PAID20_Q19: 0,
+  PAID20_Q20: 1,
+}

@@ -99,12 +99,11 @@ import { phq_4 } from './phq_4/phq_4'
 import { phq_8 } from './phq_8/phq_8'
 import { phq_9 } from './phq_9/phq_9'
 // import { physical_activity_measurement } from './physical_activity_measurements/physical_activity_measurements'
-// import { posas_observer } from './posas_observer/posas_observer'
-// import { posas_patient } from './posas_patient/posas_patient'
 // import { pro_ctcae } from './pro_ctcae/pro_ctcae'
 import { pro2 as PRO2 } from './pro2/pro2'
 // import { promis_10 } from './promis_10/promis_10'
 // import { prtee } from './prtee/prtee'
+import { paid_20 } from './PAID_20/paid_20'
 // import { psk } from './psk/psk'
 // import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
@@ -249,12 +248,11 @@ export const ScoreLibrary = createScoreLibrary({
   phq_8,
   phq_9,
   // physical_activity_measurement,
-  // posas_observer,
-  // posas_patient,
   // pro_ctcae,
   PRO2,
   // promis_10,
   // prtee,
+  paid_20,
   // psk,
   // psqi,
   pss_4,
