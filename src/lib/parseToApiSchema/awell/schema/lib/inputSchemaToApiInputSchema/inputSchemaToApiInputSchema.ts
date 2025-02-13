@@ -4,9 +4,9 @@ import {
   LabelType,
   ScoreInputSchemaType,
   ScoreInputType,
-} from '../../../../../types'
+} from '../../../../../../types'
 import { ApiInputType } from '../../types'
-import { getUnionType } from '../../../../zod/getUnionType'
+import { getUnionType } from '../../../../../zod/getUnionType'
 
 const getBooleanAllowedAnswers = (
   value: ScoreInputType,

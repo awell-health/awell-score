@@ -291,15 +291,17 @@ export const CMS_INPUTS = {
       en: 'External rotation (check all that apply)',
       nl: 'Externe rotatie (check all that apply)',
     },
-    type: z.array(
-      z.union([
-        z.literal(1),
-        z.literal(2),
-        z.literal(3),
-        z.literal(4),
-        z.literal(5),
-      ]),
-    ),
+    type: z
+      .array(
+        z.union([
+          z.literal(1),
+          z.literal(2),
+          z.literal(3),
+          z.literal(4),
+          z.literal(5),
+        ]),
+      )
+      .optional(),
     uiOptions: {
       options: [
         {

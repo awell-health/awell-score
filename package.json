@@ -16,7 +16,7 @@
     "copy-readmes": "cpx 'src/scores/**/README.md' dist/scores",
     "lint": "eslint --config eslint.config.js",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "test": "jest --verbose",
+    "test": "jest ",
     "prepare": "husky install"
   },
   "keywords": [],

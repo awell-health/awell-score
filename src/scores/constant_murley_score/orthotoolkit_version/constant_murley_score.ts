@@ -15,7 +15,7 @@ export const constant_murley_score: ScoreType<
      * Mobility
      */
     const POINTS_PER_EXOROTATION_CRITERIUM = 2
-    const exorotation_input = data.Q09_EXOROTATION_ROM
+    const exorotation_input = data?.Q09_EXOROTATION_ROM ?? []
     const exorotation_score =
       exorotation_input.length * POINTS_PER_EXOROTATION_CRITERIUM
 

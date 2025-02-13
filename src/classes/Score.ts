@@ -11,6 +11,7 @@ import {
   getUnionType,
   createZodObjectFromSchema,
   parseToAwellApiSchema,
+  parseToApiResultFormat,
 } from '../lib'
 import {
   tryCastToBoolean,
@@ -19,9 +20,17 @@ import {
   tryCastToStringsArray,
   tryCastToNumbersArray,
 } from '../lib/castFunctions'
-import { mapValues, sample, random, sampleSize, pickBy } from 'lodash'
+import {
+  mapValues,
+  sample,
+  random,
+  sampleSize,
+  pickBy,
+  isNil,
+  isEmpty,
+} from 'lodash'
 import { simulateDateInput, simulateStringInput } from '../lib/simulation'
-import { parseToApiResultFormat } from '../lib/parseToApiResultFormat'
+import { preprocessPayload } from '../lib/zod'
 
 /**
  * Class representing a Score, which calculates results based on input and output schemas.
@@ -131,11 +140,14 @@ export class Score<
     z.infer<OutputSchema[keyof OutputSchema]['type']> | null
   > {
     try {
-      const d = this.inputSchemaAsObject.parse(
-        params?.opts?.strictMode === true
-          ? params.payload
-          : this.tryCastInputsToExactTypes(params.payload),
-      )
+      preprocessPayload(this.inputSchemaAsObject, params.payload)
+
+      const _payload = params?.opts?.strictMode
+        ? params.payload
+        : this.tryCastInputsToExactTypes(params.payload)
+
+      // Validate inputs
+      const d = this.inputSchemaAsObject.parse(_payload)
 
       const results = this._calculate({ data: d })
       return results
@@ -144,19 +156,13 @@ export class Score<
         if (params?.opts?.returnMissingOnZodError === true) {
           const allZodIssues = err.issues
 
-          // We need to handle union errors better in the future
-          // We currently can't make a distinction between a missing input and an invalid union value
-          const hasUnionErrors = allZodIssues.some(
-            issue => issue.code === 'invalid_union',
-          )
-
           // Check if all issues are related to missing inputs
           // Other type of issues we still want to throw
           const hasOnlyMissingInputs = allZodIssues.every(issue =>
             issue.message.toLowerCase().includes('required'),
           )
 
-          if (hasOnlyMissingInputs || hasUnionErrors) {
+          if (hasOnlyMissingInputs) {
             return mapValues(this.outputSchema, () => null)
           }
         }

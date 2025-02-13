@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { CalculationResultStatus, type ApiResultType } from './types'
-import { type ScoreOutputSchemaType } from '../../types'
-import { getDefaultTerminology } from '../parseToApiSchema/awell/lib/outputSchemaToApiOutputSchema/outputSchemaToApiOutputSchema'
+import { type ScoreOutputSchemaType } from '../../../../../types'
+import { getDefaultTerminology } from '../../schema/lib/outputSchemaToApiOutputSchema/outputSchemaToApiOutputSchema'
 
 export const parseToApiResultFormat = <
   OutputSchema extends ScoreOutputSchemaType,

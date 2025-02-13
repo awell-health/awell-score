@@ -2,7 +2,7 @@ import {
   TerminologyType,
   type ScoreInputSchemaType,
   type ScoreOutputSchemaType,
-} from '../../../types'
+} from '../../../../types'
 import { type ApiScoreType } from './types'
 import { inputSchemaToApiInputSchema } from './lib/inputSchemaToApiInputSchema/inputSchemaToApiInputSchema'
 import { outputSchemaToApiOutputSchema } from './lib/outputSchemaToApiOutputSchema/outputSchemaToApiOutputSchema'

@@ -1,74 +1,80 @@
 import { z, ZodError } from 'zod'
 import { Score } from '../Score'
-import { CalculationResultStatus } from '../../lib/parseToApiResultFormat/types'
+import { CalculationResultStatus } from '../../lib/parseToApiSchema/awell/result/parseToApiResultFormat/types'
+import { type ScoreInputSchemaType } from '../../types'
+import { create } from 'lodash'
 
-const score = new Score({
-  id: 'test_score',
-  name: 'Test Score',
-  readmeLocation: __dirname,
-  inputSchema: {
-    simpleNumberInput: { type: z.number().optional() },
-    simpleNumberInputWithRange: {
-      type: z.number().min(10).max(20).optional(),
-    },
-    enumNumberInput: {
-      type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
-      uiOptions: {
-        options: [
-          { value: 1, label: { en: 'One' } },
-          { value: 2, label: { en: 'Two' } },
-          { value: 3, label: { en: 'Three' } },
-        ],
+const createScore = (inputSchema?: ScoreInputSchemaType) => {
+  return new Score({
+    id: 'test_score',
+    name: 'Test Score',
+    readmeLocation: __dirname,
+    inputSchema: inputSchema || {
+      simpleNumberInput: { type: z.number().optional() },
+      simpleNumberInputWithRange: {
+        type: z.number().min(10).max(20).optional(),
+      },
+      enumNumberInput: {
+        type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+        uiOptions: {
+          options: [
+            { value: 1, label: { en: 'One' } },
+            { value: 2, label: { en: 'Two' } },
+            { value: 3, label: { en: 'Three' } },
+          ],
+        },
+      },
+      dateInput: { type: z.string().date().optional() },
+      stringInput: { type: z.string().optional() },
+      enumStringInput: {
+        type: z
+          .union([z.literal('blue'), z.literal('green'), z.literal('red')])
+          .optional(),
+      },
+      booleanInput: { type: z.boolean().optional() },
+      numbersArrayInput: {
+        type: z
+          .array(z.union([z.literal(1), z.literal(2), z.literal(3)]))
+          .optional(),
+      },
+      stringsArrayInput: {
+        type: z
+          .array(z.union([z.literal('1'), z.literal('2'), z.literal('3')]))
+          .optional(),
       },
     },
-    dateInput: { type: z.string().date().optional() },
-    stringInput: { type: z.string().optional() },
-    enumStringInput: {
-      type: z
-        .union([z.literal('blue'), z.literal('green'), z.literal('red')])
-        .optional(),
+    outputSchema: {
+      result: { type: z.number(), label: { en: 'Result' } },
     },
-    booleanInput: { type: z.boolean().optional() },
-    numbersArrayInput: {
-      type: z
-        .array(z.union([z.literal(1), z.literal(2), z.literal(3)]))
-        .optional(),
+    terminology: {
+      category: [
+        {
+          coding: [
+            {
+              system:
+                'http://terminology.hl7.org/CodeSystem/observation-category',
+              code: 'vital-signs',
+              display: 'Vital Signs',
+            },
+          ],
+        },
+      ],
     },
-    stringsArrayInput: {
-      type: z
-        .array(z.union([z.literal('1'), z.literal('2'), z.literal('3')]))
-        .optional(),
-    },
-  },
-  outputSchema: {
-    result: { type: z.number(), label: { en: 'Result' } },
-  },
-  terminology: {
-    category: [
-      {
-        coding: [
-          {
-            system:
-              'http://terminology.hl7.org/CodeSystem/observation-category',
-            code: 'vital-signs',
-            display: 'Vital Signs',
-          },
-        ],
-      },
-    ],
-  },
-  calculate: () => ({
-    result: 999,
-  }),
-})
+    calculate: () => ({
+      result: 999,
+    }),
+  })
+}
 
 describe('Score', () => {
+  const defaultScore = createScore()
+
   describe('Calculate', () => {
     describe('Validation', () => {
       describe('Strict mode on', () => {
         test('should throw an error if the input is invalid', () => {
           expect(() =>
-            score.calculate({
+            createScore().calculate({
               payload: { simpleNumberInput: '1' },
               opts: { strictMode: true },
             }),
@@ -79,7 +85,7 @@ describe('Score', () => {
       describe('Strict mode off', () => {
         test('should not throw an error if the input is invalid', () => {
           expect(() =>
-            score.calculate({
+            defaultScore.calculate({
               payload: {
                 simpleNumberInput: '1',
                 enumNumberInput: '2',
@@ -98,20 +104,9 @@ describe('Score', () => {
     })
 
     describe('Return missing on ZodError (only for missing inputs)', () => {
-      const newScore = new Score({
-        id: 'test_score',
-        name: 'Test Score',
-        readmeLocation: __dirname,
-        inputSchema: {
-          simpleNumberInputOne: { type: z.number() }, // required
-          simpleNumberInputTwo: { type: z.number() }, // required
-        },
-        outputSchema: {
-          result: { type: z.number(), label: { en: 'Result' } },
-        },
-        calculate: () => ({
-          result: 999,
-        }),
+      const newScore = createScore({
+        simpleNumberInputOne: { type: z.number() }, // required
+        simpleNumberInputTwo: { type: z.number() }, // required
       })
 
       test('should throw an error if an input is invalid', () => {
@@ -144,7 +139,7 @@ describe('Score', () => {
 
   describe('Simulation', () => {
     test('should simulate the input', () => {
-      const result = score.simulate()
+      const result = defaultScore.simulate()
 
       expect(result.simulatedInput).toEqual({
         simpleNumberInputWithRange: expect.any(Number),
@@ -164,8 +159,8 @@ describe('Score', () => {
     })
 
     test('should simulate the input and return the results in the awell format', () => {
-      const result = score.simulate()
-      const awellResults = score.formatResults(result.results, {
+      const result = defaultScore.simulate()
+      const awellResults = defaultScore.formatResults(result.results, {
         format: 'awell',
       })
 
@@ -195,7 +190,7 @@ describe('Score', () => {
 
   describe('API schema', () => {
     test('should return the API schema', () => {
-      expect(score.apiSchema).toEqual({
+      expect(defaultScore.apiSchema).toEqual({
         calculation_id: 'test_score',
         calculation_name: {
           en: 'Test Score',
@@ -382,7 +377,7 @@ describe('Score', () => {
         stringsArrayInput: ['1', '2', '3'],
       }
 
-      const result = score.tryCastInputsToExactTypes(input)
+      const result = defaultScore.tryCastInputsToExactTypes(input)
       expect(result).toEqual(input)
     })
 
@@ -398,7 +393,7 @@ describe('Score', () => {
         stringsArrayInput: [1, 2, 3, '4', true, false, 'true', 'false'],
       }
 
-      const result = score.tryCastInputsToExactTypes(input)
+      const result = defaultScore.tryCastInputsToExactTypes(input)
 
       expect(result).toEqual({
         simpleNumberInput: 1,
@@ -430,7 +425,7 @@ describe('Score', () => {
         stringsArrayInput: [[], []],
       }
 
-      const result = score.tryCastInputsToExactTypes(input)
+      const result = defaultScore.tryCastInputsToExactTypes(input)
       expect(result).toEqual({
         simpleNumberInput: 'Hello world',
         stringInput: [1, 2, 3],
@@ -442,7 +437,7 @@ describe('Score', () => {
 
     describe('Edge cases', () => {
       test('should cast string to number when using comma notation ', function () {
-        const outcome = score.tryCastInputsToExactTypes({
+        const outcome = defaultScore.tryCastInputsToExactTypes({
           simpleNumberInput: '17,2',
         })
 
@@ -452,7 +447,7 @@ describe('Score', () => {
       })
 
       test('should cast string to number when using dot notation ', function () {
-        const outcome = score.tryCastInputsToExactTypes({
+        const outcome = defaultScore.tryCastInputsToExactTypes({
           simpleNumberInput: '17.2',
         })
 
@@ -462,7 +457,7 @@ describe('Score', () => {
       })
 
       test('should cast string to number when the string has whitespaces ', function () {
-        const outcome = score.tryCastInputsToExactTypes({
+        const outcome = defaultScore.tryCastInputsToExactTypes({
           simpleNumberInput: '  3  ',
         })
 
@@ -472,7 +467,7 @@ describe('Score', () => {
       })
 
       test('should NOT cast string to number when the string contains a number in the American format ', function () {
-        const outcome = score.tryCastInputsToExactTypes({
+        const outcome = defaultScore.tryCastInputsToExactTypes({
           simpleNumberInput: '12,345,678.90123',
         })
 
@@ -482,13 +477,174 @@ describe('Score', () => {
       })
 
       test('should NOT cast string to number when the string contains a number in the Ido format ', function () {
-        const outcome = score.tryCastInputsToExactTypes({
+        const outcome = defaultScore.tryCastInputsToExactTypes({
           simpleNumberInput: '12.345.678,90123',
         })
 
         expect(outcome).toEqual({
           simpleNumberInput: '12.345.678,90123',
         })
+      })
+    })
+  })
+
+  describe('Error handling (zod)', () => {
+    describe('Simple number input', () => {
+      test('Required input is missing', () => {
+        expect(() =>
+          createScore({
+            input: { type: z.number() },
+          }).calculate({
+            payload: {},
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: expect.arrayContaining([
+              expect.objectContaining({
+                code: 'invalid_type',
+                expected: 'number',
+                received: 'undefined',
+                path: ['input'],
+                message: 'Required',
+              }),
+            ]),
+          }),
+        )
+      })
+
+      test('Input is invalid', () => {
+        expect(() =>
+          createScore({
+            input: { type: z.number() },
+          }).calculate({
+            payload: { input: 'hello-world' },
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_type',
+                expected: 'number',
+                received: 'string',
+                path: ['input'],
+                message: 'Expected number, received string',
+              },
+            ],
+          }),
+        )
+      })
+    })
+
+    describe('Enum number input', () => {
+      test('Required input is missing', () => {
+        expect(() =>
+          createScore({
+            input: { type: z.union([z.literal(1), z.literal(2)]) },
+          }).calculate({
+            payload: {},
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_union',
+                unionErrors: expect.any(Array),
+                path: ['input'],
+                message: 'Required',
+              },
+            ],
+          }),
+        )
+      })
+
+      test('Input is invalid', () => {
+        expect(() =>
+          createScore({
+            input: { type: z.union([z.literal(1), z.literal(2)]) },
+          }).calculate({
+            payload: { input: 3 },
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_union',
+                unionErrors: expect.any(Array),
+                path: ['input'],
+                message: 'Invalid input',
+              },
+            ],
+          }),
+        )
+      })
+    })
+
+    describe('Array of enum number input', () => {
+      test('Required input is missing (undefined)', () => {
+        expect(() =>
+          createScore({
+            input: { type: z.array(z.union([z.literal(1), z.literal(2)])) },
+          }).calculate({
+            payload: {},
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_type',
+                expected: 'array',
+                received: 'undefined',
+                path: ['input'],
+                message: 'Required',
+              },
+            ],
+          }),
+        )
+      })
+
+      test('Required input is missing (empty array)', () => {
+        expect(() =>
+          createScore({
+            input: {
+              type: z.array(z.union([z.literal(1), z.literal(2)])),
+            },
+          }).calculate({
+            payload: { input: [] },
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_type',
+                expected: 'array',
+                received: 'undefined',
+                path: ['input'],
+                message: 'Required',
+              },
+            ],
+          }),
+        )
+      })
+
+      test('Input is invalid', () => {
+        expect(() =>
+          createScore({
+            input: { type: z.array(z.union([z.literal(1), z.literal(2)])) },
+          }).calculate({
+            payload: { input: [1, 2, 3] },
+          }),
+        ).toThrow(
+          expect.objectContaining({
+            issues: [
+              {
+                code: 'invalid_union',
+                unionErrors: expect.any(Array),
+                path: ['input', 2],
+                message: 'Invalid input',
+              },
+            ],
+          }),
+        )
       })
     })
   })

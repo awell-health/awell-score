@@ -1,4 +1,4 @@
-import { type CodeType, type LabelType } from '../../types'
+import { type CodeType, type LabelType } from '../../../../../types'
 
 export enum CalculationResultStatus {
   CALCULATED = 'CALCULATED',

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { type ApiOutputType } from '../../types'
-import { ScoreOutputSchemaType } from '../../../../../types'
+import { ScoreOutputSchemaType } from '../../../../../../types'
 
 export const getDefaultTerminology = (
   id: string,

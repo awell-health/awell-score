@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { inputSchemaToApiInputSchema } from '../inputSchemaToApiInputSchema'
-import { SimpleNumberInputType } from '../../../../../types'
+import { SimpleNumberInputType } from '../../../../../../types'
 
 describe('inputSchemaToApiInputSchema', () => {
   describe('boolean field', () => {
