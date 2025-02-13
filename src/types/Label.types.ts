@@ -6,4 +6,5 @@ export type LabelType = {
   es?: string
   de?: string
   it?: string
+  pl?: string
 }

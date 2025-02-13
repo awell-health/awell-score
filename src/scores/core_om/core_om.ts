@@ -52,6 +52,7 @@ export const core_om: ScoreType<typeof CORE_OM_INPUTS, typeof CORE_OM_OUTPUT> =
       }
 
       return {
+        TOTAL_RAW: calculateRawScore(data),
         SUBJECTIVE_WELL_BEING_DEFICITS_RAW: calculateRawScore(
           subjectiveWellBeingItems,
         ),
@@ -68,7 +69,6 @@ export const core_om: ScoreType<typeof CORE_OM_INPUTS, typeof CORE_OM_OUTPUT> =
         ),
         RISK_HARM_RAW: calculateRawScore(riskHarmItems),
         RISK_HARM_MEAN: calculateMeanScore(riskHarmItems),
-        TOTAL_RAW: calculateRawScore(data),
         TOTAL_MEAN: calculateMeanScore(data),
       }
     },

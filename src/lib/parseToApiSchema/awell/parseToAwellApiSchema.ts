@@ -1,5 +1,4 @@
 import {
-  CategoryType,
   TerminologyType,
   type ScoreInputSchemaType,
   type ScoreOutputSchemaType,

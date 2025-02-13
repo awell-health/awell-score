@@ -21,9 +21,9 @@ describe('asrs', function () {
 
     it('should have the expected calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
+        'ASRS_TOTAL_SCORE',
         'ASRS_PART_A_SCORE',
         'ASRS_PART_B_SCORE',
-        'ASRS_TOTAL_SCORE',
         'ASRS_INATTENTIVE_SUBSCALE_SCORE',
         'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_MOTOR_SCORE',
         'ASRS_HYPERACTIVE_IMPULSIVE_SUBSCALE_VERBAL_SCORE',

@@ -2,6 +2,11 @@ import type { CalculationOutputDefinition } from '../../../src/types/calculation
 
 export const PCL5_OUTPUT: CalculationOutputDefinition[] = [
   {
+    subresult_id: 'PCL5_PTSS_INDICATION',
+    label: { en: 'PTSS Indication (based on DSM-5 diagnostic rule)' },
+    type: 'number',
+  },
+  {
     subresult_id: 'PCL5_TOTAL_SYMPTOM_SEVERITY_SCORE',
     label: { en: 'Total Symptom Severity Score' },
     type: 'number',
@@ -24,11 +29,6 @@ export const PCL5_OUTPUT: CalculationOutputDefinition[] = [
   {
     subresult_id: 'PCL5_DSM_5_SYMPTOM_CLUSTER_E',
     label: { en: 'DSM-5 Symptom Cluster E (items 15-20)' },
-    type: 'number',
-  },
-  {
-    subresult_id: 'PCL5_PTSS_INDICATION',
-    label: { en: 'PTSS Indication (based on DSM-5 diagnostic rule)' },
     type: 'number',
   },
 ]

@@ -2,6 +2,9 @@ import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
 import { age_calc } from './age_calc/age_calc'
 import { asrs } from './asrs/asrs'
 // import { audit } from './audit/audit'
+import { aq_10 } from './AQ_10/aq_10'
+import { basdai } from './basdai/basdai'
+import { basfi } from './basfi/basfi'
 import { beck } from './beck/beck'
 import { blcs } from './blcs/blcs'
 import { bwcs } from './bwcs/bwcs'
@@ -18,6 +21,7 @@ import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { compass_31 } from './compass_31/compass_31'
 import { constant_murley_score_orthotoolkit } from './constant_murley_score'
 import { core_om } from './core_om/core_om'
+import { cdr } from './cdr/cdr'
 import { cpdi } from './cpdi/cpdi'
 import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
@@ -52,6 +56,7 @@ import { gad_7 } from './GAD_7/gad_7'
 import { ghq_12 } from './ghq_12/ghq_12'
 // import { hads } from './hads/HADS_score'
 // import { harris_hip_score } from './harris_hip_score/harris_hip_score'
+import { haq } from './haq/haq'
 // import { hoos_extended } from './hoos_extended/hoos_extended'
 import { hoos_ps } from './hoos_ps/hoos_ps'
 // import { hos } from './hos/hos'
@@ -94,16 +99,17 @@ import { phq_4 } from './phq_4/phq_4'
 import { phq_8 } from './phq_8/phq_8'
 import { phq_9 } from './phq_9/phq_9'
 // import { physical_activity_measurement } from './physical_activity_measurements/physical_activity_measurements'
-// import { posas_observer } from './posas_observer/posas_observer'
-// import { posas_patient } from './posas_patient/posas_patient'
 // import { pro_ctcae } from './pro_ctcae/pro_ctcae'
 import { pro2 as PRO2 } from './pro2/pro2'
 // import { promis_10 } from './promis_10/promis_10'
 // import { prtee } from './prtee/prtee'
+import { paid_20 } from './PAID_20/paid_20'
 // import { psk } from './psk/psk'
 // import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
 import { sccai } from './sccai/sccai'
+import { snap_teacher } from './snap_teacher/snap_teacher'
+import { snap_parent } from './snap_parent/snap_parent'
 // import { scl90 } from './scl90/scl90'
 // import { scl90r } from './scl90r/scl90r'
 // import { sdq } from './sdq/sdq'
@@ -115,6 +121,7 @@ import { tampa } from './tampa/tampa'
 import { visa_a, visa_g, visa_p } from './visa'
 import { yp_core } from './yp_core/yp_core'
 import { zarit_12 } from './zarit_12/zarit_12'
+import { womac } from './womac/womac'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
 import { ScoreType } from '../types'
@@ -142,6 +149,9 @@ export const ScoreLibrary = createScoreLibrary({
   acro,
   asrs,
   // audit,
+  aq_10,
+  basdai,
+  basfi,
   beck,
   bmi: bmi_metric,
   bmi_imperial,
@@ -160,6 +170,7 @@ export const ScoreLibrary = createScoreLibrary({
   // compass_31,
   constant_murley_score_orthotoolkit,
   core_om,
+  cdr,
   cpdi,
   csi,
   dast_10,
@@ -188,6 +199,7 @@ export const ScoreLibrary = createScoreLibrary({
   ghq_12,
   // hads,
   // harris_hip_score,
+  haq,
   // hoos_extended,
   hoos_ps,
   // hos,
@@ -236,18 +248,19 @@ export const ScoreLibrary = createScoreLibrary({
   phq_8,
   phq_9,
   // physical_activity_measurement,
-  // posas_observer,
-  // posas_patient,
   // pro_ctcae,
   PRO2,
   // promis_10,
   // prtee,
+  paid_20,
   // psk,
   // psqi,
   pss_4,
   // qol_stoma,
   // quickdash,
   sccai,
+  snap_teacher,
+  snap_parent,
   // scl90,
   // scl90r,
   // sdq,
@@ -265,4 +278,5 @@ export const ScoreLibrary = createScoreLibrary({
   visa_p,
   yp_core,
   zarit_12,
+  womac,
 })

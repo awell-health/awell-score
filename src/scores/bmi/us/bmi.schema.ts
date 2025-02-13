@@ -9,14 +9,14 @@ export const BmiInputSchema = {
     unit: { en: 'pounds' },
   },
   height_feet: {
-    type: z.number().min(0).max(8),
+    type: z.number(),
     label: {
       en: 'Height (feet)',
     },
     unit: { en: 'feet' },
   },
   height_inches: {
-    type: z.number().min(0).max(50),
+    type: z.number(),
     label: {
       en: 'Height (inches)',
     },

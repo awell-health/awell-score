@@ -2,6 +2,10 @@ import { z } from 'zod'
 import { ScoreOutputSchemaType } from '../../../types'
 
 export const CORE_OM_OUTPUT = {
+  TOTAL_RAW: {
+    label: { en: 'Total - Raw Score' },
+    type: z.number(),
+  },
   SUBJECTIVE_WELL_BEING_DEFICITS_RAW: {
     label: { en: 'Subjective well-being deficits - Raw Score' },
     type: z.number(),
@@ -32,10 +36,6 @@ export const CORE_OM_OUTPUT = {
   },
   RISK_HARM_MEAN: {
     label: { en: 'Risk/harm - Mean Score' },
-    type: z.number(),
-  },
-  TOTAL_RAW: {
-    label: { en: 'Total - Raw Score' },
     type: z.number(),
   },
   TOTAL_MEAN: {
