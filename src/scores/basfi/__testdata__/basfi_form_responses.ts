@@ -1,4 +1,3 @@
-// @flow
 export const min_response = {
   Q01: 0,
   Q02: 0,
@@ -9,7 +8,7 @@ export const min_response = {
   Q07: 0,
   Q08: 0,
   Q09: 0,
-  Q10: 0
+  Q10: 0,
 }
 
 export const median_response = {
@@ -22,7 +21,7 @@ export const median_response = {
   Q07: 5,
   Q08: 5,
   Q09: 5,
-  Q10: 5
+  Q10: 5,
 }
 
 export const max_response = {
@@ -35,7 +34,7 @@ export const max_response = {
   Q07: 10,
   Q08: 10,
   Q09: 10,
-  Q10: 10
+  Q10: 10,
 }
 
 /**
@@ -51,5 +50,5 @@ export const random_response = {
   Q07: 5,
   Q08: 7,
   Q09: 6,
-  Q10: 1
+  Q10: 1,
 }

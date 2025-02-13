@@ -2,6 +2,7 @@ import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
 import { age_calc } from './age_calc/age_calc'
 import { asrs } from './asrs/asrs'
 // import { audit } from './audit/audit'
+import { aq_10 } from './AQ_10/aq_10'
 import { basdai } from './basdai/basdai'
 import { basfi } from './basfi/basfi'
 import { beck } from './beck/beck'
@@ -108,6 +109,8 @@ import { pro2 as PRO2 } from './pro2/pro2'
 // import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
 import { sccai } from './sccai/sccai'
+import { snap_teacher } from './snap_teacher/snap_teacher'
+import { snap_parent } from './snap_parent/snap_parent'
 // import { scl90 } from './scl90/scl90'
 // import { scl90r } from './scl90r/scl90r'
 // import { sdq } from './sdq/sdq'
@@ -147,6 +150,7 @@ export const ScoreLibrary = createScoreLibrary({
   acro,
   asrs,
   // audit,
+  aq_10,
   basdai,
   basfi,
   beck,
@@ -257,6 +261,8 @@ export const ScoreLibrary = createScoreLibrary({
   // qol_stoma,
   // quickdash,
   sccai,
+  snap_teacher,
+  snap_parent,
   // scl90,
   // scl90r,
   // sdq,

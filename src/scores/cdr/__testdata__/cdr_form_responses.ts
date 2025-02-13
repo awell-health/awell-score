@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * Scenario 1:
  * ------------
@@ -20,7 +18,7 @@ export const scenario_1 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0,
   COMMUNITY_AFFAIRS: 0,
   HOME_AND_HOBBIES: 1,
-  PERSONAL_CARE: 0
+  PERSONAL_CARE: 0,
 }
 
 /**
@@ -43,7 +41,7 @@ export const scenario_2 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0.5,
   COMMUNITY_AFFAIRS: 0,
   HOME_AND_HOBBIES: 0,
-  PERSONAL_CARE: 3
+  PERSONAL_CARE: 3,
 }
 
 /**
@@ -66,7 +64,7 @@ export const scenario_3 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0.5,
   COMMUNITY_AFFAIRS: 0,
   HOME_AND_HOBBIES: 0.5,
-  PERSONAL_CARE: 3
+  PERSONAL_CARE: 3,
 }
 
 /**
@@ -89,7 +87,7 @@ export const scenario_4 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0.5,
   COMMUNITY_AFFAIRS: 2,
   HOME_AND_HOBBIES: 1,
-  PERSONAL_CARE: 3
+  PERSONAL_CARE: 3,
 }
 
 /**
@@ -117,7 +115,7 @@ export const scenario_5 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 3,
   COMMUNITY_AFFAIRS: 3,
   HOME_AND_HOBBIES: 1,
-  PERSONAL_CARE: 1
+  PERSONAL_CARE: 1,
 }
 
 /**
@@ -145,7 +143,7 @@ export const scenario_6 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 1,
   COMMUNITY_AFFAIRS: 1,
   HOME_AND_HOBBIES: 3,
-  PERSONAL_CARE: 3
+  PERSONAL_CARE: 3,
 }
 
 /**
@@ -172,7 +170,7 @@ export const scenario_8 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 1,
   COMMUNITY_AFFAIRS: 1,
   HOME_AND_HOBBIES: 3,
-  PERSONAL_CARE: 3
+  PERSONAL_CARE: 3,
 }
 
 /**
@@ -195,7 +193,7 @@ export const scenario_9 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0,
   COMMUNITY_AFFAIRS: 0,
   HOME_AND_HOBBIES: 0,
-  PERSONAL_CARE: 0
+  PERSONAL_CARE: 0,
 }
 
 /**
@@ -222,7 +220,7 @@ export const scenario_10 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 2,
   COMMUNITY_AFFAIRS: 1,
   HOME_AND_HOBBIES: 1,
-  PERSONAL_CARE: 1
+  PERSONAL_CARE: 1,
 }
 
 /**
@@ -245,7 +243,7 @@ export const scenario_11 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 1,
   COMMUNITY_AFFAIRS: 1,
   HOME_AND_HOBBIES: 0.5,
-  PERSONAL_CARE: 0
+  PERSONAL_CARE: 0,
 }
 
 /**
@@ -268,7 +266,7 @@ export const scenario_12 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0,
   COMMUNITY_AFFAIRS: 0,
   HOME_AND_HOBBIES: 2,
-  PERSONAL_CARE: 1
+  PERSONAL_CARE: 1,
 }
 
 /**
@@ -291,7 +289,7 @@ export const scenario_13 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 2,
   COMMUNITY_AFFAIRS: 2,
   HOME_AND_HOBBIES: 1,
-  PERSONAL_CARE: 1
+  PERSONAL_CARE: 1,
 }
 
 /**
@@ -315,5 +313,5 @@ export const scenario_14 = {
   JUDGEMENT_AND_PROBLEM_SOLVING: 0,
   COMMUNITY_AFFAIRS: 0,
   HOME_AND_HOBBIES: 2,
-  PERSONAL_CARE: 2
+  PERSONAL_CARE: 2,
 }

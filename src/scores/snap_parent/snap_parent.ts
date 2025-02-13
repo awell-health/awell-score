@@ -1,0 +1,49 @@
+import { ScoreType } from '../../types'
+import {
+  SNAP_INPUTS,
+  SNAP_PARENT_OUTPUT,
+  SNAP_INTERPRETATION_TABLE,
+  SNAP_OPPOSITION_DEFIANCE_INTERPRETATION_TABLE,
+} from './definition'
+import { calculate_subscale_scores } from './helpers'
+
+export const snap_parent: ScoreType<
+  typeof SNAP_INPUTS,
+  typeof SNAP_PARENT_OUTPUT
+> = {
+  name: 'SNAP-IV 26-Item Parent Rating Scale (SNAP)',
+  readmeLocation: __dirname,
+  inputSchema: SNAP_INPUTS,
+  outputSchema: SNAP_PARENT_OUTPUT,
+  calculate: ({ data }) => {
+    const INATTENTION_SUBSET_SCORE = calculate_subscale_scores(
+      data,
+      'INATTENTION_SUBSET',
+    )
+    const HYPERACTIVITY_IMPULSIVITY_SUBSET_SCORE = calculate_subscale_scores(
+      data,
+      'HYPERACTIVITY_IMPULSIVITY_SUBSET',
+    )
+    const OPPOSITION_DEFIANCE_SUBSET_SCORE = calculate_subscale_scores(
+      data,
+      'OPPOSITION_DEFIANCE_SUBSET',
+    )
+
+    return {
+      SNAP_PARENT_INATTENTION_SCORE: INATTENTION_SUBSET_SCORE,
+      SNAP_PARENT_INATTENTION_SCORE_INTERPRETATION:
+        SNAP_INTERPRETATION_TABLE[String(INATTENTION_SUBSET_SCORE)] ?? null,
+      SNAP_PARENT_HYPERACTIVITY_IMPULSIVITY_SCORE:
+        HYPERACTIVITY_IMPULSIVITY_SUBSET_SCORE,
+      SNAP_PARENT_HYPERACTIVITY_IMPULSIVITY_SCORE_INTERPRETATION:
+        SNAP_INTERPRETATION_TABLE[
+          String(HYPERACTIVITY_IMPULSIVITY_SUBSET_SCORE)
+        ] ?? null,
+      SNAP_PARENT_OPPOSITION_DEFIANCE_SCORE: OPPOSITION_DEFIANCE_SUBSET_SCORE,
+      SNAP_PARENT_OPPOSITION_DEFIANCE_SCORE_INTERPRETATION:
+        SNAP_OPPOSITION_DEFIANCE_INTERPRETATION_TABLE[
+          String(OPPOSITION_DEFIANCE_SUBSET_SCORE)
+        ] ?? null,
+    }
+  },
+}
