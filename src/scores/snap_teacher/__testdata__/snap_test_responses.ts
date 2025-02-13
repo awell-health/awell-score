@@ -1,4 +1,3 @@
-// @flow
 export const best_response = {
   SNAP_Q01: 0,
   SNAP_Q02: 0,

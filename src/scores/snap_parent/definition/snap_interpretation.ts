@@ -1,14 +1,10 @@
-// @flow
-
 type AnxietySeverityType =
   | 'Symptoms not clinically significant'
   | 'Mild symptoms'
   | 'Moderate symptoms'
   | 'Severe symptoms'
 
-export const SNAP_INTERPRETATION_TABLE: {|
-  [string]: AnxietySeverityType
-|} = {
+export const SNAP_INTERPRETATION_TABLE: Record<string, AnxietySeverityType> = {
   '0': 'Symptoms not clinically significant',
   '1': 'Symptoms not clinically significant',
   '2': 'Symptoms not clinically significant',
@@ -36,12 +32,13 @@ export const SNAP_INTERPRETATION_TABLE: {|
   '24': 'Severe symptoms',
   '25': 'Severe symptoms',
   '26': 'Severe symptoms',
-  '27': 'Severe symptoms'
+  '27': 'Severe symptoms',
 }
 
-export const SNAP_OPPOSITION_DEFIANCE_INTERPRETATION_TABLE: {|
-  [string]: AnxietySeverityType
-|} = {
+export const SNAP_OPPOSITION_DEFIANCE_INTERPRETATION_TABLE: Record<
+  string,
+  AnxietySeverityType
+> = {
   '0': 'Symptoms not clinically significant',
   '1': 'Symptoms not clinically significant',
   '2': 'Symptoms not clinically significant',
@@ -66,5 +63,5 @@ export const SNAP_OPPOSITION_DEFIANCE_INTERPRETATION_TABLE: {|
   '21': 'Severe symptoms',
   '22': 'Severe symptoms',
   '23': 'Severe symptoms',
-  '24': 'Severe symptoms'
+  '24': 'Severe symptoms',
 }
