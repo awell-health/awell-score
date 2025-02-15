@@ -30,6 +30,7 @@ The COMI is a validated multidimensional questionnaire for assessing the key out
 The five domain scores for pain (higher of items 1a and 1b), back-related function (item 2), symptom-specific well-being (item 3), general quality of life (item 4) and disability (average of items 5 and 6) are then averaged to give you a COMI score from 0-10.
 
 ## References
+
 [1] Deyo RA, Battie M, Beurskens AJ, Bombardier C, Croft P, Koes B, Malmivaara A, Roland M, Von Korff M, Waddell G. Outcome measures for low back pain research. A proposal for standardized use. Spine (Phila Pa 1976). 1998 Sep 15;23(18):2003-13. doi: 10.1097/00007632-199809150-00018. Erratum in: Spine 1999 Feb 15;24(4):418. PMID: 9779535.\
 [2] Mannion AF, Porchet F, Kleinstück FS, Lattig F, Jeszenszky D, Bartanusz V, Dvorak J, Grob D. The quality of spine surgery from the patient's perspective. Part 1: the Core Outcome Measures Index in clinical practice. Eur Spine J. 2009 Aug;18 Suppl 3(Suppl 3):367-73. doi: 10.1007/s00586-009-0942-8. Epub 2009 Mar 25. PMID: 19319578; PMCID: PMC2899316.\
 [3] Mannion AF, Porchet F, Kleinstück FS, Lattig F, Jeszenszky D, Bartanusz V, Dvorak J, Grob D. The quality of spine surgery from the patient's perspective: part 2. Minimal clinically important difference for improvement and deterioration as measured with the Core Outcome Measures Index. Eur Spine J. 2009 Aug;18 Suppl 3(Suppl 3):374-9. doi: 10.1007/s00586-009-0931-y. Epub 2009 Mar 19. PMID: 19296136; PMCID: PMC2899314.

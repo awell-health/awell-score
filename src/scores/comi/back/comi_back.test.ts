@@ -1,12 +1,6 @@
-import { expect } from 'chai'
-import R from 'ramda'
-
-import { ZodError } from '../../../errors'
-import { execute_test_calculation } from '../../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../../lib/view_result'
-import { CALCULATIONS } from '../../calculation_library'
-import { get_input_ids_in_subscale } from '../../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../../classes'
+import { ScoreLibrary } from '../../library'
 import {
   max_response,
   median_response,
@@ -14,39 +8,37 @@ import {
   random_response,
 } from './__testdata__/comi_back_form_respones'
 import { comi_back } from './comi_back'
-import { COMI_BACK_DOMAINS } from './definition'
 
 const COMI_MIN_SCORE = 0
 const COMI_MEDIAN_SCORE = 5
 const COMI_MAX_SCORE = 10
 
-const comi_back_calculation = execute_test_calculation(comi_back)
+const comi_back_calculation = new Score(comi_back)
 
 describe('comi_back', function () {
   it('comi_back calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('comi_back')
+    expect(ScoreLibrary).toHaveProperty('comi_back')
   })
 
   describe('basic assumptions', function () {
-    const outcome = comi_back_calculation(min_response)
+    const outcome = comi_back_calculation.calculate({ payload: min_response })
 
     // A score for all domains (n=5) and a total score (n=1)
     const EXPECTED_CALCULATION_IDS = [
+      'TOTAL',
       'PAIN',
       'BACK_RELATED_FUNCTION',
       'SYMPTOM_SPECIFIC_WELLBEING',
       'GENERAL_QOL',
       'DISABILITY',
-      'TOTAL',
     ]
 
     it('should return 6 calculation results', function () {
-      expect(outcome).toHaveLength(6) // 5 Domains and a total score
+      expect(Object.keys(outcome)).toHaveLength(6) // 5 Domains and a total score
     })
 
     it('should contain all the expected calculation ids', function () {
-      const EXTRACTED_CALCULATION_IDS_FROM_RESULTS =
-        get_result_ids_from_calculation_output(outcome)
+      const EXTRACTED_CALCULATION_IDS_FROM_RESULTS = Object.keys(outcome)
 
       expect(EXTRACTED_CALCULATION_IDS_FROM_RESULTS).toEqual(
         EXPECTED_CALCULATION_IDS,
@@ -67,11 +59,9 @@ describe('comi_back', function () {
           'item_6',
         ]
 
-        const configured_input_ids = R.compose(
-          (input_ids: string[]) => input_ids.sort(),
-          R.flatten,
-          R.map(get_input_ids_in_subscale),
-        )(COMI_BACK_DOMAINS)
+        const configured_input_ids = Object.keys(
+          comi_back_calculation.inputSchema,
+        )
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -80,30 +70,89 @@ describe('comi_back', function () {
     describe('when answer on item 1a is out of the expected range', function () {
       describe('when answer < 0', function () {
         it('should throw an ZodError', function () {
-          expect(() => comi_back_calculation({ item_1a: -1 })).toThrow(ZodError)
+          try {
+            comi_back_calculation.calculate({
+              payload: {
+                item_1a: -1,
+              },
+            })
+          } catch (error) {
+            expect(error).toBeInstanceOf(ZodError)
+
+            const err = error as ZodError
+            expect(err.issues).toEqual(
+              expect.arrayContaining([
+                expect.objectContaining({
+                  message: 'Number must be greater than or equal to 0',
+                  path: ['item_1a'],
+                }),
+              ]),
+            )
+          }
         })
       })
 
       describe('when answer > 10', function () {
         it('should throw an ZodError', function () {
-          expect(() => comi_back_calculation({ item_1a: 11 })).toThrow(ZodError)
+          try {
+            comi_back_calculation.calculate({
+              payload: {
+                item_1a: 11,
+              },
+            })
+          } catch (error) {
+            expect(error).toBeInstanceOf(ZodError)
+
+            const err = error as ZodError
+            expect(err.issues).toEqual(
+              expect.arrayContaining([
+                expect.objectContaining({
+                  message: 'Number must be less than or equal to 10',
+                  path: ['item_1a'],
+                }),
+              ]),
+            )
+          }
         })
       })
     })
 
     describe('when answer on item 3 is not expected', function () {
       it('should throw an ZodError', function () {
-        expect(() => comi_back_calculation({ item_3: 4 })).toThrow(ZodError)
+        try {
+          comi_back_calculation.calculate({
+            payload: {
+              item_3: 4,
+            },
+          })
+        } catch (error) {
+          expect(error).toBeInstanceOf(ZodError)
+
+          const err = error as ZodError
+          expect(err.issues).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                message: 'Invalid input',
+                path: ['item_3'],
+              }),
+            ]),
+          )
+        }
       })
     })
 
     describe('when called with an empty response', function () {
-      it('should return MISSING_MESSAGE as the score for every domain', function () {
-        const outcome = comi_back_calculation({})
+      it('should return null as the score for every domain', function () {
+        const outcome = comi_back_calculation.calculate({
+          payload: {},
+          opts: {
+            returnMissingOnZodError: true,
+          },
+        })
 
-        outcome.forEach(domain => {
-          const result = domain.result
-          expect(result).toEqual(undefined)
+        Object.keys(outcome).forEach(domain => {
+          const result = outcome[domain as keyof typeof outcome]
+          expect(result).toEqual(null)
         })
       })
     })
@@ -112,10 +161,12 @@ describe('comi_back', function () {
   describe('score calculation', function () {
     describe('when called with a minimum response', function () {
       it('should return the minimum score for each domain', function () {
-        const outcome = comi_back_calculation(min_response)
+        const outcome = comi_back_calculation.calculate({
+          payload: min_response,
+        })
 
-        outcome.forEach(domain => {
-          const result = domain.result
+        Object.keys(outcome).forEach(domain => {
+          const result = outcome[domain as keyof typeof outcome]
           expect(result).toEqual(COMI_MIN_SCORE)
         })
       })
@@ -123,10 +174,12 @@ describe('comi_back', function () {
 
     describe('when called with a median response', function () {
       it('should return the median score for each domain', function () {
-        const outcome = comi_back_calculation(median_response)
+        const outcome = comi_back_calculation.calculate({
+          payload: median_response,
+        })
 
-        outcome.forEach(domain => {
-          const result = domain.result
+        Object.keys(outcome).forEach(domain => {
+          const result = outcome[domain as keyof typeof outcome]
           expect(result).toEqual(COMI_MEDIAN_SCORE)
         })
       })
@@ -134,67 +187,49 @@ describe('comi_back', function () {
 
     describe('when called with a maximum response', function () {
       it('should return the maximum score for each subscale', function () {
-        const outcome = comi_back_calculation(max_response)
+        const outcome = comi_back_calculation.calculate({
+          payload: max_response,
+        })
 
-        outcome.forEach(domain => {
-          const result = domain.result
+        Object.keys(outcome).forEach(domain => {
+          const result = outcome[domain as keyof typeof outcome]
           expect(result).toEqual(COMI_MAX_SCORE)
         })
       })
     })
 
     describe('when called with a random response', function () {
-      const results = comi_back_calculation(random_response)
+      const results = comi_back_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the expected score for the "PAIN" domain"', function () {
-        const pain_score = view_result('PAIN')(results)
-
         const EXPECTED_PAIN_SCORE = 7
-
-        expect(pain_score).toEqual(EXPECTED_PAIN_SCORE)
+        expect(results.PAIN).toEqual(EXPECTED_PAIN_SCORE)
       })
       it('should return the expected score for the "BACK_RELATED_FUNCTION" domain"', function () {
-        const back_related_function_score = view_result(
-          'BACK_RELATED_FUNCTION',
-        )(results)
-
         const EXPECTED_BACK_RELATED_FUNCTION_SCORE = 2.5
-
-        expect(back_related_function_score).toEqual(
+        expect(results.BACK_RELATED_FUNCTION).toEqual(
           EXPECTED_BACK_RELATED_FUNCTION_SCORE,
         )
       })
       it('should return the expected score for the "SYMPTOM_SPECIFIC_WELLBEING" domain"', function () {
-        const symptom_specific_well_being_score = view_result(
-          'SYMPTOM_SPECIFIC_WELLBEING',
-        )(results)
-
         const EXPECTED_SYMPTOM_SPECIFIC_WELL_BEING_SCORE = 7.5
-
-        expect(symptom_specific_well_being_score).toEqual(
+        expect(results.SYMPTOM_SPECIFIC_WELLBEING).toEqual(
           EXPECTED_SYMPTOM_SPECIFIC_WELL_BEING_SCORE,
         )
       })
       it('should return the expected score for the "GENERAL_QOL" domain"', function () {
-        const qol_score = view_result('GENERAL_QOL')(results)
-
         const EXPECTED_QOL_SCORE = 10
-
-        expect(qol_score).toEqual(EXPECTED_QOL_SCORE)
+        expect(results.GENERAL_QOL).toEqual(EXPECTED_QOL_SCORE)
       })
       it('should return the expected score for the "DISABILITY" domain"', function () {
-        const disability_score = view_result('DISABILITY')(results)
-
         const EXPECTED_DISABILITY_SCORE = 2.5
-
-        expect(disability_score).toEqual(EXPECTED_DISABILITY_SCORE)
+        expect(results.DISABILITY).toEqual(EXPECTED_DISABILITY_SCORE)
       })
       it('should return the expected total score', function () {
-        const total_score = view_result('TOTAL')(results)
-
         const EXPECTED_TOTAL_SCORE = 5.9
-
-        expect(total_score).toEqual(EXPECTED_TOTAL_SCORE)
+        expect(results.TOTAL).toEqual(EXPECTED_TOTAL_SCORE)
       })
     })
   })
