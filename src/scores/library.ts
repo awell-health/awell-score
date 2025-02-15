@@ -13,7 +13,7 @@ import { bmi_metric, bmi_imperial } from './bmi'
 import { cade_q_sv } from './cade_q'
 import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
 import { cat } from './cat/cat'
-// import { ccq } from './ccq/ccq'
+import { ccq } from './ccq/ccq'
 import { cfws } from './cfws/cfws'
 import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 // import { chc_preop_brochure_triage } from './chc'
@@ -162,7 +162,7 @@ export const ScoreLibrary = createScoreLibrary({
   cade_q_sv,
   caregiver_strain_index,
   cat,
-  // ccq,
+  ccq,
   cfws,
   CHA2DS2_VASc_Score,
   // chc_preop_brochure_triage,
