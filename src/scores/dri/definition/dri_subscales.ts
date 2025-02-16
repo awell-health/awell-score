@@ -1,0 +1,10 @@
+export type SubscaleType =
+  | 'BASIC_ACTIVITIES'
+  | 'PHYSICAL_ACTIVITIES'
+  | 'WORK_RELATED_ACTIVITIES'
+
+export const DRI_SUBSCALES: Record<SubscaleType, string[]> = {
+  BASIC_ACTIVITIES: ['DRI_01', 'DRI_02', 'DRI_03', 'DRI_04'],
+  PHYSICAL_ACTIVITIES: ['DRI_05', 'DRI_06', 'DRI_07', 'DRI_08'],
+  WORK_RELATED_ACTIVITIES: ['DRI_09', 'DRI_10', 'DRI_11', 'DRI_12'],
+}

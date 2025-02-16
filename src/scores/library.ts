@@ -24,10 +24,8 @@ import { cdr } from './cdr/cdr'
 import { cpdi } from './cpdi/cpdi'
 import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
-// import { demo_calculation } from './demo_calculation/demo_calculation'
-// import { difference_calc } from './difference_calc/difference_calc'
 import { dn4 } from './dn4/dn4'
-// import { dri } from './dri/dri'
+import { dri } from './dri/dri'
 // import {
 //   eortc_qlq_br23,
 //   eortc_qlq_br45,
@@ -172,10 +170,8 @@ export const ScoreLibrary = createScoreLibrary({
   cpdi,
   csi,
   dast_10,
-  // demo_calculation,
-  // difference_calc,
   dn4,
-  // dri,
+  dri,
   // eortc_qlq_br23,
   // eortc_qlq_br45,
   // eortc_qlq_c30,
