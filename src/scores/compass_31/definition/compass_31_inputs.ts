@@ -1,14 +1,14 @@
-import type { InputType } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { type ScoreInputSchemaType } from '../../../types'
 
-export const COMPASS_31_INPUTS: Array<InputType> = [
-  {
-    input_id: 'Q01',
+export const COMPASS_31_INPUTS = {
+  Q01: {
     label: {
       en: 'In the past year, have you ever felt faint, dizzy, "goofy", or had difficulty thinking soon after standing up from a sitting or lying position?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Yes' },
@@ -22,14 +22,15 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q02',
+  Q02: {
     label: {
       en: 'When standing up, how frequently do you get these feelings or symptoms?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Rarely' },
@@ -54,19 +55,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q01',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q03',
+  Q03: {
     label: {
       en: 'How would you rate the severity of these feelings or symptoms?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Mild' },
@@ -85,19 +81,23 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q01',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q04',
+  Q04: {
     label: {
       en: 'In the past year, have these feelings or symptoms that you have experienced:',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([
+        z.literal(1),
+        z.literal(2),
+        z.literal(3),
+        z.literal(4),
+        z.literal(5),
+        z.literal(6),
+      ])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Gotten much worse' },
@@ -134,19 +134,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q01',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q05',
+  Q05: {
     label: {
       en: 'In the past year, have you ever noticed color changes in your skin, such as red, white, or purple?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Yes' },
@@ -160,14 +155,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q06',
+  Q06: {
     label: {
       en: 'What parts of your body are affected by these color changes? (Check all that apply)',
     },
-    type: {
-      type: 'numbers_array',
-      allowed_answers: [
+    type: z.array(z.union([z.literal(1), z.literal(2)])).optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Hands' },
@@ -180,19 +174,23 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q05',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q07',
+  Q07: {
     label: {
       en: 'Are these changes in your skin color:',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([
+        z.literal(1),
+        z.literal(2),
+        z.literal(3),
+        z.literal(4),
+        z.literal(5),
+        z.literal(6),
+      ])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Getting much worse' },
@@ -229,19 +227,20 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q05',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q08',
+  Q08: {
     label: {
       en: 'In the past 5 years, what changes, if any, have occurred in your general body sweating?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'I sweat much more than I used to' },
@@ -273,14 +272,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q09',
+  Q09: {
     label: {
       en: 'Do your eyes feel excessively dry?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Yes' },
@@ -294,14 +292,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q10',
+  Q10: {
     label: {
       en: 'Does you mouth feel excessively dry?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Yes' },
@@ -315,14 +312,21 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q11',
+  Q11: {
     label: {
       en: 'For the symptom of dry eyes or dry mouth that you have had for the longest period of time, is this symptom:',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+      z.literal(6),
+      z.literal(7),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'I have not had any of these symptoms' },
@@ -364,14 +368,19 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q12',
+  Q12: {
     label: {
       en: 'In the past year, have you noticed any changes in how quickly you get full when eating a meal?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'I get full a lot more quickly now than I used to' },
@@ -403,14 +412,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q13',
+  Q13: {
     label: {
       en: 'In the past year, have you felt excessively full or persistently full (bloated feeling) after a meal?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Never' },
@@ -430,14 +438,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q14',
+  Q14: {
     label: {
       en: 'In the past year, have you vomited after a meal?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Never' },
@@ -457,14 +464,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q15',
+  Q15: {
     label: {
       en: 'In the past year, have you had a cramping or colicky abdominal pain?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Never' },
@@ -484,14 +490,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q16',
+  Q16: {
     label: {
       en: 'In the past year, have you had any bouts of diarrhea?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Yes' },
@@ -505,14 +510,15 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q17',
+  Q17: {
     label: {
       en: 'How frequently does this occur?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Rarely' },
@@ -537,19 +543,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q16',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q18',
+  Q18: {
     label: {
       en: 'How severe are these bouts of diarrhea?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Mild' },
@@ -568,19 +569,23 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q16',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q19',
+  Q19: {
     label: {
       en: 'Are your bouts of diarrhea getting:',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([
+        z.literal(1),
+        z.literal(2),
+        z.literal(3),
+        z.literal(4),
+        z.literal(5),
+        z.literal(6),
+      ])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Much worse' },
@@ -617,19 +622,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q16',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q20',
+  Q20: {
     label: {
       en: 'In the past year, have you been constipated?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Yes' },
@@ -643,14 +643,15 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q21',
+  Q21: {
     label: {
       en: 'How frequently are you constipated?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Rarely' },
@@ -675,19 +676,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q20',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q22',
+  Q22: {
     label: {
       en: 'How severe are these episodes of constipation?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Mild' },
@@ -706,19 +702,23 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q20',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q23',
+  Q23: {
     label: {
       en: 'Is your constipation getting:',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z
+      .union([
+        z.literal(1),
+        z.literal(2),
+        z.literal(3),
+        z.literal(4),
+        z.literal(5),
+        z.literal(6),
+      ])
+      .optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Much worse' },
@@ -755,19 +755,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q20',
-      value_is_one_of: [2],
-    },
   },
-  {
-    input_id: 'Q24',
+  Q24: {
     label: {
       en: 'In the past year, have you ever lost control of your bladder function?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Never' },
@@ -793,14 +788,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q25',
+  Q25: {
     label: {
       en: 'In the past year, have you had difficulty passing urine?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Never' },
@@ -826,14 +820,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q26',
+  Q26: {
     label: {
       en: 'In the past year, have you had trouble completely emptying your bladder?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Never' },
@@ -859,14 +852,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q27',
+  Q27: {
     label: {
       en: 'In the past year, without sunglasses or tinted glasses, has bright light bothered your eyes?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: {
@@ -894,14 +886,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q28',
+  Q28: {
     label: {
       en: 'How severe is this sensitivity to bright light',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Mild' },
@@ -920,19 +911,14 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q27',
-      value_is_one_of: [1],
-    },
   },
-  {
-    input_id: 'Q29',
+  Q29: {
     label: {
       en: 'In the past year, have you had trouble focusing your eyes?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: {
@@ -960,14 +946,13 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'Q30',
+  Q30: {
     label: {
       en: 'How severe is this focusing problem?',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'Mild' },
@@ -986,19 +971,22 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
         },
       ],
     },
-    not_applicable_if: {
-      input_id: 'Q30',
-      value_is_one_of: [1],
-    },
   },
-  {
-    input_id: 'Q31',
+  Q31: {
     label: {
       en: 'Is the most troublesome symptom with your eyes (i.e. sensitivity to bright light or trouble focusing) getting:',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+      z.literal(6),
+      z.literal(7),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: { en: 'I have not had any of these symptoms' },
@@ -1042,4 +1030,4 @@ export const COMPASS_31_INPUTS: Array<InputType> = [
       ],
     },
   },
-]
+} satisfies ScoreInputSchemaType

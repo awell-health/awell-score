@@ -17,7 +17,7 @@ import { ccq } from './ccq/ccq'
 import { cfws } from './cfws/cfws'
 import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
 import { comi_back, comi_neck } from './comi'
-// import { compass_31 } from './compass_31/compass_31'
+import { compass_31 } from './compass_31/compass_31'
 import { constant_murley_score_orthotoolkit } from './constant_murley_score'
 import { core_om } from './core_om/core_om'
 import { cdr } from './cdr/cdr'
@@ -165,7 +165,7 @@ export const ScoreLibrary = createScoreLibrary({
   CHA2DS2_VASc_Score,
   comi_back,
   comi_neck,
-  // compass_31,
+  compass_31,
   constant_murley_score_orthotoolkit,
   core_om,
   cdr,
