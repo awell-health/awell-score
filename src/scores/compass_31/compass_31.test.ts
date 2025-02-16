@@ -187,7 +187,7 @@ describe('compass_31', function () {
               Q01: -1,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -214,7 +214,7 @@ describe('compass_31', function () {
               Q01: 8,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -241,7 +241,7 @@ describe('compass_31', function () {
               Q01: 'not a number',
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -264,7 +264,7 @@ describe('compass_31', function () {
       const outcome = compass_calculation.calculate({
         payload: {},
         opts: {
-          returnMissingOnZodError: true,
+          nullOnMissingInputs: true,
         },
       })
 

@@ -134,7 +134,7 @@ describe('snap parent', function () {
     describe('when called with an empty response', function () {
       const outcome = snap_calculation.calculate({
         payload: {},
-        opts: { returnMissingOnZodError: true },
+        opts: { nullOnMissingInputs: true },
       })
 
       describe('INATTENTION_SUBSET', function () {

@@ -100,7 +100,7 @@ describe('basdai', function () {
         const outcome = basdai_10_calculation.calculate({
           payload: {},
           opts: {
-            returnMissingOnZodError: true,
+            nullOnMissingInputs: true,
           },
         })
 
@@ -118,7 +118,7 @@ describe('basdai', function () {
               Q01: "I'm not a number",
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -144,7 +144,7 @@ describe('basdai', function () {
               Q01: -1,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -170,7 +170,7 @@ describe('basdai', function () {
               Q01: 11,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {

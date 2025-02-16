@@ -265,7 +265,7 @@ describe('cdr', function () {
         const outcome = cdr_calculation.calculate({
           payload: {},
           opts: {
-            returnMissingOnZodError: true,
+            nullOnMissingInputs: true,
           },
         })
         expect(outcome.CDR_SCORE).toEqual(null)
@@ -282,7 +282,7 @@ describe('cdr', function () {
               MEMORY: "I'm not a number",
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -308,7 +308,7 @@ describe('cdr', function () {
               MEMORY: -1,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -334,7 +334,7 @@ describe('cdr', function () {
               MEMORY: 4,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {

@@ -88,7 +88,7 @@ describe('dri', function () {
     describe('when an empty response is passed', function () {
       const outcome = dri_calculation.calculate({
         payload: {},
-        opts: { returnMissingOnZodError: true },
+        opts: { nullOnMissingInputs: true },
       })
 
       it('should return null on the "Common basic activities" subscale', function () {
@@ -200,7 +200,7 @@ describe('dri', function () {
               DRI_01: "I'm not a number",
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -226,7 +226,7 @@ describe('dri', function () {
               DRI_01: -1,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -252,7 +252,7 @@ describe('dri', function () {
               DRI_01: 110,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {

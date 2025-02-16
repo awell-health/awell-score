@@ -100,7 +100,7 @@ describe('basfi', function () {
         const outcome = basfi_calculation.calculate({
           payload: {},
           opts: {
-            returnMissingOnZodError: true,
+            nullOnMissingInputs: true,
           },
         })
         expect(outcome.BASFI_SCORE).toEqual(null)
@@ -117,7 +117,7 @@ describe('basfi', function () {
               Q01: "I'm not a number",
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -143,7 +143,7 @@ describe('basfi', function () {
               Q01: -1,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -169,7 +169,7 @@ describe('basfi', function () {
               Q01: 11,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {

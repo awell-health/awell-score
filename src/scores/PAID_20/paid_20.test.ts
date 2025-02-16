@@ -90,7 +90,7 @@ describe('paid_20', function () {
       const outcome = paid_20_calculation.calculate({
         payload: {},
         opts: {
-          returnMissingOnZodError: true,
+          nullOnMissingInputs: true,
         },
       })
 

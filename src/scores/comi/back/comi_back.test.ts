@@ -146,7 +146,7 @@ describe('comi_back', function () {
         const outcome = comi_back_calculation.calculate({
           payload: {},
           opts: {
-            returnMissingOnZodError: true,
+            nullOnMissingInputs: true,
           },
         })
 

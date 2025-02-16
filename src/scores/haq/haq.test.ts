@@ -148,7 +148,7 @@ describe('haq', function () {
         const outcome = haq_calculation.calculate({
           payload: {},
           opts: {
-            returnMissingOnZodError: true,
+            nullOnMissingInputs: true,
           },
         })
 
@@ -166,7 +166,7 @@ describe('haq', function () {
               DRESSING_1: "I'm not a number",
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -192,7 +192,7 @@ describe('haq', function () {
               DRESSING_1: -1,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {
@@ -218,7 +218,7 @@ describe('haq', function () {
               DRESSING_1: 4,
             },
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
         } catch (error) {

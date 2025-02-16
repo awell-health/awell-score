@@ -72,7 +72,7 @@ describe('aq_10', function () {
       const outcome = aq_10_calculation.calculate({
         payload: {},
         opts: {
-          returnMissingOnZodError: true,
+          nullOnMissingInputs: true,
         },
       })
 

@@ -8,21 +8,14 @@ import {
 } from '../types'
 import {
   parseReadmeToHtml,
-  getUnionType,
   createZodObjectFromSchema,
   parseToAwellApiSchema,
   parseToApiResultFormat,
 } from '../lib'
-import {
-  tryCastToBoolean,
-  tryCastToNumber,
-  tryCastToString,
-  tryCastToStringsArray,
-  tryCastToNumbersArray,
-} from '../lib/castFunctions'
-import { mapValues, sample, random, sampleSize, pickBy } from 'lodash'
-import { simulateDateInput, simulateStringInput } from '../lib/simulation'
+import { mapValues } from 'lodash'
 import { deduplicateZodIssues, preprocessPayload } from '../lib/zod'
+import { simulateScoreInput } from '../lib/simulation'
+import { tryCastInputsToExactTypes } from '../lib/castFunctions'
 
 /**
  * Class representing a Score, which calculates results based on input and output schemas.
@@ -121,11 +114,11 @@ export class Score<
        */
       strictMode?: boolean
       /**
-       * If true, the function will return null for missing inputs.
+       * If true, the function will return null for all results if required inputs are missing.
        * ZodErrors only occur when the input data is invalid (e.g. mismatch in type, required fields missing)
        * @default false
        */
-      returnMissingOnZodError?: boolean
+      nullOnMissingInputs?: boolean
     }
   }): Record<
     keyof OutputSchema,
@@ -154,7 +147,7 @@ export class Score<
       return this._calculate({ data: result.data })
     } catch (err) {
       if (err instanceof ZodError) {
-        if (params?.opts?.returnMissingOnZodError === true) {
+        if (params?.opts?.nullOnMissingInputs === true) {
           const allZodIssues = err.issues
 
           // Check if all issues are related to missing inputs
@@ -180,70 +173,7 @@ export class Score<
   tryCastInputsToExactTypes(
     data: Record<string, unknown>,
   ): Record<string, unknown> {
-    /**
-     * Casts a single input value to its exact type.
-     * @param input_value - The value to cast.
-     * @param key - The key of the input field.
-     * @returns The cast value.
-     */
-    const castInputToExactType = (input_value: unknown, key: string) => {
-      const inputTypeSchema = this.inputSchema[key]?.type
-
-      if (!inputTypeSchema) return input_value
-
-      /**
-       * Retrieves the base Zod type, unwrapping optional types if necessary.
-       * @returns The base Zod type.
-       */
-      const getZodType = () => {
-        if (inputTypeSchema instanceof z.ZodOptional) {
-          const unwrappedType = inputTypeSchema.unwrap()
-          return unwrappedType
-        }
-
-        return inputTypeSchema
-      }
-
-      const inputType = getZodType()
-
-      if (inputType instanceof z.ZodNumber) return tryCastToNumber(input_value)
-
-      if (inputType instanceof z.ZodString) return tryCastToString(input_value)
-
-      if (inputType instanceof z.ZodBoolean)
-        return tryCastToBoolean(input_value)
-
-      if (inputType instanceof z.ZodUnion) {
-        const unionType = getUnionType(inputType)
-
-        if (unionType === 'number') {
-          return tryCastToNumber(input_value)
-        }
-
-        if (unionType === 'string') {
-          return tryCastToString(input_value)
-        }
-      }
-
-      if (inputType instanceof z.ZodArray) {
-        const itemType = inputType.element
-
-        if (itemType instanceof z.ZodUnion) {
-          const unionType = getUnionType(itemType)
-
-          if (unionType === 'number') {
-            return tryCastToNumbersArray(input_value)
-          }
-          if (unionType === 'string') {
-            return tryCastToStringsArray(input_value)
-          }
-        }
-      }
-
-      return input_value
-    }
-
-    return mapValues(data, castInputToExactType)
+    return tryCastInputsToExactTypes(this.inputSchema, data)
   }
 
   /**
@@ -257,64 +187,12 @@ export class Score<
       z.infer<OutputSchema[keyof OutputSchema]['type']> | null
     >
   } {
-    const simulatedInput = mapValues(
-      this.inputSchemaAsObject.shape,
-      zodType => {
-        const getZodType = () => {
-          if (zodType instanceof z.ZodOptional) {
-            const unwrappedType = zodType.unwrap()
-            return unwrappedType
-          }
-
-          return zodType
-        }
-
-        const inputType = getZodType()
-
-        if (inputType instanceof z.ZodString) {
-          const isDate = inputType._def.checks.find(
-            check => check.kind === 'date',
-          )
-          if (isDate) {
-            return simulateDateInput()
-          }
-
-          return simulateStringInput()
-        }
-
-        if (inputType instanceof z.ZodBoolean) {
-          return sample([true, false])
-        }
-
-        if (inputType instanceof z.ZodNumber) {
-          const min = inputType.minValue
-          const max = inputType.maxValue
-
-          return random(min ?? 0, max ?? 100, false)
-        }
-
-        if (inputType instanceof z.ZodUnion) {
-          const optionValues = inputType.options.map(option => option.value)
-          return sample(optionValues)
-        }
-
-        if (inputType instanceof z.ZodArray) {
-          const itemType = inputType.element
-
-          if (itemType instanceof z.ZodUnion) {
-            const optionValues = itemType.options.map(option => option.value)
-            const randomNumberBetweenOneAndMax = random(1, optionValues.length)
-            return sampleSize(optionValues, randomNumberBetweenOneAndMax)
-          }
-        }
-
-        return undefined
-      },
-    )
+    const simulatedInput = simulateScoreInput(this.inputSchemaAsObject)
+    const simulatedResults = this.calculate({ payload: simulatedInput })
 
     return {
-      simulatedInput: pickBy(simulatedInput, value => value !== undefined),
-      results: this.calculate({ payload: simulatedInput }),
+      simulatedInput,
+      results: simulatedResults,
     }
   }
 

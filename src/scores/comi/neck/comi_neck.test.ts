@@ -145,7 +145,7 @@ describe('comi_neck', function () {
           const outcome = comi_neck_calculation.calculate({
             payload: {},
             opts: {
-              returnMissingOnZodError: true,
+              nullOnMissingInputs: true,
             },
           })
 

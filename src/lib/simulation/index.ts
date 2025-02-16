@@ -1,2 +1,1 @@
-export { simulateStringInput } from './simulateStringInput'
-export { simulateDateInput } from './simulateDateInput'
+export * from './simulateScoreInput'

@@ -92,7 +92,7 @@ describe('constant_murley_score_orthotoolkit', function () {
         const outcome = cms_calculation.calculate({
           payload: {},
           opts: {
-            returnMissingOnZodError: true,
+            nullOnMissingInputs: true,
           },
         })
 

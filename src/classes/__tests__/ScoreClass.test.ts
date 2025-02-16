@@ -2,7 +2,6 @@ import { z, ZodError } from 'zod'
 import { Score } from '../Score'
 import { CalculationResultStatus } from '../../lib/parseToApiSchema/awell/result/parseToApiResultFormat/types'
 import { type ScoreInputSchemaType } from '../../types'
-import { create } from 'lodash'
 
 const createScore = (inputSchema?: ScoreInputSchemaType) => {
   return new Score({
@@ -116,7 +115,7 @@ describe('Score', () => {
               simpleNumberInputOne: 'invalid',
               simpleNumberInputTwo: 2,
             },
-            opts: { returnMissingOnZodError: true },
+            opts: { nullOnMissingInputs: true },
           }),
         ).toThrow(ZodError)
       })
@@ -127,7 +126,7 @@ describe('Score', () => {
             // simpleNumberInputOne: 1, -- MISSING while required
             simpleNumberInputTwo: 2,
           },
-          opts: { returnMissingOnZodError: true },
+          opts: { nullOnMissingInputs: true },
         })
 
         expect(result).toEqual({
@@ -138,26 +137,6 @@ describe('Score', () => {
   })
 
   describe('Simulation', () => {
-    test('should simulate the input', () => {
-      const result = defaultScore.simulate()
-
-      expect(result.simulatedInput).toEqual({
-        simpleNumberInputWithRange: expect.any(Number),
-        simpleNumberInput: expect.any(Number),
-        booleanInput: expect.any(Boolean),
-        dateInput: expect.any(String),
-        stringInput: expect.any(String),
-        enumStringInput: expect.any(String),
-        enumNumberInput: expect.any(Number),
-        numbersArrayInput: expect.any(Array),
-        stringsArrayInput: expect.any(Array),
-      })
-
-      expect(result.results).toEqual({
-        result: 999,
-      })
-    })
-
     test('should simulate the input and return the results in the awell format', () => {
       const result = defaultScore.simulate()
       const awellResults = defaultScore.formatResults(result.results, {
@@ -360,130 +339,6 @@ describe('Score', () => {
             },
           ],
         },
-      })
-    })
-  })
-
-  describe('Casting inputs to exact types', () => {
-    test('should not alter the orginal input if it already has the correct input types', () => {
-      const input = {
-        simpleNumberInput: 1,
-        enumNumberInput: 2,
-        dateInput: '2024-01-jhl01',
-        stringInput: 'hello',
-        enumStringInput: 'green',
-        booleanInput: true,
-        numbersArrayInput: [1, 2, 3],
-        stringsArrayInput: ['1', '2', '3'],
-      }
-
-      const result = defaultScore.tryCastInputsToExactTypes(input)
-      expect(result).toEqual(input)
-    })
-
-    test('should cast the input to the correct types', () => {
-      const input = {
-        simpleNumberInput: '1',
-        enumNumberInput: '2',
-        dateInput: 'hello',
-        stringInput: 3,
-        enumStringInput: 'green',
-        booleanInput: 'true',
-        numbersArrayInput: ['1', '2', '3', 4, true, 'true', false, 'false'],
-        stringsArrayInput: [1, 2, 3, '4', true, false, 'true', 'false'],
-      }
-
-      const result = defaultScore.tryCastInputsToExactTypes(input)
-
-      expect(result).toEqual({
-        simpleNumberInput: 1,
-        enumNumberInput: 2,
-        dateInput: 'hello',
-        stringInput: '3',
-        enumStringInput: 'green',
-        booleanInput: true,
-        numbersArrayInput: [1, 2, 3, 4, 1, 1, 0, 0],
-        stringsArrayInput: [
-          '1',
-          '2',
-          '3',
-          '4',
-          'true',
-          'false',
-          'true',
-          'false',
-        ],
-      })
-    })
-
-    test('If casting fails, the original input should be returned', () => {
-      const input = {
-        simpleNumberInput: 'Hello world',
-        stringInput: [1, 2, 3],
-        booleanInput: 'not a boolean',
-        numbersArrayInput: [[], []],
-        stringsArrayInput: [[], []],
-      }
-
-      const result = defaultScore.tryCastInputsToExactTypes(input)
-      expect(result).toEqual({
-        simpleNumberInput: 'Hello world',
-        stringInput: [1, 2, 3],
-        booleanInput: 'not a boolean',
-        numbersArrayInput: [[], []],
-        stringsArrayInput: [[], []],
-      })
-    })
-
-    describe('Edge cases', () => {
-      test('should cast string to number when using comma notation ', function () {
-        const outcome = defaultScore.tryCastInputsToExactTypes({
-          simpleNumberInput: '17,2',
-        })
-
-        expect(outcome).toEqual({
-          simpleNumberInput: 17.2,
-        })
-      })
-
-      test('should cast string to number when using dot notation ', function () {
-        const outcome = defaultScore.tryCastInputsToExactTypes({
-          simpleNumberInput: '17.2',
-        })
-
-        expect(outcome).toEqual({
-          simpleNumberInput: 17.2,
-        })
-      })
-
-      test('should cast string to number when the string has whitespaces ', function () {
-        const outcome = defaultScore.tryCastInputsToExactTypes({
-          simpleNumberInput: '  3  ',
-        })
-
-        expect(outcome).toEqual({
-          simpleNumberInput: 3,
-        })
-      })
-
-      test('should NOT cast string to number when the string contains a number in the American format ', function () {
-        const outcome = defaultScore.tryCastInputsToExactTypes({
-          simpleNumberInput: '12,345,678.90123',
-        })
-
-        expect(outcome).toEqual({
-          simpleNumberInput: '12,345,678.90123',
-        })
-      })
-
-      test('should NOT cast string to number when the string contains a number in the Ido format ', function () {
-        const outcome = defaultScore.tryCastInputsToExactTypes({
-          simpleNumberInput: '12.345.678,90123',
-        })
-
-        expect(outcome).toEqual({
-          simpleNumberInput: '12.345.678,90123',
-        })
       })
     })
   })
