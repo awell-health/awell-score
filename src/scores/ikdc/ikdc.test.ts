@@ -1,29 +1,23 @@
-import { expect } from 'chai'
-
+import { ZodError } from 'zod'
 import { Score } from '../../classes'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
 import { ScoreLibrary } from '../library'
-import { get_input_ids_from_calculation_blueprint } from '../../src/calculation_suite/calculations/shared_functions'
 import {
   best_response,
   median_response,
   random_response,
   worst_response,
 } from './__testdata__/ikdc_test_responses'
-import { IKDC_INPUTS } from './definition/ikdc_inputs'
 import { ikdc } from './ikdc'
 
 const IKDC_WORST_SCORE = 0
 const IKDC_MEDIAN_SCORE = 49.43 // 50 is mathematically impossible
 const IKDC_BEST_SCORE = 100
 
-const ikdc_calculation = execute_test_calculation(ikdc)
+const ikdc_calculation = new Score(ikdc)
 
 describe('ikdc', function () {
   it('ikdc calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('ikdc')
+    expect(ScoreLibrary).toHaveProperty('ikdc')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -49,25 +43,25 @@ describe('ikdc', function () {
         'IKDC_Q10_CURRENT_KNEE_FUNCTION',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(IKDC_INPUTS)
+      const configured_calculation_input_ids = Object.keys(ikdc.inputSchema)
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = ikdc_calculation(best_response)
+    const outcome = ikdc_calculation.calculate({
+      payload: best_response,
+    })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['IKDC_SCORE'])
     })
@@ -76,28 +70,30 @@ describe('ikdc', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when the best response is passed', function () {
       it('should return the minimum score', function () {
-        const outcome = ikdc_calculation(best_response)
-        const result = view_result()(outcome)
-
-        expect(result).toEqual(IKDC_BEST_SCORE)
+        const outcome = ikdc_calculation.calculate({
+          payload: best_response,
+        })
+        expect(outcome.IKDC_SCORE).toEqual(IKDC_BEST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const outcome = ikdc_calculation(median_response)
-        const result = view_result()(outcome)
+        const outcome = ikdc_calculation.calculate({
+          payload: median_response,
+        })
 
-        expect(result).toEqual(IKDC_MEDIAN_SCORE)
+        expect(outcome.IKDC_SCORE).toEqual(IKDC_MEDIAN_SCORE)
       })
     })
 
     describe('when the worst response is passed', function () {
       it('should return the maximum score', function () {
-        const outcome = ikdc_calculation(worst_response)
-        const result = view_result()(outcome)
+        const outcome = ikdc_calculation.calculate({
+          payload: worst_response,
+        })
 
-        expect(result).toEqual(IKDC_WORST_SCORE)
+        expect(outcome.IKDC_SCORE).toEqual(IKDC_WORST_SCORE)
       })
     })
 
@@ -105,21 +101,26 @@ describe('ikdc', function () {
       it('should return the expected score', function () {
         const EXPECTED_SCORE = 34.48
 
-        const outcome = ikdc_calculation(random_response)
-        const result = view_result()(outcome)
+        const outcome = ikdc_calculation.calculate({
+          payload: random_response,
+        })
 
-        expect(result).toEqual(EXPECTED_SCORE)
+        expect(outcome.IKDC_SCORE).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const outcome = ikdc_calculation({})
-        const result = view_result()(outcome)
+      it('should return null as the result', function () {
+        const outcome = ikdc_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
 
-        expect(result).toEqual(undefined)
+        expect(outcome.IKDC_SCORE).toEqual(null)
       })
     })
   })
@@ -128,8 +129,10 @@ describe('ikdc', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ikdc_calculation({
-            IKDC_Q01: "I'm not a number",
+          ikdc_calculation.calculate({
+            payload: {
+              IKDC_Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -137,8 +140,10 @@ describe('ikdc', function () {
     describe('when an answer is below the expected range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ikdc_calculation({
-            IKDC_Q01: -1,
+          ikdc_calculation.calculate({
+            payload: {
+              IKDC_Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -146,8 +151,10 @@ describe('ikdc', function () {
     describe('when an answer is above the expected range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ikdc_calculation({
-            IKDC_Q01: 5,
+          ikdc_calculation.calculate({
+            payload: {
+              IKDC_Q01: 5,
+            },
           }),
         ).toThrow(ZodError)
       })
