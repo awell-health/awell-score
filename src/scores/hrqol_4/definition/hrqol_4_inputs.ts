@@ -1,14 +1,20 @@
-import type { InputType } from '../../../../src/types/calculations.types'
+import { z } from 'zod'
+import { type ScoreInputSchemaType } from '../../../types'
 
-export const HRQOL_4_INPUTS: Array<InputType> = [
-  {
-    input_id: 'HRQOL_4_Q01',
+export const HRQOL_4_INPUTS = {
+  HRQOL_4_Q01: {
     label: {
       en: 'Would you say that in general your health is',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+    ]),
+    uiOptions: {
+      options: [
         { value: 1, label: { en: 'Excellent' } },
         {
           value: 2,
@@ -23,43 +29,22 @@ export const HRQOL_4_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'HRQOL_4_Q02',
+  HRQOL_4_Q02: {
     label: {
       en: 'Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good?',
     },
-    type: {
-      type: 'number',
-      range: {
-        min: { value: 0 },
-        max: { value: 30 },
-      },
-    },
+    type: z.number().min(0).max(30),
   },
-  {
-    input_id: 'HRQOL_4_Q03',
+  HRQOL_4_Q03: {
     label: {
       en: 'Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?',
     },
-    type: {
-      type: 'number',
-      range: {
-        min: { value: 0 },
-        max: { value: 30 },
-      },
-    },
+    type: z.number().min(0).max(30),
   },
-  {
-    input_id: 'HRQOL_4_Q04',
+  HRQOL_4_Q04: {
     label: {
       en: 'During the past 30 days, for about how many days did poor physical or mental health keep you from doing your usual activities, such as self-care, work, or recreation?',
     },
-    type: {
-      type: 'number',
-      range: {
-        min: { value: 0 },
-        max: { value: 30 },
-      },
-    },
+    type: z.number().min(0).max(30),
   },
-]
+} satisfies ScoreInputSchemaType
