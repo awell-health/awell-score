@@ -1,10 +1,10 @@
-import type { CalculationOutputDefinition } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { type ScoreOutputSchemaType } from '../../../types'
 
-export const HARRIS_HIP_SCORE_OUTPUT: CalculationOutputDefinition[] = [
-  {
-    subresult_id: 'HARRIS_HIP_SCORE',
+export const HARRIS_HIP_SCORE_OUTPUT = {
+  HARRIS_HIP_SCORE: {
     label: { en: 'Harris Hip Score' },
-    type: 'number',
+    type: z.number(),
     terminology: {
       code: {
         coding: [
@@ -23,10 +23,9 @@ export const HARRIS_HIP_SCORE_OUTPUT: CalculationOutputDefinition[] = [
       },
     },
   },
-  {
-    subresult_id: 'RANGE_OF_MOTION_SCORE',
+  RANGE_OF_MOTION_SCORE: {
     label: { en: 'Range of motion score' },
-    type: 'number',
+    type: z.number(),
     terminology: {
       code: {
         coding: [
@@ -41,4 +40,4 @@ export const HARRIS_HIP_SCORE_OUTPUT: CalculationOutputDefinition[] = [
       },
     },
   },
-]
+} satisfies ScoreOutputSchemaType

@@ -1,15 +1,22 @@
-import type { InputType } from '../../../src/types/calculations.types'
+import { z } from 'zod'
+import { type ScoreInputSchemaType } from '../../../types'
 
-export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
-  {
-    input_id: 'PAIN',
+export const HARRIS_HIP_SCORE_INPUTS = {
+  PAIN: {
     label: {
       nl: 'Pijn',
       en: 'Pain',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(44),
+      z.literal(40),
+      z.literal(30),
+      z.literal(20),
+      z.literal(10),
+      z.literal(0),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 44,
           label: {
@@ -55,15 +62,14 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'LIMP',
+  LIMP: {
     label: {
       nl: 'Manken',
       en: 'Limp',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(11), z.literal(8), z.literal(5), z.literal(0)]),
+    uiOptions: {
+      options: [
         {
           value: 11,
           label: {
@@ -95,15 +101,21 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'SUPPORT',
+  SUPPORT: {
     label: {
       nl: 'Steunmiddelen',
       en: 'Support',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(11),
+      z.literal(7),
+      z.literal(5),
+      z.literal(3),
+      z.literal(2),
+      z.literal(0),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 11,
           label: {
@@ -149,15 +161,20 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'DISTANCE_WALKED',
+  DISTANCE_WALKED: {
     label: {
       nl: '',
       en: 'Distance walked',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([
+      z.literal(11),
+      z.literal(8),
+      z.literal(5),
+      z.literal(2),
+      z.literal(0),
+    ]),
+    uiOptions: {
+      options: [
         {
           value: 11,
           label: {
@@ -196,15 +213,14 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'SITTING',
+  SITTING: {
     label: {
       nl: 'Zitten',
       en: 'Sitting',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(5), z.literal(3), z.literal(0)]),
+    uiOptions: {
+      options: [
         {
           value: 5,
           label: {
@@ -229,15 +245,14 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'ENTER_PUBLIC_TRANSPORTATION',
+  ENTER_PUBLIC_TRANSPORTATION: {
     label: {
       nl: 'Instappen openbaar vervoer',
       en: 'Enter public transportation',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(1), z.literal(0)]),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: {
@@ -255,15 +270,14 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'STAIRS',
+  STAIRS: {
     label: {
       nl: 'Traplopen',
       en: 'Stairs',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(4), z.literal(2), z.literal(1), z.literal(0)]),
+    uiOptions: {
+      options: [
         {
           value: 4,
           label: {
@@ -295,15 +309,14 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'PUT_ON_SOCKS_AND_SHOES',
+  PUT_ON_SOCKS_AND_SHOES: {
     label: {
       nl: 'Aan- en uittrekken schoenen en sokken',
       en: 'Put on socks and shoes',
     },
-    type: {
-      type: 'number',
-      allowed_answers: [
+    type: z.union([z.literal(4), z.literal(2), z.literal(0)]),
+    uiOptions: {
+      options: [
         {
           value: 4,
           label: {
@@ -328,15 +341,16 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'ABSENCE_OF_DEFORMITY',
+  ABSENCE_OF_DEFORMITY: {
     label: {
       nl: 'Afwezigheid deformiteiten',
       en: 'Absence of deformity',
     },
-    type: {
-      type: 'numbers_array',
-      allowed_answers: [
+    type: z.array(
+      z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    ),
+    uiOptions: {
+      options: [
         {
           value: 1,
           label: {
@@ -368,74 +382,39 @@ export const HARRIS_HIP_SCORE_INPUTS: Array<InputType> = [
       ],
     },
   },
-  {
-    input_id: 'RANGE_OF_MOTION_FLEXION',
+  RANGE_OF_MOTION_FLEXION: {
     label: {
-      nl: 'Mobiliteit - Flexie (*140°)',
-      en: 'Range of motion - Flexion (*140°)',
+      nl: 'Mobiliteit - Flexie (140° = normaal)',
+      en: 'Range of motion - Flexion (140° = normal)',
     },
-    info: {
-      nl: '* duidt de normaal aan',
-      en: '* indicates normal',
-    },
-    type: {
-      type: 'number',
-    },
+    type: z.number(),
   },
-  {
-    input_id: 'RANGE_OF_MOTION_ABDUCTION',
+  RANGE_OF_MOTION_ABDUCTION: {
     label: {
-      nl: 'Mobiliteit - Abductie (*40)',
-      en: 'Range of motion - Abduction (*40)',
+      nl: 'Mobiliteit - Abductie (40° = normaal)',
+      en: 'Range of motion - Abduction (40° = normal)',
     },
-    info: {
-      nl: '* duidt de normaal aan',
-      en: '* indicates normal',
-    },
-    type: {
-      type: 'number',
-    },
+    type: z.number(),
   },
-  {
-    input_id: 'RANGE_OF_MOTION_ADDUCTION',
+  RANGE_OF_MOTION_ADDUCTION: {
     label: {
-      nl: 'Mobiliteit - Adductie (*40)',
-      en: 'Range of motion - Adduction (*40)',
+      nl: 'Mobiliteit - Adductie (40° = normaal)',
+      en: 'Range of motion - Adduction (40° = normal)',
     },
-    info: {
-      nl: '* duidt de normaal aan',
-      en: '* indicates normal',
-    },
-    type: {
-      type: 'number',
-    },
+    type: z.number(),
   },
-  {
-    input_id: 'RANGE_OF_MOTION_EXTERNAL_ROTATION',
+  RANGE_OF_MOTION_EXTERNAL_ROTATION: {
     label: {
-      nl: 'Mobiliteit - Externe rotatie (*40)',
-      en: 'Range of motion - External rotation (*40)',
+      nl: 'Mobiliteit - Externe rotatie (40° = normaal)',
+      en: 'Range of motion - External rotation (40° = normal)',
     },
-    info: {
-      nl: '* duidt de normaal aan',
-      en: '* indicates normal',
-    },
-    type: {
-      type: 'number',
-    },
+    type: z.number(),
   },
-  {
-    input_id: 'RANGE_OF_MOTION_INTERNAL_ROTATION',
+  RANGE_OF_MOTION_INTERNAL_ROTATION: {
     label: {
-      nl: 'Mobiliteit - Interne rotatie (*40)',
-      en: 'Range of motion - Internal rotation (*40)',
+      nl: 'Mobiliteit - Interne rotatie (40° = normaal)',
+      en: 'Range of motion - Internal rotation (40° = normal)',
     },
-    info: {
-      nl: '* duidt de normaal aan',
-      en: '* indicates normal',
-    },
-    type: {
-      type: 'number',
-    },
+    type: z.number(),
   },
-]
+} satisfies ScoreInputSchemaType
