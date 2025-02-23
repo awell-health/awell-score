@@ -1,11 +1,3 @@
-import { expect } from 'chai'
-
-import { ZodError } from '../../errors'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { CALCULATIONS } from '../calculation_library'
-import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
 import {
   max_response,
   median_response,
@@ -14,16 +6,19 @@ import {
 } from './__testdata__/ipss_test_responses'
 import { IPSS_INPUTS } from './definition/ipss_inputs'
 import { ipss } from './ipss'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
+import { ZodError } from 'zod'
 
 const IPSS_MIN_SCORE = 0
 const IPSS_12_MEDIAN_SCORE = 17
 const IPSS_12_MAX_SCORE = 35
 
-const ipss_calculation = execute_test_calculation(ipss)
+const ipss_calculation = new Score(ipss)
 
 describe('ipss', function () {
   it('ipss calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('ipss')
+    expect(ScoreLibrary).toHaveProperty('ipss')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -38,25 +33,25 @@ describe('ipss', function () {
         'IPSS_Q07',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(IPSS_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        ipss_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = ipss_calculation(min_response)
+    const outcome = ipss_calculation.calculate({ payload: min_response })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['IPSS'])
     })
@@ -65,50 +60,45 @@ describe('ipss', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when a minimum response is passed', function () {
       it('should return the minimum score', function () {
-        const outcome = ipss_calculation(min_response)
-        const result = view_result()(outcome)
-
-        expect(result).toEqual(IPSS_MIN_SCORE)
+        const outcome = ipss_calculation.calculate({ payload: min_response })
+        expect(outcome.IPSS).toEqual(IPSS_MIN_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const outcome = ipss_calculation(median_response)
-        const result = view_result()(outcome)
-
-        expect(result).toEqual(IPSS_12_MEDIAN_SCORE)
+        const outcome = ipss_calculation.calculate({ payload: median_response })
+        expect(outcome.IPSS).toEqual(IPSS_12_MEDIAN_SCORE)
       })
     })
 
     describe('when a maximum response is passed', function () {
       it('should return the maximum score', function () {
-        const outcome = ipss_calculation(max_response)
-        const result = view_result()(outcome)
-
-        expect(result).toEqual(IPSS_12_MAX_SCORE)
+        const outcome = ipss_calculation.calculate({ payload: max_response })
+        expect(outcome.IPSS).toEqual(IPSS_12_MAX_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
       it('should return the expected score', function () {
         const EXPECTED_SCORE = 18
-
-        const outcome = ipss_calculation(random_response)
-        const result = view_result()(outcome)
-
-        expect(result).toEqual(EXPECTED_SCORE)
+        const outcome = ipss_calculation.calculate({ payload: random_response })
+        expect(outcome.IPSS).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const outcome = ipss_calculation({})
-        const result = view_result()(outcome)
+      it('should return null as the result', function () {
+        const outcome = ipss_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
 
-        expect(result).toEqual(undefined)
+        expect(outcome.IPSS).toEqual(null)
       })
     })
   })
@@ -117,8 +107,10 @@ describe('ipss', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ipss_calculation({
-            IPSS_Q01: "I'm not a number",
+          ipss_calculation.calculate({
+            payload: {
+              IPSS_Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -126,8 +118,13 @@ describe('ipss', function () {
     describe('when an answer is below the expected [0, 5] range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ipss_calculation({
-            IPSS_Q01: -1,
+          ipss_calculation.calculate({
+            payload: {
+              IPSS_Q01: -1,
+            },
+            opts: {
+              nullOnMissingInputs: true,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -135,8 +132,10 @@ describe('ipss', function () {
     describe('when an answer is above the expected [0, 5] range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          ipss_calculation({
-            IPSS_Q01: 6,
+          ipss_calculation.calculate({
+            payload: {
+              IPSS_Q01: 6,
+            },
           }),
         ).toThrow(ZodError)
       })

@@ -63,7 +63,7 @@ import { IBD_control } from './IBD_control/IBD_control'
 import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
 import { iief5 } from './iief5/iief5'
 import { ikdc } from './ikdc/ikdc'
-// import { ipss } from './ipss/ipss'
+import { ipss } from './ipss/ipss'
 import { isi } from './isi/isi'
 import { k_bild } from './k_bild/k_bild'
 // import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
@@ -204,7 +204,7 @@ export const ScoreLibrary = createScoreLibrary({
   iief5,
   ikdc,
   isi,
-  // ipss,
+  ipss,
   k_bild,
   // KCCQ_12,
   koos_ps,
