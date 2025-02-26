@@ -7,6 +7,7 @@ import { basdai } from './basdai/basdai'
 import { basfi } from './basfi/basfi'
 import { beck } from './beck/beck'
 import { blcs } from './blcs/blcs'
+import { bpses } from './bpses/bpses'
 import { bwcs } from './bwcs/bwcs'
 import { bmi_metric, bmi_imperial } from './bmi'
 // import { breast_q as breast_q_conserving_therapy_pre_and_postoperative } from './breast_q/breast_conserving/breast_q'
@@ -153,6 +154,7 @@ export const ScoreLibrary = createScoreLibrary({
   bmi: bmi_metric,
   bmi_imperial,
   blcs,
+  bpses,
   bwcs,
   // breast_q_conserving_therapy_pre_and_postoperative,
   cade_q_sv,
