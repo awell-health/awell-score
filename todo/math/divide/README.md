@@ -1,3 +1,0 @@
-# Divide
-
-Divides two numbers.
