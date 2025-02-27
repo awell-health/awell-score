@@ -88,7 +88,7 @@ import { packyears } from './packyears/packyears'
 import { panss_6 } from './panss_6/panss_6'
 import { paq_c } from './paq_c/paq_c'
 // import { pci } from './pci/pci'
-// import { pcl_5 } from './pcl_5/pcl_5'
+import { pcl_5 } from './pcl_5/pcl_5'
 // import { pcs } from './pcs/pcs'
 // import { pdi } from './pdi/pdi'
 import { pdq_8 } from './pdq_8/pdq_8'
@@ -103,7 +103,7 @@ import { pro2 as PRO2 } from './pro2/pro2'
 // import { prtee } from './prtee/prtee'
 import { paid_20 } from './PAID_20/paid_20'
 // import { psk } from './psk/psk'
-// import { qol_stoma } from './qol_stoma/qol_stoma'
+import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
 import { sccai } from './sccai/sccai'
 import { snap_teacher } from './snap_teacher/snap_teacher'
@@ -235,7 +235,7 @@ export const ScoreLibrary = createScoreLibrary({
   panss_6,
   paq_c,
   // pci,
-  // pcl_5,
+  pcl_5,
   // pcs,
   // pdi,
   pdq_8,
@@ -252,7 +252,7 @@ export const ScoreLibrary = createScoreLibrary({
   // psk,
   // psqi,
   pss_4,
-  // qol_stoma,
+  qol_stoma,
   // quickdash,
   sccai,
   snap_teacher,

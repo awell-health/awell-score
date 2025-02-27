@@ -1,18 +1,11 @@
-import { expect } from 'chai'
-import R from 'ramda'
-
+import { ZodError } from 'zod'
 import { Score } from '../../classes'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
 import { ScoreLibrary } from '../library'
-import { get_input_ids_from_calculation_blueprint } from '../../src/calculation_suite/calculations/shared_functions'
 import {
   minimum_response,
   random_response_with_insufficient_physical_activity,
   random_response_with_sufficient_physical_activity,
 } from './__testdata__/physical_activity_measurements_responses'
-import { PA_INPUTS } from './definition/physical_activity_measurements_inputs'
 import { physical_activity_measurement } from './physical_activity_measurements'
 
 const physical_activity_measurement_calculation = execute_test_calculation(

@@ -1,12 +1,6 @@
-import { expect } from 'chai'
-import R from 'ramda'
-
+import { ZodError } from 'zod'
 import { Score } from '../../classes'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
 import { ScoreLibrary } from '../library'
-import { get_input_ids_from_calculation_blueprint } from '../../src/calculation_suite/calculations/shared_functions'
 import {
   max_response,
   median_response,
@@ -20,11 +14,11 @@ const QOL_STOMA_MIN_SCORE = 20
 const QOL_STOMA_MEDIAN_SCORE = 50
 const QOL_STOMA_MAX_SCORE = 80
 
-const qol_stoma_calculation = execute_test_calculation(qol_stoma)
+const qol_stoma_calculation = new Score(qol_stoma)
 
 describe('qol_stoma', function () {
   it('qol_stoma calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('qol_stoma')
+    expect(ScoreLibrary).toHaveProperty('qol_stoma')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -52,25 +46,25 @@ describe('qol_stoma', function () {
         'QOL_STOMA_Q20',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(QOL_STOMA_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        qol_stoma_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = qol_stoma_calculation(min_response)
+    const outcome = qol_stoma_calculation.calculate({ payload: min_response })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['QOL_STOMA'])
     })
@@ -79,57 +73,58 @@ describe('qol_stoma', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when a minimum response is passed', function () {
       it('should return the minimum score', function () {
-        const outcome = R.compose(
-          view_result(),
-          qol_stoma_calculation,
-        )(min_response)
+        const outcome = qol_stoma_calculation.calculate({
+          payload: min_response,
+        })
 
-        expect(outcome).toEqual(QOL_STOMA_MIN_SCORE)
+        expect(outcome.QOL_STOMA).toEqual(QOL_STOMA_MIN_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const outcome = R.compose(
-          view_result(),
-          qol_stoma_calculation,
-        )(median_response)
+        const outcome = qol_stoma_calculation.calculate({
+          payload: median_response,
+        })
 
-        expect(outcome).toEqual(QOL_STOMA_MEDIAN_SCORE)
+        expect(outcome.QOL_STOMA).toEqual(QOL_STOMA_MEDIAN_SCORE)
       })
     })
 
     describe('when a maximum response is passed', function () {
       it('should return the maximum score', function () {
-        const outcome = R.compose(
-          view_result(),
-          qol_stoma_calculation,
-        )(max_response)
+        const outcome = qol_stoma_calculation.calculate({
+          payload: max_response,
+        })
 
-        expect(outcome).toEqual(QOL_STOMA_MAX_SCORE)
+        expect(outcome.QOL_STOMA).toEqual(QOL_STOMA_MAX_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
       it('should return the expected score', function () {
-        const outcome = R.compose(
-          view_result(),
-          qol_stoma_calculation,
-        )(random_response)
+        const outcome = qol_stoma_calculation.calculate({
+          payload: random_response,
+        })
 
         const EXPECTED_SCORE = 48
 
-        expect(outcome).toEqual(EXPECTED_SCORE)
+        expect(outcome.QOL_STOMA).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const outcome = R.compose(view_result(), qol_stoma_calculation)({})
+      it('should return null as the result', function () {
+        const outcome = qol_stoma_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
 
-        expect(outcome).toEqual(undefined)
+        expect(outcome.QOL_STOMA).toEqual(null)
       })
     })
   })
@@ -138,8 +133,11 @@ describe('qol_stoma', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          qol_stoma_calculation({
-            QOL_STOMA_Q01: "I'm not a number",
+          qol_stoma_calculation.calculate({
+            payload: {
+              ...min_response,
+              QOL_STOMA_Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -147,8 +145,11 @@ describe('qol_stoma', function () {
     describe('when an answer is below one of the expected answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          qol_stoma_calculation({
-            QOL_STOMA_Q01: -1,
+          qol_stoma_calculation.calculate({
+            payload: {
+              ...min_response,
+              QOL_STOMA_Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -156,8 +157,11 @@ describe('qol_stoma', function () {
     describe('when an answer is above one of the expected answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          qol_stoma_calculation({
-            QOL_STOMA_Q01: 5,
+          qol_stoma_calculation.calculate({
+            payload: {
+              ...min_response,
+              QOL_STOMA_Q01: 5,
+            },
           }),
         ).toThrow(ZodError)
       })
