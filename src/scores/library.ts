@@ -86,7 +86,7 @@ import { oswestry } from './oswestry/oswestry'
 // import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
 import { packyears } from './packyears/packyears'
 import { panss_6 } from './panss_6/panss_6'
-// import { paq_c } from './paq_c/paq_c'
+import { paq_c } from './paq_c/paq_c'
 // import { pci } from './pci/pci'
 // import { pcl_5 } from './pcl_5/pcl_5'
 // import { pcs } from './pcs/pcs'
@@ -233,7 +233,7 @@ export const ScoreLibrary = createScoreLibrary({
   // oxford_knee_score,
   packyears,
   panss_6,
-  // paq_c,
+  paq_c,
   // pci,
   // pcl_5,
   // pcs,
