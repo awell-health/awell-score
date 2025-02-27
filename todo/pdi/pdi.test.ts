@@ -1,19 +1,12 @@
-import { expect } from 'chai'
-
-import { ZodError } from '../../errors'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { MISSING_STATUS } from '../../PARAMETERS'
-import { CALCULATIONS } from '../calculation_library'
-import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
 import {
   best_response,
   median_response,
   random_response,
   worst_response,
 } from './__testdata__/pdi_test_responses'
-import { PDI_INPUTS } from './definition'
 import { pdi } from './pdi'
 
 const pdi_calculation = execute_test_calculation(pdi)

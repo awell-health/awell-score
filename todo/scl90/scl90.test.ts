@@ -1,16 +1,6 @@
-/* eslint-disable no-magic-numbers */
-import { expect } from 'chai'
-import R from 'ramda'
-
-import { ZodError } from '../../errors'
-import { inputsInSubscaleLens } from '../../lib/calculation_variants/api/subscale/lenses'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import {
-  get_input_ids_for_specific_subscale,
-  get_input_ids_in_subscale,
-} from '../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
 import {
   best_response,
   median_response,

@@ -72,13 +72,13 @@ import { koos_ps } from './koos_ps/koos_ps'
 // import { math_divide, math_multiply, math_subtract, math_sum } from './math'
 // import { mds_updrs } from './mds_updrs/mds_updrs'
 // import { mini_best_test } from './mini_best_test/mini_best_test'
-// import { mfis } from './mfis/mfis'
+import { mfis } from './mfis/mfis'
 // import { mmse } from './mmse/mmse'
 // import { moca } from './moca/moca'
 import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
 // import { mpi } from './mpi/mpi'
 // import { msq } from './msq/msq'
-// import { ndi } from './ndi/ndi'
+import { ndi } from './ndi/ndi'
 import { oas } from './oas/oas'
 import { ompq, ompq_10 } from './orebro'
 import { oswestry } from './oswestry/oswestry'
@@ -86,9 +86,9 @@ import { oswestry } from './oswestry/oswestry'
 // import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
 import { packyears } from './packyears/packyears'
 import { panss_6 } from './panss_6/panss_6'
-// import { paq_c } from './paq_c/paq_c'
+import { paq_c } from './paq_c/paq_c'
 // import { pci } from './pci/pci'
-// import { pcl_5 } from './pcl_5/pcl_5'
+import { pcl_5 } from './pcl_5/pcl_5'
 // import { pcs } from './pcs/pcs'
 // import { pdi } from './pdi/pdi'
 import { pdq_8 } from './pdq_8/pdq_8'
@@ -103,7 +103,7 @@ import { pro2 as PRO2 } from './pro2/pro2'
 // import { prtee } from './prtee/prtee'
 import { paid_20 } from './PAID_20/paid_20'
 // import { psk } from './psk/psk'
-// import { qol_stoma } from './qol_stoma/qol_stoma'
+import { qol_stoma } from './qol_stoma/qol_stoma'
 // import { quickdash } from './quickdash/quickdash'
 import { sccai } from './sccai/sccai'
 import { snap_teacher } from './snap_teacher/snap_teacher'
@@ -123,7 +123,7 @@ import { womac } from './womac/womac'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
 import { ScoreType } from '../types'
-// import { korq } from './korq/korq'
+import { korq } from './korq/korq'
 import { mlks } from './mlks/mlks'
 // import { psqi } from './psqi/psqi'
 import { test_calculation } from './test_calculation/test_caculation'
@@ -210,21 +210,21 @@ export const ScoreLibrary = createScoreLibrary({
   k_bild,
   // KCCQ_12,
   koos_ps,
-  // korq,
+  korq,
   // math_divide,
   // math_multiply,
   // math_sum,
   // math_subtract,
   // mds_updrs,
   // mini_best_test,
-  // mfis,
+  mfis,
   mlks,
   // mmse,
   // moca,
   modified_caregiver_strain_index,
   // mpi,
   // msq,
-  // ndi,
+  ndi,
   oas,
   ompq,
   ompq_10,
@@ -233,9 +233,9 @@ export const ScoreLibrary = createScoreLibrary({
   // oxford_knee_score,
   packyears,
   panss_6,
-  // paq_c,
+  paq_c,
   // pci,
-  // pcl_5,
+  pcl_5,
   // pcs,
   // pdi,
   pdq_8,
@@ -252,7 +252,7 @@ export const ScoreLibrary = createScoreLibrary({
   // psk,
   // psqi,
   pss_4,
-  // qol_stoma,
+  qol_stoma,
   // quickdash,
   sccai,
   snap_teacher,

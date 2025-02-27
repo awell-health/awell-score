@@ -1,0 +1,63 @@
+import { z } from 'zod'
+import { type EnumNumberInputType } from '../../../types'
+
+export const type = {
+  type: z.union([
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+    z.literal(5),
+  ]),
+  uiOptions: {
+    options: [
+      { value: 1 },
+      { value: 2 },
+      { value: 3 },
+      { value: 4 },
+      { value: 5 },
+    ],
+  },
+} satisfies EnumNumberInputType
+
+export const PAQ_C_INPUTS = {
+  ITEM_1_ACTIVITY_01: { ...type },
+  ITEM_1_ACTIVITY_02: { ...type },
+  ITEM_1_ACTIVITY_03: { ...type },
+  ITEM_1_ACTIVITY_04: { ...type },
+  ITEM_1_ACTIVITY_05: { ...type },
+  ITEM_1_ACTIVITY_06: { ...type },
+  ITEM_1_ACTIVITY_07: { ...type },
+  ITEM_1_ACTIVITY_08: { ...type },
+  ITEM_1_ACTIVITY_09: { ...type },
+  ITEM_1_ACTIVITY_10: { ...type },
+  ITEM_1_ACTIVITY_11: { ...type },
+  ITEM_1_ACTIVITY_12: { ...type },
+  ITEM_1_ACTIVITY_13: { ...type },
+  ITEM_1_ACTIVITY_14: { ...type },
+  ITEM_1_ACTIVITY_15: { ...type },
+  ITEM_1_ACTIVITY_16: { ...type },
+  ITEM_1_ACTIVITY_17: { ...type },
+  ITEM_1_ACTIVITY_18: { ...type },
+  ITEM_1_ACTIVITY_19: { ...type },
+  ITEM_1_ACTIVITY_20: { ...type },
+  ITEM_1_ACTIVITY_21: { ...type },
+  ITEM_1_ACTIVITY_22: { ...type },
+  ITEM_1_ACTIVITY_23: { ...type },
+  ITEM_1_ACTIVITY_24: { ...type },
+  ITEM_1_ACTIVITY_25: { ...type },
+  ITEM_2: { ...type },
+  ITEM_3: { ...type },
+  ITEM_4: { ...type },
+  ITEM_5: { ...type },
+  ITEM_6: { ...type },
+  ITEM_7: { ...type },
+  ITEM_8: { ...type },
+  ITEM_9_MONDAY: { ...type },
+  ITEM_9_TUESDAY: { ...type },
+  ITEM_9_WEDNESDAY: { ...type },
+  ITEM_9_THURSDAY: { ...type },
+  ITEM_9_FRIDAY: { ...type },
+  ITEM_9_SATURDAY: { ...type },
+  ITEM_9_SUNDAY: { ...type },
+}
