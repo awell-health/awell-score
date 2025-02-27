@@ -123,7 +123,7 @@ import { womac } from './womac/womac'
 import { acro } from './acro/acro'
 import { Score } from '../classes'
 import { ScoreType } from '../types'
-// import { korq } from './korq/korq'
+import { korq } from './korq/korq'
 import { mlks } from './mlks/mlks'
 // import { psqi } from './psqi/psqi'
 import { test_calculation } from './test_calculation/test_caculation'
@@ -210,7 +210,7 @@ export const ScoreLibrary = createScoreLibrary({
   k_bild,
   // KCCQ_12,
   koos_ps,
-  // korq,
+  korq,
   // math_divide,
   // math_multiply,
   // math_sum,

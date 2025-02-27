@@ -1,23 +1,16 @@
-import { expect } from 'chai'
-
-import { ZodError } from '../../errors'
-import { execute_test_calculation } from '../../lib/execute_test_calculation'
-import { get_result_ids_from_calculation_output } from '../../lib/get_result_ids_from_calculation_output'
-import { view_result } from '../../lib/view_result'
-import { MISSING_STATUS } from '../../PARAMETERS'
-import { CALCULATIONS } from '../calculation_library'
-import { get_input_ids_from_calculation_blueprint } from '../shared_functions'
+import { ZodError } from 'zod'
+import { Score } from '../../classes'
+import { ScoreLibrary } from '../library'
 import {
   best_response,
   median_response,
   random_response,
   worst_response,
 } from './__testdata__/korq_test_responses'
-import { KORQ_INPUTS } from './definition'
 import { KORQ_SUBSCALES } from './definition/korq_subscales'
 import { korq } from './korq'
 
-const korq_calculation = execute_test_calculation(korq)
+const korq_calculation = new Score(korq)
 
 const scores = {
   best: 116,
@@ -28,11 +21,13 @@ const scores = {
 
 describe('KORQ', function () {
   it('KORQ calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('korq')
+    expect(ScoreLibrary).toHaveProperty('korq')
   })
 
   describe('basic assumptions', function () {
-    const outcome = korq_calculation(best_response)
+    const outcome = korq_calculation.calculate({
+      payload: best_response,
+    })
 
     it('should have the expected result ids', function () {
       const EXPECTED_RESULT_IDS = [
@@ -41,8 +36,7 @@ describe('KORQ', function () {
         'KORQ_ACTIVITY_LIMITATIONS',
       ]
 
-      const configured_calculation_ids =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_ids = Object.keys(outcome)
 
       expect(configured_calculation_ids).toEqual(EXPECTED_RESULT_IDS)
     })
@@ -83,8 +77,7 @@ describe('KORQ', function () {
           'Q29_KORQ',
         ]
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(KORQ_INPUTS)
+        const configured_input_ids = Object.keys(korq_calculation.inputSchema)
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -137,8 +130,11 @@ describe('KORQ', function () {
   describe('when an answer is below the expected range', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        korq_calculation({
-          Q01_KORQ: -1,
+        korq_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01_KORQ: -1,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -147,8 +143,11 @@ describe('KORQ', function () {
   describe('when an answer is above the expected range', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        korq_calculation({
-          Q01_KORQ: 6,
+        korq_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01_KORQ: 6,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -157,58 +156,62 @@ describe('KORQ', function () {
   describe('when there are non-numerical answers', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        korq_calculation({
-          Q01_KORQ: "I'm not a number",
+        korq_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01_KORQ: "I'm not a number",
+          },
         }),
       ).toThrow(ZodError)
     })
   })
 
   describe('when called with an empty response', function () {
-    const outcome = korq_calculation({})
-
-    it('should return missing status for the score', function () {
-      expect(outcome[0].status).toEqual(MISSING_STATUS)
+    it('should return a ZodError', function () {
+      expect(() => korq_calculation.calculate({ payload: {} })).toThrow(
+        ZodError,
+      )
     })
   })
 
   describe('score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = korq_calculation(worst_response)
+      const outcome = korq_calculation.calculate({
+        payload: worst_response,
+      })
 
       it('should return the worst score', function () {
-        const score = view_result('KORQ_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.worst)
+        expect(outcome.KORQ_TOTAL_SCORE).toEqual(scores.worst)
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = korq_calculation(best_response)
-      it('should return the best score', function () {
-        const score = view_result('KORQ_TOTAL_SCORE')(outcome)
+      const outcome = korq_calculation.calculate({
+        payload: best_response,
+      })
 
-        expect(score).toEqual(scores.best)
+      it('should return the best score', function () {
+        expect(outcome.KORQ_TOTAL_SCORE).toEqual(scores.best)
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = korq_calculation(median_response)
+      const outcome = korq_calculation.calculate({
+        payload: median_response,
+      })
 
       it('should return the median score', function () {
-        const score = view_result('KORQ_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.median)
+        expect(outcome.KORQ_TOTAL_SCORE).toEqual(scores.median)
       })
     })
 
     describe('when called with the random response', function () {
-      const outcome = korq_calculation(random_response)
+      const outcome = korq_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the exepected score', function () {
-        const score = view_result('KORQ_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(scores.random)
+        expect(outcome.KORQ_TOTAL_SCORE).toEqual(scores.random)
       })
     })
   })
