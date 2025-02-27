@@ -7,18 +7,18 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/mfis_test_responses'
-import { MFIS_INPUTS, MFIS_SUBSCALES } from './definition'
+import { MFIS_SUBSCALES } from './definition'
 import { mfis } from './mfis'
 
-const mfis_calculation = execute_test_calculation(mfis)
+const mfis_calculation = new Score(mfis)
 
 describe('mfis', function () {
   it('mfis calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('mfis')
+    expect(ScoreLibrary).toHaveProperty('mfis')
   })
 
   describe('basic assumptions', function () {
-    const outcome = mfis_calculation(best_response)
+    const outcome = mfis_calculation.calculate({ payload: best_response })
 
     it('should have the expected result ids', function () {
       const EXPECTED_RESULT_IDS = [
@@ -28,8 +28,7 @@ describe('mfis', function () {
         'MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE',
       ]
 
-      const configured_calculation_ids =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_ids = Object.keys(outcome)
 
       expect(configured_calculation_ids).toEqual(EXPECTED_RESULT_IDS)
     })
@@ -62,8 +61,7 @@ describe('mfis', function () {
           'Q21',
         ]
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(MFIS_INPUTS)
+        const configured_input_ids = Object.keys(mfis_calculation.inputSchema)
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -121,8 +119,11 @@ describe('mfis', function () {
     describe('when an answer is below the expected range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          mfis_calculation({
-            Q01: -1,
+          mfis_calculation.calculate({
+            payload: {
+              ...best_response,
+              Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -131,8 +132,11 @@ describe('mfis', function () {
     describe('when an answer is above the expected range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          mfis_calculation({
-            Q01: 5,
+          mfis_calculation.calculate({
+            payload: {
+              ...best_response,
+              Q01: 5,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -141,99 +145,72 @@ describe('mfis', function () {
     describe('when there are non-numerical answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          mfis_calculation({
-            Q01: "I'm not a number",
+          mfis_calculation.calculate({
+            payload: {
+              ...best_response,
+              Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
     })
 
     describe('when called with an empty response', function () {
-      const outcome = mfis_calculation({})
+      const outcome = mfis_calculation.calculate({ payload: {} })
 
       describe('Total score', function () {
-        it('should return missing for the result status and undefined score', function () {
-          const status = view_status('MFIS_TOTAL_SCORE')(outcome)
-          const score = view_result('MFIS_TOTAL_SCORE')(outcome)
-
-          expect(score).toEqual(undefined)
-          expect(status).toEqual(MISSING_STATUS)
+        it('should return null score', function () {
+          expect(outcome.MFIS_TOTAL_SCORE).toEqual(null)
         })
       })
 
       describe('Physical subscale', function () {
-        it('should return missing for the result status and undefined score', function () {
-          const score = view_result('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-          const status = view_status('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(undefined)
-          expect(status).toEqual(MISSING_STATUS)
+        it('should return null score', function () {
+          expect(outcome.MFIS_PHYSICAL_SUBSCALE_SCORE).toEqual(null)
         })
       })
 
       describe('Cognitive subscale', function () {
-        it('should return missing for the result status and undefined score', function () {
-          const score = view_result('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-          const status = view_status('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(undefined)
-          expect(status).toEqual(MISSING_STATUS)
+        it('should return null score', function () {
+          expect(outcome.MFIS_COGNITIVE_SUBSCALE_SCORE).toEqual(null)
         })
       })
 
       describe('Psychosocial subscale', function () {
-        it('should return missing for the result status and undefined score', function () {
-          const score = view_result('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(outcome)
-          const status = view_status('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(
-            outcome,
-          )
-
-          expect(score).toEqual(undefined)
-          expect(status).toEqual(MISSING_STATUS)
+        it('should return null score', function () {
+          expect(outcome.MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE).toEqual(null)
         })
       })
     })
 
     describe('when called with a partial response', function () {
-      const outcome = mfis_calculation({
-        Q01: 1, // Belongs to cognitive subscale
+      const outcome = mfis_calculation.calculate({
+        payload: {
+          Q01: 1, // Belongs to cognitive subscale
+        },
       })
 
       describe('Total score', function () {
         it('should return the expected (partial) total score', function () {
-          const score = view_result('MFIS_TOTAL_SCORE')(outcome)
-
-          expect(score).toEqual(1)
+          expect(outcome.MFIS_TOTAL_SCORE).toEqual(1)
         })
       })
 
       describe('Physical subscale', function () {
-        it('should return missing for the result status and undefined score', function () {
-          const score = view_result('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-          const status = view_status('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(undefined)
-          expect(status).toEqual(MISSING_STATUS)
+        it('should return null score', function () {
+          expect(outcome.MFIS_PHYSICAL_SUBSCALE_SCORE).toEqual(null)
         })
       })
 
       describe('Cognitive subscale', function () {
         it('should return 1 as a result as the partial response has an anwer for this subscale', function () {
-          const score = view_result('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(1)
+          expect(outcome.MFIS_COGNITIVE_SUBSCALE_SCORE).toEqual(1)
         })
       })
 
       describe('Psychosocial subscale', function () {
-        it('should return missing for the result status and undefined score', function () {
-          const score = view_result('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(outcome)
-          const status = view_status('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(
-            outcome,
-          )
-
-          expect(score).toEqual(undefined)
-          expect(status).toEqual(MISSING_STATUS)
+        it('should return null score', function () {
+          expect(outcome.MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE).toEqual(null)
         })
       })
     })
@@ -241,144 +218,112 @@ describe('mfis', function () {
 
   describe('score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = mfis_calculation(worst_response)
+      const outcome = mfis_calculation.calculate({ payload: worst_response })
 
       describe('Total score', function () {
         it('should return the worst score', function () {
-          const score = view_result('MFIS_TOTAL_SCORE')(outcome)
-
-          expect(score).toEqual(84)
+          expect(outcome.MFIS_TOTAL_SCORE).toEqual(84)
         })
       })
 
       describe('Physical subscale', function () {
         it('should return the worst score', function () {
-          const score = view_result('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(36)
+          expect(outcome.MFIS_PHYSICAL_SUBSCALE_SCORE).toEqual(36)
         })
       })
 
       describe('Cognitive subscale', function () {
         it('should return the worst score', function () {
-          const score = view_result('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(40)
+          expect(outcome.MFIS_COGNITIVE_SUBSCALE_SCORE).toEqual(40)
         })
       })
 
       describe('Psychosocial subscale', function () {
         it('should return the worst score', function () {
-          const score = view_result('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE).toEqual(8)
         })
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = mfis_calculation(best_response)
+      const outcome = mfis_calculation.calculate({ payload: best_response })
 
       describe('Total score', function () {
         it('should return the best score', function () {
-          const score = view_result('MFIS_TOTAL_SCORE')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MFIS_TOTAL_SCORE).toEqual(0)
         })
       })
 
       describe('Physical subscale', function () {
         it('should return the best score', function () {
-          const score = view_result('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MFIS_PHYSICAL_SUBSCALE_SCORE).toEqual(0)
         })
       })
 
       describe('Cognitive subscale', function () {
         it('should return the best score', function () {
-          const score = view_result('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MFIS_COGNITIVE_SUBSCALE_SCORE).toEqual(0)
         })
       })
 
       describe('Psychosocial subscale', function () {
         it('should return the best score', function () {
-          const score = view_result('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE).toEqual(0)
         })
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = mfis_calculation(median_response)
+      const outcome = mfis_calculation.calculate({ payload: median_response })
 
       describe('Total score', function () {
         it('should return the median score', function () {
-          const score = view_result('MFIS_TOTAL_SCORE')(outcome)
-
-          expect(score).toEqual(42)
+          expect(outcome.MFIS_TOTAL_SCORE).toEqual(42)
         })
       })
 
       describe('Physical subscale', function () {
         it('should return the median score', function () {
-          const score = view_result('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(18)
+          expect(outcome.MFIS_PHYSICAL_SUBSCALE_SCORE).toEqual(18)
         })
       })
 
       describe('Cognitive subscale', function () {
         it('should return the median score', function () {
-          const score = view_result('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(20)
+          expect(outcome.MFIS_COGNITIVE_SUBSCALE_SCORE).toEqual(20)
         })
       })
 
       describe('Psychosocial subscale', function () {
         it('should return the median score', function () {
-          const score = view_result('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(4)
+          expect(outcome.MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE).toEqual(4)
         })
       })
     })
 
     describe('when called with the random response', function () {
-      const outcome = mfis_calculation(random_response)
+      const outcome = mfis_calculation.calculate({ payload: random_response })
 
       describe('Total score', function () {
         it('should return the exepected score', function () {
-          const score = view_result('MFIS_TOTAL_SCORE')(outcome)
-
-          expect(score).toEqual(40)
+          expect(outcome.MFIS_TOTAL_SCORE).toEqual(40)
         })
       })
 
       describe('Physical subscale', function () {
         it('should return the exepected score', function () {
-          const score = view_result('MFIS_PHYSICAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(19)
+          expect(outcome.MFIS_PHYSICAL_SUBSCALE_SCORE).toEqual(19)
         })
       })
 
       describe('Cognitive subscale', function () {
         it('should return the exepected score', function () {
-          const score = view_result('MFIS_COGNITIVE_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(18)
+          expect(outcome.MFIS_COGNITIVE_SUBSCALE_SCORE).toEqual(18)
         })
       })
       describe('Psychosocial subscale', function () {
         it('should return the exepected score', function () {
-          const score = view_result('MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE')(outcome)
-
-          expect(score).toEqual(3)
+          expect(outcome.MFIS_PSYCHOSOCIAL_SUBSCALE_SCORE).toEqual(3)
         })
       })
     })
