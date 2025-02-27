@@ -78,7 +78,7 @@ import { koos_ps } from './koos_ps/koos_ps'
 import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
 // import { mpi } from './mpi/mpi'
 // import { msq } from './msq/msq'
-// import { ndi } from './ndi/ndi'
+import { ndi } from './ndi/ndi'
 import { oas } from './oas/oas'
 import { ompq, ompq_10 } from './orebro'
 import { oswestry } from './oswestry/oswestry'
@@ -224,7 +224,7 @@ export const ScoreLibrary = createScoreLibrary({
   modified_caregiver_strain_index,
   // mpi,
   // msq,
-  // ndi,
+  ndi,
   oas,
   ompq,
   ompq_10,
