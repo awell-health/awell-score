@@ -14,11 +14,11 @@ import { sf36 } from './sf36'
 const WORST_SCORE = 0
 const BEST_SCORE = 100
 
-const sf36_calculation = execute_test_calculation(sf36)
+const sf36_calculation = new Score(sf36)
 
 describe('sf36', function () {
   it('sf36 calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('sf36')
+    expect(ScoreLibrary).toHaveProperty('sf36')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -62,11 +62,7 @@ describe('sf36', function () {
         'SF36_Q36',
       ]
 
-      const configured_input_ids = R.compose(
-        (input_ids: string[]) => input_ids.sort(),
-        R.flatten,
-        R.map(get_input_ids_in_subscale),
-      )(SF36_SUBSCALES)
+      const configured_input_ids = Object.keys(sf36_calculation.inputSchema)
 
       expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
     })
@@ -85,11 +81,7 @@ describe('sf36', function () {
         'SF36_Q12',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PHYSICAL_FUNCTIONING')(
-          SF36_SUBSCALES,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SF36_SUBSCALES.PHYSICAL_FUNCTIONING)
     })
 
     it('should have the expected input idss configured for the "Role limitations due to physical health" subscale	', function () {
@@ -101,9 +93,7 @@ describe('sf36', function () {
       ]
 
       expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('ROLE_LIMITATIONS_PHYSICAL_HEALTH')(
-          SF36_SUBSCALES,
-        ),
+        SF36_SUBSCALES.ROLE_LIMITATIONS_PHYSICAL_HEALTH,
       )
     })
 
@@ -111,9 +101,7 @@ describe('sf36', function () {
       const EXPECTED_INPUT_IDS = ['SF36_Q17', 'SF36_Q18', 'SF36_Q19']
 
       expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale(
-          'ROLE_LIMITATIONS_EMOTIONAL_PROBLEMS',
-        )(SF36_SUBSCALES),
+        SF36_SUBSCALES.ROLE_LIMITATIONS_EMOTIONAL_PROBLEMS,
       )
     })
 
@@ -125,9 +113,7 @@ describe('sf36', function () {
         'SF36_Q31',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('ENERGY_FATIGUE')(SF36_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SF36_SUBSCALES.ENERGY_FATIGUE)
     })
 
     it('should have the expected input idss configured for the "Emotional well-being" subscale', function () {
@@ -139,29 +125,19 @@ describe('sf36', function () {
         'SF36_Q30',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('EMOTIONAL_WELLBEING')(
-          SF36_SUBSCALES,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SF36_SUBSCALES.EMOTIONAL_WELLBEING)
     })
 
     it('should have the expected input idss configured for the "Social functioning" subscale', function () {
       const EXPECTED_INPUT_IDS = ['SF36_Q20', 'SF36_Q32']
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('SOCIAL_FUNCTIONING')(
-          SF36_SUBSCALES,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SF36_SUBSCALES.SOCIAL_FUNCTIONING)
     })
 
     it('should have the expected input idss configured for the "Pain" subscale', function () {
       const EXPECTED_INPUT_IDS = ['SF36_Q21', 'SF36_Q22']
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PAIN')(SF36_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SF36_SUBSCALES.PAIN)
     })
 
     it('should have the expected input idss configured for the "General health" subscale', function () {
@@ -173,17 +149,15 @@ describe('sf36', function () {
         'SF36_Q36',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('GENERAL_HEALTH')(SF36_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SF36_SUBSCALES.GENERAL_HEALTH)
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = sf36_calculation(best_response)
+    const outcome = sf36_calculation.calculate({ payload: best_response })
 
     it('should return a score for all 8 subscales', function () {
-      expect(outcome).toHaveLength(8)
+      expect(Object.keys(outcome)).toHaveLength(8)
     })
 
     it('should have all the correct calculation ids', function () {
@@ -198,8 +172,7 @@ describe('sf36', function () {
         'GENERAL_HEALTH',
       ]
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -209,30 +182,30 @@ describe('sf36', function () {
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return "Missing" as the score for every subscale', function () {
-        const outcome = sf36_calculation({})
+      it('should return null as the score for every subscale', function () {
+        const outcome = sf36_calculation.calculate({ payload: {} })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(undefined)
+        Object.values(outcome).forEach(score => {
+          expect(score).toEqual(null)
         })
       })
     })
     describe('when one input per subscale is answered with the best response', function () {
       it('should return the standardized score of that input as the score for every subscale', function () {
-        const outcome = sf36_calculation({
-          SF36_Q03: 3, // Physical functioning subscale
-          SF36_Q13: 2, // Role limitations due to physical health	subscale
-          SF36_Q17: 2, // Role limitations due to emotional problems subscale
-          SF36_Q23: 1, // Energy/fatigue subscale
-          SF36_Q24: 6, // Emotional well-being subscale
-          SF36_Q20: 1, // Social functioning subscale
-          SF36_Q21: 1, // Pain subscale
-          SF36_Q01: 1, // General health	subscale
+        const outcome = sf36_calculation.calculate({
+          payload: {
+            SF36_Q03: 3, // Physical functioning subscale
+            SF36_Q13: 2, // Role limitations due to physical health	subscale
+            SF36_Q17: 2, // Role limitations due to emotional problems subscale
+            SF36_Q23: 1, // Energy/fatigue subscale
+            SF36_Q24: 6, // Emotional well-being subscale
+            SF36_Q20: 1, // Social functioning subscale
+            SF36_Q21: 1, // Pain subscale
+            SF36_Q01: 1, // General health	subscale
+          },
         })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
+        Object.values(outcome).forEach(score => {
           expect(score).toEqual(BEST_SCORE)
         })
       })
@@ -242,148 +215,114 @@ describe('sf36', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when worst possible response (i.e. worst health state) is passed', function () {
       it('should return the worst score for every subscale', function () {
-        const outcome = sf36_calculation(worst_response)
+        const outcome = sf36_calculation.calculate({ payload: worst_response })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
+        Object.values(outcome).forEach(score => {
           expect(score).toEqual(WORST_SCORE)
         })
       })
     })
 
     describe('when a median response is passed', function () {
-      const outcome = sf36_calculation(median_response)
+      const outcome = sf36_calculation.calculate({ payload: median_response })
       const DEFAULT_MEDIAN_SCORE = 50
 
       it('should return the expected score for "Physical functioning" subscale', function () {
-        const score = view_result('PHYSICAL_FUNCTIONING')(outcome)
         const EXPECTED_SCORE = DEFAULT_MEDIAN_SCORE
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PHYSICAL_FUNCTIONING).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Role limitations due to physical health" subscale', function () {
-        const score = view_result('ROLE_LIMITATIONS_PHYSICAL_HEALTH')(outcome)
         const EXPECTED_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ROLE_LIMITATIONS_PHYSICAL_HEALTH).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Role limitations due to emotional problems" subscale', function () {
-        const score = view_result('ROLE_LIMITATIONS_EMOTIONAL_PROBLEMS')(
-          outcome,
-        )
         const EXPECTED_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ROLE_LIMITATIONS_EMOTIONAL_PROBLEMS).toEqual(
+          EXPECTED_SCORE,
+        )
       })
 
       it('should return the expected score for "Energy/fatigue" subscale', function () {
-        const score = view_result('ENERGY_FATIGUE')(outcome)
         const EXPECTED_SCORE = DEFAULT_MEDIAN_SCORE
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ENERGY_FATIGUE).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Emotional well-being" subscale', function () {
-        const score = view_result('EMOTIONAL_WELLBEING')(outcome)
         const EXPECTED_SCORE = 48
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.EMOTIONAL_WELLBEING).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Social functioning" subscale', function () {
-        const score = view_result('SOCIAL_FUNCTIONING')(outcome)
         const EXPECTED_SCORE = DEFAULT_MEDIAN_SCORE
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.SOCIAL_FUNCTIONING).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Pain" subscale', function () {
-        const score = view_result('PAIN')(outcome)
         const EXPECTED_SCORE = 55
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PAIN).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "General health" subscale', function () {
-        const score = view_result('GENERAL_HEALTH')(outcome)
         const EXPECTED_SCORE = DEFAULT_MEDIAN_SCORE
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.GENERAL_HEALTH).toEqual(EXPECTED_SCORE)
       })
     })
 
     describe('when best possible response (i.e. best health state) is passed', function () {
       it('should return the best score for every subscale', function () {
-        const outcome = sf36_calculation(best_response)
+        const outcome = sf36_calculation.calculate({ payload: best_response })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
+        Object.values(outcome).forEach(score => {
           expect(score).toEqual(BEST_SCORE)
         })
       })
     })
 
     describe('when a random response is passed', function () {
-      const outcome = sf36_calculation(random_response)
+      const outcome = sf36_calculation.calculate({ payload: random_response })
 
       it('should return the expected score for "Physical functioning" subscale', function () {
-        const score = view_result('PHYSICAL_FUNCTIONING')(outcome)
         const EXPECTED_SCORE = 40
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PHYSICAL_FUNCTIONING).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Role limitations due to physical health	" subscale', function () {
-        const score = view_result('ROLE_LIMITATIONS_PHYSICAL_HEALTH')(outcome)
         const EXPECTED_SCORE = 50
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ROLE_LIMITATIONS_PHYSICAL_HEALTH).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Role limitations due to emotional problems" subscale', function () {
-        const score = view_result('ROLE_LIMITATIONS_EMOTIONAL_PROBLEMS')(
-          outcome,
-        )
         const EXPECTED_SCORE = 33.33
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ROLE_LIMITATIONS_EMOTIONAL_PROBLEMS).toEqual(
+          EXPECTED_SCORE,
+        )
       })
 
       it('should return the expected score for "Energy/fatigue" subscale', function () {
-        const score = view_result('ENERGY_FATIGUE')(outcome)
         const EXPECTED_SCORE = 65
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ENERGY_FATIGUE).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Emotional well-being" subscale', function () {
-        const score = view_result('EMOTIONAL_WELLBEING')(outcome)
         const EXPECTED_SCORE = 44
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.EMOTIONAL_WELLBEING).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Social functioning" subscale', function () {
-        const score = view_result('SOCIAL_FUNCTIONING')(outcome)
         const EXPECTED_SCORE = 50
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.SOCIAL_FUNCTIONING).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Pain" subscale', function () {
-        const score = view_result('PAIN')(outcome)
         const EXPECTED_SCORE = 65
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PAIN).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "General health" subscale', function () {
-        const score = view_result('GENERAL_HEALTH')(outcome)
         const EXPECTED_SCORE = 45
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.GENERAL_HEALTH).toEqual(EXPECTED_SCORE)
       })
     })
   })
@@ -392,8 +331,11 @@ describe('sf36', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          sf36_calculation({
-            SF36_Q01: "I'm not a number",
+          sf36_calculation.calculate({
+            payload: {
+              ...best_response,
+              SF36_Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -401,8 +343,11 @@ describe('sf36', function () {
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          sf36_calculation({
-            SF36_Q01: -1,
+          sf36_calculation.calculate({
+            payload: {
+              ...best_response,
+              SF36_Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -410,8 +355,11 @@ describe('sf36', function () {
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          sf36_calculation({
-            SF36_Q01: 6,
+          sf36_calculation.calculate({
+            payload: {
+              ...best_response,
+              SF36_Q01: 6,
+            },
           }),
         ).toThrow(ZodError)
       })

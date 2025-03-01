@@ -1,6 +1,9 @@
-import { type StandardizationSerieType } from '../../../src/types/calculations.types'
+type ConversionTableType = {
+  items: string[]
+  conversion_table: { raw: number; std: number }[]
+}
 
-export const SF36_CONVERSION_TABLE: Array<StandardizationSerieType> = [
+export const SF36_CONVERSION_TABLE: Array<ConversionTableType> = [
   {
     items: [
       'SF36_Q01',
