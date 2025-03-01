@@ -7,19 +7,21 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/scl90r_test_responses'
-import { SCL90R_SUBSCALES } from './definition/scl90r_subscales'
+import {
+  SCL90R_SUBSCALES,
+  type SubscaleType,
+} from './definition/scl90r_subscales'
 import { scl90r } from './scl90r'
-import { CalculationOutputType } from '../../../types/calculations.types'
 
 const SCL90R_BEST_SCORE = 0
 const SCL90R_MEDIAN_SCORE = 180
 const SCL90R_WORST_SCORE = 360
 
-const scl90r_calculation = execute_test_calculation(scl90r)
+const scl90r_calculation = new Score(scl90r)
 
 describe('scl90r', function () {
   it('scl90r calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('scl90r')
+    expect(ScoreLibrary).toHaveProperty('scl90r')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -117,11 +119,7 @@ describe('scl90r', function () {
         'Q90',
       ]
 
-      const configured_input_ids = R.compose(
-        (input_ids: string[]) => input_ids.sort(),
-        R.flatten,
-        R.map(get_input_ids_in_subscale),
-      )(SCL90R_SUBSCALES)
+      const configured_input_ids = Object.keys(scl90r_calculation.inputSchema)
 
       expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
     })
@@ -142,9 +140,7 @@ describe('scl90r', function () {
         'Q58',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('SOMATIZATION')(SCL90R_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.SOMATIZATION)
     })
 
     it('should have the expected input idss configured for the "Obsessive compulsive" subscale	', function () {
@@ -161,11 +157,7 @@ describe('scl90r', function () {
         'Q65',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('OBSESSIVE_COMPULSIVE')(
-          SCL90R_SUBSCALES,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.OBSESSIVE_COMPULSIVE)
     })
 
     it('should have the expected input idss configured for the "Interpersonal sensitivity" subscale', function () {
@@ -182,9 +174,7 @@ describe('scl90r', function () {
       ]
 
       expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('INTERPERSONAL_SENSITIVITY')(
-          SCL90R_SUBSCALES,
-        ),
+        SCL90R_SUBSCALES.INTERPERSONAL_SENSITIVITY,
       )
     })
 
@@ -205,9 +195,7 @@ describe('scl90r', function () {
         'Q79',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('DEPRESSION')(SCL90R_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.DEPRESSION)
     })
 
     it('should have the expected input idss configured for the "Anxiety" subscale', function () {
@@ -224,17 +212,13 @@ describe('scl90r', function () {
         'Q86',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('ANXIETY')(SCL90R_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.ANXIETY)
     })
 
     it('should have the expected input idss configured for the "Hostility" subscale', function () {
       const EXPECTED_INPUT_IDS = ['Q11', 'Q24', 'Q63', 'Q67', 'Q74', 'Q81']
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('HOSTILITY')(SCL90R_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.HOSTILITY)
     })
 
     it('should have the expected input idss configured for the "Phobic anxiety" subscale', function () {
@@ -248,19 +232,13 @@ describe('scl90r', function () {
         'Q82',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PHOBIC_ANXIETY')(SCL90R_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.PHOBIC_ANXIETY)
     })
 
     it('should have the expected input idss configured for the "Paranoid ideation" subscale', function () {
       const EXPECTED_INPUT_IDS = ['Q08', 'Q18', 'Q43', 'Q68', 'Q76', 'Q83']
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PARANOID_IDEATION')(
-          SCL90R_SUBSCALES,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.PARANOID_IDEATION)
     })
 
     it('should have the expected input idss configured for the "Psychoticism" subscale', function () {
@@ -277,9 +255,7 @@ describe('scl90r', function () {
         'Q90',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PSYCHOTICISM')(SCL90R_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.PSYCHOTICISM)
     })
 
     it('should have the expected input idss configured for the "Additional items" subscale', function () {
@@ -293,23 +269,20 @@ describe('scl90r', function () {
         'Q89',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('ADDITIONAL_ITEMS')(
-          SCL90R_SUBSCALES,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SCL90R_SUBSCALES.ADDITIONAL_ITEMS)
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = scl90r_calculation(best_response)
+    const outcome = scl90r_calculation.calculate({ payload: best_response })
 
     it('should return a score for all 10 subscales and a total score', function () {
-      expect(outcome).toHaveLength(11)
+      expect(Object.keys(outcome)).toHaveLength(11)
     })
 
     it('should have all the correct calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
+        'TOTAL',
         'SOMATIZATION',
         'OBSESSIVE_COMPULSIVE',
         'INTERPERSONAL_SENSITIVITY',
@@ -320,11 +293,9 @@ describe('scl90r', function () {
         'PARANOID_IDEATION',
         'PSYCHOTICISM',
         'ADDITIONAL_ITEMS',
-        'TOTAL',
       ]
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -334,12 +305,11 @@ describe('scl90r', function () {
 
   describe('a score is only calculated when at least one input per subscale is answered', function () {
     describe('when an empty response is passed', function () {
-      it('should return "Missing" as the score for every subscale', function () {
-        const outcome = scl90r_calculation({})
+      it('should return null as the score for every subscale', function () {
+        const outcome = scl90r_calculation.calculate({ payload: {} })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(undefined)
+        Object.values(outcome).forEach(score => {
+          expect(score).toEqual(null)
         })
       })
     })
@@ -347,186 +317,123 @@ describe('scl90r', function () {
 
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when best possible response is passed', function () {
-      it('should return the best score for every subscale', function () {
-        const subscale_outcomes = R.compose(
-          //@ts-expect-error to do
-          R.filter(s => s.subresult_id !== 'TOTAL'),
-          scl90r_calculation,
-        )(best_response)
+      const outcome = scl90r_calculation.calculate({ payload: best_response })
 
+      it('should return the best score for every subscale', function () {
         // lower score = better
         const BEST_SCORE_PER_SUBSCALE = 0
 
-        subscale_outcomes.forEach(subscale => {
-          const score = subscale.result
+        Object.values(outcome).forEach(score => {
           expect(score).toEqual(BEST_SCORE_PER_SUBSCALE)
         })
       })
 
       it('should return the best total score', function () {
-        const total_score = R.compose(
-          (subscale: CalculationOutputType | undefined) => subscale?.result,
-          R.find(s => s.subresult_id === 'TOTAL'),
-          scl90r_calculation,
-        )(best_response)
-
-        expect(total_score).toEqual(SCL90R_BEST_SCORE)
+        expect(outcome.TOTAL).toEqual(SCL90R_BEST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
-      it('should return the median score for every subscale', function () {
-        const outcome = R.compose(
-          //@ts-expect-error to do
-          R.filter(s => s.subresult_id !== 'TOTAL'),
-          scl90r_calculation,
-        )(median_response)
+      const outcome = scl90r_calculation.calculate({
+        payload: median_response,
+      })
 
+      it('should return the median score for every subscale', function () {
         const MEDIAN_SCORE_PER_QUESTION = 2
 
-        outcome.forEach(subscale => {
-          const id = subscale.subresult_id
-          const score = subscale.result
-
-          const MEDIAN_SCORE_FOR_SUBSCALE = R.compose(
-            (amount_of_inputs: number) =>
-              amount_of_inputs * MEDIAN_SCORE_PER_QUESTION,
-            R.length,
-            R.view(inputsInSubscaleLens),
-            R.find(s => R.view(subscaleIdLens, s) === id),
-          )(SCL90R_SUBSCALES)
-
-          expect(score).toEqual(MEDIAN_SCORE_FOR_SUBSCALE)
+        Object.entries(outcome).forEach(([key, score]) => {
+          if (key !== 'TOTAL') {
+            const MEDIAN_SCORE_FOR_SUBSCALE =
+              SCL90R_SUBSCALES[key as SubscaleType].length *
+              MEDIAN_SCORE_PER_QUESTION
+            expect(score).toEqual(MEDIAN_SCORE_FOR_SUBSCALE)
+          }
         })
       })
 
       it('should return the median total score', function () {
-        const total_score = R.compose(
-          (subscale: CalculationOutputType | undefined) => subscale?.result,
-          R.find(s => s.subresult_id === 'TOTAL'),
-          scl90r_calculation,
-        )(median_response)
-
-        expect(total_score).toEqual(SCL90R_MEDIAN_SCORE)
+        expect(outcome.TOTAL).toEqual(SCL90R_MEDIAN_SCORE)
       })
     })
 
     describe('when worst possible response is passed', function () {
-      it('should return the worst score for every subscale', function () {
-        const outcome = R.compose(
-          //@ts-expect-error to do
-          R.filter(s => s.subresult_id !== 'TOTAL'),
-          scl90r_calculation,
-        )(worst_response)
+      const outcome = scl90r_calculation.calculate({ payload: worst_response })
 
+      it('should return the worst score for every subscale', function () {
         // Higher score = worse
         const MAX_SCORE_PER_QUESTION = 4
 
-        outcome.forEach(subscale => {
-          const id = subscale.subresult_id
-          const score = subscale.result
-
-          const MAX_SCORE_FOR_SUBSCALE = R.compose(
-            //@ts-expect-error to do
-            amount_of_inputs => amount_of_inputs * MAX_SCORE_PER_QUESTION,
-            R.length,
-            R.view(inputsInSubscaleLens),
-            R.find(s => R.view(subscaleIdLens, s) === id),
-          )(SCL90R_SUBSCALES)
-
-          expect(score).toEqual(MAX_SCORE_FOR_SUBSCALE)
+        Object.entries(outcome).forEach(([key, score]) => {
+          if (key !== 'TOTAL') {
+            const MAX_SCORE_FOR_SUBSCALE =
+              SCL90R_SUBSCALES[key as SubscaleType].length *
+              MAX_SCORE_PER_QUESTION
+            expect(score).toEqual(MAX_SCORE_FOR_SUBSCALE)
+          }
         })
       })
 
       it('should return the worst total score', function () {
-        const total_score = R.compose(
-          (subscale: CalculationOutputType | undefined) => subscale?.result,
-          R.find(s => s.subresult_id === 'TOTAL'),
-          scl90r_calculation,
-        )(worst_response)
-
-        expect(total_score).toEqual(SCL90R_WORST_SCORE)
+        expect(outcome.TOTAL).toEqual(SCL90R_WORST_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
-      const outcome = scl90r_calculation(random_response)
+      const outcome = scl90r_calculation.calculate({ payload: random_response })
 
       it('should return the expected score for "Somatization" subscale', function () {
-        const score = view_result('SOMATIZATION')(outcome)
         const EXPECTED_SCORE = 27
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.SOMATIZATION).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Obsessive compulsive" subscale', function () {
-        const score = view_result('OBSESSIVE_COMPULSIVE')(outcome)
         const EXPECTED_SCORE = 24
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.OBSESSIVE_COMPULSIVE).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Interpersonal Sensitivity" subscale', function () {
-        const score = view_result('INTERPERSONAL_SENSITIVITY')(outcome)
         const EXPECTED_SCORE = 21
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.INTERPERSONAL_SENSITIVITY).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Depression" subscale', function () {
-        const score = view_result('DEPRESSION')(outcome)
         const EXPECTED_SCORE = 32
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.DEPRESSION).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Anxiety" subscale', function () {
-        const score = view_result('ANXIETY')(outcome)
         const EXPECTED_SCORE = 27
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ANXIETY).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Hostility" subscale', function () {
-        const score = view_result('HOSTILITY')(outcome)
         const EXPECTED_SCORE = 15
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.HOSTILITY).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Phobic anxiety" subscale', function () {
-        const score = view_result('PHOBIC_ANXIETY')(outcome)
         const EXPECTED_SCORE = 13
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PHOBIC_ANXIETY).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Paranoid ideation" subscale', function () {
-        const score = view_result('PARANOID_IDEATION')(outcome)
         const EXPECTED_SCORE = 17
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PARANOID_IDEATION).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Psychoticism" subscale', function () {
-        const score = view_result('PSYCHOTICISM')(outcome)
         const EXPECTED_SCORE = 25
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PSYCHOTICISM).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Additional items" subscale', function () {
-        const score = view_result('ADDITIONAL_ITEMS')(outcome)
         const EXPECTED_SCORE = 19
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ADDITIONAL_ITEMS).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected total score', function () {
-        const score = view_result('TOTAL')(outcome)
         const EXPECTED_SCORE = 220
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.TOTAL).toEqual(EXPECTED_SCORE)
       })
     })
   })
@@ -535,8 +442,11 @@ describe('scl90r', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          scl90r_calculation({
-            Q01: "I'm not a number",
+          scl90r_calculation.calculate({
+            payload: {
+              ...best_response,
+              Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -544,8 +454,11 @@ describe('scl90r', function () {
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          scl90r_calculation({
-            Q01: -1,
+          scl90r_calculation.calculate({
+            payload: {
+              ...best_response,
+              Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -553,8 +466,11 @@ describe('scl90r', function () {
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
       it('should return throw an error', function () {
         expect(() =>
-          scl90r_calculation({
-            Q01: 5,
+          scl90r_calculation.calculate({
+            payload: {
+              ...best_response,
+              Q01: 5,
+            },
           }),
         ).toThrow(ZodError)
       })
