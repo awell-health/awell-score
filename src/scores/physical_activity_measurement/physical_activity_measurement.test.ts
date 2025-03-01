@@ -6,15 +6,15 @@ import {
   random_response_with_insufficient_physical_activity,
   random_response_with_sufficient_physical_activity,
 } from './__testdata__/physical_activity_measurements_responses'
-import { physical_activity_measurement } from './physical_activity_measurements'
+import { physical_activity_measurement } from './physical_activity_measurement'
 
-const physical_activity_measurement_calculation = execute_test_calculation(
+const physical_activity_measurement_calculation = new Score(
   physical_activity_measurement,
 )
 
 describe('physical_activity_measurement', function () {
   it('physical_activity_measurement calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('physical_activity_measurement')
+    expect(ScoreLibrary).toHaveProperty('physical_activity_measurement')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -28,22 +28,23 @@ describe('physical_activity_measurement', function () {
         'VIGOROUS_PA_MINUTES_PER_DAY',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(PA_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        physical_activity_measurement_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = R.compose(physical_activity_measurement_calculation)(
-      minimum_response,
-    )
+    const outcome = physical_activity_measurement_calculation.calculate({
+      payload: minimum_response,
+    })
 
     it('should return 3 calculation results', function () {
-      expect(outcome).toHaveLength(3)
+      expect(Object.keys(outcome).length).toEqual(3)
     })
 
     it('should have all the correct calculation ids', function () {
@@ -53,8 +54,7 @@ describe('physical_activity_measurement', function () {
         'ENOUGH_PA',
       ]
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -64,89 +64,69 @@ describe('physical_activity_measurement', function () {
 
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when called with a minimum response', function () {
-      const outcome = R.compose(physical_activity_measurement_calculation)(
-        minimum_response,
-      )
+      const outcome = physical_activity_measurement_calculation.calculate({
+        payload: minimum_response,
+      })
 
       it('should return 0 for "PA_MINUTES_PER_WEEK" calculation', function () {
-        const score = view_result('PA_MINUTES_PER_WEEK')(outcome)
-        expect(score).toEqual(0)
+        expect(outcome.PA_MINUTES_PER_WEEK).toEqual(0)
       })
 
       it('should return 0 for "PA_MET_MINUTES_PER_WEEK" calculation', function () {
-        const score = view_result('PA_MET_MINUTES_PER_WEEK')(outcome)
-        expect(score).toEqual(0)
+        expect(outcome.PA_MET_MINUTES_PER_WEEK).toEqual(0)
       })
 
       it('should return 0 for "ENOUGH_PA" calculation', function () {
-        const score = view_result('ENOUGH_PA')(outcome)
-        expect(score).toEqual(0)
+        expect(outcome.ENOUGH_PA).toEqual(0)
       })
     })
 
     describe('when called with a random response with insufficient physical activity', function () {
-      const outcome = R.compose(physical_activity_measurement_calculation)(
-        random_response_with_insufficient_physical_activity,
-      )
+      const outcome = physical_activity_measurement_calculation.calculate({
+        payload: random_response_with_insufficient_physical_activity,
+      })
 
       it('should return the expected score for "PA_MINUTES_PER_WEEK" calculation', function () {
-        const score = view_result('PA_MINUTES_PER_WEEK')(outcome)
-        const EXPECTED_SCORE = 60
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PA_MINUTES_PER_WEEK).toEqual(60)
       })
 
       it('should return the expected score for "PA_MET_MINUTES_PER_WEEK" calculation', function () {
-        const score = view_result('PA_MET_MINUTES_PER_WEEK')(outcome)
-        const EXPECTED_SCORE = 169.5
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PA_MET_MINUTES_PER_WEEK).toEqual(169.5)
       })
 
       it('should return the expected score for "ENOUGH_PA" calculation', function () {
-        const score = view_result('ENOUGH_PA')(outcome)
-        const EXPECTED_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ENOUGH_PA).toEqual(0)
       })
     })
 
     describe('when called with a random response with sufficient physical activity', function () {
-      const outcome = R.compose(physical_activity_measurement_calculation)(
-        random_response_with_sufficient_physical_activity,
-      )
+      const outcome = physical_activity_measurement_calculation.calculate({
+        payload: random_response_with_sufficient_physical_activity,
+      })
 
       it('should return the expected score for "PA_MINUTES_PER_WEEK" calculation', function () {
-        const score = view_result('PA_MINUTES_PER_WEEK')(outcome)
-        const EXPECTED_SCORE = 480
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PA_MINUTES_PER_WEEK).toEqual(480)
       })
 
       it('should return the expected score for "PA_MET_MINUTES_PER_WEEK" calculation', function () {
-        const score = view_result('PA_MET_MINUTES_PER_WEEK')(outcome)
-        const EXPECTED_SCORE = 2274
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PA_MET_MINUTES_PER_WEEK).toEqual(2274)
       })
 
       it('should return the expected score for "ENOUGH_PA" calculation', function () {
-        const score = view_result('ENOUGH_PA')(outcome)
-        const EXPECTED_SCORE = 1
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.ENOUGH_PA).toEqual(1)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return MISSING_MESSAGE as the score for each result', function () {
-        const outcome = R.compose(physical_activity_measurement_calculation)({})
+      it('should return null as the score for each result', function () {
+        const outcome = physical_activity_measurement_calculation.calculate({
+          payload: {},
+        })
 
-        outcome.forEach(result => {
-          const score = result.result
-          expect(score).toEqual(undefined)
+        Object.values(outcome).forEach(result => {
+          expect(result).toEqual(null)
         })
       })
     })
@@ -156,8 +136,11 @@ describe('physical_activity_measurement', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          physical_activity_measurement_calculation({
-            LIGHT_PA_DAYS_PER_WEEK: "I'm not a number",
+          physical_activity_measurement_calculation.calculate({
+            payload: {
+              ...minimum_response,
+              LIGHT_PA_DAYS_PER_WEEK: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -165,8 +148,11 @@ describe('physical_activity_measurement', function () {
     describe('when an answer is not one of the allowed answers (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          physical_activity_measurement_calculation({
-            LIGHT_PA_DAYS_PER_WEEK: -1,
+          physical_activity_measurement_calculation.calculate({
+            payload: {
+              ...minimum_response,
+              LIGHT_PA_DAYS_PER_WEEK: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -174,8 +160,11 @@ describe('physical_activity_measurement', function () {
     describe('when an answer is not allowed one of the allowed answers (e.g. is above the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          physical_activity_measurement_calculation({
-            LIGHT_PA_DAYS_PER_WEEK: 8,
+          physical_activity_measurement_calculation.calculate({
+            payload: {
+              ...minimum_response,
+              LIGHT_PA_DAYS_PER_WEEK: 8,
+            },
           }),
         ).toThrow(ZodError)
       })
