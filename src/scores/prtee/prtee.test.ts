@@ -9,7 +9,6 @@ import {
 } from './__testdata__/prtee_test_responses'
 import { PRTEE_SUBSCALES } from './definition/prtee_subscales'
 import { prtee } from './prtee'
-import { CalculationOutputType } from '../../src/types/calculations.types'
 
 const SUBSCALE_BEST_SCORE = 0
 const SUBSCALE_MEDIAN_SCORE = 25
@@ -19,11 +18,11 @@ const TOTAL_BEST_SCORE = 0
 const TOTAL_MEDIAN_SCORE = 50
 const TOTAL_WORST_SCORE = 100
 
-const prtee_calculation = execute_test_calculation(prtee)
+const prtee_calculation = new Score(prtee)
 
 describe('prtee', function () {
   it('prtee calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('prtee')
+    expect(ScoreLibrary).toHaveProperty('prtee')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -44,13 +43,9 @@ describe('prtee', function () {
         'FUNCTION_Q08',
         'FUNCTION_Q09',
         'FUNCTION_Q10',
-      ].sort()
+      ]
 
-      const configured_input_ids = R.compose(
-        (input_ids: string[]) => input_ids.sort(),
-        R.flatten,
-        R.map(get_input_ids_in_subscale),
-      )(PRTEE_SUBSCALES)
+      const configured_input_ids = Object.keys(prtee_calculation.inputSchema)
 
       expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
     })
@@ -64,9 +59,7 @@ describe('prtee', function () {
         'PAIN_Q05',
       ].sort()
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PAIN')(PRTEE_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(PRTEE_SUBSCALES.PAIN)
     })
 
     it('should have the expected input idss configured for the "Function" subscale	', function () {
@@ -83,24 +76,21 @@ describe('prtee', function () {
         'FUNCTION_Q10',
       ].sort()
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('FUNCTION')(PRTEE_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(PRTEE_SUBSCALES.FUNCTION)
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = prtee_calculation(best_response)
+    const outcome = prtee_calculation.calculate({ payload: best_response })
 
     it('should return a score the 2 subscales and a total score', function () {
-      expect(outcome).toHaveLength(3)
+      expect(Object.keys(outcome)).toHaveLength(3)
     })
 
     it('should have all the correct calculation ids', function () {
-      const EXPECTED_CALCULATION_IDS = ['PAIN', 'FUNCTION', 'TOTAL']
+      const EXPECTED_CALCULATION_IDS = ['TOTAL', 'PAIN', 'FUNCTION']
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -110,26 +100,34 @@ describe('prtee', function () {
 
   describe('a score is only calculated when at least one input per subscale is answered', function () {
     describe('when an empty response is passed', function () {
-      it('should return "Missing" as the score for every subscale (and the total score)', function () {
-        const outcome = prtee_calculation({})
+      it('should return null as the score for every subscale (and the total score)', function () {
+        const outcome = prtee_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(undefined)
+        Object.values(outcome).forEach(score => {
+          expect(score).toEqual(null)
         })
       })
     })
 
     describe('when an incomplete response is passed', function () {
-      it('should return "Missing" as the score for every subscale (and the total score)', function () {
-        const outcome = prtee_calculation({
-          PAIN_Q01: 5,
-          FUNCTION_Q04: 7,
+      it('should return null as the score for every subscale (and the total score)', function () {
+        const outcome = prtee_calculation.calculate({
+          payload: {
+            PAIN_Q01: 5,
+            FUNCTION_Q04: 7,
+          },
+          opts: {
+            nullOnMissingInputs: true,
+          },
         })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(undefined)
+        Object.values(outcome).forEach(score => {
+          expect(score).toEqual(null)
         })
       })
     })
@@ -137,111 +135,73 @@ describe('prtee', function () {
 
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when best possible response is passed', function () {
-      const outcome = prtee_calculation(best_response)
+      const outcome = prtee_calculation.calculate({ payload: best_response })
 
-      it('should return the best score for every subscale', function () {
-        const subscale_outcomes = R.filter(
-          subscale => subscale.subresult_id !== 'TOTAL',
-          outcome,
-        )
+      it('should return the best score for "Pain" subscale', function () {
+        expect(outcome.PAIN).toEqual(SUBSCALE_BEST_SCORE)
+      })
 
-        subscale_outcomes.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(SUBSCALE_BEST_SCORE)
-        })
+      it('should return the best score for "Function" subscale', function () {
+        expect(outcome.FUNCTION).toEqual(SUBSCALE_BEST_SCORE)
       })
 
       it('should return the best total score', function () {
-        const total_score = R.compose(
-          (subscale: CalculationOutputType | undefined) => subscale?.result,
-          R.find(
-            (subscale: CalculationOutputType) =>
-              subscale.subresult_id === 'TOTAL',
-          ),
-        )(outcome)
-
-        expect(total_score).toEqual(TOTAL_BEST_SCORE)
+        expect(outcome.TOTAL).toEqual(TOTAL_BEST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
-      const outcome = prtee_calculation(median_response)
+      const outcome = prtee_calculation.calculate({ payload: median_response })
 
-      it('should return the median score for every subscale', function () {
-        const subscale_outcomes = R.filter(
-          subscale => subscale.subresult_id !== 'TOTAL',
-          outcome,
-        )
+      it('should return the median score for "Pain" subscale', function () {
+        expect(outcome.PAIN).toEqual(SUBSCALE_MEDIAN_SCORE)
+      })
 
-        subscale_outcomes.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(SUBSCALE_MEDIAN_SCORE)
-        })
+      it('should return the median score for "Function" subscale', function () {
+        expect(outcome.FUNCTION).toEqual(SUBSCALE_MEDIAN_SCORE)
       })
 
       it('should return the median total score', function () {
-        const total_score = R.compose(
-          (subscale: CalculationOutputType | undefined) => subscale?.result,
-          R.find(
-            (subscale: CalculationOutputType) =>
-              subscale.subresult_id === 'TOTAL',
-          ),
-        )(outcome)
-
-        expect(total_score).toEqual(TOTAL_MEDIAN_SCORE)
+        expect(outcome.TOTAL).toEqual(TOTAL_MEDIAN_SCORE)
       })
     })
 
     describe('when worst possible response is passed', function () {
-      const outcome = prtee_calculation(worst_response)
+      const outcome = prtee_calculation.calculate({
+        payload: worst_response,
+      })
 
-      it('should return the worst score for every subscale', function () {
-        const subscale_outcomes = R.filter(
-          subscale => subscale.subresult_id !== 'TOTAL',
-          outcome,
-        )
+      it('should return the worst score for "Pain" subscale', function () {
+        expect(outcome.PAIN).toEqual(SUBSCALE_WORST_SCORE)
+      })
 
-        subscale_outcomes.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(SUBSCALE_WORST_SCORE)
-        })
+      it('should return the worst score for "Function" subscale', function () {
+        expect(outcome.FUNCTION).toEqual(SUBSCALE_WORST_SCORE)
       })
 
       it('should return the worst total score', function () {
-        const total_score = R.compose(
-          (subscale: CalculationOutputType | undefined) => subscale?.result,
-          R.find(
-            (subscale: CalculationOutputType) =>
-              subscale.subresult_id === 'TOTAL',
-          ),
-        )(outcome)
-
-        expect(total_score).toEqual(TOTAL_WORST_SCORE)
+        expect(outcome.TOTAL).toEqual(TOTAL_WORST_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
-      const outcome = prtee_calculation(random_response)
+      const outcome = prtee_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the expected score for "Pain" subscale', function () {
-        const score = view_result('PAIN')(outcome)
         const EXPECTED_SCORE = 18
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PAIN).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for "Function" subscale', function () {
-        const score = view_result('FUNCTION')(outcome)
         const EXPECTED_SCORE = 21.5
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.FUNCTION).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected total score', function () {
-        const score = view_result('TOTAL')(outcome)
         const EXPECTED_SCORE = 39.5
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.TOTAL).toEqual(EXPECTED_SCORE)
       })
     })
   })
@@ -250,8 +210,11 @@ describe('prtee', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          prtee_calculation({
-            PAIN_Q01: "I'm not a number",
+          prtee_calculation.calculate({
+            payload: {
+              ...best_response,
+              PAIN_Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -259,8 +222,11 @@ describe('prtee', function () {
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          prtee_calculation({
-            PAIN_Q01: -1,
+          prtee_calculation.calculate({
+            payload: {
+              ...best_response,
+              PAIN_Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -268,8 +234,11 @@ describe('prtee', function () {
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          prtee_calculation({
-            PAIN_Q01: 11,
+          prtee_calculation.calculate({
+            payload: {
+              ...best_response,
+              PAIN_Q01: 11,
+            },
           }),
         ).toThrow(ZodError)
       })
