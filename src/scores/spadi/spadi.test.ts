@@ -15,11 +15,11 @@ const SPADI_MIN_SCORE = 0
 const SPADI_MEDIAN_SCORE = 50
 const SPADI_MAX_SCORE = 100
 
-const spadi_calculation = execute_test_calculation(spadi)
+const spadi_calculation = new Score(spadi)
 
 describe('spadi', function () {
   it('spadi calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('spadi')
+    expect(ScoreLibrary).toHaveProperty('spadi')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -40,10 +40,7 @@ describe('spadi', function () {
         'Q13',
       ]
 
-      const configured_input_ids = R.compose(
-        R.flatten,
-        R.map(get_input_ids_in_subscale),
-      )(SPADI_SUBSCALES)
+      const configured_input_ids = Object.keys(spadi_calculation.inputSchema)
 
       expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
     })
@@ -51,9 +48,7 @@ describe('spadi', function () {
     it('should have the expected input ids configured for the Pain subscale', function () {
       const EXPECTED_INPUT_IDS = ['Q01', 'Q02', 'Q03', 'Q04', 'Q05']
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('PAIN')(SPADI_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SPADI_SUBSCALES.PAIN)
     })
 
     it('should have the expected input ids configured for the Disability subscale', function () {
@@ -68,24 +63,23 @@ describe('spadi', function () {
         'Q13',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('DISABILITY')(SPADI_SUBSCALES),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(SPADI_SUBSCALES.DISABILITY)
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = spadi_calculation(complete_random_response)
+    const outcome = spadi_calculation.calculate({
+      payload: complete_random_response,
+    })
 
     it('should return a score for the 2 subscales and 1 total score', function () {
-      expect(outcome).toHaveLength(3)
+      expect(Object.keys(outcome)).toHaveLength(3)
     })
 
     it('should have all the correct calculation ids', function () {
-      const EXPECTED_CALCULATION_IDS = ['PAIN', 'DISABILITY', 'TOTAL']
+      const EXPECTED_CALCULATION_IDS = ['TOTAL', 'PAIN', 'DISABILITY']
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -95,12 +89,11 @@ describe('spadi', function () {
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return MISSING_MESSAGE as the score for every subscale and the total score', function () {
-        const outcome = spadi_calculation({})
+      it('should return null as the score for every subscale and the total score', function () {
+        const outcome = spadi_calculation.calculate({ payload: {} })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(undefined)
+        Object.values(outcome).forEach(res => {
+          expect(res).toEqual(null)
         })
       })
     })
@@ -109,86 +102,77 @@ describe('spadi', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when minimum response is passed', function () {
       it('should return the min score for every subscale and the total score', function () {
-        const outcome = spadi_calculation(min_response)
-
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(SPADI_MIN_SCORE)
+        const outcome = spadi_calculation.calculate({ payload: min_response })
+        console.log(outcome)
+        Object.values(outcome).forEach(res => {
+          expect(res).toEqual(SPADI_MIN_SCORE)
         })
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score for every subscale and the total score', function () {
-        const outcome = spadi_calculation(median_response)
+        const outcome = spadi_calculation.calculate({
+          payload: median_response,
+        })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(SPADI_MEDIAN_SCORE)
+        Object.values(outcome).forEach(res => {
+          expect(res).toEqual(SPADI_MEDIAN_SCORE)
         })
       })
     })
 
     describe('when a max response is passed', function () {
       it('should return the max score for every subscale and the total score', function () {
-        const outcome = spadi_calculation(max_response)
+        const outcome = spadi_calculation.calculate({
+          payload: max_response,
+        })
 
-        outcome.forEach(subscale => {
-          const score = subscale.result
-          expect(score).toEqual(SPADI_MAX_SCORE)
+        Object.values(outcome).forEach(res => {
+          expect(res).toEqual(SPADI_MAX_SCORE)
         })
       })
     })
 
     describe('when a complete random response is passed', function () {
-      const outcome = spadi_calculation(complete_random_response)
+      const outcome = spadi_calculation.calculate({
+        payload: complete_random_response,
+      })
 
       it('should return the expected score for the Pain subscale', function () {
-        const score = view_result('PAIN')(outcome)
         const EXPECTED_SCORE = 26
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PAIN).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for the Disability subscale', function () {
-        const score = view_result('DISABILITY')(outcome)
         const EXPECTED_SCORE = 36.25
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.DISABILITY).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected total score', function () {
-        const score = view_result('TOTAL')(outcome)
-
         const EXPECTED_SCORE = 31.125
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.TOTAL).toEqual(EXPECTED_SCORE)
       })
     })
 
     describe('when an incomplete random response is passed', function () {
-      const outcome = spadi_calculation(incomplete_random_response)
+      const outcome = spadi_calculation.calculate({
+        payload: incomplete_random_response,
+      })
 
       it('should return the expected score for the Pain subscale', function () {
-        const score = view_result('PAIN')(outcome)
         const EXPECTED_SCORE = 36.67
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PAIN).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected score for the Disability subscale', function () {
-        const score = view_result('DISABILITY')(outcome)
         const EXPECTED_SCORE = 38
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.DISABILITY).toEqual(EXPECTED_SCORE)
       })
 
       it('should return the expected total score', function () {
-        const score = view_result('TOTAL')(outcome)
-
         const EXPECTED_SCORE = 37.335
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.TOTAL).toEqual(EXPECTED_SCORE)
       })
     })
   })
@@ -197,8 +181,11 @@ describe('spadi', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          spadi_calculation({
-            Q01: "I'm not a number",
+          spadi_calculation.calculate({
+            payload: {
+              ...complete_random_response,
+              Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -206,8 +193,11 @@ describe('spadi', function () {
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          spadi_calculation({
-            Q01: -1,
+          spadi_calculation.calculate({
+            payload: {
+              ...complete_random_response,
+              Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -215,8 +205,11 @@ describe('spadi', function () {
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          spadi_calculation({
-            Q01: 11,
+          spadi_calculation.calculate({
+            payload: {
+              ...complete_random_response,
+              Q01: 11,
+            },
           }),
         ).toThrow(ZodError)
       })

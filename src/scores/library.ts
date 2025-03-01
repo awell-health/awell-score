@@ -112,7 +112,7 @@ import { snap_parent } from './snap_parent/snap_parent'
 // import { scl90r } from './scl90r/scl90r'
 // import { sdq } from './sdq/sdq'
 import { sf12 } from './sf12/sf12'
-// import { spadi } from './spadi/spadi'
+import { spadi } from './spadi/spadi'
 import { simple_shoulder_test } from './sst/simple_shoulder_test'
 import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
 import { tampa } from './tampa/tampa'
@@ -263,7 +263,7 @@ export const ScoreLibrary = createScoreLibrary({
   sf12,
   // sf36,
   short_fes_i,
-  // spadi,
+  spadi,
   simple_shoulder_test,
   start_back_screening_tool,
   stop_bang,
