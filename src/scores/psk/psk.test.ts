@@ -7,19 +7,17 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/psk_test_responses'
-import { PSK_INPUTS } from './definition/psk_inputs'
-// eslint-disable-next-line sort-imports
-import { psk, PSK_SORE_CALCULATION_ID } from './psk'
+import { psk } from './psk'
 
 const PSK_WORST_SCORE = 0
 const PSK_MEDIAN_SCORE = 5
 const PSK_BEST_SCORE = 10
 
-const psk_calculation = execute_test_calculation(psk)
+const psk_calculation = new Score(psk)
 
 describe('psk', function () {
   it('psk calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('psk')
+    expect(ScoreLibrary).toHaveProperty('psk')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -32,31 +30,31 @@ describe('psk', function () {
         'SCORE_FOR_ACTIVITY_05',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(PSK_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        psk_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = psk_calculation(best_response)
+    const outcome = psk_calculation.calculate({ payload: best_response })
 
     it('should return 3 calculation results', function () {
-      expect(outcome).toHaveLength(3)
+      expect(Object.keys(outcome)).toHaveLength(3)
     })
 
     it('should have all the correct calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
+        'PSK_SCORE',
         'PSK_SUM_OF_ACTIVITY_SCORES',
         'PSK_NBR_OF_ACTIVITIES',
-        'PSK_SCORE',
       ]
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -67,74 +65,49 @@ describe('psk', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when worst response is passed', function () {
       it('should return the worst score', function () {
-        const score = R.compose(
-          view_result(PSK_SORE_CALCULATION_ID),
-          psk_calculation,
-        )(worst_response)
-
-        expect(score).toEqual(PSK_WORST_SCORE)
+        const outcome = psk_calculation.calculate({ payload: worst_response })
+        expect(outcome.PSK_SCORE).toEqual(PSK_WORST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const score = R.compose(
-          view_result(PSK_SORE_CALCULATION_ID),
-          psk_calculation,
-        )(median_response)
-
-        expect(score).toEqual(PSK_MEDIAN_SCORE)
+        const outcome = psk_calculation.calculate({ payload: median_response })
+        expect(outcome.PSK_SCORE).toEqual(PSK_MEDIAN_SCORE)
       })
     })
 
     describe('when best response is passed', function () {
       it('should return the best score', function () {
-        const score = R.compose(
-          view_result(PSK_SORE_CALCULATION_ID),
-          psk_calculation,
-        )(best_response)
-
-        expect(score).toEqual(PSK_BEST_SCORE)
+        const outcome = psk_calculation.calculate({ payload: best_response })
+        expect(outcome.PSK_SCORE).toEqual(PSK_BEST_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
       it('should return the expected score', function () {
-        const score = R.compose(
-          view_result(PSK_SORE_CALCULATION_ID),
-          psk_calculation,
-        )(random_response)
-
+        const outcome = psk_calculation.calculate({ payload: random_response })
         const EXPECTED_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.PSK_SCORE).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const score = R.compose(
-          view_result(PSK_SORE_CALCULATION_ID),
-          psk_calculation,
-        )({})
-
-        expect(score).toEqual(undefined)
+      it('should return null as the result', function () {
+        const outcome = psk_calculation.calculate({ payload: {} })
+        expect(outcome.PSK_SCORE).toEqual(null)
       })
     })
 
     describe('when only one activity score is passed', function () {
       it('should return the score of that activity as the final score', function () {
         const ACTIVITY_SCORE = 8
-        const score = R.compose(
-          view_result(PSK_SORE_CALCULATION_ID),
-          psk_calculation,
-        )({
-          SCORE_FOR_ACTIVITY_01: ACTIVITY_SCORE,
+        const outcome = psk_calculation.calculate({
+          payload: { SCORE_FOR_ACTIVITY_01: ACTIVITY_SCORE },
         })
-
-        expect(score).toEqual(ACTIVITY_SCORE)
+        expect(outcome.PSK_SCORE).toEqual(ACTIVITY_SCORE)
       })
     })
   })
@@ -143,8 +116,8 @@ describe('psk', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          psk_calculation({
-            SCORE_FOR_ACTIVITY_01: "I'm not a number",
+          psk_calculation.calculate({
+            payload: { SCORE_FOR_ACTIVITY_01: "I'm not a number" },
           }),
         ).toThrow(ZodError)
       })
@@ -152,8 +125,8 @@ describe('psk', function () {
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          psk_calculation({
-            SCORE_FOR_ACTIVITY_01: -1,
+          psk_calculation.calculate({
+            payload: { SCORE_FOR_ACTIVITY_01: -1 },
           }),
         ).toThrow(ZodError)
       })
@@ -161,8 +134,8 @@ describe('psk', function () {
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          psk_calculation({
-            SCORE_FOR_ACTIVITY_01: 11,
+          psk_calculation.calculate({
+            payload: { SCORE_FOR_ACTIVITY_01: 11 },
           }),
         ).toThrow(ZodError)
       })
