@@ -1,5 +1,3 @@
-/* eslint-disable no-magic-numbers */
-
 export const worst_response = {
   Q01: 1,
   Q02: 4,
