@@ -1,18 +1,14 @@
-/* eslint-disable no-magic-numbers */
-
-import type { InputType } from '../../../src/types/calculations.types'
+import type { Data } from './types'
 import { calculate_subscale_scores } from './calculate_subscale_scores'
 
-export const calculate_daytime_dysfunction = (
-  inputs_with_answers: Array<InputType>,
-): number | string => {
+export const calculate_daytime_dysfunction = (data: Data): number | null => {
   const DAYTIME_DYSFUNCTION_SCORE = calculate_subscale_scores(
-    inputs_with_answers,
+    data,
     'DAYTIME_DYSFUNCTION',
   )
 
-  if (typeof DAYTIME_DYSFUNCTION_SCORE === 'string') {
-    return DAYTIME_DYSFUNCTION_SCORE
+  if (DAYTIME_DYSFUNCTION_SCORE === null) {
+    return null
   }
 
   let DAYTIME_DYSFUNCTION

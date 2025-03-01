@@ -104,7 +104,7 @@ import { pro2 as PRO2 } from './pro2/pro2'
 import { paid_20 } from './PAID_20/paid_20'
 // import { psk } from './psk/psk'
 import { qol_stoma } from './qol_stoma/qol_stoma'
-// import { quickdash } from './quickdash/quickdash'
+import { quickdash } from './quickdash/quickdash'
 import { sccai } from './sccai/sccai'
 import { snap_teacher } from './snap_teacher/snap_teacher'
 import { snap_parent } from './snap_parent/snap_parent'
@@ -126,7 +126,7 @@ import { Score } from '../classes'
 import { ScoreType } from '../types'
 import { korq } from './korq/korq'
 import { mlks } from './mlks/mlks'
-// import { psqi } from './psqi/psqi'
+import { psqi } from './psqi/psqi'
 import { test_calculation } from './test_calculation/test_caculation'
 
 const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
@@ -251,10 +251,10 @@ export const ScoreLibrary = createScoreLibrary({
   // prtee,
   paid_20,
   // psk,
-  // psqi,
+  psqi,
   pss_4,
   qol_stoma,
-  // quickdash,
+  quickdash,
   sccai,
   snap_teacher,
   snap_parent,

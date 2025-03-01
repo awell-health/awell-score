@@ -7,18 +7,17 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/psqi_test_responses'
-import { PSQI_INPUT } from './definition/psqi_input'
 import { PSQI_SUBSCALES } from './definition/psqi_subscales'
 import { psqi } from './psqi'
 
 const WORST_SCORE = 21
 const BEST_SCORE = 0
 
-const psqi_calculation = execute_test_calculation(psqi)
+const psqi_calculation = new Score(psqi)
 
 describe('psqi', function () {
   it('psqi calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('psqi')
+    expect(ScoreLibrary).toHaveProperty('psqi')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -45,15 +44,14 @@ describe('psqi', function () {
           'Q08',
           'Q09',
         ]
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(PSQI_INPUT)
+        const configured_input_ids = Object.keys(psqi_calculation.inputSchema)
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
     })
 
     describe('basic assumptions', function () {
-      const outcome = psqi_calculation(best_response)
+      const outcome = psqi_calculation.calculate({ payload: best_response })
 
       it('should have the expected result ids', function () {
         const EXPECTED_RESULT_IDS = [
@@ -67,8 +65,7 @@ describe('psqi', function () {
           'DAYTIME_DYSFUNCTION',
         ]
 
-        const configured_calculation_ids =
-          get_result_ids_from_calculation_output(outcome)
+        const configured_calculation_ids = Object.keys(outcome)
 
         expect(configured_calculation_ids).toEqual(EXPECTED_RESULT_IDS)
       })
@@ -135,48 +132,66 @@ describe('psqi', function () {
   describe('Input validations', function () {
     it('when an answer is below the expected range for question with hours: should throw an ZodError', function () {
       expect(() =>
-        psqi_calculation({
-          Q01: -1,
+        psqi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01: -1,
+          },
         }),
       ).toThrow(ZodError)
     })
 
     it('when an answer is above the expected range for question with hours: should throw an ZodError', function () {
       expect(() =>
-        psqi_calculation({
-          Q01: 25,
+        psqi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01: 25,
+          },
         }),
       ).toThrow(ZodError)
     })
 
     it('when there are non-numerical answers: should throw an ZodError', function () {
       expect(() =>
-        psqi_calculation({
-          Q01: "I'm not a number",
+        psqi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01: "I'm not a number",
+          },
         }),
       ).toThrow(ZodError)
     })
 
     it('when an answer is below the expected range for question with standard input: should throw an ZodError', function () {
       expect(() =>
-        psqi_calculation({
-          Q06: -1,
+        psqi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q06: -1,
+          },
         }),
       ).toThrow(ZodError)
     })
 
     it('when an answer is above the expected range for question with standard input: should throw an ZodError', function () {
       expect(() =>
-        psqi_calculation({
-          Q06: 5,
+        psqi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q06: 5,
+          },
         }),
       ).toThrow(ZodError)
     })
 
     it('when there are non-numerical answers with standard input: should throw an ZodError', function () {
       expect(() =>
-        psqi_calculation({
-          Q06: "I'm not a number",
+        psqi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q06: "I'm not a number",
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -184,270 +199,180 @@ describe('psqi', function () {
 
   describe('Score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = psqi_calculation(worst_response)
+      const outcome = psqi_calculation.calculate({ payload: worst_response })
 
       it('Total Score: should return the worst score', function () {
-        const score = view_result('PSQI_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(WORST_SCORE)
+        expect(outcome.PSQI_TOTAL_SCORE).toEqual(WORST_SCORE)
       })
 
       it('Subjective Sleep Quality subscale: should return the worst score', function () {
-        const score = view_result('SUBJECTIVE_SLEEP_QUALITY')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.SUBJECTIVE_SLEEP_QUALITY).toEqual(3)
       })
 
       it('Sleep Latency subscale: should return the worst score', function () {
-        const score = view_result('SLEEP_LATENCY')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.SLEEP_LATENCY).toEqual(3)
       })
 
       it('Sleep Duration subscale: should return the worst score', function () {
-        const score = view_result('SLEEP_DURATION')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.SLEEP_DURATION).toEqual(3)
       })
 
       it('Habitual Sleep Efficiency subscale: hould return the worst score', function () {
-        const score = view_result('HABITUAL_SLEEP_EFFICIENCY')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.HABITUAL_SLEEP_EFFICIENCY).toEqual(3)
       })
 
       it('Sleep Disturbances subscale: should return the worst score', function () {
-        const score = view_result('SLEEP_DISTURBANCES')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.SLEEP_DISTURBANCES).toEqual(3)
       })
 
       it('Use of Sleeping Medication subscale: should return the worst score', function () {
-        const score = view_result('USE_OF_SLEEPING_MEDICATION')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.USE_OF_SLEEPING_MEDICATION).toEqual(3)
       })
 
       it('Daytime Disfunction subscale: should return the worst score', function () {
-        const score = view_result('DAYTIME_DYSFUNCTION')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.DAYTIME_DYSFUNCTION).toEqual(3)
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = psqi_calculation(best_response)
+      const outcome = psqi_calculation.calculate({ payload: best_response })
       it('Total score: should return the best score', function () {
-        const score = view_result('PSQI_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(BEST_SCORE)
+        expect(outcome.PSQI_TOTAL_SCORE).toEqual(BEST_SCORE)
       })
 
       it('Subjective Sleep Quality subscale: should return the best score', function () {
-        const score = view_result('SUBJECTIVE_SLEEP_QUALITY')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.SUBJECTIVE_SLEEP_QUALITY).toEqual(0)
       })
 
       it('Sleep Latency subscale: should return the best score', function () {
-        const score = view_result('SLEEP_LATENCY')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.SLEEP_LATENCY).toEqual(0)
       })
 
       it('Sleep Duration subscale: should return the best score', function () {
-        const score = view_result('SLEEP_DURATION')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.SLEEP_DURATION).toEqual(0)
       })
 
       it('Habitual Sleep Efficiency subscale: should return the best score', function () {
-        const score = view_result('HABITUAL_SLEEP_EFFICIENCY')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.HABITUAL_SLEEP_EFFICIENCY).toEqual(0)
       })
 
       it('Sleep Disturbances subscale: should return the best score', function () {
-        const score = view_result('SLEEP_DISTURBANCES')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.SLEEP_DISTURBANCES).toEqual(0)
       })
 
       it('Use of Sleeping Medication subscale: should return the best score', function () {
-        const score = view_result('USE_OF_SLEEPING_MEDICATION')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.USE_OF_SLEEPING_MEDICATION).toEqual(0)
       })
 
       it('Daytime Disfunction subscale: should return the best score', function () {
-        const score = view_result('DAYTIME_DYSFUNCTION')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.DAYTIME_DYSFUNCTION).toEqual(0)
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = psqi_calculation(median_response)
+      const outcome = psqi_calculation.calculate({ payload: median_response })
 
       it('Total score: should return the median score', function () {
-        const score = view_result('PSQI_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(10)
+        expect(outcome.PSQI_TOTAL_SCORE).toEqual(10)
       })
 
       it('Subjective Sleep Quality subscale: should return the median score', function () {
-        const score = view_result('SUBJECTIVE_SLEEP_QUALITY')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.SUBJECTIVE_SLEEP_QUALITY).toEqual(1)
       })
 
       it('Sleep Latency subscale: should return the median score', function () {
-        const score = view_result('SLEEP_LATENCY')(outcome)
-
-        expect(score).toEqual(2)
+        expect(outcome.SLEEP_LATENCY).toEqual(2)
       })
 
       it('Sleep Duration subscale: should return the median score', function () {
-        const score = view_result('SLEEP_DURATION')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.SLEEP_DURATION).toEqual(1)
       })
 
       it('Habitual Sleep Efficiency subscale: should return the median score', function () {
-        const score = view_result('HABITUAL_SLEEP_EFFICIENCY')(outcome)
-
-        expect(score).toEqual(2)
+        expect(outcome.HABITUAL_SLEEP_EFFICIENCY).toEqual(2)
       })
 
       it('Sleep Disturbances subscale: should return the median score', function () {
-        const score = view_result('SLEEP_DISTURBANCES')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.SLEEP_DISTURBANCES).toEqual(1)
       })
 
       it('Use of Sleeping Medication subscale: should return the median score', function () {
-        const score = view_result('USE_OF_SLEEPING_MEDICATION')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.USE_OF_SLEEPING_MEDICATION).toEqual(1)
       })
 
       it('Daytime Disfunction subscale: should return the median score', function () {
-        const score = view_result('DAYTIME_DYSFUNCTION')(outcome)
-
-        expect(score).toEqual(2)
+        expect(outcome.DAYTIME_DYSFUNCTION).toEqual(2)
       })
     })
 
     describe('when called with the random response', function () {
-      const outcome = psqi_calculation(random_response)
+      const outcome = psqi_calculation.calculate({ payload: random_response })
 
       it('Total score: should return the exepected score', function () {
-        const score = view_result('PSQI_TOTAL_SCORE')(outcome)
-
-        expect(score).toEqual(9)
+        expect(outcome.PSQI_TOTAL_SCORE).toEqual(9)
       })
 
       it('Subjective Sleep Quality subscale: should return the random score', function () {
-        const score = view_result('SUBJECTIVE_SLEEP_QUALITY')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.SUBJECTIVE_SLEEP_QUALITY).toEqual(1)
       })
 
       it('Sleep Latency subscale: should return the random score', function () {
-        const score = view_result('SLEEP_LATENCY')(outcome)
-
-        expect(score).toEqual(2)
+        expect(outcome.SLEEP_LATENCY).toEqual(2)
       })
 
       it('Sleep Duration subscale: should return the random score', function () {
-        const score = view_result('SLEEP_DURATION')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.SLEEP_DURATION).toEqual(1)
       })
 
       it('Habitual Sleep Efficiency subscale: should return the random score', function () {
-        const score = view_result('HABITUAL_SLEEP_EFFICIENCY')(outcome)
-
-        expect(score).toEqual(0)
+        expect(outcome.HABITUAL_SLEEP_EFFICIENCY).toEqual(0)
       })
 
       it('Sleep Disturbances subscale: should return the random score', function () {
-        const score = view_result('SLEEP_DISTURBANCES')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.SLEEP_DISTURBANCES).toEqual(1)
       })
 
       it('Use of Sleeping Medication subscale: should return the random score', function () {
-        const score = view_result('USE_OF_SLEEPING_MEDICATION')(outcome)
-
-        expect(score).toEqual(3)
+        expect(outcome.USE_OF_SLEEPING_MEDICATION).toEqual(3)
       })
       it('Daytime Disfunction subscale: should return the random score', function () {
-        const score = view_result('DAYTIME_DYSFUNCTION')(outcome)
-
-        expect(score).toEqual(1)
+        expect(outcome.DAYTIME_DYSFUNCTION).toEqual(1)
       })
     })
   })
 
   describe('When called with an empty response', function () {
-    const outcome = psqi_calculation({})
-    it('Total score: should return missing for the result status and undefined score', function () {
-      const status = view_status('PSQI_TOTAL_SCORE')(outcome)
-      const score = view_result('PSQI_TOTAL_SCORE')(outcome)
-
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    const outcome = psqi_calculation.calculate({ payload: {} })
+    it('Total score: should return null', function () {
+      expect(outcome.PSQI_TOTAL_SCORE).toEqual(null)
     })
 
-    it('should return missing for the result status and undefined score for SUBJECTIVE_SLEEP_QUALITY', function () {
-      const score = view_result('SUBJECTIVE_SLEEP_QUALITY')(outcome)
-      const status = view_status('SUBJECTIVE_SLEEP_QUALITY')(outcome)
-
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('SUBJECTIVE_SLEEP_QUALITY: should return null', function () {
+      expect(outcome.SUBJECTIVE_SLEEP_QUALITY).toEqual(null)
     })
-    it('should return missing for the result status and undefined score for SLEEP_LATENCY', function () {
-      const score = view_result('SLEEP_LATENCY')(outcome)
-      const status = view_status('SLEEP_LATENCY')(outcome)
 
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('SLEEP_LATENCY: should return null', function () {
+      expect(outcome.SLEEP_LATENCY).toEqual(null)
     })
-    it('should return missing for the result status and undefined score for SLEEP_DURATION', function () {
-      const score = view_result('SLEEP_DURATION')(outcome)
-      const status = view_status('SLEEP_DURATION')(outcome)
 
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('SLEEP_DURATION: should return null', function () {
+      expect(outcome.SLEEP_DURATION).toEqual(null)
     })
-    it('should return missing for the result status and undefined score for HABITUAL_SLEEP_EFFICIENCY', function () {
-      const score = view_result('HABITUAL_SLEEP_EFFICIENCY')(outcome)
-      const status = view_status('HABITUAL_SLEEP_EFFICIENCY')(outcome)
 
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('HABITUAL_SLEEP_EFFICIENCY: should return null', function () {
+      expect(outcome.HABITUAL_SLEEP_EFFICIENCY).toEqual(null)
     })
-    it('should return missing for the result status and undefined score for SLEEP_DISTURBANCES', function () {
-      const score = view_result('SLEEP_DISTURBANCES')(outcome)
-      const status = view_status('SLEEP_DISTURBANCES')(outcome)
 
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('SLEEP_DISTURBANCES: should return null', function () {
+      expect(outcome.SLEEP_DISTURBANCES).toEqual(null)
     })
-    it('should return missing for the result status and undefined score for USE_OF_SLEEPING_MEDICATION', function () {
-      const score = view_result('USE_OF_SLEEPING_MEDICATION')(outcome)
-      const status = view_status('USE_OF_SLEEPING_MEDICATION')(outcome)
 
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('USE_OF_SLEEPING_MEDICATION: should return null', function () {
+      expect(outcome.USE_OF_SLEEPING_MEDICATION).toEqual(null)
     })
-    it('should return missing for the result status and undefined score for DAYTIME_DYSFUNCTION', function () {
-      const score = view_result('DAYTIME_DYSFUNCTION')(outcome)
-      const status = view_status('DAYTIME_DYSFUNCTION')(outcome)
 
-      expect(score).toEqual(undefined)
-      expect(status).toEqual(MISSING_STATUS)
+    it('DAYTIME_DYSFUNCTION: should return null', function () {
+      expect(outcome.DAYTIME_DYSFUNCTION).toEqual(null)
     })
   })
 })
