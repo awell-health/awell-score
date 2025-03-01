@@ -1,11 +1,6 @@
-/* eslint-disable no-magic-numbers */
+import { type SubscaleType } from './sdq_subscales'
 
-type VersionType =
-  | 'PARENT_COMPLETED_SDQ'
-  | 'TEACHER_COMPLETED_SDQ'
-  | 'SELF_COMPLETED_SDQ'
-
-type SubscaleIdType =
+export type SubscaleIdType =
   | 'EMOTIONAL_PROBLEMS'
   | 'CONDUCT_PROBLEMS'
   | 'HYPERACTIVITY'
@@ -14,28 +9,38 @@ type SubscaleIdType =
   | 'TOTAL'
   | 'IMPACT'
 
-type CategoryThreeBandType = 'NORMAL' | 'BORDERLINE' | 'ABNORMAL'
+export type VersionType =
+  | 'PARENT_COMPLETED_SDQ'
+  | 'TEACHER_COMPLETED_SDQ'
+  | 'SELF_COMPLETED_SDQ'
 
-type CategoryFourBandType =
+export type CategoryThreeBandType = 'NORMAL' | 'BORDERLINE' | 'ABNORMAL'
+
+export type CategoryFourBandType =
   | 'CLOSE_TO_AVERAGE'
   | 'SLIGHTLY_RAISED_OR_LOWERED'
   | 'HIGH_OR_LOW'
   | 'VERY_HIGH_OR_LOW'
 
-type LowerBoundaryType = number
-type UpperBoundaryType = number
+export type LowerBoundaryType = number
+export type UpperBoundaryType = number
 
-type BoundariesType = [LowerBoundaryType, UpperBoundaryType]
+export type BoundariesType = [LowerBoundaryType, UpperBoundaryType]
 
-export type CategoriationTableType = Record<
+export type ThreeBandCategoriationTableType = Record<
   VersionType,
-  Record<
-    SubscaleIdType,
-    Record<CategoryThreeBandType | CategoryFourBandType, BoundariesType>
-  >
+  Record<SubscaleIdType, Record<CategoryThreeBandType, BoundariesType>>
 >
 
-export const TRANSLATION_TABLE_CATEGORIES = {
+export type FourBandCategoriationTableType = Record<
+  VersionType,
+  Record<SubscaleIdType, Record<CategoryFourBandType, BoundariesType>>
+>
+
+export const TRANSLATION_TABLE_CATEGORIES: Record<
+  CategoryThreeBandType | CategoryFourBandType,
+  string
+> = {
   NORMAL: 'Normal',
   BORDERLINE: 'Borderline',
   ABNORMAL: 'Abnormal',
@@ -53,122 +58,120 @@ export const TRANSLATION_TABLE_CATEGORIES = {
  *
  * See https://drive.google.com/drive/u/1/folders/1aKLfrdf2cBsh_w4U71Cc2F_VwBbtfjy_
  */
-export const ORIGINAL_THREE_BAND_CATEGORISATION: CategoriationTableType = {
-  PARENT_COMPLETED_SDQ: {
-    //@ts-expect-error to do
-    TOTAL: {
-      NORMAL: [0, 13],
-      BORDERLINE: [14, 16],
-      ABNORMAL: [17, 40],
-    }, //@ts-expect-error to do
-    EMOTIONAL_PROBLEMS: {
-      NORMAL: [0, 3],
-      BORDERLINE: [4, 4],
-      ABNORMAL: [5, 10],
-    }, //@ts-expect-error to do
-    CONDUCT_PROBLEMS: {
-      NORMAL: [0, 2],
-      BORDERLINE: [3, 3],
-      ABNORMAL: [4, 10],
-    }, //@ts-expect-error to do
-    HYPERACTIVITY: {
-      NORMAL: [0, 5],
-      BORDERLINE: [6, 6],
-      ABNORMAL: [7, 10],
-    }, //@ts-expect-error to do
-    PEER_PROBLEMS: {
-      NORMAL: [0, 2],
-      BORDERLINE: [3, 3],
-      ABNORMAL: [4, 10],
-    }, //@ts-expect-error to do
-    PROSOCIAL: {
-      NORMAL: [6, 10],
-      BORDERLINE: [5, 5],
-      ABNORMAL: [0, 4],
-    }, //@ts-expect-error to do
-    IMPACT: {
-      NORMAL: [0, 0],
-      BORDERLINE: [1, 1],
-      ABNORMAL: [2, 10],
+export const ORIGINAL_THREE_BAND_CATEGORISATION: ThreeBandCategoriationTableType =
+  {
+    PARENT_COMPLETED_SDQ: {
+      TOTAL: {
+        NORMAL: [0, 13],
+        BORDERLINE: [14, 16],
+        ABNORMAL: [17, 40],
+      },
+      EMOTIONAL_PROBLEMS: {
+        NORMAL: [0, 3],
+        BORDERLINE: [4, 4],
+        ABNORMAL: [5, 10],
+      },
+      CONDUCT_PROBLEMS: {
+        NORMAL: [0, 2],
+        BORDERLINE: [3, 3],
+        ABNORMAL: [4, 10],
+      },
+      HYPERACTIVITY: {
+        NORMAL: [0, 5],
+        BORDERLINE: [6, 6],
+        ABNORMAL: [7, 10],
+      },
+      PEER_PROBLEMS: {
+        NORMAL: [0, 2],
+        BORDERLINE: [3, 3],
+        ABNORMAL: [4, 10],
+      },
+      PROSOCIAL: {
+        NORMAL: [6, 10],
+        BORDERLINE: [5, 5],
+        ABNORMAL: [0, 4],
+      },
+      IMPACT: {
+        NORMAL: [0, 0],
+        BORDERLINE: [1, 1],
+        ABNORMAL: [2, 10],
+      },
     },
-  },
-  TEACHER_COMPLETED_SDQ: {
-    //@ts-expect-error to do
-    TOTAL: {
-      NORMAL: [0, 11],
-      BORDERLINE: [12, 15],
-      ABNORMAL: [16, 40],
-    }, //@ts-expect-error to do
-    EMOTIONAL_PROBLEMS: {
-      NORMAL: [0, 4],
-      BORDERLINE: [5, 5],
-      ABNORMAL: [6, 10],
-    }, //@ts-expect-error to do
-    CONDUCT_PROBLEMS: {
-      NORMAL: [0, 2],
-      BORDERLINE: [3, 3],
-      ABNORMAL: [4, 10],
-    }, //@ts-expect-error to do
-    HYPERACTIVITY: {
-      NORMAL: [0, 5],
-      BORDERLINE: [6, 6],
-      ABNORMAL: [7, 10],
-    }, //@ts-expect-error to do
-    PEER_PROBLEMS: {
-      NORMAL: [0, 3],
-      BORDERLINE: [4, 4],
-      ABNORMAL: [5, 10],
-    }, //@ts-expect-error to do
-    PROSOCIAL: {
-      NORMAL: [6, 10],
-      BORDERLINE: [5, 5],
-      ABNORMAL: [0, 4],
-    }, //@ts-expect-error to do
-    IMPACT: {
-      NORMAL: [0, 0],
-      BORDERLINE: [1, 1],
-      ABNORMAL: [2, 10],
+    TEACHER_COMPLETED_SDQ: {
+      TOTAL: {
+        NORMAL: [0, 11],
+        BORDERLINE: [12, 15],
+        ABNORMAL: [16, 40],
+      },
+      EMOTIONAL_PROBLEMS: {
+        NORMAL: [0, 4],
+        BORDERLINE: [5, 5],
+        ABNORMAL: [6, 10],
+      },
+      CONDUCT_PROBLEMS: {
+        NORMAL: [0, 2],
+        BORDERLINE: [3, 3],
+        ABNORMAL: [4, 10],
+      },
+      HYPERACTIVITY: {
+        NORMAL: [0, 5],
+        BORDERLINE: [6, 6],
+        ABNORMAL: [7, 10],
+      },
+      PEER_PROBLEMS: {
+        NORMAL: [0, 3],
+        BORDERLINE: [4, 4],
+        ABNORMAL: [5, 10],
+      },
+      PROSOCIAL: {
+        NORMAL: [6, 10],
+        BORDERLINE: [5, 5],
+        ABNORMAL: [0, 4],
+      },
+      IMPACT: {
+        NORMAL: [0, 0],
+        BORDERLINE: [1, 1],
+        ABNORMAL: [2, 10],
+      },
     },
-  },
-  SELF_COMPLETED_SDQ: {
-    //@ts-expect-error to do
-    TOTAL: {
-      NORMAL: [0, 15],
-      BORDERLINE: [16, 19],
-      ABNORMAL: [20, 40],
-    }, //@ts-expect-error to do
-    EMOTIONAL_PROBLEMS: {
-      NORMAL: [0, 5],
-      BORDERLINE: [6, 6],
-      ABNORMAL: [7, 10],
-    }, //@ts-expect-error to do
-    CONDUCT_PROBLEMS: {
-      NORMAL: [0, 3],
-      BORDERLINE: [4, 4],
-      ABNORMAL: [5, 10],
-    }, //@ts-expect-error to do
-    HYPERACTIVITY: {
-      NORMAL: [0, 5],
-      BORDERLINE: [6, 6],
-      ABNORMAL: [7, 10],
-    }, //@ts-expect-error to do
-    PEER_PROBLEMS: {
-      NORMAL: [0, 3],
-      BORDERLINE: [4, 5],
-      ABNORMAL: [6, 10],
-    }, //@ts-expect-error to do
-    PROSOCIAL: {
-      NORMAL: [6, 10],
-      BORDERLINE: [5, 5],
-      ABNORMAL: [0, 4],
-    }, //@ts-expect-error to do
-    IMPACT: {
-      NORMAL: [0, 0],
-      BORDERLINE: [1, 1],
-      ABNORMAL: [2, 10],
+    SELF_COMPLETED_SDQ: {
+      TOTAL: {
+        NORMAL: [0, 15],
+        BORDERLINE: [16, 19],
+        ABNORMAL: [20, 40],
+      },
+      EMOTIONAL_PROBLEMS: {
+        NORMAL: [0, 5],
+        BORDERLINE: [6, 6],
+        ABNORMAL: [7, 10],
+      },
+      CONDUCT_PROBLEMS: {
+        NORMAL: [0, 3],
+        BORDERLINE: [4, 4],
+        ABNORMAL: [5, 10],
+      },
+      HYPERACTIVITY: {
+        NORMAL: [0, 5],
+        BORDERLINE: [6, 6],
+        ABNORMAL: [7, 10],
+      },
+      PEER_PROBLEMS: {
+        NORMAL: [0, 3],
+        BORDERLINE: [4, 5],
+        ABNORMAL: [6, 10],
+      },
+      PROSOCIAL: {
+        NORMAL: [6, 10],
+        BORDERLINE: [5, 5],
+        ABNORMAL: [0, 4],
+      },
+      IMPACT: {
+        NORMAL: [0, 0],
+        BORDERLINE: [1, 1],
+        ABNORMAL: [2, 10],
+      },
     },
-  },
-}
+  }
 
 /**
  * More recently a four-fold classification has been created based on an even larger UK
@@ -181,45 +184,44 @@ export const ORIGINAL_THREE_BAND_CATEGORISATION: CategoriationTableType = {
  *
  * See https://drive.google.com/drive/u/1/folders/1aKLfrdf2cBsh_w4U71Cc2F_VwBbtfjy_
  */
-export const NEWER_FOUR_BAND_CATEGORISATION: CategoriationTableType = {
+export const NEWER_FOUR_BAND_CATEGORISATION: FourBandCategoriationTableType = {
   PARENT_COMPLETED_SDQ: {
-    //@ts-expect-error to do
     TOTAL: {
       CLOSE_TO_AVERAGE: [0, 13],
       SLIGHTLY_RAISED_OR_LOWERED: [14, 16],
       HIGH_OR_LOW: [17, 19],
       VERY_HIGH_OR_LOW: [20, 40],
-    }, //@ts-expect-error to do
+    },
     EMOTIONAL_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 3],
       SLIGHTLY_RAISED_OR_LOWERED: [4, 4],
       HIGH_OR_LOW: [5, 6],
       VERY_HIGH_OR_LOW: [7, 10],
-    }, //@ts-expect-error to do
+    },
     CONDUCT_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 2],
       SLIGHTLY_RAISED_OR_LOWERED: [3, 3],
       HIGH_OR_LOW: [4, 5],
       VERY_HIGH_OR_LOW: [6, 10],
-    }, //@ts-expect-error to do
+    },
     HYPERACTIVITY: {
       CLOSE_TO_AVERAGE: [0, 5],
       SLIGHTLY_RAISED_OR_LOWERED: [6, 7],
       HIGH_OR_LOW: [8, 8],
       VERY_HIGH_OR_LOW: [9, 10],
-    }, //@ts-expect-error to do
+    },
     PEER_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 2],
       SLIGHTLY_RAISED_OR_LOWERED: [3, 3],
       HIGH_OR_LOW: [4, 4],
       VERY_HIGH_OR_LOW: [5, 10],
-    }, //@ts-expect-error to do
+    },
     PROSOCIAL: {
       CLOSE_TO_AVERAGE: [8, 10],
       SLIGHTLY_RAISED_OR_LOWERED: [7, 7],
       HIGH_OR_LOW: [6, 6],
       VERY_HIGH_OR_LOW: [0, 5],
-    }, //@ts-expect-error to do
+    },
     IMPACT: {
       CLOSE_TO_AVERAGE: [0, 0],
       SLIGHTLY_RAISED_OR_LOWERED: [1, 1],
@@ -228,43 +230,42 @@ export const NEWER_FOUR_BAND_CATEGORISATION: CategoriationTableType = {
     },
   },
   TEACHER_COMPLETED_SDQ: {
-    //@ts-expect-error to do
     TOTAL: {
       CLOSE_TO_AVERAGE: [0, 11],
       SLIGHTLY_RAISED_OR_LOWERED: [12, 15],
       HIGH_OR_LOW: [16, 18],
       VERY_HIGH_OR_LOW: [19, 40],
-    }, //@ts-expect-error to do
+    },
     EMOTIONAL_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 3],
       SLIGHTLY_RAISED_OR_LOWERED: [4, 4],
       HIGH_OR_LOW: [5, 5],
       VERY_HIGH_OR_LOW: [6, 10],
-    }, //@ts-expect-error to do
+    },
     CONDUCT_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 2],
       SLIGHTLY_RAISED_OR_LOWERED: [3, 3],
       HIGH_OR_LOW: [4, 4],
       VERY_HIGH_OR_LOW: [5, 10],
-    }, //@ts-expect-error to do
+    },
     HYPERACTIVITY: {
       CLOSE_TO_AVERAGE: [0, 5],
       SLIGHTLY_RAISED_OR_LOWERED: [6, 7],
       HIGH_OR_LOW: [8, 8],
       VERY_HIGH_OR_LOW: [9, 10],
-    }, //@ts-expect-error to do
+    },
     PEER_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 2],
       SLIGHTLY_RAISED_OR_LOWERED: [3, 4],
       HIGH_OR_LOW: [5, 5],
       VERY_HIGH_OR_LOW: [6, 10],
-    }, //@ts-expect-error to do
+    },
     PROSOCIAL: {
       CLOSE_TO_AVERAGE: [6, 10],
       SLIGHTLY_RAISED_OR_LOWERED: [5, 5],
       HIGH_OR_LOW: [4, 4],
       VERY_HIGH_OR_LOW: [0, 3],
-    }, //@ts-expect-error to do
+    },
     IMPACT: {
       CLOSE_TO_AVERAGE: [0, 0],
       SLIGHTLY_RAISED_OR_LOWERED: [1, 1],
@@ -273,43 +274,42 @@ export const NEWER_FOUR_BAND_CATEGORISATION: CategoriationTableType = {
     },
   },
   SELF_COMPLETED_SDQ: {
-    //@ts-expect-error to do
     TOTAL: {
       CLOSE_TO_AVERAGE: [0, 14],
       SLIGHTLY_RAISED_OR_LOWERED: [15, 17],
       HIGH_OR_LOW: [18, 19],
       VERY_HIGH_OR_LOW: [20, 40],
-    }, //@ts-expect-error to do
+    },
     EMOTIONAL_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 4],
       SLIGHTLY_RAISED_OR_LOWERED: [5, 5],
       HIGH_OR_LOW: [6, 6],
       VERY_HIGH_OR_LOW: [7, 10],
-    }, //@ts-expect-error to do
+    },
     CONDUCT_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 3],
       SLIGHTLY_RAISED_OR_LOWERED: [4, 4],
       HIGH_OR_LOW: [5, 5],
       VERY_HIGH_OR_LOW: [6, 10],
-    }, //@ts-expect-error to do
+    },
     HYPERACTIVITY: {
       CLOSE_TO_AVERAGE: [0, 5],
       SLIGHTLY_RAISED_OR_LOWERED: [6, 6],
       HIGH_OR_LOW: [7, 7],
       VERY_HIGH_OR_LOW: [8, 10],
-    }, //@ts-expect-error to do
+    },
     PEER_PROBLEMS: {
       CLOSE_TO_AVERAGE: [0, 2],
       SLIGHTLY_RAISED_OR_LOWERED: [3, 3],
       HIGH_OR_LOW: [4, 4],
       VERY_HIGH_OR_LOW: [5, 10],
-    }, //@ts-expect-error to do
+    },
     PROSOCIAL: {
       CLOSE_TO_AVERAGE: [7, 10],
       SLIGHTLY_RAISED_OR_LOWERED: [6, 6],
       HIGH_OR_LOW: [5, 5],
       VERY_HIGH_OR_LOW: [0, 4],
-    }, //@ts-expect-error to do
+    },
     IMPACT: {
       CLOSE_TO_AVERAGE: [0, 0],
       SLIGHTLY_RAISED_OR_LOWERED: [1, 1],

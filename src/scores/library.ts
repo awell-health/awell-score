@@ -110,7 +110,7 @@ import { snap_teacher } from './snap_teacher/snap_teacher'
 import { snap_parent } from './snap_parent/snap_parent'
 // import { scl90 } from './scl90/scl90'
 // import { scl90r } from './scl90r/scl90r'
-// import { sdq } from './sdq/sdq'
+import { sdq } from './sdq/sdq'
 import { sf12 } from './sf12/sf12'
 import { sf36 } from './sf36/sf36'
 import { spadi } from './spadi/spadi'
@@ -260,7 +260,7 @@ export const ScoreLibrary = createScoreLibrary({
   snap_parent,
   // scl90,
   // scl90r,
-  // sdq,
+  sdq,
   sf12,
   sf36,
   short_fes_i,
