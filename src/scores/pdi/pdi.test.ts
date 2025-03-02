@@ -9,21 +9,20 @@ import {
 } from './__testdata__/pdi_test_responses'
 import { pdi } from './pdi'
 
-const pdi_calculation = execute_test_calculation(pdi)
+const pdi_calculation = new Score(pdi)
 
 describe('pdi', function () {
   it('pdi calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('pdi')
+    expect(ScoreLibrary).toHaveProperty('pdi')
   })
 
   describe('basic assumptions', function () {
-    const outcome = pdi_calculation(best_response)
+    const outcome = pdi_calculation.calculate({ payload: best_response })
 
     it('should have the expected result ids', function () {
       const EXPECTED_RESULT_IDS = ['PDI_INDEX']
 
-      const configured_calculation_ids =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_ids = Object.keys(outcome)
 
       expect(configured_calculation_ids).toEqual(EXPECTED_RESULT_IDS)
     })
@@ -42,8 +41,7 @@ describe('pdi', function () {
           'Q07',
         ]
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(PDI_INPUTS)
+        const configured_input_ids = Object.keys(pdi_calculation.inputSchema)
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -53,8 +51,11 @@ describe('pdi', function () {
   describe('when an answer is below the expected range', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        pdi_calculation({
-          Q01: -1,
+        pdi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01: -1,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -63,8 +64,11 @@ describe('pdi', function () {
   describe('when an answer is above the expected range', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        pdi_calculation({
-          Q01: 12,
+        pdi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01: 12,
+          },
         }),
       ).toThrow(ZodError)
     })
@@ -73,58 +77,67 @@ describe('pdi', function () {
   describe('when there are non-numerical answers', function () {
     it('should throw an ZodError', function () {
       expect(() =>
-        pdi_calculation({
-          Q01: "I'm not a number",
+        pdi_calculation.calculate({
+          payload: {
+            ...best_response,
+            Q01: "I'm not a number",
+          },
         }),
       ).toThrow(ZodError)
     })
   })
 
   describe('when called with an empty response', function () {
-    const outcome = pdi_calculation({})
+    const outcome = pdi_calculation.calculate({
+      payload: {},
+      opts: {
+        nullOnMissingInputs: true,
+      },
+    })
 
-    it('should return missing status for the score', function () {
-      expect(outcome[0].status).toEqual(MISSING_STATUS)
+    it('should null for the score', function () {
+      expect(outcome.PDI_INDEX).toEqual(null)
     })
   })
 
   describe('score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = pdi_calculation(worst_response)
+      const outcome = pdi_calculation.calculate({
+        payload: worst_response,
+      })
 
       it('should return the worst score', function () {
-        const score = view_result('PDI_INDEX')(outcome)
-
-        expect(score).toEqual(70)
+        expect(outcome.PDI_INDEX).toEqual(70)
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = pdi_calculation(best_response)
-      it('should return the best score', function () {
-        const score = view_result('PDI_INDEX')(outcome)
+      const outcome = pdi_calculation.calculate({
+        payload: best_response,
+      })
 
-        expect(score).toEqual(0)
+      it('should return the best score', function () {
+        expect(outcome.PDI_INDEX).toEqual(0)
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = pdi_calculation(median_response)
+      const outcome = pdi_calculation.calculate({
+        payload: median_response,
+      })
 
       it('should return the median score', function () {
-        const score = view_result('PDI_INDEX')(outcome)
-
-        expect(score).toEqual(35)
+        expect(outcome.PDI_INDEX).toEqual(35)
       })
     })
 
     describe('when called with the random response', function () {
-      const outcome = pdi_calculation(random_response)
+      const outcome = pdi_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the exepected score', function () {
-        const score = view_result('PDI_INDEX')(outcome)
-
-        expect(score).toEqual(20)
+        expect(outcome.PDI_INDEX).toEqual(20)
       })
     })
   })

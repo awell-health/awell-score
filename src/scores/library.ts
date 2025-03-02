@@ -90,7 +90,7 @@ import { paq_c } from './paq_c/paq_c'
 // import { pci } from './pci/pci'
 import { pcl_5 } from './pcl_5/pcl_5'
 // import { pcs } from './pcs/pcs'
-// import { pdi } from './pdi/pdi'
+import { pdi } from './pdi/pdi'
 import { pdq_8 } from './pdq_8/pdq_8'
 import { phq_2 } from './phq_2/phq_2'
 import { phq_4 } from './phq_4/phq_4'
@@ -238,7 +238,7 @@ export const ScoreLibrary = createScoreLibrary({
   // pci,
   pcl_5,
   // pcs,
-  // pdi,
+  pdi,
   pdq_8,
   phq_2,
   phq_4,
