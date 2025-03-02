@@ -87,7 +87,7 @@ import { oswestry } from './oswestry/oswestry'
 import { packyears } from './packyears/packyears'
 import { panss_6 } from './panss_6/panss_6'
 import { paq_c } from './paq_c/paq_c'
-// import { pci } from './pci/pci'
+import { pci } from './pci/pci'
 import { pcl_5 } from './pcl_5/pcl_5'
 import { pcs } from './pcs/pcs'
 import { pdi } from './pdi/pdi'
@@ -235,7 +235,7 @@ export const ScoreLibrary = createScoreLibrary({
   packyears,
   panss_6,
   paq_c,
-  // pci,
+  pci,
   pcl_5,
   pcs,
   pdi,
