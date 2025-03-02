@@ -366,7 +366,6 @@ describe('sdq', function () {
     })
     describe('when a random response is passed', function () {
       const outcome = sdq_calculation.calculate({ payload: random_response })
-      console.log(outcome)
       it('should return the expected score for "Emotional problems" subscale', function () {
         const EXPECTED_SCORE = 4
         expect(outcome.EMOTIONAL_PROBLEMS).toEqual(EXPECTED_SCORE)

@@ -103,7 +103,6 @@ describe('spadi', function () {
     describe('when minimum response is passed', function () {
       it('should return the min score for every subscale and the total score', function () {
         const outcome = spadi_calculation.calculate({ payload: min_response })
-        console.log(outcome)
         Object.values(outcome).forEach(res => {
           expect(res).toEqual(SPADI_MIN_SCORE)
         })
