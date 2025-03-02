@@ -77,7 +77,7 @@ import { mfis } from './mfis/mfis'
 // import { moca } from './moca/moca'
 import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
 // import { mpi } from './mpi/mpi'
-// import { msq } from './msq/msq'
+import { msq } from './msq/msq'
 import { ndi } from './ndi/ndi'
 import { oas } from './oas/oas'
 import { ompq, ompq_10 } from './orebro'
@@ -224,7 +224,7 @@ export const ScoreLibrary = createScoreLibrary({
   // moca,
   modified_caregiver_strain_index,
   // mpi,
-  // msq,
+  msq,
   ndi,
   oas,
   ompq,

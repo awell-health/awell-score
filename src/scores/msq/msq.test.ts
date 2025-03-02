@@ -10,22 +10,25 @@ import { MSQ_DOMAINS } from './definition/msq_domains'
 import { MSQ_INPUTS } from './definition/msq_inputs'
 import { msq } from './msq'
 
-const msq_calculation = execute_test_calculation(msq)
+const msq_calculation = new Score(msq)
 
 const MAX_TOTAL_SCORE = 284
 const MEDIAN_TOTAL_SCORE = 142
 const MIN_TOTAL_SCORE = 0
 
 describe('msq', function () {
-  it('msq calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('msq')
-  })
+  // it('msq calculation function should be available as a calculation', function () {
+  //   expect(CALCULATIONS).toHaveProperty('msq')
+  // })
 
   describe('basic assumptions', function () {
-    const outcome = msq_calculation(worst_response)
+    const outcome = msq_calculation.calculate({
+      payload: worst_response,
+    })
 
     it('should have the expected calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
+        'MSQ_GRAND_TOTAL',
         'MSQ_HEAD_TOTAL',
         'MSQ_EYES_TOTAL',
         'MSQ_EARS_TOTAL',
@@ -41,12 +44,10 @@ describe('msq', function () {
         'MSQ_MIND_TOTAL',
         'MSQ_EMOTIONS_TOTAL',
         'MSQ_OTHER_TOTAL',
-        'MSQ_GRAND_TOTAL',
         'MSQ_INTERPRETATION',
       ]
 
-      const configured_calculation_ids =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_ids = Object.keys(outcome)
 
       expect(configured_calculation_ids).toEqual(EXPECTED_CALCULATION_IDS)
     })
@@ -127,10 +128,11 @@ describe('msq', function () {
           'WEIGHT_Q04_COMPULSIVE_EATING',
           'WEIGHT_Q05_WATER_RETENTION',
           'WEIGHT_Q06_UNDERWEIGHT',
-        ]
+        ].sort()
 
-        const configured_input_ids =
-          get_input_ids_from_calculation_blueprint(MSQ_INPUTS).sort()
+        const configured_input_ids = Object.keys(
+          msq_calculation.inputSchema,
+        ).sort()
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -145,7 +147,7 @@ describe('msq', function () {
           'HEAD_Q04_INSOMNIA',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.HEAD.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.HEAD)
       })
     })
 
@@ -158,7 +160,7 @@ describe('msq', function () {
           'EYES_Q04_BLURRED_OR_TUNNEL_VISION',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.EYES.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.EYES)
       })
     })
 
@@ -171,7 +173,7 @@ describe('msq', function () {
           'EARS_Q04_RINGING_EARS_HEARING_LOSS',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.EARS.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.EARS)
       })
     })
 
@@ -185,7 +187,7 @@ describe('msq', function () {
           'NOSE_Q05_EXCESSIVE_MUCUS_FORMATION',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.NOSE.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.NOSE)
       })
     })
 
@@ -199,7 +201,7 @@ describe('msq', function () {
           'MOUTH_THROAT_Q05_CANKER_SORES',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.MOUTH_THROAT.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.MOUTH_THROAT)
       })
     })
 
@@ -213,7 +215,7 @@ describe('msq', function () {
           'SKIN_Q05_EXCESSIVE_SWEATING',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.SKIN.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.SKIN)
       })
     })
 
@@ -225,7 +227,7 @@ describe('msq', function () {
           'HEART_Q03_CHEST_PAIN',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.HEART.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.HEART)
       })
     })
 
@@ -238,7 +240,7 @@ describe('msq', function () {
           'LUNGS_Q04_DIFFICULTY_BREATHING',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.LUNGS.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.LUNGS)
       })
     })
 
@@ -254,7 +256,7 @@ describe('msq', function () {
           'DIGESTIVE_TRACT_Q07_INTESTINAL_STOMACH_PAIN',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.DIGESTIVE_TRACT.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.DIGESTIVE_TRACT)
       })
     })
 
@@ -268,7 +270,7 @@ describe('msq', function () {
           'JOINTS_MUSCLE_Q05_FEELING_OF_WEAKNESS_OR_TIREDNESS',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.JOINTS_MUSCLE.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.JOINTS_MUSCLE)
       })
     })
 
@@ -283,7 +285,7 @@ describe('msq', function () {
           'WEIGHT_Q06_UNDERWEIGHT',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.WEIGHT.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.WEIGHT)
       })
     })
 
@@ -296,7 +298,7 @@ describe('msq', function () {
           'ENERGY_ACTIVITY_Q04_RESTLESSNESS',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.ENERGY_ACTIVITY.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.ENERGY_ACTIVITY)
       })
     })
 
@@ -313,7 +315,7 @@ describe('msq', function () {
           'MIND_Q08_LEARNING_DISABILITIES',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.MIND.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.MIND)
       })
     })
 
@@ -326,7 +328,7 @@ describe('msq', function () {
           'EMOTIONS_Q04_DEPRESSION',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.EMOTIONS.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.EMOTIONS)
       })
     })
 
@@ -338,15 +340,18 @@ describe('msq', function () {
           'OTHER_Q03_GENITAL_ITCH_OR_DISCHARGE',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.OTHER.items)
+        expect(EXPECTED_INPUT_IDS).toEqual(MSQ_DOMAINS.OTHER)
       })
     })
 
     describe('when an answer is below the expected range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          msq_calculation({
-            DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: -1,
+          msq_calculation.calculate({
+            payload: {
+              ...worst_response,
+              DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -355,8 +360,11 @@ describe('msq', function () {
     describe('when an answer is above the expected range', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          msq_calculation({
-            DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: 5,
+          msq_calculation.calculate({
+            payload: {
+              ...worst_response,
+              DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: 5,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -365,149 +373,120 @@ describe('msq', function () {
     describe('when there are non-numerical answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          msq_calculation({
-            DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: "I'm not a number",
+          msq_calculation.calculate({
+            payload: {
+              ...worst_response,
+              DIGESTIVE_TRACT_Q01_NAUSEA_VOMITING: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
     })
 
     describe('when called with an empty response', function () {
-      const outcome = msq_calculation({})
+      const outcome = msq_calculation.calculate({
+        payload: {},
+      })
 
       describe('Head domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_HEAD_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_HEAD_TOTAL).toEqual(null)
         })
       })
 
       describe('Eyes domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_EYES_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_EYES_TOTAL).toEqual(null)
         })
       })
 
       describe('Ears domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_EARS_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_EARS_TOTAL).toEqual(null)
         })
       })
 
       describe('Nose domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_NOSE_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_NOSE_TOTAL).toEqual(null)
         })
       })
 
       describe('Mouth/throat domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_MOUTH_THROAT_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_MOUTH_THROAT_TOTAL).toEqual(null)
         })
       })
 
       describe('Skin domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_SKIN_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_SKIN_TOTAL).toEqual(null)
         })
       })
 
       describe('Heart domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_HEART_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_HEART_TOTAL).toEqual(null)
         })
       })
 
       describe('Lungs domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_LUNGS_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_LUNGS_TOTAL).toEqual(null)
         })
       })
 
       describe('Digestive tract domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_DIGESTIVE_TRACT_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_DIGESTIVE_TRACT_TOTAL).toEqual(null)
         })
       })
 
       describe('Joints/muscle domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_JOINTS_MUSCLE_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_JOINTS_MUSCLE_TOTAL).toEqual(null)
         })
       })
 
       describe('Weight domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_WEIGHT_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_WEIGHT_TOTAL).toEqual(null)
         })
       })
 
       describe('Energy/activity domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_ENERGY_ACTIVITY_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_ENERGY_ACTIVITY_TOTAL).toEqual(null)
         })
       })
 
       describe('Mind domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_MIND_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_MIND_TOTAL).toEqual(null)
         })
       })
 
       describe('Emotions domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_EMOTIONS_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_EMOTIONS_TOTAL).toEqual(null)
         })
       })
 
       describe('Other domain', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_OTHER_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_OTHER_TOTAL).toEqual(null)
         })
       })
 
       describe('Grand total', function () {
-        it('should return the best score', function () {
-          const score = view_result('MSQ_GRAND_TOTAL')(outcome)
-
-          expect(score).toEqual(MIN_TOTAL_SCORE)
+        it('should return a null score', function () {
+          expect(outcome.MSQ_GRAND_TOTAL).toEqual(null)
         })
       })
 
       describe('Interpretation', function () {
-        it('should return "Clinically not signifcant / optimal"', function () {
-          const score = view_result('MSQ_INTERPRETATION')(outcome)
-
-          expect(score).toEqual('Clinically not signifcant / optimal')
+        it('should return null interpretation', function () {
+          expect(outcome.MSQ_INTERPRETATION).toEqual(null)
         })
       })
     })
@@ -515,421 +494,327 @@ describe('msq', function () {
 
   describe('score calculation', function () {
     describe('when called with the worst response', function () {
-      const outcome = msq_calculation(worst_response)
+      const outcome = msq_calculation.calculate({
+        payload: worst_response,
+      })
 
       describe('Head domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_HEAD_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_HEAD_TOTAL).toEqual(16)
         })
       })
 
       describe('Eyes domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_EYES_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_EYES_TOTAL).toEqual(16)
         })
       })
 
       describe('Ears domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_EARS_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_EARS_TOTAL).toEqual(16)
         })
       })
 
       describe('Nose domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_NOSE_TOTAL')(outcome)
-
-          expect(score).toEqual(20)
+          expect(outcome.MSQ_NOSE_TOTAL).toEqual(20)
         })
       })
 
       describe('Mouth/throat domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_MOUTH_THROAT_TOTAL')(outcome)
-
-          expect(score).toEqual(20)
+          expect(outcome.MSQ_MOUTH_THROAT_TOTAL).toEqual(20)
         })
       })
 
       describe('Skin domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_SKIN_TOTAL')(outcome)
-
-          expect(score).toEqual(20)
+          expect(outcome.MSQ_SKIN_TOTAL).toEqual(20)
         })
       })
 
       describe('Heart domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_HEART_TOTAL')(outcome)
-
-          expect(score).toEqual(12)
+          expect(outcome.MSQ_HEART_TOTAL).toEqual(12)
         })
       })
 
       describe('Lungs domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_LUNGS_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_LUNGS_TOTAL).toEqual(16)
         })
       })
 
       describe('Digestive tract domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_DIGESTIVE_TRACT_TOTAL')(outcome)
-
-          expect(score).toEqual(28)
+          expect(outcome.MSQ_DIGESTIVE_TRACT_TOTAL).toEqual(28)
         })
       })
 
       describe('Joints/muscle domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_JOINTS_MUSCLE_TOTAL')(outcome)
-
-          expect(score).toEqual(20)
+          expect(outcome.MSQ_JOINTS_MUSCLE_TOTAL).toEqual(20)
         })
       })
 
       describe('Weight domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_WEIGHT_TOTAL')(outcome)
-
-          expect(score).toEqual(24)
+          expect(outcome.MSQ_WEIGHT_TOTAL).toEqual(24)
         })
       })
 
       describe('Energy/activity domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_ENERGY_ACTIVITY_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_ENERGY_ACTIVITY_TOTAL).toEqual(16)
         })
       })
 
       describe('Mind domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_MIND_TOTAL')(outcome)
-
-          expect(score).toEqual(32)
+          expect(outcome.MSQ_MIND_TOTAL).toEqual(32)
         })
       })
 
       describe('Emotions domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_EMOTIONS_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_EMOTIONS_TOTAL).toEqual(16)
         })
       })
 
       describe('Other domain', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_OTHER_TOTAL')(outcome)
-
-          expect(score).toEqual(12)
+          expect(outcome.MSQ_OTHER_TOTAL).toEqual(12)
         })
       })
 
       describe('Grand total', function () {
         it('should return the worst score', function () {
-          const score = view_result('MSQ_GRAND_TOTAL')(outcome)
-
-          expect(score).toEqual(MAX_TOTAL_SCORE)
+          expect(outcome.MSQ_GRAND_TOTAL).toEqual(MAX_TOTAL_SCORE)
         })
       })
 
       describe('Interpretation', function () {
         it('should return "Severe toxicity"', function () {
-          const score = view_result('MSQ_INTERPRETATION')(outcome)
-
-          expect(score).toEqual('Severe toxicity')
+          expect(outcome.MSQ_INTERPRETATION).toEqual('Severe toxicity')
         })
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = msq_calculation(median_response)
+      const outcome = msq_calculation.calculate({
+        payload: median_response,
+      })
 
       describe('Head domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_HEAD_TOTAL')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MSQ_HEAD_TOTAL).toEqual(8)
         })
       })
 
       describe('Eyes domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_EYES_TOTAL')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MSQ_EYES_TOTAL).toEqual(8)
         })
       })
 
       describe('Ears domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_EARS_TOTAL')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MSQ_EARS_TOTAL).toEqual(8)
         })
       })
 
       describe('Nose domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_NOSE_TOTAL')(outcome)
-
-          expect(score).toEqual(10)
+          expect(outcome.MSQ_NOSE_TOTAL).toEqual(10)
         })
       })
 
       describe('Mouth/throat domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_MOUTH_THROAT_TOTAL')(outcome)
-
-          expect(score).toEqual(10)
+          expect(outcome.MSQ_MOUTH_THROAT_TOTAL).toEqual(10)
         })
       })
 
       describe('Skin domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_SKIN_TOTAL')(outcome)
-
-          expect(score).toEqual(10)
+          expect(outcome.MSQ_SKIN_TOTAL).toEqual(10)
         })
       })
 
       describe('Heart domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_HEART_TOTAL')(outcome)
-
-          expect(score).toEqual(6)
+          expect(outcome.MSQ_HEART_TOTAL).toEqual(6)
         })
       })
 
       describe('Lungs domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_LUNGS_TOTAL')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MSQ_LUNGS_TOTAL).toEqual(8)
         })
       })
 
       describe('Digestive tract domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_DIGESTIVE_TRACT_TOTAL')(outcome)
-
-          expect(score).toEqual(14)
+          expect(outcome.MSQ_DIGESTIVE_TRACT_TOTAL).toEqual(14)
         })
       })
 
       describe('Joints/muscle domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_JOINTS_MUSCLE_TOTAL')(outcome)
-
-          expect(score).toEqual(10)
+          expect(outcome.MSQ_JOINTS_MUSCLE_TOTAL).toEqual(10)
         })
       })
 
       describe('Weight domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_WEIGHT_TOTAL')(outcome)
-
-          expect(score).toEqual(12)
+          expect(outcome.MSQ_WEIGHT_TOTAL).toEqual(12)
         })
       })
 
       describe('Energy/activity domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_ENERGY_ACTIVITY_TOTAL')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MSQ_ENERGY_ACTIVITY_TOTAL).toEqual(8)
         })
       })
 
       describe('Mind domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_MIND_TOTAL')(outcome)
-
-          expect(score).toEqual(16)
+          expect(outcome.MSQ_MIND_TOTAL).toEqual(16)
         })
       })
 
       describe('Emotions domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_EMOTIONS_TOTAL')(outcome)
-
-          expect(score).toEqual(8)
+          expect(outcome.MSQ_EMOTIONS_TOTAL).toEqual(8)
         })
       })
 
       describe('Other domain', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_OTHER_TOTAL')(outcome)
-
-          expect(score).toEqual(6)
+          expect(outcome.MSQ_OTHER_TOTAL).toEqual(6)
         })
       })
 
       describe('Grand total', function () {
         it('should return the median  score', function () {
-          const score = view_result('MSQ_GRAND_TOTAL')(outcome)
-
-          expect(score).toEqual(MEDIAN_TOTAL_SCORE)
+          expect(outcome.MSQ_GRAND_TOTAL).toEqual(MEDIAN_TOTAL_SCORE)
         })
       })
 
       describe('Interpretation', function () {
         it('should return "Severe toxicity"', function () {
-          const score = view_result('MSQ_INTERPRETATION')(outcome)
-
-          expect(score).toEqual('Severe toxicity')
+          expect(outcome.MSQ_INTERPRETATION).toEqual('Severe toxicity')
         })
       })
     })
 
     describe('when called with the best response', function () {
-      const outcome = msq_calculation(best_response)
+      const outcome = msq_calculation.calculate({
+        payload: best_response,
+      })
 
       describe('Head domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_HEAD_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_HEAD_TOTAL).toEqual(0)
         })
       })
 
       describe('Eyes domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_EYES_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_EYES_TOTAL).toEqual(0)
         })
       })
 
       describe('Ears domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_EARS_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_EARS_TOTAL).toEqual(0)
         })
       })
 
       describe('Nose domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_NOSE_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_NOSE_TOTAL).toEqual(0)
         })
       })
 
       describe('Mouth/throat domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_MOUTH_THROAT_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_MOUTH_THROAT_TOTAL).toEqual(0)
         })
       })
 
       describe('Skin domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_SKIN_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_SKIN_TOTAL).toEqual(0)
         })
       })
 
       describe('Heart domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_HEART_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_HEART_TOTAL).toEqual(0)
         })
       })
 
       describe('Lungs domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_LUNGS_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_LUNGS_TOTAL).toEqual(0)
         })
       })
 
       describe('Digestive tract domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_DIGESTIVE_TRACT_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_DIGESTIVE_TRACT_TOTAL).toEqual(0)
         })
       })
 
       describe('Joints/muscle domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_JOINTS_MUSCLE_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_JOINTS_MUSCLE_TOTAL).toEqual(0)
         })
       })
 
       describe('Weight domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_WEIGHT_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_WEIGHT_TOTAL).toEqual(0)
         })
       })
 
       describe('Energy/activity domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_ENERGY_ACTIVITY_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_ENERGY_ACTIVITY_TOTAL).toEqual(0)
         })
       })
 
       describe('Mind domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_MIND_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_MIND_TOTAL).toEqual(0)
         })
       })
 
       describe('Emotions domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_EMOTIONS_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_EMOTIONS_TOTAL).toEqual(0)
         })
       })
 
       describe('Other domain', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_OTHER_TOTAL')(outcome)
-
-          expect(score).toEqual(0)
+          expect(outcome.MSQ_OTHER_TOTAL).toEqual(0)
         })
       })
 
       describe('Grand total', function () {
         it('should return the best score', function () {
-          const score = view_result('MSQ_GRAND_TOTAL')(outcome)
-
-          expect(score).toEqual(MIN_TOTAL_SCORE)
+          expect(outcome.MSQ_GRAND_TOTAL).toEqual(MIN_TOTAL_SCORE)
         })
       })
 
       describe('Interpretation', function () {
         it('should return "Clinically not signifcant / optimal"', function () {
-          const score = view_result('MSQ_INTERPRETATION')(outcome)
-
-          expect(score).toEqual('Clinically not signifcant / optimal')
+          expect(outcome.MSQ_INTERPRETATION).toEqual(
+            'Clinically not signifcant / optimal',
+          )
         })
       })
     })

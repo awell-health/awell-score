@@ -4,16 +4,16 @@
  * 50 to 99 indicates moderate toxicity
  * 100 and above indicates severe toxicity
  */
-export const interpret_score = (total_score: number): string => {
-  if (total_score <= 20) {
+export const interpretScore = (totalScore: number): string => {
+  if (totalScore <= 20) {
     return 'Clinically not signifcant / optimal'
   }
 
-  if (total_score > 20 && total_score < 50) {
+  if (totalScore > 20 && totalScore < 50) {
     return 'Mild toxicity'
   }
 
-  if (total_score >= 50 && total_score < 100) {
+  if (totalScore >= 50 && totalScore < 100) {
     return 'Moderate toxicity'
   }
 
