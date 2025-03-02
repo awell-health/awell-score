@@ -7,7 +7,6 @@ import {
   worst_response,
 } from './__testdata__/msq_test_responses'
 import { MSQ_DOMAINS } from './definition/msq_domains'
-import { MSQ_INPUTS } from './definition/msq_inputs'
 import { msq } from './msq'
 
 const msq_calculation = new Score(msq)
@@ -17,9 +16,9 @@ const MEDIAN_TOTAL_SCORE = 142
 const MIN_TOTAL_SCORE = 0
 
 describe('msq', function () {
-  // it('msq calculation function should be available as a calculation', function () {
-  //   expect(CALCULATIONS).toHaveProperty('msq')
-  // })
+  it('msq calculation function should be available as a calculation', function () {
+    expect(ScoreLibrary).toHaveProperty('msq')
+  })
 
   describe('basic assumptions', function () {
     const outcome = msq_calculation.calculate({
