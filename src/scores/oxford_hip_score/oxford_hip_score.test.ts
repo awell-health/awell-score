@@ -10,15 +10,15 @@ import {
 import { OHS_INPUTS } from './definition/oxford_hip_score_inputs'
 import { oxford_hip_score } from './oxford_hip_score'
 
-const OKS_8_WORST_SCORE = 0
-const OKS_MEDIAN_SCORE = 24
-const OKS_8_BEST_SCORE = 48
+const OHS_WORST_SCORE = 0
+const OHS_MEDIAN_SCORE = 24
+const OHS_BEST_SCORE = 48
 
-const oxford_hip_score_calculation = execute_test_calculation(oxford_hip_score)
+const oxford_hip_score_calculation = new Score(oxford_hip_score)
 
 describe('oxford_hip_score', function () {
   it('oxford_hip_score calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('oxford_hip_score')
+    expect(ScoreLibrary).toHaveProperty('oxford_hip_score')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -38,25 +38,27 @@ describe('oxford_hip_score', function () {
         'ohs_12',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(OHS_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        oxford_hip_score_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = oxford_hip_score_calculation(best_response)
+    const outcome = oxford_hip_score_calculation.calculate({
+      payload: best_response,
+    })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['OXFORD_HIP_SCORE'])
     })
@@ -65,28 +67,30 @@ describe('oxford_hip_score', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when worst response is passed', function () {
       it('should return the worst total score', function () {
-        const outcome = oxford_hip_score_calculation(worst_response)
-        const result = view_result()(outcome)
-
-        expect(result).toEqual(OKS_8_WORST_SCORE)
+        const outcome = oxford_hip_score_calculation.calculate({
+          payload: worst_response,
+        })
+        expect(outcome.OXFORD_HIP_SCORE).toEqual(OHS_WORST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const outcome = oxford_hip_score_calculation(median_response)
-        const result = view_result()(outcome)
+        const outcome = oxford_hip_score_calculation.calculate({
+          payload: median_response,
+        })
 
-        expect(result).toEqual(OKS_MEDIAN_SCORE)
+        expect(outcome.OXFORD_HIP_SCORE).toEqual(OHS_MEDIAN_SCORE)
       })
     })
 
     describe('when best response is passed', function () {
       it('should return the best total score', function () {
-        const outcome = oxford_hip_score_calculation(best_response)
-        const result = view_result()(outcome)
+        const outcome = oxford_hip_score_calculation.calculate({
+          payload: best_response,
+        })
 
-        expect(result).toEqual(OKS_8_BEST_SCORE)
+        expect(outcome.OXFORD_HIP_SCORE).toEqual(OHS_BEST_SCORE)
       })
     })
 
@@ -94,20 +98,25 @@ describe('oxford_hip_score', function () {
       it('should return the expected score', function () {
         const EXPECTED_SCORE = 22
 
-        const outcome = oxford_hip_score_calculation(random_response)
-        const result = view_result()(outcome)
+        const outcome = oxford_hip_score_calculation.calculate({
+          payload: random_response,
+        })
 
-        expect(result).toEqual(EXPECTED_SCORE)
+        expect(outcome.OXFORD_HIP_SCORE).toEqual(EXPECTED_SCORE)
       })
     })
   })
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const outcome = oxford_hip_score_calculation({})
-        const result = view_result()(outcome)
+      it('should return null as the result', function () {
+        const outcome = oxford_hip_score_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
 
-        expect(result).toEqual(undefined)
+        expect(outcome.OXFORD_HIP_SCORE).toEqual(null)
       })
     })
   })
@@ -116,8 +125,11 @@ describe('oxford_hip_score', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          oxford_hip_score_calculation({
-            ohs_01: "I'm not a number",
+          oxford_hip_score_calculation.calculate({
+            payload: {
+              ...random_response,
+              ohs_01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -125,8 +137,11 @@ describe('oxford_hip_score', function () {
     describe('when an answer is below one of the expected answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          oxford_hip_score_calculation({
-            ohs_01: -1,
+          oxford_hip_score_calculation.calculate({
+            payload: {
+              ...random_response,
+              ohs_01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -134,8 +149,11 @@ describe('oxford_hip_score', function () {
     describe('when an answer is above one of the expected answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          oxford_hip_score_calculation({
-            ohs_01: 5,
+          oxford_hip_score_calculation.calculate({
+            payload: {
+              ...random_response,
+              ohs_01: 5,
+            },
           }),
         ).toThrow(ZodError)
       })

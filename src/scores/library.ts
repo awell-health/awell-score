@@ -82,8 +82,8 @@ import { ndi } from './ndi/ndi'
 import { oas } from './oas/oas'
 import { ompq, ompq_10 } from './orebro'
 import { oswestry } from './oswestry/oswestry'
-// import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
-// import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
+import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
+import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
 import { packyears } from './packyears/packyears'
 import { panss_6 } from './panss_6/panss_6'
 import { paq_c } from './paq_c/paq_c'
@@ -230,8 +230,8 @@ export const ScoreLibrary = createScoreLibrary({
   ompq,
   ompq_10,
   oswestry,
-  // oxford_hip_score,
-  // oxford_knee_score,
+  oxford_hip_score,
+  oxford_knee_score,
   packyears,
   panss_6,
   paq_c,

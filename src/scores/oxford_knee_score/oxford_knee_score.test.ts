@@ -14,12 +14,11 @@ const OKS_8_WORST_SCORE = 0
 const OKS_MEDIAN_SCORE = 24
 const OKS_8_BEST_SCORE = 48
 
-const oxford_knee_score_calculation =
-  execute_test_calculation(oxford_knee_score)
+const oxford_knee_score_calculation = new Score(oxford_knee_score)
 
 describe('oxford_knee_score', function () {
   it('oxford_knee_score calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('oxford_knee_score')
+    expect(ScoreLibrary).toHaveProperty('oxford_knee_score')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -39,25 +38,27 @@ describe('oxford_knee_score', function () {
         '12_flight_of_stairs',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(OKS_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        oxford_knee_score_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = oxford_knee_score_calculation(best_response)
+    const outcome = oxford_knee_score_calculation.calculate({
+      payload: best_response,
+    })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['OXFORD_KNEE_SCORE'])
     })
@@ -66,60 +67,57 @@ describe('oxford_knee_score', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when worst response is passed', function () {
       it('should return the worst total score', function () {
-        const outcome = R.compose(
-          view_result(),
-          oxford_knee_score_calculation,
-        )(worst_response)
+        const outcome = oxford_knee_score_calculation.calculate({
+          payload: worst_response,
+        })
 
-        expect(outcome).toEqual(OKS_8_WORST_SCORE)
+        expect(outcome.OXFORD_KNEE_SCORE).toEqual(OKS_8_WORST_SCORE)
       })
     })
 
     describe('when a median response is passed', function () {
       it('should return the median score', function () {
-        const outcome = R.compose(
-          view_result(),
-          oxford_knee_score_calculation,
-        )(median_response)
+        const outcome = oxford_knee_score_calculation.calculate({
+          payload: median_response,
+        })
 
-        expect(outcome).toEqual(OKS_MEDIAN_SCORE)
+        expect(outcome.OXFORD_KNEE_SCORE).toEqual(OKS_MEDIAN_SCORE)
       })
     })
 
     describe('when best response is passed', function () {
       it('should return the best total score', function () {
-        const outcome = R.compose(
-          view_result(),
-          oxford_knee_score_calculation,
-        )(best_response)
+        const outcome = oxford_knee_score_calculation.calculate({
+          payload: best_response,
+        })
 
-        expect(outcome).toEqual(OKS_8_BEST_SCORE)
+        expect(outcome.OXFORD_KNEE_SCORE).toEqual(OKS_8_BEST_SCORE)
       })
     })
 
     describe('when a random response is passed', function () {
       it('should return the expected score', function () {
-        const outcome = R.compose(
-          view_result(),
-          oxford_knee_score_calculation,
-        )(random_response)
+        const outcome = oxford_knee_score_calculation.calculate({
+          payload: random_response,
+        })
 
         const EXPECTED_SCORE = 22
-
-        expect(outcome).toEqual(EXPECTED_SCORE)
+        expect(outcome.OXFORD_KNEE_SCORE).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const outcome = R.compose(
-          view_result(),
-          oxford_knee_score_calculation,
-        )({})
+      it('should return null as the result', function () {
+        const outcome = oxford_knee_score_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
 
-        expect(outcome).toEqual(undefined)
+        expect(outcome.OXFORD_KNEE_SCORE).toEqual(null)
       })
     })
   })
@@ -128,8 +126,11 @@ describe('oxford_knee_score', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          oxford_knee_score_calculation({
-            '1_usual_knee_pain': "I'm not a number",
+          oxford_knee_score_calculation.calculate({
+            payload: {
+              ...worst_response,
+              '1_usual_knee_pain': "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -137,8 +138,11 @@ describe('oxford_knee_score', function () {
     describe('when an answer is below one of the expected answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          oxford_knee_score_calculation({
-            '1_usual_knee_pain': -1,
+          oxford_knee_score_calculation.calculate({
+            payload: {
+              ...worst_response,
+              '1_usual_knee_pain': -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -146,8 +150,11 @@ describe('oxford_knee_score', function () {
     describe('when an answer is above one of the expected answers', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          oxford_knee_score_calculation({
-            '1_usual_knee_pain': 5,
+          oxford_knee_score_calculation.calculate({
+            payload: {
+              ...worst_response,
+              '1_usual_knee_pain': 5,
+            },
           }),
         ).toThrow(ZodError)
       })
