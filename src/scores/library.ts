@@ -52,7 +52,7 @@ import { stop_bang } from './stop_bang/stop_bang'
 import { gad_2 } from './GAD_2/gad_2'
 import { gad_7 } from './GAD_7/gad_7'
 import { ghq_12 } from './ghq_12/ghq_12'
-// import { hads } from './hads/HADS_score'
+import { hads } from './hads/HADS_score'
 import { harris_hip_score } from './harris_hip_score/harris_hip_score'
 import { haq } from './haq/haq'
 import { hoos_extended } from './hoos_extended/hoos_extended'
@@ -193,7 +193,7 @@ export const ScoreLibrary = createScoreLibrary({
   gad_2,
   gad_7,
   ghq_12,
-  // hads,
+  hads,
   harris_hip_score,
   haq,
   hoos_extended,
