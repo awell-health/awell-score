@@ -14,11 +14,11 @@ const MINI_BEST_TEST_TOTAL_MIN_SCORE = 0
 const MINI_BEST_TEST_TOTAL_MEDIAN_SCORE = 14
 const MINI_BEST_TEST_TOTAL_MAX_SCORE = 28
 
-const mini_best_test_calculation = execute_test_calculation(mini_best_test)
+const mini_best_test_calculation = new Score(mini_best_test)
 
 describe('mini_best_test', function () {
   it('mini_best_test calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('mini_best_test')
+    expect(ScoreLibrary).toHaveProperty('mini_best_test')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -40,13 +40,11 @@ describe('mini_best_test', function () {
         'MINI_BEST_TEST_Q12',
         'MINI_BEST_TEST_Q13',
         'MINI_BEST_TEST_Q14',
-      ].sort()
+      ]
 
-      const configured_input_ids = R.compose(
-        (input_ids: string[]) => input_ids.sort(),
-        R.flatten,
-        R.map(get_input_ids_in_subscale),
-      )(MINI_BEST_TEST_SECTIONS)
+      const configured_input_ids = Object.keys(
+        mini_best_test_calculation.inputSchema,
+      )
 
       expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
     })
@@ -60,9 +58,7 @@ describe('mini_best_test', function () {
       ]
 
       expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale(
-          'ANTICIPATORY_POSTURAL_ADJUSTEMENTS',
-        )(MINI_BEST_TEST_SECTIONS),
+        MINI_BEST_TEST_SECTIONS.ANTICIPATORY_POSTURAL_ADJUSTEMENTS,
       )
     })
 
@@ -75,9 +71,7 @@ describe('mini_best_test', function () {
       ]
 
       expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('REACTIVE_POSTURAL_CONTROL')(
-          MINI_BEST_TEST_SECTIONS,
-        ),
+        MINI_BEST_TEST_SECTIONS.REACTIVE_POSTURAL_CONTROL,
       )
     })
 
@@ -89,9 +83,7 @@ describe('mini_best_test', function () {
       ]
 
       expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('SENSORY_ORIENTATION')(
-          MINI_BEST_TEST_SECTIONS,
-        ),
+        MINI_BEST_TEST_SECTIONS.SENSORY_ORIENTATION,
       )
     })
 
@@ -104,32 +96,29 @@ describe('mini_best_test', function () {
         'MINI_BEST_TEST_Q14',
       ]
 
-      expect(EXPECTED_INPUT_IDS).toEqual(
-        get_input_ids_for_specific_subscale('DYNAMIC_GAIT')(
-          MINI_BEST_TEST_SECTIONS,
-        ),
-      )
+      expect(EXPECTED_INPUT_IDS).toEqual(MINI_BEST_TEST_SECTIONS.DYNAMIC_GAIT)
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = mini_best_test_calculation(min_response)
+    const outcome = mini_best_test_calculation.calculate({
+      payload: min_response,
+    })
 
     it('should return a score for all subscales (n=4) and a total score', function () {
-      expect(outcome).toHaveLength(5)
+      expect(Object.keys(outcome)).toHaveLength(5)
     })
 
     it('should have all the correct calculation ids', function () {
       const EXPECTED_CALCULATION_IDS = [
+        'TOTAL',
         'ANTICIPATORY_POSTURAL_ADJUSTEMENTS',
         'REACTIVE_POSTURAL_CONTROL',
         'SENSORY_ORIENTATION',
         'DYNAMIC_GAIT',
-        'TOTAL',
       ]
 
-      const extracted_calculation_ids_from_outcome =
-        get_result_ids_from_calculation_output(outcome)
+      const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
       expect(EXPECTED_CALCULATION_IDS).toEqual(
         extracted_calculation_ids_from_outcome,
@@ -139,186 +128,161 @@ describe('mini_best_test', function () {
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      const outcome = mini_best_test_calculation({})
+      const outcome = mini_best_test_calculation.calculate({ payload: {} })
 
-      it('should return undefined as the result for "Anticipatory postural adjustments" subscale', function () {
-        const score = view_result('ANTICIPATORY_POSTURAL_ADJUSTEMENTS')(outcome)
-        expect(score).toEqual(undefined)
+      it('should return null as the result for "Anticipatory postural adjustments" subscale', function () {
+        expect(outcome.ANTICIPATORY_POSTURAL_ADJUSTEMENTS).toEqual(null)
       })
 
       it('should return undefined as the result for "Reactive postural control" subscale', function () {
-        const score = view_result('REACTIVE_POSTURAL_CONTROL')(outcome)
-        expect(score).toEqual(undefined)
+        expect(outcome.REACTIVE_POSTURAL_CONTROL).toEqual(null)
       })
 
       it('should return undefined as the result for "Sensory orientation" subscale', function () {
-        const score = view_result('SENSORY_ORIENTATION')(outcome)
-        expect(score).toEqual(undefined)
+        expect(outcome.SENSORY_ORIENTATION).toEqual(null)
       })
 
       it('should return undefined as the result for "Dynamic gait" subscale', function () {
-        const score = view_result('DYNAMIC_GAIT')(outcome)
-        expect(score).toEqual(undefined)
+        expect(outcome.DYNAMIC_GAIT).toEqual(null)
       })
 
       it('should return undefined for the total score', function () {
-        const score = view_result('TOTAL')(outcome)
-        expect(score).toEqual(undefined)
+        expect(outcome.TOTAL).toEqual(null)
       })
     })
   })
 
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when called with a minimum response', function () {
-      const outcome = mini_best_test_calculation(min_response)
+      const outcome = mini_best_test_calculation.calculate({
+        payload: min_response,
+      })
 
       it('should return the minimum the score for "Anticipatory postural adjustments" subscale', function () {
-        const score = view_result('ANTICIPATORY_POSTURAL_ADJUSTEMENTS')(outcome)
         const EXPECTED_MIN_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_MIN_SCORE)
+        expect(outcome.ANTICIPATORY_POSTURAL_ADJUSTEMENTS).toEqual(
+          EXPECTED_MIN_SCORE,
+        )
       })
 
       it('should return the minimum the score for "Reactive postural control" subscale', function () {
-        const score = view_result('REACTIVE_POSTURAL_CONTROL')(outcome)
         const EXPECTED_MIN_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_MIN_SCORE)
+        expect(outcome.REACTIVE_POSTURAL_CONTROL).toEqual(EXPECTED_MIN_SCORE)
       })
 
       it('should return the minimum the score for "Sensory orientation" subscale', function () {
-        const score = view_result('SENSORY_ORIENTATION')(outcome)
         const EXPECTED_MIN_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_MIN_SCORE)
+        expect(outcome.SENSORY_ORIENTATION).toEqual(EXPECTED_MIN_SCORE)
       })
 
       it('should return the minimum the score for "Dynamic gait" subscale', function () {
-        const score = view_result('DYNAMIC_GAIT')(outcome)
         const EXPECTED_MIN_SCORE = 0
-
-        expect(score).toEqual(EXPECTED_MIN_SCORE)
+        expect(outcome.DYNAMIC_GAIT).toEqual(EXPECTED_MIN_SCORE)
       })
 
       it('should return the minimum total score', function () {
-        const score = view_result('TOTAL')(outcome)
-
-        expect(score).toEqual(MINI_BEST_TEST_TOTAL_MIN_SCORE)
+        expect(outcome.TOTAL).toEqual(MINI_BEST_TEST_TOTAL_MIN_SCORE)
       })
     })
 
     describe('when called with a median response', function () {
-      const outcome = mini_best_test_calculation(median_response)
+      const outcome = mini_best_test_calculation.calculate({
+        payload: median_response,
+      })
 
       it('should return the median the score for "Anticipatory postural adjustments" subscale', function () {
-        const score = view_result('ANTICIPATORY_POSTURAL_ADJUSTEMENTS')(outcome)
         const EXPECTED_MEDIAN_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_MEDIAN_SCORE)
+        expect(outcome.ANTICIPATORY_POSTURAL_ADJUSTEMENTS).toEqual(
+          EXPECTED_MEDIAN_SCORE,
+        )
       })
 
       it('should return the median the score for "Reactive postural control" subscale', function () {
-        const score = view_result('REACTIVE_POSTURAL_CONTROL')(outcome)
         const EXPECTED_MEDIAN_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_MEDIAN_SCORE)
+        expect(outcome.REACTIVE_POSTURAL_CONTROL).toEqual(EXPECTED_MEDIAN_SCORE)
       })
 
       it('should return the median the score for "Sensory orientation" subscale', function () {
-        const score = view_result('SENSORY_ORIENTATION')(outcome)
         const EXPECTED_MEDIAN_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_MEDIAN_SCORE)
+        expect(outcome.SENSORY_ORIENTATION).toEqual(EXPECTED_MEDIAN_SCORE)
       })
 
       it('should return the median the score for "Dynamic gait" subscale', function () {
-        const score = view_result('DYNAMIC_GAIT')(outcome)
         const EXPECTED_MEDIAN_SCORE = 5
-
-        expect(score).toEqual(EXPECTED_MEDIAN_SCORE)
+        expect(outcome.DYNAMIC_GAIT).toEqual(EXPECTED_MEDIAN_SCORE)
       })
 
       it('should return the median total score', function () {
-        const score = view_result('TOTAL')(outcome)
-
-        expect(score).toEqual(MINI_BEST_TEST_TOTAL_MEDIAN_SCORE)
+        expect(outcome.TOTAL).toEqual(MINI_BEST_TEST_TOTAL_MEDIAN_SCORE)
       })
     })
 
     describe('when called with a maximum response', function () {
-      const outcome = mini_best_test_calculation(max_response)
+      const outcome = mini_best_test_calculation.calculate({
+        payload: max_response,
+      })
 
       it('should return the maximum the score for "Anticipatory postural adjustments" subscale', function () {
-        const score = view_result('ANTICIPATORY_POSTURAL_ADJUSTEMENTS')(outcome)
         const EXPECTED_MAX_SCORE = 6
-
-        expect(score).toEqual(EXPECTED_MAX_SCORE)
+        expect(outcome.ANTICIPATORY_POSTURAL_ADJUSTEMENTS).toEqual(
+          EXPECTED_MAX_SCORE,
+        )
       })
 
       it('should return the maximum the score for "Reactive postural control" subscale', function () {
-        const score = view_result('REACTIVE_POSTURAL_CONTROL')(outcome)
         const EXPECTED_MAX_SCORE = 6
-
-        expect(score).toEqual(EXPECTED_MAX_SCORE)
+        expect(outcome.REACTIVE_POSTURAL_CONTROL).toEqual(EXPECTED_MAX_SCORE)
       })
 
       it('should return the maximum the score for "Sensory orientation" subscale', function () {
-        const score = view_result('SENSORY_ORIENTATION')(outcome)
         const EXPECTED_MAX_SCORE = 6
-
-        expect(score).toEqual(EXPECTED_MAX_SCORE)
+        expect(outcome.SENSORY_ORIENTATION).toEqual(EXPECTED_MAX_SCORE)
       })
 
       it('should return the maximum the score for "Dynamic gait" subscale', function () {
-        const score = view_result('DYNAMIC_GAIT')(outcome)
         const EXPECTED_MAX_SCORE = 10
-
-        expect(score).toEqual(EXPECTED_MAX_SCORE)
+        expect(outcome.DYNAMIC_GAIT).toEqual(EXPECTED_MAX_SCORE)
       })
 
       it('should return the maximum total score', function () {
-        const score = view_result('TOTAL')(outcome)
-
-        expect(score).toEqual(MINI_BEST_TEST_TOTAL_MAX_SCORE)
+        expect(outcome.TOTAL).toEqual(MINI_BEST_TEST_TOTAL_MAX_SCORE)
       })
     })
 
     describe('when called with a random response', function () {
-      const outcome = mini_best_test_calculation(random_response)
+      const outcome = mini_best_test_calculation.calculate({
+        payload: random_response,
+      })
 
       it('should return the expected score for the "Anticipatory postural adjustments" section', function () {
-        const score = view_result('ANTICIPATORY_POSTURAL_ADJUSTEMENTS')(outcome)
         const EXPECTED_ANTICIPATORY_POSTURAL_ADJUSTEMENTS_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_ANTICIPATORY_POSTURAL_ADJUSTEMENTS_SCORE)
+        expect(outcome.ANTICIPATORY_POSTURAL_ADJUSTEMENTS).toEqual(
+          EXPECTED_ANTICIPATORY_POSTURAL_ADJUSTEMENTS_SCORE,
+        )
       })
 
       it('should return the expected score for the "Reactive postural control" section', function () {
-        const score = view_result('REACTIVE_POSTURAL_CONTROL')(outcome)
         const EXPECTED_REACTIVE_POSTURAL_CONTROL_SCORE = 2
-
-        expect(score).toEqual(EXPECTED_REACTIVE_POSTURAL_CONTROL_SCORE)
+        expect(outcome.REACTIVE_POSTURAL_CONTROL).toEqual(
+          EXPECTED_REACTIVE_POSTURAL_CONTROL_SCORE,
+        )
       })
 
       it('should return the expected score for the "Sensory orientation" section', function () {
-        const score = view_result('SENSORY_ORIENTATION')(outcome)
         const EXPECTED_SENSORY_ORIENTATION_SCORE = 3
-
-        expect(score).toEqual(EXPECTED_SENSORY_ORIENTATION_SCORE)
+        expect(outcome.SENSORY_ORIENTATION).toEqual(
+          EXPECTED_SENSORY_ORIENTATION_SCORE,
+        )
       })
 
       it('should return the expected score for the "Dynamic gait" section', function () {
-        const score = view_result('DYNAMIC_GAIT')(outcome)
         const EXPECTED_DYNAMIC_GAIT_SCORE = 5
-
-        expect(score).toEqual(EXPECTED_DYNAMIC_GAIT_SCORE)
+        expect(outcome.DYNAMIC_GAIT).toEqual(EXPECTED_DYNAMIC_GAIT_SCORE)
       })
 
       it('should return the expected total score', function () {
-        const score = view_result('TOTAL')(outcome)
         const EXPECTED_TOTAL = 13
-
-        expect(score).toEqual(EXPECTED_TOTAL)
+        expect(outcome.TOTAL).toEqual(EXPECTED_TOTAL)
       })
     })
   })
@@ -327,8 +291,11 @@ describe('mini_best_test', function () {
     describe('when an answer is not a number', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          mini_best_test_calculation({
-            MINI_BEST_TEST_Q01: "I'm not a number",
+          mini_best_test_calculation.calculate({
+            payload: {
+              ...min_response,
+              MINI_BEST_TEST_Q01: "I'm not a number",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -336,8 +303,11 @@ describe('mini_best_test', function () {
     describe('when an answer is not allowed (e.g. is below the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          mini_best_test_calculation({
-            MINI_BEST_TEST_Q01: -1,
+          mini_best_test_calculation.calculate({
+            payload: {
+              ...min_response,
+              MINI_BEST_TEST_Q01: -1,
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -345,8 +315,11 @@ describe('mini_best_test', function () {
     describe('when an answer is not allowed (e.g. is above the expected range)', function () {
       it('should throw an ZodError', function () {
         expect(() =>
-          mini_best_test_calculation({
-            MINI_BEST_TEST_Q01: 5,
+          mini_best_test_calculation.calculate({
+            payload: {
+              ...min_response,
+              MINI_BEST_TEST_Q01: 5,
+            },
           }),
         ).toThrow(ZodError)
       })
