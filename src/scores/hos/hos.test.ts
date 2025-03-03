@@ -14,11 +14,11 @@ const BEST_SCORE = 100
 const MEDIAN_SCORE = 50
 const WORST_SCORE = 0
 
-const hos_calculation = execute_test_calculation(hos)
+const hos_calculation = new Score(hos)
 
 describe('hos', function () {
   it('hos calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('hos')
+    expect(ScoreLibrary).toHaveProperty('hos')
   })
 
   describe('specific_steps_hos_calc', function () {
@@ -53,11 +53,7 @@ describe('hos', function () {
           'SQ09',
         ].sort()
 
-        const configured_input_ids = R.compose(
-          (input_ids: string[]) => input_ids.sort(),
-          R.flatten,
-          R.map(get_input_ids_in_subscale),
-        )(HOS_SUBSCALES)
+        const configured_input_ids = Object.keys(hos_calculation.inputSchema)
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -81,11 +77,9 @@ describe('hos', function () {
           'Q15',
           'Q16',
           'Q17',
-        ].sort()
+        ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('ADL')(HOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOS_SUBSCALES.ADL)
       })
 
       it('should have the expected input ids configured for the "Sports" subscale', function () {
@@ -99,26 +93,23 @@ describe('hos', function () {
           'SQ07',
           'SQ08',
           'SQ09',
-        ].sort()
+        ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('SPORTS')(HOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOS_SUBSCALES.SPORTS)
       })
     })
 
     describe('each calculated score includes the correct output result and correct score title', function () {
-      const outcome = hos_calculation(worst_response)
+      const outcome = hos_calculation.calculate({ payload: worst_response })
 
       it('should return a score for all subscales (n=3) and a total score', function () {
-        expect(outcome).toHaveLength(3)
+        expect(Object.keys(outcome)).toHaveLength(3)
       })
 
       it('should have all the correct calculation ids', function () {
-        const EXPECTED_CALCULATION_IDS = ['ADL', 'SPORTS', 'TOTAL']
+        const EXPECTED_CALCULATION_IDS = ['TOTAL', 'ADL', 'SPORTS']
 
-        const extracted_calculation_ids_from_outcome =
-          get_result_ids_from_calculation_output(outcome)
+        const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
         expect(EXPECTED_CALCULATION_IDS).toEqual(
           extracted_calculation_ids_from_outcome,
@@ -128,105 +119,87 @@ describe('hos', function () {
 
     describe('a score is only calculated when all mandatory fields are entered', function () {
       describe('when an empty response is passed', function () {
-        const outcome = hos_calculation({})
+        const outcome = hos_calculation.calculate({ payload: {} })
 
-        it('should return undefined as the result for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "ADL" subscale', function () {
+          expect(outcome.ADL).toEqual(null)
         })
 
-        it('should return undefined as the result for "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "SPORTS" subscale', function () {
+          expect(outcome.SPORTS).toEqual(null)
         })
 
-        it('should return undefined as the total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the total score', function () {
+          expect(outcome.TOTAL).toEqual(null)
         })
       })
     })
 
     describe('each calculated score includes the correct formula and outputs the correct result', function () {
       describe('when worst response is passed', function () {
-        const outcome = hos_calculation(worst_response)
+        const outcome = hos_calculation.calculate({ payload: worst_response })
 
         it('should return the worst score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.ADL).toEqual(WORST_SCORE)
         })
 
         it('should return the worst score for the "Sports" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.SPORTS).toEqual(WORST_SCORE)
         })
 
         it('should return worst total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.TOTAL).toEqual(WORST_SCORE)
         })
       })
 
       describe('when a median response is passed', function () {
-        const outcome = hos_calculation(median_response)
+        const outcome = hos_calculation.calculate({ payload: median_response })
 
         it('should return the median score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.ADL).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median score for the "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.SPORTS).toEqual(MEDIAN_SCORE)
         })
 
         it('should return median total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.TOTAL).toEqual(MEDIAN_SCORE)
         })
       })
 
       describe('when best response is passed', function () {
-        const outcome = hos_calculation(best_response)
+        const outcome = hos_calculation.calculate({ payload: best_response })
 
         it('should return the best score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.ADL).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for the "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.SPORTS).toEqual(BEST_SCORE)
         })
 
         it('should return best total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.TOTAL).toEqual(BEST_SCORE)
         })
       })
 
       describe('when a random response is passed', function () {
-        const outcome = hos_calculation(random_response)
+        const outcome = hos_calculation.calculate({ payload: random_response })
 
         it('should return the expected score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
           const EXPECTED_SCORE = 66.67
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.ADL).toEqual(EXPECTED_SCORE)
         })
 
         it('should return the expected score for the "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
           const EXPECTED_SCORE = 55
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.SPORTS).toEqual(EXPECTED_SCORE)
         })
 
-        it('should return best total score', function () {
-          const score = view_result('TOTAL')(outcome)
+        it('should return expected total score', function () {
           const EXPECTED_SCORE = 63.75
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.TOTAL).toEqual(EXPECTED_SCORE)
         })
       })
     })
@@ -235,8 +208,11 @@ describe('hos', function () {
       describe('when an answer is not a number', function () {
         it('should throw an error', function () {
           expect(() =>
-            hos_calculation({
-              Q01: "I'm not a number",
+            hos_calculation.calculate({
+              payload: {
+                ...worst_response,
+                Q01: "I'm not a number",
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -244,8 +220,11 @@ describe('hos', function () {
       describe('when an answer is not allowed (e.g. is below the expected range)', function () {
         it('should throw an error', function () {
           expect(() =>
-            hos_calculation({
-              Q01: -1,
+            hos_calculation.calculate({
+              payload: {
+                ...worst_response,
+                Q01: -1,
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -253,8 +232,11 @@ describe('hos', function () {
       describe('when an answer is not allowed (e.g. is above the expected range)', function () {
         it('should return throw an error', function () {
           expect(() =>
-            hos_calculation({
-              Q01: 5,
+            hos_calculation.calculate({
+              payload: {
+                ...worst_response,
+                Q01: 5,
+              },
             }),
           ).toThrow(ZodError)
         })
