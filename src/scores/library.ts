@@ -55,7 +55,7 @@ import { ghq_12 } from './ghq_12/ghq_12'
 // import { hads } from './hads/HADS_score'
 import { harris_hip_score } from './harris_hip_score/harris_hip_score'
 import { haq } from './haq/haq'
-// import { hoos_extended } from './hoos_extended/hoos_extended'
+import { hoos_extended } from './hoos_extended/hoos_extended'
 import { hoos_ps } from './hoos_ps/hoos_ps'
 import { hos } from './hos/hos'
 import { hrqol_4 } from './hrqol_4/hrqol_4'
@@ -196,7 +196,7 @@ export const ScoreLibrary = createScoreLibrary({
   // hads,
   harris_hip_score,
   haq,
-  // hoos_extended,
+  hoos_extended,
   hoos_ps,
   hos,
   hrqol_4,

@@ -14,11 +14,11 @@ const BEST_SCORE = 100
 const MEDIAN_SCORE = 50
 const WORST_SCORE = 0
 
-const hoos_calculation = execute_test_calculation(hoos_extended)
+const hoos_calculation = new Score(hoos_extended)
 
 describe('hoos_extended', function () {
   it('hoos_extended calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('hoos_extended')
+    expect(ScoreLibrary).toHaveProperty('hoos_extended')
   })
 
   describe('specific_steps_hoos_extended_calc', function () {
@@ -67,11 +67,9 @@ describe('hoos_extended', function () {
           'q4',
         ].sort()
 
-        const configured_input_ids = R.compose(
-          (input_ids: string[]) => input_ids.sort(),
-          R.flatten,
-          R.map(get_input_ids_in_subscale),
-        )(HOOS_SUBSCALES)
+        const configured_input_ids = Object.keys(
+          hoos_calculation.inputSchema,
+        ).sort()
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -79,9 +77,7 @@ describe('hoos_extended', function () {
       it('should have the expected input ids configured for the "Symptoms" subscale', function () {
         const EXPECTED_INPUT_IDS = ['s1', 's2', 's3', 's4', 's5']
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('S')(HOOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOOS_SUBSCALES.S)
       })
 
       it('should have the expected input ids configured for the "Pain" subscale', function () {
@@ -98,9 +94,7 @@ describe('hoos_extended', function () {
           'p10',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('P')(HOOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOOS_SUBSCALES.P)
       })
 
       it('should have the expected input ids configured for the "ADL" subscale', function () {
@@ -124,40 +118,33 @@ describe('hoos_extended', function () {
           'a17',
         ]
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('ADL')(HOOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOOS_SUBSCALES.ADL)
       })
 
       it('should have the expected input ids configured for the "Function in sport and recreation" subscale', function () {
         const EXPECTED_INPUT_IDS = ['sp1', 'sp2', 'sp3', 'sp4'].sort()
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('SP')(HOOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOOS_SUBSCALES.SP)
       })
 
       it('should have the expected input ids configured for the "Hip related quality of life" subscale', function () {
         const EXPECTED_INPUT_IDS = ['q1', 'q2', 'q3', 'q4'].sort()
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('QOL')(HOOS_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(HOOS_SUBSCALES.QOL)
       })
     })
 
     describe('each calculated score includes the correct output result and correct score title', function () {
-      const outcome = hoos_calculation(worst_response)
+      const outcome = hoos_calculation.calculate({ payload: worst_response })
 
       it('should return a score for all subscales (n=5) and a total score', function () {
-        expect(outcome).toHaveLength(6)
+        expect(Object.keys(outcome).length).toEqual(6)
       })
 
       it('should have all the correct calculation ids', function () {
-        const EXPECTED_CALCULATION_IDS = ['S', 'P', 'ADL', 'SP', 'QOL', 'TOTAL']
+        const EXPECTED_CALCULATION_IDS = ['TOTAL', 'S', 'P', 'ADL', 'SP', 'QOL']
 
-        const extracted_calculation_ids_from_outcome =
-          get_result_ids_from_calculation_output(outcome)
+        const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
         expect(EXPECTED_CALCULATION_IDS).toEqual(
           extracted_calculation_ids_from_outcome,
@@ -167,186 +154,144 @@ describe('hoos_extended', function () {
 
     describe('a score is only calculated when all mandatory fields are entered', function () {
       describe('when an empty response is passed', function () {
-        const outcome = hoos_calculation({})
+        const outcome = hoos_calculation.calculate({ payload: {} })
 
-        it('should return undefined as the result for "Symptoms" subscale', function () {
-          const score = view_result('S')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "Symptoms" subscale', function () {
+          expect(outcome.S).toEqual(null)
         })
 
-        it('should return undefined as the result for "Pain" subscale', function () {
-          const score = view_result('P')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "Pain" subscale', function () {
+          expect(outcome.P).toEqual(null)
         })
 
-        it('should return undefined as the result for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "ADL" subscale', function () {
+          expect(outcome.ADL).toEqual(null)
         })
 
-        it('should return undefined as the result for "Function in sport and recreation" subscale', function () {
-          const score = view_result('SP')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "Function in sport and recreation" subscale', function () {
+          expect(outcome.SP).toEqual(null)
         })
 
-        it('should return undefined as the result for "Hip related quality of life" subscale', function () {
-          const score = view_result('QOL')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "Hip related quality of life" subscale', function () {
+          expect(outcome.QOL).toEqual(null)
         })
 
         it('should return undefined as the total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(undefined)
+          expect(outcome.TOTAL).toEqual(null)
         })
       })
     })
 
     describe('each calculated score includes the correct formula and outputs the correct result', function () {
       describe('when worst response is passed', function () {
-        const outcome = hoos_calculation(worst_response)
+        const outcome = hoos_calculation.calculate({ payload: worst_response })
 
         it('should return the worst score for "Symptoms" subscale', function () {
-          const score = view_result('S')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.S).toEqual(WORST_SCORE)
         })
 
         it('should return the worst score for "Pain" subscale', function () {
-          const score = view_result('P')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.P).toEqual(WORST_SCORE)
         })
 
         it('should return the worst score for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.ADL).toEqual(WORST_SCORE)
         })
 
         it('should return the worst score for "Function in sport and recreation" subscale', function () {
-          const score = view_result('SP')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.SP).toEqual(WORST_SCORE)
         })
 
         it('should return the worst score for "Hip related quality of life" subscale', function () {
-          const score = view_result('QOL')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.QOL).toEqual(WORST_SCORE)
         })
 
         it('should return the worst the total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.TOTAL).toEqual(WORST_SCORE)
         })
       })
 
       describe('when a median response is passed', function () {
-        const outcome = hoos_calculation(median_response)
+        const outcome = hoos_calculation.calculate({ payload: median_response })
 
         it('should return the median score for "Symptoms" subscale', function () {
-          const score = view_result('S')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.S).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median score for "Pain" subscale', function () {
-          const score = view_result('P')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.P).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median score for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.ADL).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median score for "Function in sport and recreation" subscale', function () {
-          const score = view_result('SP')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.SP).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median score for "Hip related quality of life" subscale', function () {
-          const score = view_result('QOL')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.QOL).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median the total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.TOTAL).toEqual(MEDIAN_SCORE)
         })
       })
 
       describe('when best response is passed', function () {
-        const outcome = hoos_calculation(best_response)
+        const outcome = hoos_calculation.calculate({ payload: best_response })
 
         it('should return the best score for "Symptoms" subscale', function () {
-          const score = view_result('S')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.S).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for "Pain" subscale', function () {
-          const score = view_result('P')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.P).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.ADL).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for "Function in sport and recreation" subscale', function () {
-          const score = view_result('SP')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.SP).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for "Hip related quality of life" subscale', function () {
-          const score = view_result('QOL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.QOL).toEqual(BEST_SCORE)
         })
 
         it('should return the best the total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.TOTAL).toEqual(BEST_SCORE)
         })
       })
 
       describe('when a random response is passed', function () {
-        const outcome = hoos_calculation(random_response)
+        const outcome = hoos_calculation.calculate({ payload: random_response })
 
         it('should return the expected score for "Symptoms" subscale', function () {
-          const score = view_result('S')(outcome)
-          const EXPECTED_SCORE = 55
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.S).toEqual(55)
         })
 
         it('should return the expected score for "Pain" subscale', function () {
-          const score = view_result('P')(outcome)
-          const EXPECTED_SCORE = 67.5
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.P).toEqual(67.5)
         })
 
         it('should return the expected score for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          const EXPECTED_SCORE = 63.24
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.ADL).toEqual(63.24)
         })
 
         it('should return the expected score for "Function in sport and recreation" subscale', function () {
-          const score = view_result('SP')(outcome)
-          const EXPECTED_SCORE = 68.75
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.SP).toEqual(68.75)
         })
 
         it('should return the expected score for "Hip related quality of life" subscale', function () {
-          const score = view_result('QOL')(outcome)
-          const EXPECTED_SCORE = 75
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.QOL).toEqual(75)
         })
 
         it('should return the expected the total score', function () {
-          const score = view_result('TOTAL')(outcome)
-          const EXPECTED_SCORE = 65
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.TOTAL).toEqual(65)
         })
       })
     })
@@ -355,8 +300,11 @@ describe('hoos_extended', function () {
       describe('when an answer is not a number', function () {
         it('should throw an error', function () {
           expect(() =>
-            hoos_calculation({
-              a1: "I'm not a number",
+            hoos_calculation.calculate({
+              payload: {
+                ...worst_response,
+                a1: "I'm not a number",
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -364,8 +312,11 @@ describe('hoos_extended', function () {
       describe('when an answer is not allowed (e.g. is below the expected range)', function () {
         it('should throw an error', function () {
           expect(() =>
-            hoos_calculation({
-              a1: -1,
+            hoos_calculation.calculate({
+              payload: {
+                ...worst_response,
+                a1: -1,
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -373,8 +324,11 @@ describe('hoos_extended', function () {
       describe('when an answer is not allowed (e.g. is above the expected range)', function () {
         it('should return throw an error', function () {
           expect(() =>
-            hoos_calculation({
-              a1: 5,
+            hoos_calculation.calculate({
+              payload: {
+                ...worst_response,
+                a1: 5,
+              },
             }),
           ).toThrow(ZodError)
         })
