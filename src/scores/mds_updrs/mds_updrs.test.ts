@@ -14,11 +14,11 @@ const BEST_SCORE = 0
 const MEDIAN_TOTAL_SCORE = 130
 const WORST_TOTAL_SCORE = 260
 
-const mds_updrs_calculation = execute_test_calculation(mds_updrs)
+const mds_updrs_calculation = new Score(mds_updrs)
 
 describe('mds_updrs', function () {
   it('mds_updrs calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('mds_updrs')
+    expect(ScoreLibrary).toHaveProperty('mds_updrs')
   })
 
   describe('specific_steps_mds_updrs_calc', function () {
@@ -92,11 +92,9 @@ describe('mds_updrs', function () {
           'PART_4_Q6_PAINFUL_OFF_STATE_DYSTONIA',
         ].sort()
 
-        const configured_input_ids = R.compose(
-          (input_ids: string[]) => input_ids.sort(),
-          R.flatten,
-          R.map(get_input_ids_in_subscale),
-        )(MDS_UPDRS_SCALES)
+        const configured_input_ids = Object.keys(
+          mds_updrs_calculation.inputSchema,
+        ).sort()
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -119,9 +117,7 @@ describe('mds_updrs', function () {
         ]
 
         expect(EXPECTED_QUESTION_IDS).toEqual(
-          get_input_ids_for_specific_subscale(
-            'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(MDS_UPDRS_SCALES),
+          MDS_UPDRS_SCALES.PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING,
         )
       })
 
@@ -143,9 +139,7 @@ describe('mds_updrs', function () {
         ]
 
         expect(EXPECTED_QUESTION_IDS).toEqual(
-          get_input_ids_for_specific_subscale(
-            'PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(MDS_UPDRS_SCALES),
+          MDS_UPDRS_SCALES.PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING,
         )
       })
 
@@ -187,9 +181,7 @@ describe('mds_updrs', function () {
         ]
 
         expect(EXPECTED_QUESTION_IDS).toEqual(
-          get_input_ids_for_specific_subscale('PART_3_MOTOR_EXAMINATION')(
-            MDS_UPDRS_SCALES,
-          ),
+          MDS_UPDRS_SCALES.PART_3_MOTOR_EXAMINATION,
         )
       })
 
@@ -204,31 +196,30 @@ describe('mds_updrs', function () {
         ]
 
         expect(EXPECTED_QUESTION_IDS).toEqual(
-          get_input_ids_for_specific_subscale('PART_4_MOTOR_COMPLICATIONS')(
-            MDS_UPDRS_SCALES,
-          ),
+          MDS_UPDRS_SCALES.PART_4_MOTOR_COMPLICATIONS,
         )
       })
     })
 
     describe('each calculated score includes the correct output result and correct score title', function () {
-      const outcome = mds_updrs_calculation(worst_response)
+      const outcome = mds_updrs_calculation.calculate({
+        payload: worst_response,
+      })
 
       it('should return a score for all scales (n=4) and a total score', function () {
-        expect(outcome).toHaveLength(5)
+        expect(Object.keys(outcome)).toHaveLength(5)
       })
 
       it('should have all the correct calculation ids', function () {
         const EXPECTED_CALCULATION_IDS = [
+          'MDS_UPDRS_TOTAL',
           'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
           'PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
           'PART_3_MOTOR_EXAMINATION',
           'PART_4_MOTOR_COMPLICATIONS',
-          'MDS_UPDRS_TOTAL',
         ]
 
-        const extracted_calculation_ids_from_outcome =
-          get_result_ids_from_calculation_output(outcome)
+        const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
         expect(EXPECTED_CALCULATION_IDS).toEqual(
           extracted_calculation_ids_from_outcome,
@@ -238,195 +229,144 @@ describe('mds_updrs', function () {
 
     describe('a score is only calculated when all mandatory fields are entered', function () {
       describe('when an empty response is passed', function () {
-        const outcome = mds_updrs_calculation({})
+        const outcome = mds_updrs_calculation.calculate({ payload: {} })
 
-        it('should return undefined as the result for "Part I: non-motor experiences of daily living (nM-EDL)"', function () {
-          const score = view_result(
-            'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "Part I: non-motor experiences of daily living (nM-EDL)"', function () {
+          expect(outcome.PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(
+            null,
+          )
         })
 
         it('should return undefined as the result for "Part II: motor experiences of daily living (M-EDL)"', function () {
-          const score = view_result('PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING')(
-            outcome,
-          )
-          expect(score).toEqual(undefined)
+          expect(outcome.PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(null)
         })
 
         it('should return undefined as the result for "Part III: motor examination"', function () {
-          const score = view_result('PART_3_MOTOR_EXAMINATION')(outcome)
-          expect(score).toEqual(undefined)
+          expect(outcome.PART_3_MOTOR_EXAMINATION).toEqual(null)
         })
 
         it('should return undefined as the result for "Part IV: motor complications"', function () {
-          const score = view_result('PART_4_MOTOR_COMPLICATIONS')(outcome)
-          expect(score).toEqual(undefined)
+          expect(outcome.PART_4_MOTOR_COMPLICATIONS).toEqual(null)
         })
 
         it('should return undefined as the total score', function () {
-          const score = view_result('MDS_UPDRS_TOTAL')(outcome)
-          expect(score).toEqual(undefined)
+          expect(outcome.MDS_UPDRS_TOTAL).toEqual(null)
         })
       })
     })
 
     describe('each calculated score includes the correct formula and outputs the correct result', function () {
       describe('when worst response is passed', function () {
-        const outcome = mds_updrs_calculation(worst_response)
+        const outcome = mds_updrs_calculation.calculate({
+          payload: worst_response,
+        })
 
         it('should return the worst score for "Part I: non-motor experiences of daily living (nM-EDL)"', function () {
-          const score = view_result(
-            'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(outcome)
-          const WORST_SCORE = 52
-
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(
+            52,
+          )
         })
 
         it('should return the worst score for "Part II: motor experiences of daily living (M-EDL)"', function () {
-          const score = view_result('PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING')(
-            outcome,
-          )
-          const WORST_SCORE = 52
-
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(52)
         })
 
         it('should return the worst score for "Part III: motor examination"', function () {
-          const score = view_result('PART_3_MOTOR_EXAMINATION')(outcome)
-          const WORST_SCORE = 132
-
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.PART_3_MOTOR_EXAMINATION).toEqual(132)
         })
 
         it('should return the worst score for "Part IV: motor complications"', function () {
-          const score = view_result('PART_4_MOTOR_COMPLICATIONS')(outcome)
-          const WORST_SCORE = 24
-
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.PART_4_MOTOR_COMPLICATIONS).toEqual(24)
         })
 
         it('should return the worst the total score', function () {
-          const score = view_result('MDS_UPDRS_TOTAL')(outcome)
-          expect(score).toEqual(WORST_TOTAL_SCORE)
+          expect(outcome.MDS_UPDRS_TOTAL).toEqual(WORST_TOTAL_SCORE)
         })
       })
 
       describe('when a median response is passed', function () {
-        const outcome = mds_updrs_calculation(median_response)
+        const outcome = mds_updrs_calculation.calculate({
+          payload: median_response,
+        })
 
         it('should return the median score for "Part I: non-motor experiences of daily living (nM-EDL)"', function () {
-          const score = view_result(
-            'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(outcome)
-          const MEDIAN_SCORE = 26
-
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(
+            26,
+          )
         })
 
         it('should return the median score for "Part II: motor experiences of daily living (M-EDL)"', function () {
-          const score = view_result('PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING')(
-            outcome,
-          )
-          const MEDIAN_SCORE = 26
-
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(26)
         })
 
         it('should return the median score for "Part III: motor examination"', function () {
-          const score = view_result('PART_3_MOTOR_EXAMINATION')(outcome)
-          const MEDIAN_SCORE = 66
-
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.PART_3_MOTOR_EXAMINATION).toEqual(66)
         })
 
         it('should return the median score for "Part IV: motor complications"', function () {
-          const score = view_result('PART_4_MOTOR_COMPLICATIONS')(outcome)
-          const MEDIAN_SCORE = 12
-
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.PART_4_MOTOR_COMPLICATIONS).toEqual(12)
         })
 
         it('should return the median the total score', function () {
-          const score = view_result('MDS_UPDRS_TOTAL')(outcome)
-          expect(score).toEqual(MEDIAN_TOTAL_SCORE)
+          expect(outcome.MDS_UPDRS_TOTAL).toEqual(MEDIAN_TOTAL_SCORE)
         })
       })
 
       describe('when best response is passed', function () {
-        const outcome = mds_updrs_calculation(best_response)
+        const outcome = mds_updrs_calculation.calculate({
+          payload: best_response,
+        })
 
         it('should return the best score for "Part I: non-motor experiences of daily living (nM-EDL)"', function () {
-          const score = view_result(
-            'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(
+            BEST_SCORE,
+          )
         })
 
         it('should return the best score for "Part II: motor experiences of daily living (M-EDL)"', function () {
-          const score = view_result('PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING')(
-            outcome,
+          expect(outcome.PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(
+            BEST_SCORE,
           )
-          expect(score).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for "Part III: motor examination"', function () {
-          const score = view_result('PART_3_MOTOR_EXAMINATION')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.PART_3_MOTOR_EXAMINATION).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for "Part IV: motor complications"', function () {
-          const score = view_result('PART_4_MOTOR_COMPLICATIONS')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.PART_4_MOTOR_COMPLICATIONS).toEqual(BEST_SCORE)
         })
 
         it('should return the best the total score', function () {
-          const score = view_result('MDS_UPDRS_TOTAL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.MDS_UPDRS_TOTAL).toEqual(BEST_SCORE)
         })
       })
 
       describe('when a random response is passed', function () {
-        const outcome = mds_updrs_calculation(random_response)
+        const outcome = mds_updrs_calculation.calculate({
+          payload: random_response,
+        })
 
         it('should return the expected score for "Part I: non-motor experiences of daily living (nM-EDL)"', function () {
-          const score = view_result(
-            'PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING',
-          )(outcome)
-          const EXPECTED_SCORE = 21
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.PART_1_NON_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(
+            21,
+          )
         })
 
         it('should return the expected score for "Part II: motor experiences of daily living (M-EDL)"', function () {
-          const score = view_result('PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING')(
-            outcome,
-          )
-          const EXPECTED_SCORE = 19
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.PART_2_MOTOR_EXPERIENCES_OF_DAILY_LIVING).toEqual(19)
         })
 
         it('should return the expected score for "Part III: motor examination"', function () {
-          const score = view_result('PART_3_MOTOR_EXAMINATION')(outcome)
-          const EXPECTED_SCORE = 54
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.PART_3_MOTOR_EXAMINATION).toEqual(54)
         })
 
         it('should return the expected score for "Part IV: motor complications"', function () {
-          const score = view_result('PART_4_MOTOR_COMPLICATIONS')(outcome)
-          const EXPECTED_SCORE = 10
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.PART_4_MOTOR_COMPLICATIONS).toEqual(10)
         })
 
         it('should return the expected the total score', function () {
-          const score = view_result('MDS_UPDRS_TOTAL')(outcome)
-          const EXPECTED_SCORE = 104
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.MDS_UPDRS_TOTAL).toEqual(104)
         })
       })
     })
@@ -435,8 +375,11 @@ describe('mds_updrs', function () {
       describe('when an answer is not a number', function () {
         it('should throw an error', function () {
           expect(() =>
-            mds_updrs_calculation({
-              PART_1_Q1_COGNITIVE_IMPAIRMENT: "I'm not a number",
+            mds_updrs_calculation.calculate({
+              payload: {
+                ...worst_response,
+                PART_1_Q1_COGNITIVE_IMPAIRMENT: "I'm not a number",
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -444,8 +387,11 @@ describe('mds_updrs', function () {
       describe('when an answer is not allowed (e.g. is below the expected range)', function () {
         it('should throw an error', function () {
           expect(() =>
-            mds_updrs_calculation({
-              PART_1_Q1_COGNITIVE_IMPAIRMENT: -1,
+            mds_updrs_calculation.calculate({
+              payload: {
+                ...worst_response,
+                PART_1_Q1_COGNITIVE_IMPAIRMENT: -1,
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -453,8 +399,11 @@ describe('mds_updrs', function () {
       describe('when an answer is not allowed (e.g. is above the expected range)', function () {
         it('should return throw an error', function () {
           expect(() =>
-            mds_updrs_calculation({
-              PART_1_Q1_COGNITIVE_IMPAIRMENT: 5,
+            mds_updrs_calculation.calculate({
+              payload: {
+                ...worst_response,
+                PART_1_Q1_COGNITIVE_IMPAIRMENT: 5,
+              },
             }),
           ).toThrow(ZodError)
         })

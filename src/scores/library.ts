@@ -69,7 +69,7 @@ import { isi } from './isi/isi'
 import { k_bild } from './k_bild/k_bild'
 import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
 import { koos_ps } from './koos_ps/koos_ps'
-// import { mds_updrs } from './mds_updrs/mds_updrs'
+import { mds_updrs } from './mds_updrs/mds_updrs'
 import { mini_best_test } from './mini_best_test/mini_best_test'
 import { mfis } from './mfis/mfis'
 import { mmse } from './mmse/mmse'
@@ -211,7 +211,7 @@ export const ScoreLibrary = createScoreLibrary({
   KCCQ_12,
   koos_ps,
   korq,
-  // mds_updrs,
+  mds_updrs,
   mini_best_test,
   mfis,
   mlks,
