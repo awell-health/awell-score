@@ -73,7 +73,7 @@ import { koos_ps } from './koos_ps/koos_ps'
 // import { mds_updrs } from './mds_updrs/mds_updrs'
 // import { mini_best_test } from './mini_best_test/mini_best_test'
 import { mfis } from './mfis/mfis'
-// import { mmse } from './mmse/mmse'
+import { mmse } from './mmse/mmse'
 import { moca } from './moca/moca'
 import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
 import { mpi } from './mpi/mpi'
@@ -220,7 +220,7 @@ export const ScoreLibrary = createScoreLibrary({
   // mini_best_test,
   mfis,
   mlks,
-  // mmse,
+  mmse,
   moca,
   modified_caregiver_strain_index,
   mpi,

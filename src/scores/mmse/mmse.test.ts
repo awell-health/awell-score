@@ -8,18 +8,17 @@ import {
   random_response,
 } from './__testdata__/mmse_responses'
 import { MMSE_INPUTS } from './definition/mmse_inputs'
-// eslint-disable-next-line sort-imports
-import { mmse, MMSE_CALCULATION_ID } from './mmse'
+import { mmse } from './mmse'
 
 const MMSE_MIN_SCORE = 0
 const MMSE_MEDIAN_SCORE = 15
 const MMSE_MAX_SCORE = 30
 
-const mmse_calculation = execute_test_calculation(mmse)
+const mmse_calculation = new Score(mmse)
 
 describe('mmse', function () {
   it('mmse calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('mmse')
+    expect(ScoreLibrary).toHaveProperty('mmse')
   })
 
   describe('the score includes the correct input fields', function () {
@@ -34,25 +33,25 @@ describe('mmse', function () {
         'CONSTRUCT',
       ]
 
-      const configured_calculation_input_ids =
-        get_input_ids_from_calculation_blueprint(MMSE_INPUTS)
+      const configured_calculation_input_ids = Object.keys(
+        mmse_calculation.inputSchema,
+      )
 
-      expect(configured_calculation_input_ids).to.have.members(
+      expect(configured_calculation_input_ids).toEqual(
         EXPECTED_CALCULATION_INPUT_IDS,
       )
     })
   })
 
   describe('each calculated score includes the correct output result and correct score title', function () {
-    const outcome = mmse_calculation(min_response)
+    const outcome = mmse_calculation.calculate({ payload: min_response })
 
     it('should calculate a single score', function () {
-      expect(outcome).toHaveLength(1)
+      expect(Object.keys(outcome).length).toEqual(1)
     })
 
     it('should have the correct calculation id', function () {
-      const configured_calculation_id =
-        get_result_ids_from_calculation_output(outcome)
+      const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(['MMSE'])
     })
@@ -61,60 +60,44 @@ describe('mmse', function () {
   describe('each calculated score includes the correct formula and outputs the correct result', function () {
     describe('when called with a minimum response', function () {
       it('should return the minimum score', function () {
-        const score = R.compose(
-          view_result(MMSE_CALCULATION_ID),
-          mmse_calculation,
-        )(min_response)
-
-        expect(score).toEqual(MMSE_MIN_SCORE)
+        const outcome = mmse_calculation.calculate({ payload: min_response })
+        expect(outcome.MMSE).toEqual(MMSE_MIN_SCORE)
       })
     })
 
     describe('when called with a median response', function () {
       it('should return the median score', function () {
-        const score = R.compose(
-          view_result(MMSE_CALCULATION_ID),
-          mmse_calculation,
-        )(median_response)
-
-        expect(score).toEqual(MMSE_MEDIAN_SCORE)
+        const outcome = mmse_calculation.calculate({ payload: median_response })
+        expect(outcome.MMSE).toEqual(MMSE_MEDIAN_SCORE)
       })
     })
 
     describe('when called with a maximum response', function () {
       it('should return the maximum score', function () {
-        const score = R.compose(
-          view_result(MMSE_CALCULATION_ID),
-          mmse_calculation,
-        )(max_response)
-
-        expect(score).toEqual(MMSE_MAX_SCORE)
+        const outcome = mmse_calculation.calculate({ payload: max_response })
+        expect(outcome.MMSE).toEqual(MMSE_MAX_SCORE)
       })
     })
 
     describe('when called with a random response', function () {
       it('should return the expected score', function () {
-        const score = R.compose(
-          view_result(MMSE_CALCULATION_ID),
-          mmse_calculation,
-        )(random_response)
-
+        const outcome = mmse_calculation.calculate({ payload: random_response })
         const EXPECTED_SCORE = 13
-
-        expect(score).toEqual(EXPECTED_SCORE)
+        expect(outcome.MMSE).toEqual(EXPECTED_SCORE)
       })
     })
   })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
-      it('should return undefined as the result', function () {
-        const score = R.compose(
-          view_result(MMSE_CALCULATION_ID),
-          mmse_calculation,
-        )({})
-
-        expect(score).toEqual(undefined)
+      it('should return null as the result', function () {
+        const outcome = mmse_calculation.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
+        expect(outcome.MMSE).toEqual(null)
       })
     })
   })
@@ -123,8 +106,12 @@ describe('mmse', function () {
     describe('when called with a response where there are non-numerical answers', function () {
       it('should throw an error', function () {
         expect(() =>
-          mmse_calculation({
-            ORIENTATION_TO_TIME: "I'm not a number, you can't do math with me",
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              ORIENTATION_TO_TIME:
+                "I'm not a number, you can't do math with me",
+            },
           }),
         ).toThrow(ZodError)
       })
@@ -133,56 +120,77 @@ describe('mmse', function () {
     describe('when called with a response where there are answers that are not allowed', function () {
       it('should throw an ZodError when value on "ORIENTATION_TO_TIME" is out of the expected [0, 5] range', function () {
         expect(() =>
-          mmse_calculation({
-            ORIENTATION_TO_TIME: 6,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              ORIENTATION_TO_TIME: 6,
+            },
           }),
         ).toThrow(ZodError)
       })
 
       it('should throw an ZodError when value on "ORIENTATION_TO_PLACE" is out of the expected [0, 5] range', function () {
         expect(() =>
-          mmse_calculation({
-            ORIENTATION_TO_PLACE: 6,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              ORIENTATION_TO_PLACE: 6,
+            },
           }),
         ).toThrow(ZodError)
       })
 
       it('should throw an ZodError when value on "REGISTRATION" is out of the expected [0, 3] range', function () {
         expect(() =>
-          mmse_calculation({
-            REGISTRATION: 4,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              REGISTRATION: 4,
+            },
           }),
         ).toThrow(ZodError)
       })
 
       it('should throw an ZodError when value on "ATTENTION_AND_CALCULATION" is out of the expected [0, 5] range', function () {
         expect(() =>
-          mmse_calculation({
-            ATTENTION_AND_CALCULATION: 6,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              ATTENTION_AND_CALCULATION: 6,
+            },
           }),
         ).toThrow(ZodError)
       })
 
       it('should throw an ZodError when value on "RECALL" is out of the expected [0, 3] range', function () {
         expect(() =>
-          mmse_calculation({
-            RECALL: 4,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              RECALL: 4,
+            },
           }),
         ).toThrow(ZodError)
       })
 
       it('should throw an ZodError when value on "LANGUAGE" is out of the expected [0, 8] range', function () {
         expect(() =>
-          mmse_calculation({
-            LANGUAGE: 9,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              LANGUAGE: 9,
+            },
           }),
         ).toThrow(ZodError)
       })
 
       it('should throw an ZodError when value on "CONSTRUCT" is out of the expected [0, 1] range', function () {
         expect(() =>
-          mmse_calculation({
-            CONSTRUCT: 2,
+          mmse_calculation.calculate({
+            payload: {
+              ...min_response,
+              CONSTRUCT: 2,
+            },
           }),
         ).toThrow(ZodError)
       })
