@@ -14,11 +14,11 @@ const BEST_SCORE = 100
 const MEDIAN_SCORE = 50
 const WORST_SCORE = 0
 
-const faam_calculation = execute_test_calculation(faam)
+const faam_calculation = new Score(faam)
 
 describe('faam', function () {
   it('faam calculation function should be available as a calculation', function () {
-    expect(CALCULATIONS).toHaveProperty('faam')
+    expect(ScoreLibrary).toHaveProperty('faam')
   })
 
   describe('specific_steps_faam_calc', function () {
@@ -53,13 +53,9 @@ describe('faam', function () {
           'SPORTS_Q05',
           'SPORTS_Q06',
           'SPORTS_Q07',
-        ].sort()
+        ]
 
-        const configured_input_ids = R.compose(
-          (input_ids: string[]) => input_ids.sort(),
-          R.flatten,
-          R.map(get_input_ids_in_subscale),
-        )(FAAM_SUBSCALES)
+        const configured_input_ids = Object.keys(faam_calculation.inputSchema)
 
         expect(EXPECTED_INPUT_IDS).toEqual(configured_input_ids)
       })
@@ -89,9 +85,7 @@ describe('faam', function () {
           'ADL_Q21',
         ].sort()
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('ADL')(FAAM_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(FAAM_SUBSCALES.ADL.inputs)
       })
 
       it('should have the expected input ids configured for the "Sports" subscale', function () {
@@ -105,24 +99,21 @@ describe('faam', function () {
           'SPORTS_Q07',
         ].sort()
 
-        expect(EXPECTED_INPUT_IDS).toEqual(
-          get_input_ids_for_specific_subscale('SPORTS')(FAAM_SUBSCALES),
-        )
+        expect(EXPECTED_INPUT_IDS).toEqual(FAAM_SUBSCALES.SPORTS.inputs)
       })
     })
 
     describe('each calculated score includes the correct output result and correct score title', function () {
-      const outcome = faam_calculation(worst_response)
+      const outcome = faam_calculation.calculate({ payload: worst_response })
 
       it('should return a score for all subscales (n=2)', function () {
-        expect(outcome).toHaveLength(2)
+        expect(Object.keys(outcome)).toHaveLength(2)
       })
 
       it('should have all the correct calculation ids', function () {
         const EXPECTED_CALCULATION_IDS = ['ADL', 'SPORTS']
 
-        const extracted_calculation_ids_from_outcome =
-          get_result_ids_from_calculation_output(outcome)
+        const extracted_calculation_ids_from_outcome = Object.keys(outcome)
 
         expect(EXPECTED_CALCULATION_IDS).toEqual(
           extracted_calculation_ids_from_outcome,
@@ -132,78 +123,66 @@ describe('faam', function () {
 
     describe('a score is only calculated when all mandatory fields are entered', function () {
       describe('when an empty response is passed', function () {
-        const outcome = faam_calculation({})
+        const outcome = faam_calculation.calculate({ payload: {} })
 
-        it('should return undefined as the result for "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "ADL" subscale', function () {
+          expect(outcome.ADL).toEqual(null)
         })
 
-        it('should return undefined as the result for "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(undefined)
+        it('should return null as the result for "SPORTS" subscale', function () {
+          expect(outcome.SPORTS).toEqual(null)
         })
       })
     })
 
     describe('each calculated score includes the correct formula and outputs the correct result', function () {
       describe('when worst response is passed', function () {
-        const outcome = faam_calculation(worst_response)
+        const outcome = faam_calculation.calculate({ payload: worst_response })
 
         it('should return the worst score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.ADL).toEqual(WORST_SCORE)
         })
 
         it('should return the worst score for the "Sports" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(WORST_SCORE)
+          expect(outcome.SPORTS).toEqual(WORST_SCORE)
         })
       })
 
       describe('when a median response is passed', function () {
-        const outcome = faam_calculation(median_response)
+        const outcome = faam_calculation.calculate({ payload: median_response })
 
         it('should return the median score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.ADL).toEqual(MEDIAN_SCORE)
         })
 
         it('should return the median score for the "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(MEDIAN_SCORE)
+          expect(outcome.SPORTS).toEqual(MEDIAN_SCORE)
         })
       })
 
       describe('when best response is passed', function () {
-        const outcome = faam_calculation(best_response)
+        const outcome = faam_calculation.calculate({ payload: best_response })
 
         it('should return the best score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.ADL).toEqual(BEST_SCORE)
         })
 
         it('should return the best score for the "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
-          expect(score).toEqual(BEST_SCORE)
+          expect(outcome.SPORTS).toEqual(BEST_SCORE)
         })
       })
 
       describe('when a random response is passed', function () {
-        const outcome = faam_calculation(random_response)
+        const outcome = faam_calculation.calculate({ payload: random_response })
 
         it('should return the expected score for the "ADL" subscale', function () {
-          const score = view_result('ADL')(outcome)
           const EXPECTED_SCORE = 58.82
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.ADL).toEqual(EXPECTED_SCORE)
         })
 
         it('should return the expected score for the "SPORTS" subscale', function () {
-          const score = view_result('SPORTS')(outcome)
           const EXPECTED_SCORE = 60.71
-
-          expect(score).toEqual(EXPECTED_SCORE)
+          expect(outcome.SPORTS).toEqual(EXPECTED_SCORE)
         })
       })
     })
@@ -212,8 +191,11 @@ describe('faam', function () {
       describe('when an answer is not a number', function () {
         it('should throw an error', function () {
           expect(() =>
-            faam_calculation({
-              ADL_Q01: "I'm not a number",
+            faam_calculation.calculate({
+              payload: {
+                ...worst_response,
+                ADL_Q01: "I'm not a number",
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -221,8 +203,11 @@ describe('faam', function () {
       describe('when an answer is not allowed (e.g. is below the expected range)', function () {
         it('should throw an error', function () {
           expect(() =>
-            faam_calculation({
-              ADL_Q01: -1,
+            faam_calculation.calculate({
+              payload: {
+                ...worst_response,
+                ADL_Q01: -1,
+              },
             }),
           ).toThrow(ZodError)
         })
@@ -230,8 +215,11 @@ describe('faam', function () {
       describe('when an answer is not allowed (e.g. is above the expected range)', function () {
         it('should return throw an error', function () {
           expect(() =>
-            faam_calculation({
-              ADL_Q01: 5,
+            faam_calculation.calculate({
+              payload: {
+                ...worst_response,
+                ADL_Q01: 5,
+              },
             }),
           ).toThrow(ZodError)
         })

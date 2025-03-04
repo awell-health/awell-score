@@ -39,7 +39,7 @@ import { dri } from './dri/dri'
 // import { epic_26 } from './epic_26/epic_26'
 import { eq5d_3l, eq5d_5l } from './eq5d'
 import { ess } from './ess/ess'
-// import { faam } from './faam/faam'
+import { faam } from './faam/faam'
 import { short_fes_i } from './fes_i'
 import { fnd } from './fnd/fnd'
 import { foot_function_index_5pt } from './foot_function_index'
@@ -185,7 +185,7 @@ export const ScoreLibrary = createScoreLibrary({
   eq5d_3l,
   eq5d_5l,
   ess,
-  // faam,
+  faam,
   fnd,
   foot_function_index_5pt,
   forgotten_joint_score_hip,
