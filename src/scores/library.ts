@@ -223,7 +223,7 @@ export const ScoreLibrary = createScoreLibrary({
   ndi,
   oas,
   ompq,
-  ompq_10,
+  ompq_short_form: ompq_10,
   oswestry,
   oxford_hip_score,
   oxford_knee_score,

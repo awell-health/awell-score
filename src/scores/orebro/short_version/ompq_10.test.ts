@@ -17,7 +17,7 @@ const ompq_10_calculation = new Score(ompq_10)
 
 describe('ompq_10', function () {
   it('ompq_10 calculation function should be available as a calculation', function () {
-    expect(ScoreLibrary).toHaveProperty('ompq_10')
+    expect(ScoreLibrary).toHaveProperty('ompq_short_form')
   })
 
   describe('the score includes the correct input fields', function () {
