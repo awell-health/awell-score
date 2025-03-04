@@ -42,7 +42,7 @@ import { ess } from './ess/ess'
 // import { faam } from './faam/faam'
 import { short_fes_i } from './fes_i'
 import { fnd } from './fnd/fnd'
-// import { foot_function_index_5pt } from './foot_function_index'
+import { foot_function_index_5pt } from './foot_function_index'
 import {
   forgotten_joint_score_hip,
   forgotten_joint_score_knee,
@@ -187,7 +187,7 @@ export const ScoreLibrary = createScoreLibrary({
   ess,
   // faam,
   fnd,
-  // foot_function_index_5pt,
+  foot_function_index_5pt,
   forgotten_joint_score_hip,
   forgotten_joint_score_knee,
   gad_2,
