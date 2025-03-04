@@ -1,6 +1,9 @@
-import { type StandardizationSerieType } from '../../src/types/calculations.types'
+type StandardizationSerieType = {
+  items: string[]
+  conversion_table: { raw: number; std: number }[]
+}
 
-export const EPIC_26_standardization: Array<StandardizationSerieType> = [
+export const EPIC_26_standardization: StandardizationSerieType[] = [
   {
     items: [
       'EPIC26_Q01',

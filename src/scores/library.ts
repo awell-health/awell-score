@@ -36,7 +36,7 @@ import { dri } from './dri/dri'
 //   eortc_qlq_lc29,
 //   eortc_qlq_pr25,
 // } from './eortc'
-// import { epic_26 } from './epic_26/epic_26'
+import { epic_26 } from './epic_26/epic_26'
 import { eq5d_3l, eq5d_5l } from './eq5d'
 import { ess } from './ess/ess'
 import { faam } from './faam/faam'
@@ -181,7 +181,7 @@ export const ScoreLibrary = createScoreLibrary({
   // eortc_qlq_lc13,
   // eortc_qlq_lc29,
   // eortc_qlq_pr25,
-  // epic_26,
+  epic_26,
   eq5d_3l,
   eq5d_5l,
   ess,
