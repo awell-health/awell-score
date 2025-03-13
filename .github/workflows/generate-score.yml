@@ -15,6 +15,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install Dependencies
+        run: npm install --include=dev
+
       - name: Run AI Agent to Generate Score Code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
