@@ -21,7 +21,7 @@ jobs:
       - name: Run AI Agent to Generate Score Code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
         run: node scripts/generate-score.mjs "${{ github.event.issue.number }}"
 
       - name: Commit and Push Changes
