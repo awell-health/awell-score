@@ -25,7 +25,12 @@ async function getIssueDetails(issueNumber) {
 
 async function generateScoreCode(issue) {
   const { title, body } = issue
-  const parsedBody = yaml.parse(body)
+  // const parsedBody = yaml.parse(body)
+
+  const parsedBody = {
+    score_name: 'bmi',
+    description: 'BMI = Weight in kg / Height in m^2',
+  }
 
   const response = await openai.chat.completions.create({
     model: 'gpt-4o',
