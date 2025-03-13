@@ -1,0 +1,39 @@
+name: Generate Score
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  generate-score:
+    if: github.event.label.name == 'score-agent'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Run AI Agent to Generate Score Code
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/generate-score.js "${{ github.event.issue.number }}"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git checkout -b feature/${{ github.event.issue.title }}
+          git add src/scores/${{ github.event.issue.title }}
+          git commit -m "Auto-generate score: ${{ github.event.issue.title }}"
+          git push origin feature/${{ github.event.issue.title }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: feature/${{ github.event.issue.title }}
+          title: "Auto-generated score: ${{ github.event.issue.title }}"
+          body: "This PR was automatically generated from issue #${{ github.event.issue.number }}. Please review and make necessary adjustments."
