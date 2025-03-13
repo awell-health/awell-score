@@ -3,13 +3,16 @@ import { Octokit } from '@octokit/rest'
 import OpenAI from 'openai'
 import yaml from 'yaml'
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
-const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN
+const OPENAI_API_KEY = process.env.OPENAI_KEY
 
 if (!GITHUB_TOKEN || !OPENAI_API_KEY) {
   console.error('❌ Missing required secrets. Ensure they are set in GitHub Actions.')
   process.exit(1)
 }
+
+const octokit = new Octokit({ auth: GITHUB_TOKEN })
+const openai = new OpenAI({ apiKey: OPENAI_API_KEY })
 
 async function getIssueDetails(issueNumber) {
   const { data } = await octokit.issues.get({
