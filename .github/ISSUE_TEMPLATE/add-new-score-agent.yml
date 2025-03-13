@@ -1,8 +1,7 @@
----
 name: Add New Score Agent
-about: Describe this issue template's purpose here.
+description: Auto-generate a new medical Score
 title: "[Score Agent] Add <Score Name>"
-labels: score-agent
+labels: [score-agent]
 body:
   - type: input
     id: score_name
