@@ -4,7 +4,7 @@ import OpenAI from 'openai'
 import yaml from 'yaml'
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
 
 if (!GITHUB_TOKEN || !OPENAI_API_KEY) {
   console.error('❌ Missing required secrets. Ensure they are set in GitHub Actions.')
