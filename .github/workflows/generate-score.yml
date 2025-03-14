@@ -16,7 +16,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm install --include=dev
 
       - name: Run AI Agent to generate score code
         env:
