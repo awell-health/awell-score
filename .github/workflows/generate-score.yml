@@ -22,7 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-        run: yarn dlx tsx scripts/generate-score.mjs
+        run: yarn dlx tsx scripts/generate-score.mjs "${{ github.event.issue.number }}"
 
       - name: Execute bash to generate score files
         run: bash create_score.sh

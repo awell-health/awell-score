@@ -66,7 +66,7 @@ You are an expert TypeScript developer. Generate a **Bash script** that:
    - \`definition/${parsedBody.score_name}_inputs.ts\` - input schema
    - \`definition/${parsedBody.score_name}_output.ts\` - output schema
    - \`definition/${parsedBody.score_name}_subscales.ts\` // if there are subscales or domains
-   - \`README.md\` - containing documentation and instructions about the score.
+   - \`README.md\` - containing just a placeholder sentence "Add documentation here"
 3. Writes the appropriate content for each file in TypeScript.
 4. Ensures that **special characters** (such as parentheses, asterisks, and markdown syntax) do not cause syntax errors in the Bash script.
    - **Use '\' to escape special characters when needed.
@@ -149,16 +149,7 @@ export const BMI_OUTPUT = {
 EOF
 
 # Create README.md using printf to handle special characters
-printf '# Body Mass Index (BMI)\n
-## Description\n
-The Body Mass Index (BMI) is a calculation derived from weight and height.\n
-## Formula\n
-BMI = Weight \\(kg\\) / Height \\(m\\)^2\n
-## Instructions\n
-- Input the weight in kilograms.
-- Input the height in centimeters.\n
-## Output\n
-- The BMI score (kg/m²)\n' > src/scores/bmi/README.md
+printf 'Add documentation here' > src/scores/bmi/README.md
 \`\`\`
 
 Here's the directory structure to better understand the file structure and imports/exports:
