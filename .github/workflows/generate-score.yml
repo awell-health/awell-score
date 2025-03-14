@@ -36,23 +36,14 @@ jobs:
           BRANCH_NAME="feature/issue-${ISSUE_NUMBER}-${SAFE_TITLE}"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git checkout -b $BRANCH_NAME
-          git add src/scores/
-          git status  # 🔍 Debugging: Check what's being committed
-          git commit -m "Auto-generate score: ${{ github.event.issue.title }}"
-          git push origin $BRANCH_NAME
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          add-paths: |
+            src/scores/*
           branch: ${{ env.BRANCH_NAME }}
           base: main
           title: "Auto-generated score: ${{ github.event.issue.title }}"
           body: "This PR was automatically generated from issue #${{ github.event.issue.number }}. Please review and make necessary adjustments."
           delete-branch: true
-          push-to-fork: false
           draft: true
