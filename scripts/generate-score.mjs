@@ -40,46 +40,34 @@ async function generateScoreCode(issue) {
   return response.choices[0].message.content
 }
 
-async function writeGeneratedFiles(scoreName, generatedCode) {
-  const baseDir = `src/scores/${scoreName}`
-  if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir, { recursive: true })
-
-  fs.writeFileSync(`${baseDir}/index.ts`, generatedCode.index)
-  fs.writeFileSync(`${baseDir}/definition/${scoreName}_inputs.ts`, generatedCode.inputs)
-  fs.writeFileSync(`${baseDir}/definition/${scoreName}_output.ts`, generatedCode.outputs)
-  fs.writeFileSync(`${baseDir}/README.md`, generatedCode.readme)
-}
-
 async function main(issueNumber) {
   console.log(`Fetching issue #${issueNumber}`)
   const issue = await getIssueDetails(issueNumber)
-  console.log(issue)
 
-  console.log(`Generating score code for ${issue.title}`)
+  console.log(`Generating Bash script for ${issue.title}`);
+  const generatedScript = await generateScoreCode(issue);
 
-  const generatedCode = await generateScoreCode(issue)
-  console.log(generatedCode)
+  console.log("🔹 Generated Script:\n", generatedScript);
 
-  console.log(`Writing files to repository...`)
-  
-  await writeGeneratedFiles(issue.title, generatedCode)
+  const scriptPath = "create_score.sh";
+  fs.writeFileSync(scriptPath, generatedScript, { mode: 0o755 });
 
-  console.log(`✅ Done!`)
+  console.log(`✅ Bash script saved as ${scriptPath}`);
+  console.log(`Run the script using: bash ${scriptPath}`);
 }
 
 const getPrompt = (parsedBody) => `
-You are an expert TypeScript developer. Given the following medical score details:
-
-**Score Name**: ${parsedBody.score_name}
-**Description**: ${parsedBody.description}
-
-Generate:
-1. Input schema for the score.
-2. Output schema for the score.
-3. A Score object of Score class with a calculate method.
-4. A subscale or domain file for the score if applicable.
-4. A test file for the score.
-5. A README.md with an explanation of the score.
+You are an expert TypeScript developer. Generate a **Bash script** that:
+1. Creates necessary directories under \`src/scores/${parsedBody.score_name}/\`.
+2. Creates the following files:
+   - \`index.ts\` - export the score object
+   - \`${parsedBody.score_name}.ts\` - score file
+   - \`${parsedBody.score_name}.test.ts\` - test file
+   - \`definition/${parsedBody.score_name}_inputs.ts\` - input schema
+   - \`definition/${parsedBody.score_name}_output.ts\` - output schema
+   - \`definition/${parsedBody.score_name}_subscales.ts\` // if there are subscales or domains
+   - \`README.md\` - containing documentation and instructions about the score.
+3. Writes the appropriate content for each file in TypeScript.
 
 Output must follow this structure:
 ---
@@ -92,276 +80,572 @@ src/scores/${parsedBody.score_name}/definition/${parsedBody.score_name}_subscale
 src/scores/${parsedBody.score_name}/README.md
 ---
 
-Here are examples of some scores:
----
-================================================
-File: src/scores/library.ts
-================================================
-import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
-import { age_calc } from './age_calc/age_calc'
-import { asrs } from './asrs/asrs'
-import { audit } from './audit/audit'
-import { aq_10 } from './AQ_10/aq_10'
-import { basdai } from './basdai/basdai'
-import { basfi } from './basfi/basfi'
-import { beck } from './beck/beck'
-import { blcs } from './blcs/blcs'
-import { bpses } from './bpses/bpses'
-import { bwcs } from './bwcs/bwcs'
-import { bmi_metric, bmi_imperial } from './bmi'
-import { cade_q_sv } from './cade_q'
-import { caregiver_strain_index } from './caregiver_strain_index/caregiver_strain_index'
-import { cat } from './cat/cat'
-import { ccq } from './ccq/ccq'
-import { cfws } from './cfws/cfws'
-import { CHA2DS2_VASc_Score } from './CHA2DS2_VASc_Score/CHA2DS2_VASc_Score'
-import { comi_back, comi_neck } from './comi'
-import { compass_31 } from './compass_31/compass_31'
-import { constant_murley_score_orthotoolkit } from './constant_murley_score'
-import { core_om } from './core_om/core_om'
-import { cdr } from './cdr/cdr'
-import { cpdi } from './cpdi/cpdi'
-import { csi } from './csi/csi'
-import { dast_10 } from './dast_10/dast_10'
-import { dn4 } from './dn4/dn4'
-import { dri } from './dri/dri'
-import { epic_26 } from './epic_26/epic_26'
-import { eq5d_3l, eq5d_5l } from './eq5d'
-import { ess } from './ess/ess'
-import { faam } from './faam/faam'
-import { short_fes_i } from './fes_i'
-import { fnd } from './fnd/fnd'
-import { foot_function_index_5pt } from './foot_function_index'
-import {
-  forgotten_joint_score_hip,
-  forgotten_joint_score_knee,
-} from './forgotten_joint_score_12'
-import { pss_4 } from './pss_4/pss_4'
-import { stop_bang } from './stop_bang/stop_bang'
-import { gad_2 } from './GAD_2/gad_2'
-import { gad_7 } from './GAD_7/gad_7'
-import { ghq_12 } from './ghq_12/ghq_12'
-import { hads } from './hads/HADS_score'
-import { harris_hip_score } from './harris_hip_score/harris_hip_score'
-import { haq } from './haq/haq'
-import { hoos_extended } from './hoos_extended/hoos_extended'
-import { hoos_ps } from './hoos_ps/hoos_ps'
-import { hos } from './hos/hos'
-import { hrqol_4 } from './hrqol_4/hrqol_4'
-import { ias } from './ias/ias'
-import { IBD_control } from './IBD_control/IBD_control'
-import { ibd_disk_total_score } from './ibd_disk_total_score/ibd_disk_total_score'
-import { iief5 } from './iief5/iief5'
-import { ikdc } from './ikdc/ikdc'
-import { ipss } from './ipss/ipss'
-import { isi } from './isi/isi'
-import { k_bild } from './k_bild/k_bild'
-import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
-import { koos_ps } from './koos_ps/koos_ps'
-import { mds_updrs } from './mds_updrs/mds_updrs'
-import { mini_best_test } from './mini_best_test/mini_best_test'
-import { mfis } from './mfis/mfis'
-import { mmse } from './mmse/mmse'
-import { moca } from './moca/moca'
-import { modified_caregiver_strain_index } from './modified_caregiver_strain_index/modified_caregiver_strain_index'
-import { mpi } from './mpi/mpi'
-import { msq } from './msq/msq'
-import { ndi } from './ndi/ndi'
-import { oas } from './oas/oas'
-import { ompq, ompq_10 } from './orebro'
-import { oswestry } from './oswestry/oswestry'
-import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
-import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
-import { packyears } from './packyears/packyears'
-import { panss_6 } from './panss_6/panss_6'
-import { paq_c } from './paq_c/paq_c'
-import { pci } from './pci/pci'
-import { pcl_5 } from './pcl_5/pcl_5'
-import { pcs } from './pcs/pcs'
-import { pdi } from './pdi/pdi'
-import { pdq_8 } from './pdq_8/pdq_8'
-import { phq_2 } from './phq_2/phq_2'
-import { phq_4 } from './phq_4/phq_4'
-import { phq_8 } from './phq_8/phq_8'
-import { phq_9 } from './phq_9/phq_9'
-import { physical_activity_measurement } from './physical_activity_measurement/physical_activity_measurement'
-import { pro2 as PRO2 } from './pro2/pro2'
-import { promis_10 } from './promis_10/promis_10'
-import { prtee } from './prtee/prtee'
-import { paid_20 } from './PAID_20/paid_20'
-import { psk } from './psk/psk'
-import { qol_stoma } from './qol_stoma/qol_stoma'
-import { quickdash } from './quickdash/quickdash'
-import { sccai } from './sccai/sccai'
-import { snap_teacher } from './snap_teacher/snap_teacher'
-import { snap_parent } from './snap_parent/snap_parent'
-import { scl90 } from './scl90/scl90'
-import { scl90r } from './scl90r/scl90r'
-import { sdq } from './sdq/sdq'
-import { sf12 } from './sf12/sf12'
-import { sf36 } from './sf36/sf36'
-import { spadi } from './spadi/spadi'
-import { simple_shoulder_test } from './sst/simple_shoulder_test'
-import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
-import { tampa } from './tampa/tampa'
-import { visa_a, visa_g, visa_p } from './visa'
-import { yp_core } from './yp_core/yp_core'
-import { zarit_12 } from './zarit_12/zarit_12'
-import { womac } from './womac/womac'
-import { acro } from './acro/acro'
-import { Score } from '../classes'
-import { ScoreType } from '../types'
-import { korq } from './korq/korq'
-import { mlks } from './mlks/mlks'
-import { psqi } from './psqi/psqi'
-import { test_calculation } from './test_calculation/test_caculation'
+Output only the Bash script. Do not add explanations.
 
-const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
-  scoreObjects: T,
-): { [K in keyof T]: Score<T[K]['inputSchema'], T[K]['outputSchema']> } => {
-  return Object.fromEntries(
-    Object.entries(scoreObjects).map(([key, value]) => [
-      key,
-      new Score({ ...value, id: key }),
-    ]),
-  ) as {
-    [K in keyof T]: Score<T[K]['inputSchema'], T[K]['outputSchema']>
+A simple bash script output example can look like this (example for bmi score):
+\`\`\`bash
+#!/bin/bash
+
+# Create directories
+mkdir -p src/scores/<bmi>/definition
+
+# Create index.ts
+cat <<EOF > src/scores/bmi/index.ts
+export * from './bmi'
+EOF
+
+# Create bmi.ts
+cat <<EOF > src/scores/bmi/bmi.ts
+import { type ScoreType } from '../../types'
+import { BMI_INPUTS, BMI_OUTPUT } from './definition'
+
+export const bmi: ScoreType<typeof BMI_INPUTS, typeof BMI_OUTPUT> = {
+  name: 'Body Mass Index (BMI)',
+  readmeLocation: __dirname,
+  inputSchema: BMI_INPUTS,
+  outputSchema: BMI_OUTPUT,
+  calculate: ({ data }) => {
+    return {
+      bmi: data.weight / (data.height ** 2),
+    }
   }
 }
+EOF
 
-export const ScoreLibrary = createScoreLibrary({
-  test_calculation,
-  age_calc,
-  acro,
-  asrs,
-  audit,
-  aq_10,
-  basdai,
-  basfi,
-  beck,
-  bmi: bmi_metric,
-  bmi_imperial,
-  blcs,
-  bpses,
-  bwcs,
-  // breast_q_conserving_therapy_pre_and_postoperative,
-  cade_q_sv,
-  caregiver_strain_index,
-  cat,
-  ccq,
-  cfws,
-  CHA2DS2_VASc_Score,
-  comi_back,
-  comi_neck,
-  compass_31,
-  constant_murley_score_orthotoolkit,
-  core_om,
-  cdr,
-  cpdi,
-  csi,
-  dast_10,
-  dn4,
-  dri,
-  // eortc_qlq_br23,
-  // eortc_qlq_br45,
-  // eortc_qlq_c30,
-  // eortc_qlq_cr29,
-  // eortc_qlq_lc13,
-  // eortc_qlq_lc29,
-  // eortc_qlq_pr25,
-  epic_26,
-  eq5d_3l,
-  eq5d_5l,
-  ess,
-  faam,
-  fnd,
-  foot_function_index_5pt,
-  forgotten_joint_score_hip,
-  forgotten_joint_score_knee,
-  gad_2,
-  gad_7,
-  ghq_12,
-  hads,
-  harris_hip_score,
-  haq,
-  hoos_extended,
-  hoos_ps,
-  hos,
-  hrqol_4,
-  ias,
-  IBD_control,
-  ibd_disk_total_score,
-  iief5,
-  ikdc,
-  isi,
-  ipss,
-  k_bild,
-  KCCQ_12,
-  koos_ps,
-  korq,
-  mds_updrs,
-  mini_best_test,
-  mfis,
-  mlks,
-  mmse,
-  moca,
-  modified_caregiver_strain_index,
-  mpi,
-  msq,
-  ndi,
-  oas,
-  ompq,
-  ompq_short_form: ompq_10,
-  oswestry,
-  oxford_hip_score,
-  oxford_knee_score,
-  packyears,
-  panss_6,
-  paq_c,
-  pci,
-  pcl_5,
-  pcs,
-  pdi,
-  pdq_8,
-  phq_2,
-  phq_4,
-  phq_8,
-  phq_9,
-  physical_activity_measurement,
-  PRO2,
-  promis_10,
-  prtee,
-  paid_20,
-  psk,
-  psqi,
-  pss_4,
-  qol_stoma,
-  quickdash,
-  sccai,
-  snap_teacher,
-  snap_parent,
-  scl90,
-  scl90r,
-  sdq,
-  sf12,
-  sf36,
-  short_fes_i,
-  spadi,
-  simple_shoulder_test,
-  start_back_screening_tool,
-  stop_bang,
-  tampa,
-  ten_meter_walk_test,
-  visa_a,
-  visa_g,
-  visa_p,
-  yp_core,
-  zarit_12,
-  womac,
-})
+# Create definition files
+cat <<EOF > src/scores/bmi/definition/bmi_inputs.ts
+import { z } from 'zod'
+import type { ScoreInputSchemaType } from '../../../types'
+
+export const BMI_INPUTS = {
+  weight: { 
+    label: { en: 'Weight (kg)' },
+    type: z.number(),
+    unit: 'kg',
+  },
+  height: { 
+    label: { en: 'Height (cm)' },
+    type: z.number(),
+    unit: 'cm',
+  }
+} satisfies ScoreInputSchemaType
+EOF
+
+cat <<EOF > src/scores/bmi/definition/bmi_output.ts
+import { z } from 'zod'
+import type { ScoreOutputSchemaType } from '../../../types'
+
+export const BMI_OUTPUT = {
+  bmi: { 
+    label: { en: 'Body Mass Index (BMI)' },
+    type: z.number(), 
+    unit: 'kg/m²' 
+  }
+} satisfies ScoreOutputSchemaType
+EOF
+
+# Create README.md
+cat <<EOF > src/scores/bmi/README.md
+# Body Mass Index (BMI)
+
+## Description
+The Body Mass Index (BMI) is a calculation derived from weight and height.
+
+## Formula
+\`\`\`
+BMI = Weight (kg) / Height (m)^2
+\`\`\`
+EOF
+
+echo "✅ BMI Score files have been created successfully!"
+\`\`\`
+
+Here's the directory structure to better understand the file structure and imports/exports:
+\`\`\`
+Directory structure:
+└── awell-health-awell-score/
+    ├── README.md
+    ├── eslint.config.js
+    ├── jest.config.cjs
+    ├── LICENSE.md
+    ├── package.json
+    ├── tsconfig.json
+    ├── .eslintrc.json
+    ├── .npmignore
+    ├── .pnp.cjs
+    ├── .pnp.loader.mjs
+    ├── .prettierrc
+    ├── .yarnrc.yml
+    ├── src/
+    │   ├── index.ts
+    │   ├── classes/
+    │   │   ├── index.ts
+    │   │   ├── Score.ts
+    │   │   └── __tests__/
+    │   │       ├── README.md
+    │   │       └── ScoreClass.test.ts
+    │   ├── scores/
+    │   │   ├── library.test.ts
+    │   │   ├── library.ts
+    │   │   ├── 10_meter_walk_test/
+    │   │   │   ├── README.md
+    │   │   │   ├── 10_meter_walk_test.test.ts
+    │   │   │   ├── 10_meter_walk_test.ts
+    │   │   │   └── definition/
+    │   │   │       ├── 10_meter_walk_test_inputs.ts
+    │   │   │       ├── 10_meter_walk_test_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── acro/
+    │   │   │   ├── README.md
+    │   │   │   ├── acro.test.ts
+    │   │   │   ├── acro.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── acro_test_responses.ts
+    │   │   │   ├── definition/
+    │   │   │   │   ├── acro_inputs.ts
+    │   │   │   │   ├── acro_output.ts
+    │   │   │   │   ├── acro_subscales.ts
+    │   │   │   │   └── index.ts
+    │   │   │   └── helpers/
+    │   │   │       ├── calculate_scores.ts
+    │   │   │       └── index.ts
+    │   │   ├── age_calc/
+    │   │   │   ├── README.md
+    │   │   │   ├── age_calc.test.ts
+    │   │   │   ├── age_calc.ts
+    │   │   │   └── definition/
+    │   │   │       ├── age_calc_inputs.ts
+    │   │   │       ├── age_calc_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── AQ_10/
+    │   │   │   ├── README.md
+    │   │   │   ├── aq_10.test.ts
+    │   │   │   ├── aq_10.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── aq_10_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── aq_10_inputs.ts
+    │   │   │       ├── aq_10_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── asrs/
+    │   │   │   ├── README.md
+    │   │   │   ├── asrs.test.ts
+    │   │   │   ├── asrs.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── asrs_test_responses.ts
+    │   │   │   ├── definition/
+    │   │   │   │   ├── asrs_inputs.ts
+    │   │   │   │   ├── asrs_output.ts
+    │   │   │   │   ├── asrs_parts.ts
+    │   │   │   │   ├── asrs_subscales.ts
+    │   │   │   │   └── index.ts
+    │   │   │   └── helpers/
+    │   │   │       ├── calculate_part_scores.ts
+    │   │   │       ├── calculate_subscale_scores.ts
+    │   │   │       └── index.ts
+    │   │   ├── audit/
+    │   │   │   ├── README.md
+    │   │   │   ├── audit.test.ts
+    │   │   │   ├── audit.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── audit_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── audit_inputs.ts
+    │   │   │       ├── audit_output.ts
+    │   │   │       ├── audit_subscales.ts
+    │   │   │       └── index.ts
+    │   │   ├── basdai/
+    │   │   │   ├── README.md
+    │   │   │   ├── basdai.test.ts
+    │   │   │   ├── basdai.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── basdai_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── basdai_inputs.ts
+    │   │   │       ├── basdai_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── basfi/
+    │   │   │   ├── README.md
+    │   │   │   ├── basfi.test.ts
+    │   │   │   ├── basfi.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── basfi_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── basfi_inputs.ts
+    │   │   │       ├── basfi_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── beck/
+    │   │   │   ├── README.md
+    │   │   │   ├── beck.test.ts
+    │   │   │   ├── beck.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── beck_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── beck_inputs.ts
+    │   │   │       ├── beck_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── blcs/
+    │   │   │   ├── README.md
+    │   │   │   ├── blcs.test.ts
+    │   │   │   ├── blcs.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── blcs_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── blcs_inputs.ts
+    │   │   │       ├── blcs_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── bmi/
+    │   │   │   ├── index.ts
+    │   │   │   ├── metric/
+    │   │   │   │   ├── README.md
+    │   │   │   │   ├── bmi.schema.ts
+    │   │   │   │   ├── bmi.test.ts
+    │   │   │   │   └── bmi.ts
+    │   │   │   └── us/
+    │   │   │       ├── README.md
+    │   │   │       ├── bmi.schema.ts
+    │   │   │       ├── bmi.test.ts
+    │   │   │       └── bmi.ts
+    │   │   ├── bpses/
+    │   │   │   ├── README.md
+    │   │   │   ├── bpses.test.ts
+    │   │   │   ├── bpses.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── bpses_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── bpses_inputs.ts
+    │   │   │       ├── bpses_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── bwcs/
+    │   │   │   ├── README.md
+    │   │   │   ├── bwcs.test.ts
+    │   │   │   ├── bwcs.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── bwcs_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── bwcs_inputs.ts
+    │   │   │       ├── bwcs_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── cade_q/
+    │   │   │   ├── index.ts
+    │   │   │   └── short_version/
+    │   │   │       ├── README.md
+    │   │   │       ├── cade_q_sv.test.ts
+    │   │   │       ├── cade_q_sv.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── cade_q_sv_test_responses.ts
+    │   │   │       └── definition/
+    │   │   │           ├── cade_q_correct_answers.ts
+    │   │   │           ├── cade_q_inputs.ts
+    │   │   │           ├── cade_q_output.ts
+    │   │   │           └── index.ts
+    │   │   ├── caregiver_strain_index/
+    │   │   │   ├── README.md
+    │   │   │   ├── caregiver_strain_index.test.ts
+    │   │   │   ├── caregiver_strain_index.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── caregiver_strain_index_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── caregiver_strain_index_inputs.ts
+    │   │   │       ├── caregiver_strain_index_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── cat/
+    │   │   │   ├── README.md
+    │   │   │   ├── cat.test.ts
+    │   │   │   ├── cat.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── cat_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── cat_inputs.ts
+    │   │   │       ├── cat_interpretation.ts
+    │   │   │       ├── cat_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── ccq/
+    │   │   │   ├── README.md
+    │   │   │   ├── ccq.test.ts
+    │   │   │   ├── ccq.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── ccq_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── ccq_inputs.ts
+    │   │   │       ├── ccq_output.ts
+    │   │   │       ├── ccq_scales.ts
+    │   │   │       └── index.ts
+    │   │   ├── cdr/
+    │   │   │   ├── README.md
+    │   │   │   ├── cdr.test.ts
+    │   │   │   ├── cdr.ts
+    │   │   │   ├── cdr_score_algorithm.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── cdr_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── cdr_inputs.ts
+    │   │   │       ├── cdr_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── cfws/
+    │   │   │   ├── README.md
+    │   │   │   ├── cfws.test.ts
+    │   │   │   ├── cfws.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── cfws_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── cfws_inputs.ts
+    │   │   │       ├── cfws_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── CHA2DS2_VASc_Score/
+    │   │   │   ├── README.md
+    │   │   │   ├── CHA2DS2_VASc_Score.test.ts
+    │   │   │   ├── CHA2DS2_VASc_Score.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── CHA2DS2_VASc_Score_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── CHA2DS2_VASc_Score_inputs.ts
+    │   │   │       ├── CHA2DS2_VASc_Score_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── comi/
+    │   │   │   ├── index.ts
+    │   │   │   ├── back/
+    │   │   │   │   ├── README.md
+    │   │   │   │   ├── comi_back.test.ts
+    │   │   │   │   ├── comi_back.ts
+    │   │   │   │   ├── __testdata__/
+    │   │   │   │   │   └── comi_back_form_respones.ts
+    │   │   │   │   └── definition/
+    │   │   │   │       ├── comi_back_domains.ts
+    │   │   │   │       ├── comi_back_inputs.ts
+    │   │   │   │       ├── comi_back_output.ts
+    │   │   │   │       └── index.ts
+    │   │   │   └── neck/
+    │   │   │       ├── README.md
+    │   │   │       ├── comi_neck.test.ts
+    │   │   │       ├── comi_neck.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── comi_neck_respones.ts
+    │   │   │       └── definition/
+    │   │   │           ├── comi_neck_domains.ts
+    │   │   │           ├── comi_neck_inputs.ts
+    │   │   │           ├── comi_neck_output.ts
+    │   │   │           └── index.ts
+    │   │   ├── compass_31/
+    │   │   │   ├── README.md
+    │   │   │   ├── compass_31.test.ts
+    │   │   │   ├── compass_31.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── compass_31_test_responses.ts
+    │   │   │   ├── definition/
+    │   │   │   │   ├── compass_31_domains.ts
+    │   │   │   │   ├── compass_31_inputs.ts
+    │   │   │   │   ├── compass_31_output.ts
+    │   │   │   │   ├── compass_31_scoring_algorithm.ts
+    │   │   │   │   └── index.ts
+    │   │   │   └── helpers/
+    │   │   │       ├── calculate_domain_scores.ts
+    │   │   │       └── index.ts
+    │   │   ├── constant_murley_score/
+    │   │   │   ├── index.ts
+    │   │   │   └── orthotoolkit_version/
+    │   │   │       ├── README.md
+    │   │   │       ├── constant_murley_score.test.ts
+    │   │   │       ├── constant_murley_score.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── cms_test_responses.ts
+    │   │   │       └── definition/
+    │   │   │           ├── constant_murley_inputs.ts
+    │   │   │           ├── constant_murley_output.ts
+    │   │   │           ├── constant_murley_scales.ts
+    │   │   │           └── index.ts
+    │   │   ├── core_om/
+    │   │   │   ├── README.md
+    │   │   │   ├── core_om.test.ts
+    │   │   │   ├── core_om.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── core_om_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── core_om_inputs.ts
+    │   │   │       ├── core_om_output.ts
+    │   │   │       ├── core_om_subscales.ts
+    │   │   │       └── index.ts
+    │   │   ├── cpdi/
+    │   │   │   ├── README.md
+    │   │   │   ├── cpdi.test.ts
+    │   │   │   ├── cpdi.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── cpdi_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── cpdi_inputs.ts
+    │   │   │       ├── cpdi_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── csi/
+    │   │   │   ├── README.md
+    │   │   │   ├── csi.test.ts
+    │   │   │   ├── csi.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── csi_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── csi_inputs.ts
+    │   │   │       ├── csi_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── dast_10/
+    │   │   │   ├── README.md
+    │   │   │   ├── dast_10.test.ts
+    │   │   │   ├── dast_10.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── dast_10_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── dast_10_inputs.ts
+    │   │   │       ├── dast_10_interpretation.ts
+    │   │   │       ├── dast_10_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── dn4/
+    │   │   │   ├── README.md
+    │   │   │   ├── dn4.test.ts
+    │   │   │   ├── dn4.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── dn4_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── dn4_inputs.ts
+    │   │   │       ├── dn4_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── dri/
+    │   │   │   ├── README.md
+    │   │   │   ├── dri.test.ts
+    │   │   │   ├── dri.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── dri_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── dri_inputs.ts
+    │   │   │       ├── dri_output.ts
+    │   │   │       ├── dri_subscales.ts
+    │   │   │       └── index.ts
+    │   │   ├── epic_26/
+    │   │   │   ├── README.md
+    │   │   │   ├── epic_26.test.ts
+    │   │   │   ├── epic_26.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── epic_26_form_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── epic_26_conversion_table.ts
+    │   │   │       ├── epic_26_domains.ts
+    │   │   │       ├── epic_26_inputs.ts
+    │   │   │       ├── epic_26_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── eq5d/
+    │   │   │   ├── index.ts
+    │   │   │   ├── 3_level/
+    │   │   │   │   ├── README.md
+    │   │   │   │   ├── eq5d_3l.test.ts
+    │   │   │   │   ├── eq5d_3l.ts
+    │   │   │   │   ├── __testdata__/
+    │   │   │   │   │   └── eq5d_3l_test_responses.ts
+    │   │   │   │   └── definition/
+    │   │   │   │       ├── eq5d_3l_inputs.ts
+    │   │   │   │       ├── eq5d_3l_output.ts
+    │   │   │   │       └── index.ts
+    │   │   │   └── 5_level/
+    │   │   │       ├── README.md
+    │   │   │       ├── eq5d_5l.test.ts
+    │   │   │       ├── eq5d_5l.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── eq5d_5l_test_responses.ts
+    │   │   │       ├── calculate_utility_values/
+    │   │   │       │   └── Belgium/
+    │   │   │       │       ├── BE_value_set.ts
+    │   │   │       │       ├── calculate_be_utility_value.test.ts
+    │   │   │       │       └── calculate_be_utility_value.ts
+    │   │   │       └── definition/
+    │   │   │           ├── eq5d_5l_inputs.ts
+    │   │   │           ├── eq5d_5l_output.ts
+    │   │   │           └── index.ts
+    │   │   ├── ess/
+    │   │   │   ├── README.md
+    │   │   │   ├── ess.test.ts
+    │   │   │   ├── ess.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── ess_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── ess_inputs.ts
+    │   │   │       ├── ess_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── faam/
+    │   │   │   ├── README.md
+    │   │   │   ├── faam.test.ts
+    │   │   │   ├── faam.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── faam_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── faam_inputs.ts
+    │   │   │       ├── faam_output.ts
+    │   │   │       ├── faam_subscales.ts
+    │   │   │       └── index.ts
+    │   │   ├── fes_i/
+    │   │   │   ├── index.ts
+    │   │   │   └── short_version/
+    │   │   │       ├── README.md
+    │   │   │       ├── short_fes_i.test.ts
+    │   │   │       ├── short_fes_i.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── short_fes_i_test_responses.ts
+    │   │   │       └── definition/
+    │   │   │           ├── index.ts
+    │   │   │           ├── short_fes_i_inputs.ts
+    │   │   │           └── short_fes_i_output.ts
+    │   │   ├── fnd/
+    │   │   │   ├── README.md
+    │   │   │   ├── fnd.test.ts
+    │   │   │   ├── fnd.ts
+    │   │   │   ├── __testdata__/
+    │   │   │   │   └── fnd_test_responses.ts
+    │   │   │   └── definition/
+    │   │   │       ├── fnd_inputs.ts
+    │   │   │       ├── fnd_interpretation.ts
+    │   │   │       ├── fnd_output.ts
+    │   │   │       └── index.ts
+    │   │   ├── foot_function_index/
+    │   │   │   ├── index.ts
+    │   │   │   └── 5pt_version/
+    │   │   │       ├── README.md
+    │   │   │       ├── foot_function_index_5pt.test.ts
+    │   │   │       ├── foot_function_index_5pt.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── foot_function_index_test_responses.ts
+    │   │   │       └── definition/
+    │   │   │           ├── foot_function_index_output.ts
+    │   │   │           ├── foot_function_index_subscales.ts
+    │   │   │           ├── foot_function_inputs.ts
+    │   │   │           └── index.ts
+    │   │   ├── forgotten_joint_score_12/
+    │   │   │   ├── index.ts
+    │   │   │   ├── hip/
+    │   │   │   │   ├── README.md
+    │   │   │   │   ├── forgotten_joint_score_12_hip.test.ts
+    │   │   │   │   ├── forgotten_joint_score_hip_12.ts
+    │   │   │   │   ├── __testdata__/
+    │   │   │   │   │   └── forgotten_joint_score_12_hip_test_responses.ts
+    │   │   │   │   └── definition/
+    │   │   │   │       ├── forgotten_joint_score_12_hip_inputs.ts
+    │   │   │   │       ├── forgotten_joint_score_12_hip_output.ts
+    │   │   │   │       └── index.ts
+    │   │   │   └── knee/
+    │   │   │       ├── README.md
+    │   │   │       ├── forgotten_joint_score_12_knee.test.ts
+    │   │   │       ├── forgotten_joint_score_knee_12.ts
+    │   │   │       ├── __testdata__/
+    │   │   │       │   └── forgotten_joint_score_12_knee_test_responses.ts
+    │   │   │       └── definition/
+    │   │   │           ├── forgotten_joint_score_12_knee_inputs.ts
+    │   │   │           ├── forgotten_joint_score_12_knee_output.ts
+    │   │   │           └── index.ts
+    │   └── types/
+    │       ├── index.ts
+    │       ├── Label.types.ts
+    │       ├── Score.types.ts
+    │       ├── ScoreInput.types.ts
+    │       └── ScoreOutput.types.ts
+\`\`\`
 
 
-
+Here are examples of some scores that can help you generate the Typescript code:
+\`\`\`
 ================================================
 File: src/scores/10_meter_walk_test/10_meter_walk_test.test.ts
 ================================================
@@ -6198,6 +6482,7 @@ File: src/scores/blcs/definition/index.ts
 ================================================
 export { BLCS_INPUTS } from './blcs_inputs'
 export { BLCS_OUTPUT } from './blcs_output'
+\`\`\`
 `
 
 main(process.argv[2])

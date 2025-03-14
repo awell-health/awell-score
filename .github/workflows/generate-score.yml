@@ -7,22 +7,25 @@ jobs:
   generate-score:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install --include=dev
 
-      - name: Run AI Agent to Generate Score Code
+      - name: Run AI Agent to generate score code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
         run: node scripts/generate-score.mjs "${{ github.event.issue.number }}"
+
+      - name: Execute bash to generate score files
+        run: bash create_score.sh
 
       - name: Commit and Push Changes
         run: |
