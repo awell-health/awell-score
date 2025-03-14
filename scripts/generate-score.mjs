@@ -159,8 +159,6 @@ BMI = Weight \\(kg\\) / Height \\(m\\)^2\n
 - Input the height in centimeters.\n
 ## Output\n
 - The BMI score (kg/m²)\n' > src/scores/bmi/README.md
-
-echo "BMI Score files have been created successfully!"
 \`\`\`
 
 Here's the directory structure to better understand the file structure and imports/exports:
