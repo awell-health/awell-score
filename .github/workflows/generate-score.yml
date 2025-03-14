@@ -11,12 +11,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install --include=dev
+        run: yarn
+
+      - name: Install script dependencies
+        run: yarn add @octokit/rest openai yaml
 
       - name: Run AI Agent to generate score code
         env:
@@ -35,9 +38,6 @@ jobs:
           SAFE_TITLE=$(echo "$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
           BRANCH_NAME="feature/issue-${ISSUE_NUMBER}-${SAFE_TITLE}"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-
-      - name: Bypass Husky hooks
-        run: git config --global core.hooksPath /dev/null
 
       - name: Commit and Push Changes
         run: |
