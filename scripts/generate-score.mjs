@@ -68,6 +68,10 @@ You are an expert TypeScript developer. Generate a **Bash script** that:
    - \`definition/${parsedBody.score_name}_subscales.ts\` // if there are subscales or domains
    - \`README.md\` - containing documentation and instructions about the score.
 3. Writes the appropriate content for each file in TypeScript.
+4. Ensures that **special characters** (such as parentheses, asterisks, and markdown syntax) do not cause syntax errors in the Bash script.
+   - **Use '\' to escape special characters when needed.
+   - **Use \`printf\` instead of \`cat <<EOF\`** where markdown content contains special characters.
+   - **Use a quoted \`EOF\` (i.e., \`cat <<"EOF"\`)** for multi-line content that may have special symbols.
 
 Output must follow this structure:
 ---
@@ -87,7 +91,7 @@ A simple bash script output example can look like this (example for bmi score):
 #!/bin/bash
 
 # Create directories
-mkdir -p src/scores/<bmi>/definition
+mkdir -p src/scores/bmi/definition
 
 # Create index.ts
 cat <<EOF > src/scores/bmi/index.ts
@@ -106,7 +110,7 @@ export const bmi: ScoreType<typeof BMI_INPUTS, typeof BMI_OUTPUT> = {
   outputSchema: BMI_OUTPUT,
   calculate: ({ data }) => {
     return {
-      bmi: data.weight / (data.height ** 2),
+      bmi: data.weight / ((data.height / 100) ** 2),
     }
   }
 }
@@ -120,12 +124,12 @@ import type { ScoreInputSchemaType } from '../../../types'
 export const BMI_INPUTS = {
   weight: { 
     label: { en: 'Weight (kg)' },
-    type: z.number(),
+    type: z.number().nonnegative(),
     unit: 'kg',
   },
   height: { 
     label: { en: 'Height (cm)' },
-    type: z.number(),
+    type: z.number().positive(),
     unit: 'cm',
   }
 } satisfies ScoreInputSchemaType
@@ -144,18 +148,17 @@ export const BMI_OUTPUT = {
 } satisfies ScoreOutputSchemaType
 EOF
 
-# Create README.md
-cat <<EOF > src/scores/bmi/README.md
-# Body Mass Index (BMI)
-
-## Description
-The Body Mass Index (BMI) is a calculation derived from weight and height.
-
-## Formula
-\`\`\`
-BMI = Weight (kg) / Height (m)^2
-\`\`\`
-EOF
+# Create README.md using printf to handle special characters
+printf '# Body Mass Index (BMI)\n
+## Description\n
+The Body Mass Index (BMI) is a calculation derived from weight and height.\n
+## Formula\n
+BMI = Weight \\(kg\\) / Height \\(m\\)^2\n
+## Instructions\n
+- Input the weight in kilograms.
+- Input the height in centimeters.\n
+## Output\n
+- The BMI score (kg/m²)\n' > src/scores/bmi/README.md
 
 echo "✅ BMI Score files have been created successfully!"
 \`\`\`
