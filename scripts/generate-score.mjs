@@ -28,7 +28,7 @@ async function generateScoreCode(issue) {
   // const parsedBody = yaml.parse(body)
 
   const parsedBody = {
-    score_name: 'bmi',
+    score_name: 'bmi_test',
     description: 'BMI = Weight in kg / Height in m^2',
   }
 
