@@ -16,16 +16,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: yarn
-
-      - name: Install script dependencies
-        run: yarn add @octokit/rest openai yaml
+        run: yarn install --immutable
 
       - name: Run AI Agent to generate score code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-        run: node scripts/generate-score.mjs
+        run: yarn dlx tsx scripts/generate-score.mjs
 
       - name: Execute bash to generate score files
         run: bash create_score.sh
