@@ -22,19 +22,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-        run: node scripts/generate-score.mjs "${{ github.event.issue.number }}"
+        run: node scripts/generate-score.mjs
 
       - name: Execute bash to generate score files
         run: bash create_score.sh
+
+      - name: Format branch name
+        id: branch
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          SAFE_TITLE=$(echo "$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+          BRANCH_NAME="feature/${ISSUE_NUMBER}-${SAFE_TITLE}"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git checkout -b feature/${{ github.event.issue.title }}
-          git add src/scores/${{ github.event.issue.title }}
+          git checkout -b $BRANCH_NAME
+          git add src/scores/
           git commit -m "Auto-generate score: ${{ github.event.issue.title }}"
-          git push origin feature/${{ github.event.issue.title }}
+          git push origin $BRANCH_NAME
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
