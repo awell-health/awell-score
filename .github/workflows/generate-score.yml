@@ -48,6 +48,6 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: $BRANCH_NAME
+          branch: ${{ env.BRANCH_NAME }}
           title: "Auto-generated score: ${{ github.event.issue.title }}"
           body: "This PR was automatically generated from issue #${{ github.event.issue.number }}. Please review and make necessary adjustments."
