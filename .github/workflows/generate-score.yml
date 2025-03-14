@@ -55,5 +55,4 @@ jobs:
           body: "This PR was automatically generated from issue #${{ github.event.issue.number }}. Please review and make necessary adjustments."
           delete-branch: true
           push-to-fork: false
-          squash-merge: true
           draft: true
