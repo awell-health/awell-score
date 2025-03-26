@@ -23,7 +23,7 @@ const createScore = (inputSchema?: ScoreInputSchemaType) => {
           ],
         },
       },
-      dateInput: { type: z.string().date().optional() },
+      dateInput: { type: z.coerce.date().optional() },
       stringInput: { type: z.string().optional() },
       enumStringInput: {
         type: z

@@ -17,7 +17,7 @@ describe('Casting inputs to exact types', () => {
         ],
       },
     },
-    dateInput: { type: z.string().date().optional() },
+    dateInput: { type: z.coerce.date().optional() },
     stringInput: { type: z.string().optional() },
     enumStringInput: {
       type: z

@@ -23,12 +23,11 @@ export const simulateScoreInput = <InputSchema extends ScoreInputSchemaType>(
     const inputType = getZodType()
 
     if (inputType instanceof z.ZodString) {
-      const isDate = inputType._def.checks.find(check => check.kind === 'date')
-      if (isDate) {
-        return simulateDateInput()
-      }
-
       return simulateStringInput()
+    }
+
+    if (inputType instanceof z.ZodDate) {
+      return simulateDateInput()
     }
 
     if (inputType instanceof z.ZodBoolean) {

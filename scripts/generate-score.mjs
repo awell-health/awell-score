@@ -1997,7 +1997,7 @@ import { ScoreInputSchemaType } from '../../../types'
 
 export const AGE_CALC_INPUTS = {
   date_of_birth: {
-    type: z.string().date(),
+    type: z.coerce().date(),
     label: {
       nl: 'Geboortedatum',
       en: 'Date of Birth',

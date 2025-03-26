@@ -68,7 +68,7 @@ describe('inputSchemaToApiInputSchema', () => {
       const inputSchema = {
         inputId: {
           label: { en: 'inputId' },
-          type: z.string().date().optional(),
+          type: z.coerce.date().optional(),
         },
       }
       const result = inputSchemaToApiInputSchema(inputSchema)
