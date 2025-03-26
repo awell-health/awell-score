@@ -134,23 +134,23 @@ export const inputSchemaToApiInputSchema = (
     }
 
     if (inputType instanceof z.ZodString) {
-      const isDate = inputType._def.checks.find(check => check.kind === 'date')
-      if (isDate) {
-        jsonSchema[key] = {
-          ...baseJson,
-          input_type: {
-            type: 'date',
-            required: !isOptional,
-          },
-        }
-      } else {
-        jsonSchema[key] = {
-          ...baseJson,
-          input_type: {
-            type: 'string',
-            required: !isOptional,
-          },
-        }
+      jsonSchema[key] = {
+        ...baseJson,
+        input_type: {
+          type: 'string',
+          required: !isOptional,
+        },
+      }
+      continue
+    }
+
+    if (inputType instanceof z.ZodDate) {
+      jsonSchema[key] = {
+        ...baseJson,
+        input_type: {
+          type: 'date',
+          required: !isOptional,
+        },
       }
       continue
     }

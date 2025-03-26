@@ -10,14 +10,13 @@ export const age_calc: ScoreType<
   inputSchema: AGE_CALC_INPUTS,
   outputSchema: AGE_CALC_OUTPUT,
   calculate: ({ data }) => {
-    const dateOfBirth = new Date(data.date_of_birth)
     const today = new Date()
 
-    const age = today.getFullYear() - dateOfBirth.getFullYear()
+    const age = today.getFullYear() - data.date_of_birth.getFullYear()
     const isBirthdayPassed =
-      today.getMonth() > dateOfBirth.getMonth() ||
-      (today.getMonth() === dateOfBirth.getMonth() &&
-        today.getDate() >= dateOfBirth.getDate())
+      today.getMonth() > data.date_of_birth.getMonth() ||
+      (today.getMonth() === data.date_of_birth.getMonth() &&
+        today.getDate() >= data.date_of_birth.getDate())
 
     const adjustedAge = isBirthdayPassed ? age : age - 1
 

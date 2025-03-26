@@ -149,7 +149,7 @@ The following types are supported:
 - `z.boolean()` for boolean inputs
 - `z.number()` for numeric inputs (supports defining a range with `.min()` and `.max()`)
 - `z.string()` for string inputs
-- `z.string().date()` for date inputs
+- `z.coerce().date()` for date inputs
 - `z.union([z.literal(number), z.literal(number), ...])` for numeric inputs with a fixed set of options
 - `z.union([z.literal(string), z.literal(string), ...])` for string inputs with a fixed set of options
 - `z.array(z.union([z.literal(number), z.literal(number), ...]))` for numeric arrays with a fixed set of options
