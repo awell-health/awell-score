@@ -26,7 +26,7 @@ export const simulateScoreInput = <InputSchema extends ScoreInputSchemaType>(
       return simulateStringInput()
     }
 
-    if (inputType instanceof z.ZodDate) {
+    if (inputType instanceof z.ZodPipeline) {
       return simulateDateInput()
     }
 

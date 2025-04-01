@@ -68,7 +68,7 @@ describe('inputSchemaToApiInputSchema', () => {
       const inputSchema = {
         inputId: {
           label: { en: 'inputId' },
-          type: z.coerce.date().optional(),
+          type: z.string().optional().pipe(z.coerce.date().optional()),
         },
       }
       const result = inputSchemaToApiInputSchema(inputSchema)
@@ -80,6 +80,27 @@ describe('inputSchemaToApiInputSchema', () => {
           input_type: {
             type: 'date',
             required: false,
+          },
+        },
+      ])
+    })
+
+    it('should handle required', () => {
+      const inputSchema = {
+        inputId: {
+          label: { en: 'inputId' },
+          type: z.string().pipe(z.coerce.date()),
+        },
+      }
+      const result = inputSchemaToApiInputSchema(inputSchema)
+
+      expect(result).toEqual([
+        {
+          id: 'inputId',
+          label: { en: 'inputId' },
+          input_type: {
+            type: 'date',
+            required: true,
           },
         },
       ])

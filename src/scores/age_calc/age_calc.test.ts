@@ -2,6 +2,8 @@ import { ScoreLibrary } from '../library'
 import { age_calc } from './age_calc'
 import { Score } from '../../classes'
 import MockDate from 'mockdate'
+import { ZodError } from 'zod'
+
 const calculate_age = new Score(age_calc)
 
 describe('age_calc', function () {
@@ -37,6 +39,49 @@ describe('age_calc', function () {
       const configured_calculation_id = Object.keys(outcome)
 
       expect(configured_calculation_id).toEqual(EXPECTED_CALCULATION_ID)
+    })
+  })
+
+  describe('a score is only calculated when all mandatory fields are entered', function () {
+    describe('when an empty response is passed', function () {
+      it('should return a ZodError', function () {
+        const outcome = calculate_age.calculate({
+          payload: {},
+          opts: {
+            nullOnMissingInputs: true,
+          },
+        })
+
+        expect(outcome).toEqual({
+          AGE: null,
+        })
+      })
+    })
+
+    describe('when an invalid date is passed', function () {
+      it('should return a ZodError', function () {
+        try {
+          calculate_age.calculate({
+            payload: { date_of_birth: 'invalid' },
+            opts: {
+              nullOnMissingInputs: true,
+            },
+          })
+        } catch (error) {
+          expect(error).toBeInstanceOf(ZodError)
+
+          const err = error as ZodError
+          expect(err.issues).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                code: 'invalid_date',
+                message: 'Invalid date',
+                path: ['date_of_birth'],
+              }),
+            ]),
+          )
+        }
+      })
     })
   })
 

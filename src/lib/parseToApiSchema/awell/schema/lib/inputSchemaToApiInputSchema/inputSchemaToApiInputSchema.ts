@@ -144,12 +144,14 @@ export const inputSchemaToApiInputSchema = (
       continue
     }
 
-    if (inputType instanceof z.ZodDate) {
+    if (inputType instanceof z.ZodPipeline) {
+      const isDateOptional = inputType._def.in instanceof z.ZodOptional
+
       jsonSchema[key] = {
         ...baseJson,
         input_type: {
           type: 'date',
-          required: !isOptional,
+          required: !isDateOptional,
         },
       }
       continue

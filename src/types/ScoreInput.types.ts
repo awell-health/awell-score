@@ -18,7 +18,9 @@ export interface BooleanInputType extends BaseInputType {
 }
 
 export interface DateInputType extends BaseInputType {
-  type: z.ZodOptional<z.ZodDate> | z.ZodDate
+  type:
+    | z.ZodPipeline<z.ZodString, z.ZodDate>
+    | z.ZodPipeline<z.ZodOptional<z.ZodString>, z.ZodOptional<z.ZodDate>>
 }
 
 export interface SimpleNumberInputType extends BaseInputType {
