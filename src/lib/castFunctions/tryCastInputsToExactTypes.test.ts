@@ -41,7 +41,7 @@ describe('Casting inputs to exact types', () => {
     const input = {
       simpleNumberInput: 1,
       enumNumberInput: 2,
-      dateInput: '2024-01-jhl01',
+      dateInput: '2024-01-01',
       stringInput: 'hello',
       enumStringInput: 'green',
       booleanInput: true,
@@ -57,7 +57,7 @@ describe('Casting inputs to exact types', () => {
     const input = {
       simpleNumberInput: '1',
       enumNumberInput: '2',
-      dateInput: 'hello',
+      dateInput: '2024/01/01',
       stringInput: 3,
       enumStringInput: 'green',
       booleanInput: 'true',
@@ -70,7 +70,7 @@ describe('Casting inputs to exact types', () => {
     expect(result).toEqual({
       simpleNumberInput: 1,
       enumNumberInput: 2,
-      dateInput: 'hello',
+      dateInput: '2024/01/01',
       stringInput: '3',
       enumStringInput: 'green',
       booleanInput: true,
