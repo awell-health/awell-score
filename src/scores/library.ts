@@ -66,7 +66,6 @@ import { iief5 } from './iief5/iief5'
 import { ikdc } from './ikdc/ikdc'
 import { ipss } from './ipss/ipss'
 import { isi } from './isi/isi'
-import { k_bild } from './k_bild/k_bild'
 import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
 import { koos_ps } from './koos_ps/koos_ps'
 import { mds_updrs } from './mds_updrs/mds_updrs'
@@ -207,7 +206,6 @@ export const ScoreLibrary = createScoreLibrary({
   ikdc,
   isi,
   ipss,
-  k_bild,
   KCCQ_12,
   koos_ps,
   korq,
