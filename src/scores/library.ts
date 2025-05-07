@@ -68,6 +68,7 @@ import { ipss } from './ipss/ipss'
 import { isi } from './isi/isi'
 import { KCCQ_12 } from './KCCQ_12/KCCQ_12'
 import { koos_ps } from './koos_ps/koos_ps'
+import { koos } from './koos/koos'
 import { mds_updrs } from './mds_updrs/mds_updrs'
 import { mini_best_test } from './mini_best_test/mini_best_test'
 import { mfis } from './mfis/mfis'
@@ -208,6 +209,7 @@ export const ScoreLibrary = createScoreLibrary({
   ipss,
   KCCQ_12,
   koos_ps,
+  koos,
   korq,
   mds_updrs,
   mini_best_test,
