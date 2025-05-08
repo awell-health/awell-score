@@ -10,7 +10,7 @@ import {
 import { koos } from './koos'
 
 const KOOS_WORST_SCORE = 0
-const KOOS_MEDIAN_SCORE = 59.7
+const KOOS_MEDIAN_SCORE = 50
 const KOOS_BEST_SCORE = 100
 
 const koos_calculation = new Score(koos)
@@ -23,13 +23,48 @@ describe('koos', function () {
   describe('the score includes the correct input fields', function () {
     it('should use the correct input fields', function () {
       const EXPECTED_CALCULATION_INPUT_IDS = [
-        '1_rise_from_bed',
-        '2_socks',
-        '3_rise_from_chair',
-        '4_pickup_from_floor',
-        '5_turn_on_knee',
-        '6_kneel',
-        '7_staying_squat',
+        'P1',
+        'P2',
+        'P3',
+        'P4',
+        'P5',
+        'P6',
+        'P7',
+        'P8',
+        'P9',
+        'Sy1',
+        'Sy2',
+        'Sy3',
+        'Sy4',
+        'Sy5',
+        'Sy6',
+        'Sy7',
+        'A1',
+        'A2',
+        'A3',
+        'A4',
+        'A5',
+        'A6',
+        'A7',
+        'A8',
+        'A9',
+        'A10',
+        'A11',
+        'A12',
+        'A13',
+        'A14',
+        'A15',
+        'A16',
+        'A17',
+        'Sp1',
+        'Sp2',
+        'Sp3',
+        'Sp4',
+        'Sp5',
+        'Q1',
+        'Q2',
+        'Q3',
+        'Q4',
       ]
 
       const configured_calculation_input_ids = Object.keys(koos.inputSchema)
@@ -43,14 +78,13 @@ describe('koos', function () {
   describe('each calculated score includes the correct output result and correct score title', function () {
     const outcome = koos_calculation.calculate({ payload: min_response })
 
-    it('should calculate a single score', function () {
-      expect(Object.keys(outcome).length).toEqual(1)
+    it('should calculate a 5 score', function () {
+      expect(Object.keys(outcome).length).toEqual(5)
     })
 
     it('should have the correct calculation id', function () {
       const configured_calculation_id = Object.keys(outcome)
-
-      expect(configured_calculation_id).toEqual(['KOOS'])
+      expect(configured_calculation_id).toEqual(['PAIN', 'SYMPTOMS', 'ADL_FUNCTION', 'SPORT_AND_RECREATION_FUNCTION', 'QUALITY_OF_LIFE'])
     })
   })
 
@@ -61,8 +95,13 @@ describe('koos', function () {
           payload: min_response,
         })
 
-        expect(score.KOOS).toEqual(KOOS_BEST_SCORE)
+        expect(score.PAIN).toEqual(KOOS_BEST_SCORE)
+        expect(score.SYMPTOMS).toEqual(KOOS_BEST_SCORE)
+        expect(score.ADL_FUNCTION).toEqual(KOOS_BEST_SCORE)
+        expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(KOOS_BEST_SCORE)
+        expect(score.QUALITY_OF_LIFE).toEqual(KOOS_BEST_SCORE)
       })
+
     })
 
     describe('when called with a median response', function () {
@@ -71,7 +110,11 @@ describe('koos', function () {
           payload: median_response,
         })
 
-        expect(score.KOOS).toEqual(KOOS_MEDIAN_SCORE)
+        expect(score.PAIN).toEqual(KOOS_MEDIAN_SCORE)
+        expect(score.SYMPTOMS).toEqual(KOOS_MEDIAN_SCORE)
+        expect(score.ADL_FUNCTION).toEqual(KOOS_MEDIAN_SCORE)
+        expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(KOOS_MEDIAN_SCORE)
+        expect(score.QUALITY_OF_LIFE).toEqual(KOOS_MEDIAN_SCORE)
       })
     })
 
@@ -81,7 +124,11 @@ describe('koos', function () {
           payload: max_response,
         })
 
-        expect(score.KOOS).toEqual(KOOS_WORST_SCORE)
+        expect(score.PAIN).toEqual(KOOS_WORST_SCORE)
+        expect(score.SYMPTOMS).toEqual(KOOS_WORST_SCORE)
+        expect(score.ADL_FUNCTION).toEqual(KOOS_WORST_SCORE)
+        expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(KOOS_WORST_SCORE)
+        expect(score.QUALITY_OF_LIFE).toEqual(KOOS_WORST_SCORE)
       })
     })
 
@@ -91,9 +138,17 @@ describe('koos', function () {
           payload: random_response,
         })
 
-        const EXPECTED_SCORE = 64.7
+        const EXPECTED_SCORE_PAIN = 58.3
+        const EXPECTED_SCORE_SYMPTOMS = 57.1
+        const EXPECTED_SCORE_ADL_FUNCTION = 57.4
+        const EXPECTED_SCORE_SPORT_AND_RECREATION_FUNCTION = 80
+        const EXPECTED_SCORE_QUALITY_OF_LIFE = 62.5
 
-        expect(score.KOOS).toEqual(EXPECTED_SCORE)
+        expect(score.PAIN).toEqual(EXPECTED_SCORE_PAIN)
+        expect(score.SYMPTOMS).toEqual(EXPECTED_SCORE_SYMPTOMS)
+        expect(score.ADL_FUNCTION).toEqual(EXPECTED_SCORE_ADL_FUNCTION)
+        expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(EXPECTED_SCORE_SPORT_AND_RECREATION_FUNCTION)
+        expect(score.QUALITY_OF_LIFE).toEqual(EXPECTED_SCORE_QUALITY_OF_LIFE)
       })
     })
   })
@@ -114,7 +169,7 @@ describe('koos', function () {
         expect(() =>
           koos_calculation.calculate({
             payload: {
-              '1_rise_from_bed': "I'm not a number",
+              'P1': "I'm not a number",
             },
           }),
         ).toThrow(ZodError)
@@ -125,7 +180,7 @@ describe('koos', function () {
         expect(() =>
           koos_calculation.calculate({
             payload: {
-              '1_rise_from_bed': -1,
+              'P1': -1,
             },
           }),
         ).toThrow(ZodError)
@@ -136,7 +191,7 @@ describe('koos', function () {
         expect(() =>
           koos_calculation.calculate({
             payload: {
-              '1_rise_from_bed': 5,
+              'P1': 5,
             },
           }),
         ).toThrow(ZodError)
