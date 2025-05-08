@@ -81,7 +81,7 @@ const basicReverseType = {
 export const KOOS_INPUTS = {
   'P1': {
     label: {
-      nl: 'Hoe vaak is uw knie pijnlijk?',
+      nl: 'Hoe vaak heeft u pijn aan uw knie?',
       en: 'How often is your knee painful?',
       fr: 'À quelle fréquence est votre genou douloureux?',
     },
@@ -89,7 +89,7 @@ export const KOOS_INPUTS = {
   },
   'P2': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het draaien op uw knie?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij draaien op een belaste knie?',
       en: 'What degree of pain have you experienced the last week when twisting/pivoting on your knee?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en tournant sur votre genou?',
     },
@@ -97,7 +97,7 @@ export const KOOS_INPUTS = {
   },
   'P3': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het volledig strekken van de knie?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het helemaal strekken van de knie?',
       en: 'What degree of pain have you experienced the last week when straightening knee fully?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en étendant complètement le genou?',
     },
@@ -105,7 +105,7 @@ export const KOOS_INPUTS = {
   },
   'P4': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het volledig buigen van de knie?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het helemaal buigen van de knie?',
       en: 'What degree of pain have you experienced the last week when bending knee fully?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en pliant complètement le genou?',
     },
@@ -113,7 +113,7 @@ export const KOOS_INPUTS = {
   },
   'P5': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het lopen op een vlakke ondergrond?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het lopen op een vlakke ondergrond?',
       en: 'What degree of pain have you experienced the last week when walking on flat surface?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en marchant sur une surface plane?',
     },
@@ -121,7 +121,7 @@ export const KOOS_INPUTS = {
   },
   'P6': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het trap op of af lopen?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het trap op of af lopen?',
       en: 'What degree of pain have you experienced the last week when going up or down stairs?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en montant ou descendant les escaliers?',
     },
@@ -129,7 +129,7 @@ export const KOOS_INPUTS = {
   },
   'P7': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren `s nachts in bed?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren `s nachts in bed?',
       en: 'What degree of pain have you experienced the last week when at night while in bed?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière la nuit au lit?',
     },
@@ -137,7 +137,7 @@ export const KOOS_INPUTS = {
   },
   'P8': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het zitten of liggen?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het zitten of liggen?',
       en: 'What degree of pain have you experienced the last week when sitting or lying?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en position assise ou couchée?',
     },
@@ -145,7 +145,7 @@ export const KOOS_INPUTS = {
   },
   'P9': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het rechtop staan?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het rechtop staan?',
       en: 'What degree of pain have you experienced the last week when standing upright?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en se tenant debout?',
     },
@@ -387,7 +387,7 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'Hoe vaak bent u zich bewust van uw knieproblemen?',
       en: 'How often are you aware of your knee problems?',
-      fr: 'À quelle fréquence êtes-vous conscient de vos problèmes de genou?',
+      fr: 'Pensez-vous souvent à votre problème de genou?',
     },
     ...timeType,
   },
@@ -395,7 +395,7 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'Heeft u uw levensstijl aangepast om activiteiten te vermijden die mogelijk schadelijk zijn voor uw knie?',
       en: 'Have you modified your lifestyle to avoid potentially damaging activities to your knee?',
-      fr: 'Avez-vous modifié votre mode de vie pour éviter les activités potentiellement dangereuses pour votre genou?',
+      fr: 'Avez-vous modifié votre façon de vivre pour éviter les activités qui pourraient aggraver votre problème de genou?',
     },
     type: z.union([
       z.literal(0),
@@ -418,7 +418,7 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'Hoeveel last heeft u van gebrek aan vertrouwen in uw knie?',
       en: 'How troubled are you with lack of confidence in your knee?',
-      fr: 'À quel point le manque de confiance en votre genou vous dérange-t-il?',
+      fr: 'Est-ce qu\'un manque de confiance dans votre genou vous gêne?',
     },
     type: z.union([
       z.literal(0),
@@ -430,9 +430,9 @@ export const KOOS_INPUTS = {
     uiOptions: {
       options: [
         { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all', fr: 'Pas du tout' } },
-        { value: 1, label: { nl: 'Een beetje', en: 'Mildly', fr: 'Légèrement' } },
+        { value: 1, label: { nl: 'Een beetje', en: 'Mildly', fr: 'Un peu' } },
         { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
-        { value: 3, label: { nl: 'Ernstig', en: 'Severely', fr: 'Sévèrement' } },
+        { value: 3, label: { nl: 'Ernstig', en: 'Severely', fr: 'Beaucoup' } },
         { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Totalement' } },
       ],
     },
@@ -441,8 +441,23 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'In het algemeen, hoeveel moeite heeft u met uw knie?',
       en: 'In general, how much difficulty do you have with your knee?',
-      fr: 'En général, à quel point avez-vous des difficultés avec votre genou?',
+      fr: 'Finalement, êtes-vous gêné(e) par votre genou?',
     },
-    ...type,
+    type: z.union([
+      z.literal(0),
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+    ]),
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all', fr: 'Pas du tout' } },
+        { value: 1, label: { nl: 'Een beetje', en: 'Mildly', fr: 'Un peu' } },
+        { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
+        { value: 3, label: { nl: 'Ernstig', en: 'Severely', fr: 'Beaucoup' } },
+        { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Extrêmement' } },
+      ],
+    },
   },
 } satisfies ScoreInputSchemaType
