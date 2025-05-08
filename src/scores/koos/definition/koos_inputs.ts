@@ -1,14 +1,16 @@
 import { z } from 'zod'
 import { EnumNumberInputType, ScoreInputSchemaType } from '../../../types'
 
+const baseNumericInputType = z.union([
+  z.literal(0),
+  z.literal(1),
+  z.literal(2),
+  z.literal(3),
+  z.literal(4),
+])
+
 const type = {
-  type: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-  ]),
+  type: baseNumericInputType,
   uiOptions: {
     options: [
       { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Jamais' } },
@@ -21,13 +23,7 @@ const type = {
 } satisfies EnumNumberInputType
 
 const timeType = {
-  type: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-  ]),
+  type: baseNumericInputType,
   uiOptions: {
     options: [
       { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
@@ -40,13 +36,7 @@ const timeType = {
 } satisfies EnumNumberInputType
 
 const basicType = {
-  type: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-  ]),
+  type: baseNumericInputType,
   uiOptions: {
     options: [
       { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
@@ -59,13 +49,7 @@ const basicType = {
 } satisfies EnumNumberInputType
 
 const basicReverseType = {
-  type: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-  ]),
+  type: baseNumericInputType,
   uiOptions: {
     options: [
       { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
@@ -385,78 +369,70 @@ export const KOOS_INPUTS = {
   },
   'Q1': {
     label: {
-      nl: 'Hoe vaak bent u zich bewust van uw knieproblemen?',
+      nl: 'Hoe vaak wordt u aan uw knie herinnerd?',
       en: 'How often are you aware of your knee problems?',
       fr: 'Pensez-vous souvent à votre problème de genou?',
     },
-    ...timeType,
+    type: baseNumericInputType,
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+        { value: 1, label: { nl: 'Elke maand', en: 'Monthly', fr: 'Une fois par mois' } },
+        { value: 2, label: { nl: 'Elke week', en: 'Weekly', fr: 'Une fois par semaine' } },
+        { value: 3, label: { nl: 'Elke dag', en: 'Daily', fr: 'Tous les jours' } },
+        { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Tout le temps' } },
+      ],
+    },
   },
   'Q2': {
     label: {
-      nl: 'Heeft u uw levensstijl aangepast om activiteiten te vermijden die mogelijk schadelijk zijn voor uw knie?',
+      nl: 'Heeft u uw manier van leven veranderd om uw knie te ontzien?',
       en: 'Have you modified your lifestyle to avoid potentially damaging activities to your knee?',
       fr: 'Avez-vous modifié votre façon de vivre pour éviter les activités qui pourraient aggraver votre problème de genou?',
     },
-    type: z.union([
-      z.literal(0),
-      z.literal(1),
-      z.literal(2),
-      z.literal(3),
-      z.literal(4),
-    ]),
+    type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all', fr: 'Pas du tout' } },
-        { value: 1, label: { nl: 'Een beetje', en: 'Mildly', fr: 'Légèrement' } },
+        { value: 0, label: { nl: 'Totaal niet', en: 'Not at all', fr: 'Pas du tout' } },
+        { value: 1, label: { nl: 'Iets', en: 'Mildly', fr: 'Un peu' } },
         { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
-        { value: 3, label: { nl: 'Ernstig', en: 'Severely', fr: 'Sévèrement' } },
+        { value: 3, label: { nl: 'Grotendeels', en: 'Severely', fr: 'Beaucoup' } },
         { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Totalement' } },
       ],
     },
   },
   'Q3': {
     label: {
-      nl: 'Hoeveel last heeft u van gebrek aan vertrouwen in uw knie?',
+      nl: 'In welke mate kunt u op uw knie vertrouwen?',
       en: 'How troubled are you with lack of confidence in your knee?',
-      fr: 'Est-ce qu\'un manque de confiance dans votre genou vous gêne?',
+      fr: 'Est-ce qu’un manque de confiance dans votre genou vous gêne?',
     },
-    type: z.union([
-      z.literal(0),
-      z.literal(1),
-      z.literal(2),
-      z.literal(3),
-      z.literal(4),
-    ]),
+    type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all', fr: 'Pas du tout' } },
-        { value: 1, label: { nl: 'Een beetje', en: 'Mildly', fr: 'Un peu' } },
+        { value: 0, label: { nl: 'Totaal niet', en: 'Not at all', fr: 'Pas du tout' } },
+        { value: 1, label: { nl: 'Grotendeels', en: 'Mildly', fr: 'Un peu' } },
         { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
-        { value: 3, label: { nl: 'Ernstig', en: 'Severely', fr: 'Beaucoup' } },
+        { value: 3, label: { nl: 'Iets', en: 'Severely', fr: 'Beaucoup' } },
         { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Totalement' } },
       ],
     },
   },
   'Q4': {
     label: {
-      nl: 'In het algemeen, hoeveel moeite heeft u met uw knie?',
+      nl: 'Hoe groot zijn uw problemen met de knie in het algemeen?',
       en: 'In general, how much difficulty do you have with your knee?',
       fr: 'Finalement, êtes-vous gêné(e) par votre genou?',
     },
-    type: z.union([
-      z.literal(0),
-      z.literal(1),
-      z.literal(2),
-      z.literal(3),
-      z.literal(4),
-    ]),
+    type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Helemaal niet', en: 'Not at all', fr: 'Pas du tout' } },
-        { value: 1, label: { nl: 'Een beetje', en: 'Mildly', fr: 'Un peu' } },
-        { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
-        { value: 3, label: { nl: 'Ernstig', en: 'Severely', fr: 'Beaucoup' } },
-        { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Extrêmement' } },
+        // Note FR & NL values here are different from eng hence we're not using the default values
+        { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Pas du tout' } },
+        { value: 1, label: { nl: 'Gering', en: 'Mild', fr: 'Un peu' } },
+        { value: 2, label: { nl: 'Matig', en: 'Moderate', fr: 'Modérément' } },
+        { value: 3, label: { nl: 'Groot', en: 'Severe', fr: 'Beaucoup' } },
+        { value: 4, label: { nl: 'Zeer groot', en: 'Extreme', fr: 'Extrêmement' } },
       ],
     },
   },
