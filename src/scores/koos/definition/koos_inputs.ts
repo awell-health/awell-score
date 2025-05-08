@@ -31,9 +31,9 @@ const timeType = {
   uiOptions: {
     options: [
       { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-      { value: 1, label: { nl: 'Maandelijks', en: 'Monthly or less', fr: 'Mensuellement' } },
-      { value: 2, label: { nl: '', en: 'Weekly', fr: '' } },
-      { value: 3, label: { nl: '', en: 'Daily', fr: '' } },
+      { value: 1, label: { nl: 'Maandelijks', en: 'Monthly', fr: 'Mensuelle' } },
+      { value: 2, label: { nl: 'Wekelijks', en: 'Weekly', fr: 'Hebdomadairement' } },
+      { value: 3, label: { nl: 'Dagelijks', en: 'Daily', fr: 'Quotidiennement' } },
       { value: 4, label: { nl: 'Erg veel', en: 'Always', fr: 'Toujours' } },
     ],
   },
@@ -68,11 +68,11 @@ const basicReverseType = {
   ]),
   uiOptions: {
     options: [
-      { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-      { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
-      { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+      { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
       { value: 1, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
-      { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
+      { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+      { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' }  },
+      { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
     ],
   },
 } satisfies EnumNumberInputType
@@ -81,15 +81,15 @@ const basicReverseType = {
 export const KOOS_INPUTS = {
   'P1': {
     label: {
-      nl: 'Hoe vaak heeft u de afgelopen week pijn in uw knie gehad?',
-      en: 'What degree of pain have you experienced the last week when having knee pain?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière quand votre genou était douloureux?',
+      nl: 'Hoe vaak is uw knie pijnlijk?',
+      en: 'How often is your knee painful?',
+      fr: 'À quelle fréquence est votre genou douloureux?',
     },
     ...timeType,
   },
   'P2': {
     label: {
-      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het draaien op je knie?',
+      nl: 'Hoeveel pijn heeft u de afgelopen week ervaren bij het draaien op uw knie?',
       en: 'What degree of pain have you experienced the last week when twisting/pivoting on your knee?',
       fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en tournant sur votre genou?',
     },
@@ -187,7 +187,7 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'Blijft uw knie steken of blokkeert deze bij beweging?',
       en: 'Does your knee catch or hang up when moving?',
-      fr: 'Votre genou se bloque-t-il lors des mouvements?',
+      fr: 'Votre genou s`accroche-t-il ou se bloque-t-il lors des mouvements?',
     },
     ...basicType,
   },
@@ -209,9 +209,9 @@ export const KOOS_INPUTS = {
   },
   'A1': {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met trap aflopen?',
-      en: 'What difficulty have you experienced the last week when descending stairs?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en descendant les escaliers?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met afdalen?',
+      en: 'What difficulty have you experienced the last week when descending?',
+      fr: 'Quelle difficulté avez-vous rencontrée la semaine dernière lors de la descente?',
     },
     ...type,
   },

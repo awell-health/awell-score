@@ -35,11 +35,11 @@ Scores are transformed to a 0-100 scale, where:
 This scoring aligns with common orthopedic scales and generic measures. Scores between 0 and 100 represent the percentage of total possible score achieved.
 
 Each subscale is interpreted separately:
-- Pain (9 items)
-- Symptoms (7 items)
-- ADL Function (17 items)
-- Sport/Recreation Function (5 items)
-- Quality of Life (4 items)
+- Pain - PAIN (9 items)
+- Symptoms - SYMPTOMS (7 items)
+- ADL Function - ADL_FUNCTION (17 items)
+- Sport/Recreation Function - SPORT_AND_RECREATION_FUNCTION (5 items)
+- Quality of Life - QUALITY_OF_LIFE (4 items)
 
 ## References
 [1] Roos EM, Roos HP, Lohmander LS, Ekdahl C, Beynnon BD. Knee Injury and Osteoarthritis Outcome Score (KOOS)--development of a self-administered outcome measure. J Orthop Sports Phys Ther. 1998 Aug;28(2):88-96.
