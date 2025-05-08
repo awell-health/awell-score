@@ -158,6 +158,7 @@ describe('koos', function () {
         expect(score.QUALITY_OF_LIFE).toEqual(EXPECTED_SCORE_QUALITY_OF_LIFE)
       })
     })
+  })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
