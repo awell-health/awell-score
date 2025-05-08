@@ -84,7 +84,13 @@ describe('koos', function () {
 
     it('should have the correct calculation id', function () {
       const configured_calculation_id = Object.keys(outcome)
-      expect(configured_calculation_id).toEqual(['PAIN', 'SYMPTOMS', 'ADL_FUNCTION', 'SPORT_AND_RECREATION_FUNCTION', 'QUALITY_OF_LIFE'])
+      expect(configured_calculation_id).toEqual([
+        'PAIN',
+        'SYMPTOMS',
+        'ADL_FUNCTION',
+        'SPORT_AND_RECREATION_FUNCTION',
+        'QUALITY_OF_LIFE',
+      ])
     })
   })
 
@@ -101,7 +107,6 @@ describe('koos', function () {
         expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(KOOS_BEST_SCORE)
         expect(score.QUALITY_OF_LIFE).toEqual(KOOS_BEST_SCORE)
       })
-
     })
 
     describe('when called with a median response', function () {
@@ -147,11 +152,12 @@ describe('koos', function () {
         expect(score.PAIN).toEqual(EXPECTED_SCORE_PAIN)
         expect(score.SYMPTOMS).toEqual(EXPECTED_SCORE_SYMPTOMS)
         expect(score.ADL_FUNCTION).toEqual(EXPECTED_SCORE_ADL_FUNCTION)
-        expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(EXPECTED_SCORE_SPORT_AND_RECREATION_FUNCTION)
+        expect(score.SPORT_AND_RECREATION_FUNCTION).toEqual(
+          EXPECTED_SCORE_SPORT_AND_RECREATION_FUNCTION,
+        )
         expect(score.QUALITY_OF_LIFE).toEqual(EXPECTED_SCORE_QUALITY_OF_LIFE)
       })
     })
-  })
 
   describe('a score is only calculated when all mandatory fields are entered', function () {
     describe('when an empty response is passed', function () {
@@ -169,7 +175,7 @@ describe('koos', function () {
         expect(() =>
           koos_calculation.calculate({
             payload: {
-              'P1': "I'm not a number",
+              P1: "I'm not a number",
             },
           }),
         ).toThrow(ZodError)
@@ -180,7 +186,7 @@ describe('koos', function () {
         expect(() =>
           koos_calculation.calculate({
             payload: {
-              'P1': -1,
+              P1: -1,
             },
           }),
         ).toThrow(ZodError)
@@ -191,7 +197,7 @@ describe('koos', function () {
         expect(() =>
           koos_calculation.calculate({
             payload: {
-              'P1': 5,
+              P1: 5,
             },
           }),
         ).toThrow(ZodError)

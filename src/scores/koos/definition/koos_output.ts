@@ -11,15 +11,27 @@ export const KOOS_OUTPUT = {
     type: z.number(),
   },
   ADL_FUNCTION: {
-    label: { en: 'ADL function score', fr: 'Fonctionnalité ADL', nl: 'ADL functie score' },
+    label: {
+      en: 'ADL function score',
+      fr: 'Fonctionnalité ADL',
+      nl: 'ADL functie score',
+    },
     type: z.number(),
   },
   SPORT_AND_RECREATION_FUNCTION: {
-    label: { en: 'Sport function score', fr: 'Fonctionnalité sportive', nl: 'Sport functie score' },
+    label: {
+      en: 'Sport and recreation function score',
+      fr: 'Fonctionnalité sportive et loisirs',
+      nl: 'Sport en recreatie functie score',
+    },
     type: z.number(),
   },
   QUALITY_OF_LIFE: {
-    label: { en: 'Quality of life score', fr: 'Qualité de vie', nl: 'Levenkwaliteit score' },
+    label: {
+      en: 'Quality of life score',
+      fr: 'Qualité de vie',
+      nl: 'Levenkwaliteit score',
+    },
     type: z.number(),
   },
 } satisfies ScoreOutputSchemaType
