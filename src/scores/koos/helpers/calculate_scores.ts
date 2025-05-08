@@ -40,9 +40,8 @@ export const calculate_scores = (
    * Original Calculcation:
    * (100 / bestScores[subscale]) * subscaleTotal
    */
-  const subscaleScore =
-    ((hundred / bestScores[subscale]) * subscaleTotal)
+  const subscaleScore = (hundred / bestScores[subscale]) * subscaleTotal
 
-  // we want to round the results to two decimal places
-  return Math.round(subscaleScore * 1e2) / 1e2
+  // we want to round the results to one decimal place
+  return Math.round(subscaleScore * 1e1) / 1e1
 }
