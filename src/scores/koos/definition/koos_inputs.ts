@@ -13,63 +13,32 @@ const type = {
   type: baseNumericInputType,
   uiOptions: {
     options: [
-      { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Jamais' } },
-      { value: 1, label: { nl: 'Gering', en: 'Mild', fr: 'Rarement' } },
-      { value: 2, label: { nl: 'Matig', en: 'Moderate', fr: 'Parfois' } },
-      { value: 3, label: { nl: 'Veel', en: 'Severe', fr: 'Souvent' } },
-      { value: 4, label: { nl: 'Erg veel', en: 'Extreme', fr: 'Toujours' } },
+      { value: 0, label: { nl: 'Geen', en: 'None', fr: 'Absente' } },
+      { value: 1, label: { nl: 'Gering', en: 'Mild', fr: 'Légère' } },
+      { value: 2, label: { nl: 'Matig', en: 'Moderate', fr: 'Modérée' } },
+      { value: 3, label: { nl: 'Veel', en: 'Severe', fr: 'Forte' } },
+      { value: 4, label: { nl: 'Erg veel', en: 'Extreme', fr: 'Extrême' } },
     ],
   },
 } satisfies EnumNumberInputType
-
-const timeType = {
-  type: baseNumericInputType,
-  uiOptions: {
-    options: [
-      { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-      { value: 1, label: { nl: 'Maandelijks', en: 'Monthly', fr: 'Mensuelle' } },
-      { value: 2, label: { nl: 'Wekelijks', en: 'Weekly', fr: 'Hebdomadairement' } },
-      { value: 3, label: { nl: 'Dagelijks', en: 'Daily', fr: 'Quotidiennement' } },
-      { value: 4, label: { nl: 'Erg veel', en: 'Always', fr: 'Toujours' } },
-    ],
-  },
-} satisfies EnumNumberInputType
-
-const basicType = {
-  type: baseNumericInputType,
-  uiOptions: {
-    options: [
-      { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-      { value: 1, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
-      { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
-      { value: 3, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
-      { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
-    ],
-  },
-} satisfies EnumNumberInputType
-
-const basicReverseType = {
-  type: baseNumericInputType,
-  uiOptions: {
-    options: [
-      { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
-      { value: 1, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
-      { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
-      { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' }  },
-      { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-    ],
-  },
-} satisfies EnumNumberInputType
-
 
 export const KOOS_INPUTS = {
   'P1': {
     label: {
       nl: 'Hoe vaak heeft u pijn aan uw knie?',
       en: 'How often is your knee painful?',
-      fr: 'À quelle fréquence est votre genou douloureux?',
+      fr: 'Avez-vous souvent mal au genou?',
     },
-    ...timeType,
+    type: baseNumericInputType,
+    uiOptions: {
+    options: [
+      { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+      { value: 1, label: { nl: 'Elke maand', en: 'Monthly', fr: 'Une fois par mois' } },
+      { value: 2, label: { nl: 'Elke week', en: 'Weekly', fr: 'Une fois par semaine' } },
+      { value: 3, label: { nl: 'Elke dag', en: 'Daily', fr: 'Tous les jours' } },
+      { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Tout le temps' } },
+      ],
+    },
   },
   'P2': {
     label: {
@@ -157,7 +126,16 @@ export const KOOS_INPUTS = {
       en: 'Do you have swelling in your knee?',
       fr: 'Avez-vous un gonflement du genou?',
     },
-    ...basicType,
+    type: baseNumericInputType,
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+        { value: 1, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
+        { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+        { value: 3, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
+        { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
+      ],
+    },
   },
   'Sy4': {
     label: {
@@ -165,7 +143,16 @@ export const KOOS_INPUTS = {
       en: 'Do you feel grinding, hear clicking or any other type of noise when your knee moves?',
       fr: 'Sentez-vous un crissement, entendez-vous un clic ou tout autre type de bruit lorsque votre genou bouge?',
     },
-    ...basicType,
+    type: baseNumericInputType,
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+        { value: 1, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
+        { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+        { value: 3, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
+        { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
+      ],
+    },
   },
   'Sy5': {
     label: {
@@ -173,7 +160,16 @@ export const KOOS_INPUTS = {
       en: 'Does your knee catch or hang up when moving?',
       fr: 'Votre genou s`accroche-t-il ou se bloque-t-il lors des mouvements?',
     },
-    ...basicType,
+    type: baseNumericInputType,
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+        { value: 1, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
+        { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+        { value: 3, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
+        { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
+      ],
+    },
   },
   'Sy6': {
     label: {
@@ -181,7 +177,16 @@ export const KOOS_INPUTS = {
       en: 'Can you straighten your knee fully?',
       fr: 'Pouvez-vous étendre complètement votre genou?',
     },
-    ...basicReverseType,
+    type: baseNumericInputType,
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
+        { value: 1, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
+        { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+        { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' }  },
+        { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+      ],
+    },
   },
   'Sy7': {
     label: {
@@ -189,7 +194,16 @@ export const KOOS_INPUTS = {
       en: 'Can you bend your knee fully?',
       fr: 'Pouvez-vous plier complètement votre genou?',
     },
-    ...basicReverseType,
+    type: baseNumericInputType,
+    uiOptions: {
+      options: [
+        { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
+        { value: 1, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
+        { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
+        { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' }  },
+        { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+      ],
+    },
   },
   'A1': {
     label: {
@@ -331,7 +345,7 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met hurken?',
       en: 'What difficulty have you experienced the last week when squatting?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en vous accroupissant?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester accroupi(e)?',
     },
     ...type,
   },
