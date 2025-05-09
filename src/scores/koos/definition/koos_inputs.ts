@@ -353,7 +353,7 @@ export const KOOS_INPUTS = {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met op uw hurken zitten?',
       en: 'What difficulty have you experienced during the last week when squatting?',
-      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester accroupi(e)?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester accroupi(e) ?',
     },
     ...type,
   },
