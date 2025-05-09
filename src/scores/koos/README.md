@@ -2,11 +2,20 @@
 
 ## Introduction 
 
-The Knee Injury and Osteoarthritis Outcome Score (KOOS) is a comprehensive questionnaire designed to assess both short and long-term patient-relevant outcomes following knee injury. The KOOS is self-administered and assesses five separate patient-relevant dimensions: Pain (9 items), Symptoms (7 items), Activities of Daily Living (ADL) Function (17 items), Sport and Recreation Function (5 items), and knee-related Quality of Life (4 items). The questionnaire takes approximately 10 minutes to complete [1].
+The Knee Injury and Osteoarthritis Outcome Score (KOOS) is a comprehensive questionnaire designed to assess both short and long-term patient-relevant outcomes following knee injury. The KOOS is self-administered and assesses five separate patient-relevant dimensions: 
+
+1. Pain (9 items), 
+2. Symptoms (7 items), 
+3. Activities of Daily Living (ADL) Function (17 items), 
+4. Sport and Recreation Function (5 items), 
+5. Knee-related Quality of Life (4 items). 
+
+The questionnaire takes approximately 10 minutes to complete [1].
 
 ## Questions and Scoring
 
 **Each item is scored from 0 to 4:**
+
 - 0 = No problems
 - 1 = Mild problems
 - 2 = Moderate problems
@@ -15,31 +24,20 @@ The Knee Injury and Osteoarthritis Outcome Score (KOOS) is a comprehensive quest
 
 ### Missing data
 
-Each question must have a response (i.e. no missing data).
+At least 50% of the items in each subscale should be responded to. If this is not the case, the score for that subscale cannot be calculated.
 
 ## Calculation
 
-The KOOS consists of 5 subscales. The scores for each subscale are calculated separately. A normalized score (100 indicating no symptoms and 0 indicating extreme symptoms) is calculated for each subscale.
+Each subscale score is calculated independently. Calculate the mean score of the individual items of each subscale and divide by 4 (the highest possible score for a single answer option). 
 
-The normalized score is transformed to meet this format using the following formula:
-```
-KOOS subscale = 100 - (actual raw score × 100) / (possible raw score range)
-```
+Traditionally in orthopedics, 100 indicates no problems and 0 indicates extreme problems. The normalized score is transformed to meet this standard.
+
+Formula: `100-meanSubscaleScore/4*100`
 
 ## Interpretation
 
-Scores are transformed to a 0-100 scale, where:
-- 0 represents extreme knee problems
-- 100 represents no knee problems
-
-This scoring aligns with common orthopedic scales and generic measures. Scores between 0 and 100 represent the percentage of total possible score achieved.
-
-Each subscale is interpreted separately:
-- Pain - PAIN (9 items)
-- Symptoms - SYMPTOMS (7 items)
-- ADL Function - ADL_FUNCTION (17 items)
-- Sport/Recreation Function - SPORT_AND_RECREATION_FUNCTION (5 items)
-- Quality of Life - QUALITY_OF_LIFE (4 items)
+0 represents extreme knee problems and 100 represents no knee problems.
 
 ## References
+
 [1] Roos EM, Roos HP, Lohmander LS, Ekdahl C, Beynnon BD. Knee Injury and Osteoarthritis Outcome Score (KOOS)--development of a self-administered outcome measure. J Orthop Sports Phys Ther. 1998 Aug;28(2):88-96.

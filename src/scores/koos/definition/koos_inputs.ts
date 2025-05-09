@@ -1,13 +1,9 @@
 import { z } from 'zod'
 import { EnumNumberInputType, ScoreInputSchemaType } from '../../../types'
 
-const baseNumericInputType = z.union([
-  z.literal(0),
-  z.literal(1),
-  z.literal(2),
-  z.literal(3),
-  z.literal(4),
-])
+const baseNumericInputType = z
+  .union([z.literal(0), z.literal(1), z.literal(2), z.literal(3), z.literal(4)])
+  .optional()
 
 const type = {
   type: baseNumericInputType,
@@ -23,108 +19,120 @@ const type = {
 } satisfies EnumNumberInputType
 
 export const KOOS_INPUTS = {
-  'P1': {
+  P1_PAIN_FREQUENCY: {
     label: {
       nl: 'Hoe vaak heeft u pijn aan uw knie?',
-      en: 'How often is your knee painful?',
+      en: 'How often do you experience knee pain?',
       fr: 'Avez-vous souvent mal au genou?',
     },
     type: baseNumericInputType,
     uiOptions: {
-    options: [
-      { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-      { value: 1, label: { nl: 'Elke maand', en: 'Monthly', fr: 'Une fois par mois' } },
-      { value: 2, label: { nl: 'Elke week', en: 'Weekly', fr: 'Une fois par semaine' } },
-      { value: 3, label: { nl: 'Elke dag', en: 'Daily', fr: 'Tous les jours' } },
-      { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Tout le temps' } },
+      options: [
+        { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
+        {
+          value: 1,
+          label: { nl: 'Elke maand', en: 'Monthly', fr: 'Une fois par mois' },
+        },
+        {
+          value: 2,
+          label: { nl: 'Elke week', en: 'Weekly', fr: 'Une fois par semaine' },
+        },
+        {
+          value: 3,
+          label: { nl: 'Elke dag', en: 'Daily', fr: 'Tous les jours' },
+        },
+        {
+          value: 4,
+          label: { nl: 'Altijd', en: 'Always', fr: 'Tout le temps' },
+        },
       ],
     },
   },
-  'P2': {
+  P2_PAIN_TWISTING: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij draaien op een belaste knie?',
-      en: 'What degree of pain have you experienced the last week when twisting/pivoting on your knee?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en tournant sur votre genou?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens draaien op een belaste knie?',
+      en: 'What amount of pain have you experienced the last week when twisting/pivoting on your knee?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en tournant, pivotant sur votre jambe ?',
     },
     ...type,
   },
-  'P3': {
+  P3_STRETCHING: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het helemaal strekken van de knie?',
-      en: 'What degree of pain have you experienced the last week when straightening knee fully?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en étendant complètement le genou?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens het helemaal strekken van de knie?',
+      en: 'What amount of pain have you experienced the last week when straightening the knee fully?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en étendant complètement le genou ?',
     },
     ...type,
   },
-  'P4': {
+  P4_BENDING: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het helemaal buigen van de knie?',
-      en: 'What degree of pain have you experienced the last week when bending knee fully?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en pliant complètement le genou?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens het helemaal buigen van de knie?',
+      en: 'What amount of pain have you experienced the last week when bending the knee fully?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en pliant complètement le genou ?',
     },
     ...type,
   },
-  'P5': {
+  P5_WALKING: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het lopen op een vlakke ondergrond?',
-      en: 'What degree of pain have you experienced the last week when walking on flat surface?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en marchant sur une surface plane?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens het lopen op een vlakke ondergrond?',
+      en: 'What amount of pain have you experienced the last week when walking on a flat surface?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en marchant sur un terrain plat ?',
     },
     ...type,
   },
-  'P6': {
+  P6_STAIRS: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het trap op of af lopen?',
-      en: 'What degree of pain have you experienced the last week when going up or down stairs?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en montant ou descendant les escaliers?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens het trap oplopen of aflopen?',
+      en: 'What amount of pain have you experienced the last week when going up or down stairs?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en montant ou en descendant les escaliers ?',
     },
     ...type,
   },
-  'P7': {
+  P7_NIGHT: {
     label: {
       nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren `s nachts in bed?',
-      en: 'What degree of pain have you experienced the last week when at night while in bed?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière la nuit au lit?',
+      en: 'What amount of pain have you experienced the last week at night while in bed?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou au lit la nuit ?',
     },
     ...type,
   },
-  'P8': {
+  P8_SITTING_LYING: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het zitten of liggen?',
-      en: 'What degree of pain have you experienced the last week when sitting or lying?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en position assise ou couchée?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens het zitten of liggen?',
+      en: 'What amount of pain have you experienced the last week when sitting or lying?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en restant assis(e) ou couché(e) ?',
     },
     ...type,
   },
-  'P9': {
+  P9_STANDING: {
     label: {
-      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren bij het rechtop staan?',
-      en: 'What degree of pain have you experienced the last week when standing upright?',
-      fr: 'Quel degré de douleur avez-vous ressenti la semaine dernière en se tenant debout?',
+      nl: 'Welke mate van kniepijn heeft u de afgelopen week ervaren tijdens het rechtop staan?',
+      en: 'What amount of pain have you experienced the last week when standing upright?',
+      fr: 'Au cours des huit derniers jours, quelle a été l’importance de votre douleur du genou en restant debout ?',
     },
     ...type,
   },
-  'Sy1': {
+  SY1_MORNING_STIFFNESS: {
     label: {
-      nl: 'Hoe ernstig is de stijfheid van uw knie direct na het ontwaken `s ochtends?',
-      en: 'How severe is your knee stiffness after first wakening in the morning?',
-      fr: 'Quelle est la gravité de la raideur de votre genou au réveil le matin?',
+      nl: 'Hoe ernstig was de gewrichtsstijfheid van de knie ’s morgens direct na het wakker worden gedurende de afgelopen week? ',
+      en: 'How severe was your knee stiffness during the last week after first wakening in the morning?',
+      fr: 'Au cours des huit derniers jours, comment décririez-vous la raideur de votre genou au réveil le matin ?',
     },
     ...type,
   },
-  'Sy2': {
+  SY2_STIFFNESS_LATER_IN_DAY: {
     label: {
-      nl: 'Hoe ernstig is de stijfheid van uw knie na zitten, liggen of rusten later op de dag?',
-      en: 'How severe is your knee stiffness after sitting, lying, or resting later in the day?',
-      fr: 'Quelle est la gravité de la raideur de votre genou après être resté assis, couché ou au repos plus tard dans la journée?',
+      nl: 'Hoe ernstig was de gewrichtsstijfheid van de knie later op de dag, na zitten liggen of rusten gedurende de afgelopen week?',
+      en: 'How severe was your knee stiffness during the last week after sitting, lying, or resting later in the day?',
+      fr: 'Au cours des huit derniers jours, comment décririez-vous la raideur de votre genou après être resté(e) assis(e), couché(e) ou au repos pendant la journée ?',
     },
     ...type,
   },
-  'Sy3': {
+  SY3_SWELLING: {
     label: {
-      nl: 'Heeft u een gezwollen knie?',
-      en: 'Do you have swelling in your knee?',
-      fr: 'Avez-vous un gonflement du genou?',
+      nl: 'Was uw knie gezwollen gedurende de afgelopen week?',
+      en: 'Did you have swelling in your knee during the last week?',
+      fr: 'Est-ce que votre genou a été enflé au cours des huit derniers jours ?',
     },
     type: baseNumericInputType,
     uiOptions: {
@@ -137,11 +145,11 @@ export const KOOS_INPUTS = {
       ],
     },
   },
-  'Sy4': {
+  SY4_GRINDING: {
     label: {
-      nl: 'Voelt u een krakend gevoel, hoort u klikken of andere geluiden als uw knie beweegt?',
-      en: 'Do you feel grinding, hear clicking or any other type of noise when your knee moves?',
-      fr: 'Sentez-vous un crissement, entendez-vous un clic ou tout autre type de bruit lorsque votre genou bouge?',
+      nl: 'Heeft u een knarsend gevoel in uw knie, klikkende of andere geluiden uit uw knie gehoord gedurende de afgelopen week?',
+      en: 'Did you feel grinding, hear clicking or any other type of noise when your knee moved during the last week?',
+      fr: 'Ressentez-vous des ou entendez-vous des craquements ou n’importe quel autre type de bruit au cours des huit derniers jours ?',
     },
     type: baseNumericInputType,
     uiOptions: {
@@ -154,11 +162,11 @@ export const KOOS_INPUTS = {
       ],
     },
   },
-  'Sy5': {
+  SY5_CATCHING: {
     label: {
-      nl: 'Blijft uw knie steken of blokkeert deze bij beweging?',
-      en: 'Does your knee catch or hang up when moving?',
-      fr: 'Votre genou s`accroche-t-il ou se bloque-t-il lors des mouvements?',
+      nl: 'Gebeurde het dat uw knie even vast bleef steken of helemaal op slot zat gedurende de afgelopen week? ',
+      en: 'Did your knee catch or hang up when moving during the last week?',
+      fr: 'Est-ce que votre genou s’est accroché ou bloqué en bougeant au cours des huit derniers jours ?',
     },
     type: baseNumericInputType,
     uiOptions: {
@@ -171,272 +179,299 @@ export const KOOS_INPUTS = {
       ],
     },
   },
-  'Sy6': {
+  SY6_STRETCHING: {
     label: {
-      nl: 'Kunt u uw knie volledig strekken?',
-      en: 'Can you straighten your knee fully?',
-      fr: 'Pouvez-vous étendre complètement votre genou?',
+      nl: 'Kon u uw knie helemaal strekken gedurende de afgelopen week?',
+      en: 'Could you straighten your knee fully during the last week?',
+      fr: 'Avez-vous pu plier complètement votre genou au cours des huit derniers jours ?',
     },
     type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
+        { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
         { value: 1, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
         { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
-        { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' }  },
+        { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
         { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
       ],
     },
   },
-  'Sy7': {
+  SY7_BENDING: {
     label: {
-      nl: 'Kunt u uw knie volledig buigen?',
-      en: 'Can you bend your knee fully?',
+      nl: 'Kon u uw knie helemaal buigen gedurende de afgelopen week?',
+      en: 'Could you bend your knee fully during the last week?',
       fr: 'Pouvez-vous plier complètement votre genou?',
     },
     type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' }  },
+        { value: 0, label: { nl: 'Altijd', en: 'Always', fr: 'Toujours' } },
         { value: 1, label: { nl: 'Vaak', en: 'Often', fr: 'Souvent' } },
         { value: 2, label: { nl: 'Soms', en: 'Sometimes', fr: 'Parfois' } },
-        { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' }  },
+        { value: 3, label: { nl: 'Zelden', en: 'Rarely', fr: 'Rarement' } },
         { value: 4, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
       ],
     },
   },
-  'A1': {
+  A1_DESCENDING_STAIRS: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met afdalen?',
-      en: 'What difficulty have you experienced the last week when descending?',
-      fr: 'Quelle difficulté avez-vous rencontrée la semaine dernière lors de la descente?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met trap aflopen?',
+      en: 'What difficulty have you experienced during the last week when descending stairs?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour descendre les escaliers ?',
     },
     ...type,
   },
-  'A2': {
+  A2_ASCENDING_STAIRS: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met trap oplopen?',
-      en: 'What difficulty have you experienced the last week when ascending stairs?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en montant les escaliers?',
+      en: 'What difficulty have you experienced during the last week when ascending stairs?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour monter les escaliers ?',
     },
     ...type,
   },
-  'A3': {
+  A3_RISING_FROM_CHAIR: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met opstaan vanuit zittende positie?',
-      en: 'What difficulty have you experienced the last week when rising from sitting?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en vous levant d`une position assise?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met het opstaan vanuit een stoel?',
+      en: 'What difficulty have you experienced during the last week when rising from sitting?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour vous lever d`une position assise ?',
     },
     ...type,
   },
-  'A4': {
+  A4_STANDING: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met staan?',
-      en: 'What difficulty have you experienced the last week when standing?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en restant debout?',
+      en: 'What difficulty have you experienced during the last week when standing?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester debout ?',
     },
     ...type,
   },
-  'A5': {
+  A5_BENDING: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met bukken naar de grond/iets oppakken?',
-      en: 'What difficulty have you experienced the last week when bending to floor/picking up an object?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en vous penchant pour ramasser un objet?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met bukken naar de grond/iets oppakken van de grond?',
+      en: 'What difficulty have you experienced during the last week when bending to floor/picking up an object?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour vous pencher pour ramasser un objet ?',
     },
     ...type,
   },
-  'A6': {
+  A6_WALKING: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met lopen op een vlakke ondergrond?',
-      en: 'What difficulty have you experienced the last week when walking on flat surface?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en marchant sur une surface plane?',
+      en: 'What difficulty have you experienced during the last week when walking on flat surface?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour marcher sur un terrain plat ?',
     },
     ...type,
   },
-  'A7': {
+  A7_GET_IN_OUT_OF_CAR: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met in/uit de auto stappen?',
-      en: 'What difficulty have you experienced the last week when getting in/out of car?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en entrant/sortant d`une voiture?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met instappen/uitstappen uit een auto?',
+      en: 'What difficulty have you experienced during the last week when getting in/out of car?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour monter ou descendre de voiture ?',
     },
     ...type,
   },
-  'A8': {
+  A8_SHOPPING: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met winkelen?',
-      en: 'What difficulty have you experienced the last week when going shopping?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en faisant les courses?',
+      en: 'What difficulty have you experienced during the last week when going shopping?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour faire vos courses ?',
     },
     ...type,
   },
-  'A9': {
-    label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met sokken/kousen aantrekken?',
-      en: 'What difficulty have you experienced the last week when putting on socks/stockings?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en mettant vos chaussettes/bas?',
-    },
-    ...type,
-  },
-  'A10': {
-    label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met opstaan uit bed?',
-      en: 'What difficulty have you experienced the last week when rising from bed?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en vous levant du lit?',
-    },
-    ...type,
-  },
-  'A11': {
+  A9_SOCKS_PUTTING_ON: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met sokken/kousen uittrekken?',
-      en: 'What difficulty have you experienced the last week when taking off socks/stockings?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en enlevant vos chaussettes/bas?',
+      en: 'What difficulty have you experienced during the last week when putting on socks/stockings?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour mettre vos chaussettes ou vos collants ?',
     },
     ...type,
   },
-  'A12': {
+  A10_GETTING_OUT_OF_BED: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met in bed liggen (omdraaien, kniepositie behouden)?',
-      en: 'What difficulty have you experienced the last week when lying in bed (turning over, maintaining knee position)?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en étant couché (pour vous retourner, maintenir la position du genou)?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met opstaan vanuit bed?',
+      en: 'What difficulty have you experienced during the last week when rising from bed?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour sortir du lit ?',
     },
     ...type,
   },
-  'A13': {
+  A11_SOCKS_TAKING_OFF: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met in/uit bad stappen?',
-      en: 'What difficulty have you experienced the last week when getting in/out of bath?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en entrant/sortant du bain?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met sokken/kousen uittrekken?',
+      en: 'What difficulty have you experienced during the last week when taking off socks/stockings?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour enlever vos chaussettes ou vos collants ?',
     },
     ...type,
   },
-  'A14': {
+  A12_LYING_IN_BED: {
+    label: {
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met in bed liggen?',
+      en: 'What difficulty have you experienced during the last week when lying in bed (turning over, maintaining knee position)?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour retourner ou garder le genou dans la même position en étant couché(e) ?',
+    },
+    ...type,
+  },
+  A13_BATHING: {
+    label: {
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met in/uit bad of douche gaan?',
+      en: 'What difficulty have you experienced during the last week when getting in/out of bath?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour entrer ou sortir d’une baignoire ?',
+    },
+    ...type,
+  },
+  A14_SITTING: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met zitten?',
-      en: 'What difficulty have you experienced the last week when sitting?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en position assise?',
+      en: 'What difficulty have you experienced during the last week when sitting?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester assis(e) ?',
     },
     ...type,
   },
-  'A15': {
+  A15_TOILET: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met op/af het toilet gaan?',
-      en: 'What difficulty have you experienced the last week when getting on/off toilet?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en vous asseyant/vous levant des toilettes?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met gaan zitten / opstaan van het toilet?',
+      en: 'What difficulty have you experienced during the last week when getting on/off the toilet?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour vous asseoir ou vous relever des toilettes ?',
     },
     ...type,
   },
-  'A16': {
+  A16_DOMESTIC_ACTIVITIES: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met zwaar huishoudelijk werk (sneeuw scheppen, vloeren schrobben, etc)?',
-      en: 'What difficulty have you experienced the last week when doing heavy domestic duties (shovelling, scrubbing floors, etc)?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en faisant des tâches domestiques lourdes (pelleter, frotter les sols, etc)?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met zware huishoudelijke activiteiten (zware dozen tillen, de vloer schrobben etc)',
+      en: 'What difficulty have you experienced during the last week when doing heavy domestic duties (shovelling, scrubbing floors, moving heavy boxes, etc)?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour faire de gros travaux ménagers (déplacer des objets lourds, récurer les sols,…) ?',
     },
     ...type,
   },
-  'A17': {
+  A17_LIGHT_DOMESTIC_ACTIVITIES: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met licht huishoudelijk werk (koken, afstoffen, etc)?',
-      en: 'What difficulty have you experienced the last week when doing light domestic duties (cooking, dusting, etc)?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en faisant des tâches domestiques légères (cuisiner, épousseter, etc)?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met lichte huishoudelijke werkzaamheden (koken, stoffen etc)',
+      en: 'What difficulty have you experienced during the last week when doing light domestic duties (cooking, dusting, etc)?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour faire des petits travaux ménagers (faire la cuisine, faire la poussière,…) ?',
     },
     ...type,
   },
-  'Sp1': {
+  SP1_SQUATTING: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met hurken?',
-      en: 'What difficulty have you experienced the last week when squatting?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met op uw hurken zitten?',
+      en: 'What difficulty have you experienced during the last week when squatting?',
       fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester accroupi(e)?',
     },
     ...type,
   },
-  'Sp2': {
+  SP2_RUNNING: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met rennen?',
-      en: 'What difficulty have you experienced the last week when running?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en courant?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met hardlopen?',
+      en: 'What difficulty have you experienced during the last week when running?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour courir ?',
     },
     ...type,
   },
-  'Sp3': {
+  SP3_JUMPING: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met springen?',
-      en: 'What difficulty have you experienced the last week when jumping?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en sautant?',
+      en: 'What difficulty have you experienced during the last week when jumping?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour sauter ?',
     },
     ...type,
   },
-  'Sp4': {
+  SP4_TWISTING: {
     label: {
-      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met draaien/zwenken op uw geblesseerde knie?',
-      en: 'What difficulty have you experienced the last week when turning/twisting on your injured knee?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en tournant/pivotant sur votre genou blessé?',
+      nl: 'Hoeveel moeite heeft u de afgelopen week gehad met draaien op een belaste knie?',
+      en: 'What difficulty have you experienced during the last week when turning/twisting on your injured knee?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour tourner/pivoter sur votre jambe ?',
     },
     ...type,
   },
-  'Sp5': {
+  SP5_KNEELING: {
     label: {
       nl: 'Hoeveel moeite heeft u de afgelopen week gehad met knielen?',
-      en: 'What difficulty have you experienced the last week when kneeling?',
-      fr: 'Quelle difficulté avez-vous éprouvée la semaine dernière en vous agenouillant?',
+      en: 'What difficulty have you experienced during the last week when kneeling?',
+      fr: 'Au cours des huit derniers jours, quelle a été votre difficulté pour rester à genoux ?',
     },
     ...type,
   },
-  'Q1': {
+  Q1_AWARENESS_OF_PROBLEMS: {
     label: {
       nl: 'Hoe vaak wordt u aan uw knie herinnerd?',
       en: 'How often are you aware of your knee problems?',
-      fr: 'Pensez-vous souvent à votre problème de genou?',
+      fr: 'Pensez-vous souvent à votre problème de genou ?',
     },
     type: baseNumericInputType,
     uiOptions: {
       options: [
         { value: 0, label: { nl: 'Nooit', en: 'Never', fr: 'Jamais' } },
-        { value: 1, label: { nl: 'Elke maand', en: 'Monthly', fr: 'Une fois par mois' } },
-        { value: 2, label: { nl: 'Elke week', en: 'Weekly', fr: 'Une fois par semaine' } },
-        { value: 3, label: { nl: 'Elke dag', en: 'Daily', fr: 'Tous les jours' } },
-        { value: 4, label: { nl: 'Altijd', en: 'Always', fr: 'Tout le temps' } },
+        {
+          value: 1,
+          label: { nl: 'Elke maand', en: 'Monthly', fr: 'Une fois par mois' },
+        },
+        {
+          value: 2,
+          label: { nl: 'Elke week', en: 'Weekly', fr: 'Une fois par semaine' },
+        },
+        {
+          value: 3,
+          label: { nl: 'Elke dag', en: 'Daily', fr: 'Tous les jours' },
+        },
+        {
+          value: 4,
+          label: { nl: 'Altijd', en: 'Always', fr: 'Tout le temps' },
+        },
       ],
     },
   },
-  'Q2': {
+  Q2_LIFESTYLE_MODIFICATIONS: {
     label: {
       nl: 'Heeft u uw manier van leven veranderd om uw knie te ontzien?',
       en: 'Have you modified your lifestyle to avoid potentially damaging activities to your knee?',
-      fr: 'Avez-vous modifié votre façon de vivre pour éviter les activités qui pourraient aggraver votre problème de genou?',
+      fr: 'Avez-vous modifié votre façon de vivre pour éviter les activités qui pourraient aggraver votre problème de genou ?',
     },
     type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Totaal niet', en: 'Not at all', fr: 'Pas du tout' } },
+        {
+          value: 0,
+          label: { nl: 'Totaal niet', en: 'Not at all', fr: 'Pas du tout' },
+        },
         { value: 1, label: { nl: 'Iets', en: 'Mildly', fr: 'Un peu' } },
-        { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
-        { value: 3, label: { nl: 'Grotendeels', en: 'Severely', fr: 'Beaucoup' } },
+        {
+          value: 2,
+          label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' },
+        },
+        {
+          value: 3,
+          label: { nl: 'Grotendeels', en: 'Severely', fr: 'Beaucoup' },
+        },
         { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Totalement' } },
       ],
     },
   },
-  'Q3': {
+  Q3_CONFIDENCE: {
     label: {
       nl: 'In welke mate kunt u op uw knie vertrouwen?',
       en: 'How troubled are you with lack of confidence in your knee?',
-      fr: 'Est-ce qu’un manque de confiance dans votre genou vous gêne?',
+      fr: 'Est-ce qu’un manque de confiance dans votre genou vous gêne ?',
     },
     type: baseNumericInputType,
     uiOptions: {
       options: [
-        { value: 0, label: { nl: 'Totaal niet', en: 'Not at all', fr: 'Pas du tout' } },
+        {
+          value: 0,
+          label: { nl: 'Totaal niet', en: 'Not at all', fr: 'Pas du tout' },
+        },
         { value: 1, label: { nl: 'Grotendeels', en: 'Mildly', fr: 'Un peu' } },
-        { value: 2, label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' } },
+        {
+          value: 2,
+          label: { nl: 'Matig', en: 'Moderately', fr: 'Modérément' },
+        },
         { value: 3, label: { nl: 'Iets', en: 'Severely', fr: 'Beaucoup' } },
         { value: 4, label: { nl: 'Totaal', en: 'Totally', fr: 'Totalement' } },
       ],
     },
   },
-  'Q4': {
+  Q4_GENERAL_DIFFICULTY: {
     label: {
       nl: 'Hoe groot zijn uw problemen met de knie in het algemeen?',
       en: 'In general, how much difficulty do you have with your knee?',
-      fr: 'Finalement, êtes-vous gêné(e) par votre genou?',
+      fr: 'Finalement, êtes-vous gêné(e) par votre genou ?',
     },
     type: baseNumericInputType,
     uiOptions: {
@@ -446,7 +481,10 @@ export const KOOS_INPUTS = {
         { value: 1, label: { nl: 'Gering', en: 'Mild', fr: 'Un peu' } },
         { value: 2, label: { nl: 'Matig', en: 'Moderate', fr: 'Modérément' } },
         { value: 3, label: { nl: 'Groot', en: 'Severe', fr: 'Beaucoup' } },
-        { value: 4, label: { nl: 'Zeer groot', en: 'Extreme', fr: 'Extrêmement' } },
+        {
+          value: 4,
+          label: { nl: 'Zeer groot', en: 'Extreme', fr: 'Extrêmement' },
+        },
       ],
     },
   },

@@ -3,7 +3,7 @@ import { ScoreType } from '../../types'
 import { calculate_scores } from './helpers'
 
 export const koos: ScoreType<typeof KOOS_INPUTS, typeof KOOS_OUTPUT> = {
-  name: 'Knee Injury and Osteoarthritis Outcome Score-Physical function Short form (KOOS-PS)',
+  name: 'Knee Injury and Osteoarthritis Outcome Score (KOOS)',
   readmeLocation: __dirname,
   inputSchema: KOOS_INPUTS,
   outputSchema: KOOS_OUTPUT,
@@ -16,6 +16,7 @@ export const koos: ScoreType<typeof KOOS_INPUTS, typeof KOOS_OUTPUT> = {
       'SPORT_AND_RECREATION_FUNCTION',
     )
     const qualityOfLifeScore = calculate_scores(data, 'QUALITY_OF_LIFE')
+
     return {
       PAIN: painScore,
       SYMPTOMS: symptomsScore,
