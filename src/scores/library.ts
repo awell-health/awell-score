@@ -126,6 +126,7 @@ import { ScoreType } from '../types'
 import { korq } from './korq/korq'
 import { mlks } from './mlks/mlks'
 import { psqi } from './psqi/psqi'
+import { nafld_fibrosis } from './nafld_fibrosis/nafld_fibrosis'
 import { test_calculation } from './test_calculation/test_caculation'
 
 const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
@@ -215,6 +216,7 @@ export const ScoreLibrary = createScoreLibrary({
   mini_best_test,
   mfis,
   mlks,
+  nafld_fibrosis,
   mmse,
   moca,
   modified_caregiver_strain_index,
