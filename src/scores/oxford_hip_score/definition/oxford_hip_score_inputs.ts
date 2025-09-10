@@ -18,11 +18,11 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: { nl: 'Geen pijn', en: 'None', fr: 'Aucune' },
         },
         {
-          value: 1,
+          value: 3,
           label: { nl: 'Hele lichte pijn', en: 'Very mild', fr: 'Minime' },
         },
         {
@@ -30,11 +30,11 @@ export const OHS_INPUTS = {
           label: { nl: 'Milde pijn', en: 'Mild', fr: 'Légère' },
         },
         {
-          value: 3,
+          value: 1,
           label: { nl: 'Matige pijn', en: 'Moderate', fr: 'Modérée' },
         },
         {
-          value: 4,
+          value: 0,
           label: { nl: 'Ernstige pijn', en: 'Severe', fr: 'Sévère' },
         },
       ],
@@ -56,7 +56,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Helemaal geen moeite',
             en: 'No trouble at all',
@@ -64,7 +64,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Beetje moeite',
             en: 'Very little trouble',
@@ -80,7 +80,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Veel moeite',
             en: 'Extreme difficulty ',
@@ -88,7 +88,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Onmogelijk te doen',
             en: 'Impossible to do',
@@ -114,7 +114,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Helemaal geen moeite',
             en: 'No trouble at all',
@@ -122,7 +122,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Beetje moeite',
             en: 'Very little trouble',
@@ -138,7 +138,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Veel moeite',
             en: 'Extreme difficulty ',
@@ -146,7 +146,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Onmogelijk te doen',
             en: 'Impossible to do',
@@ -172,7 +172,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Ja, gemakkelijk',
             en: 'Yes, easily',
@@ -180,7 +180,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Met een beetje moeite',
             en: 'With a little difficulty',
@@ -196,7 +196,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Met moeite',
             en: 'With extreme difficulty',
@@ -204,7 +204,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Nee, onmogelijk te doen',
             en: 'No, impossible',
@@ -230,7 +230,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Ja, gemakkelijk',
             en: 'Yes, easily',
@@ -238,7 +238,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Met een beetje moeite',
             en: 'With a little difficulty',
@@ -254,7 +254,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Met moeite',
             en: 'With extreme difficulty',
@@ -262,7 +262,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Nee, onmogelijk te doen',
             en: 'No, impossible',
@@ -288,7 +288,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Geen pijn / meer dan 30 minuten',
             en: 'No pain/ More than 30 minutes',
@@ -296,7 +296,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: '16 tot 30 minuten',
             en: '16 to 30 minutes',
@@ -312,7 +312,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Alleen in en om het huis',
             en: 'Around the house only',
@@ -320,7 +320,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Niet mogelijk',
             en: 'Not at all-Pain severe on walking',
@@ -346,7 +346,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Ja, gemakkelijk',
             en: 'Yes, easily',
@@ -354,7 +354,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Met een beetje moeite',
             en: 'With a little difficulty',
@@ -370,7 +370,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Met moeite',
             en: 'With extreme difficulty',
@@ -378,7 +378,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Nee, onmogelijk te doen',
             en: 'No, impossible',
@@ -404,7 +404,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Helemaal niet pijnlijk',
             en: 'Not at all painful',
@@ -412,7 +412,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Beetje pijnlijk',
             en: 'Slightly painful',
@@ -428,7 +428,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Erg pijnlijk',
             en: 'Very painful',
@@ -436,7 +436,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Ondragelijk',
             en: 'Unbearable',
@@ -462,7 +462,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Nee, nooit',
             en: 'Rarely/never',
@@ -470,7 +470,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: 'Soms (bv de eerste passen)',
             en: 'Sometimes, or just at first',
@@ -486,7 +486,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'Meestal',
             en: 'Most of the time',
@@ -494,7 +494,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: { nl: 'Altijd', en: 'All of the time', fr: 'Tout le temps' },
         },
       ],
@@ -516,7 +516,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Zelden/Nooit',
             en: 'No days',
@@ -524,7 +524,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: '1-2 dagen',
             en: 'Only 1 or 2 days',
@@ -540,7 +540,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: 'De meeste dagen',
             en: 'Most days',
@@ -548,7 +548,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Elke dag',
             en: 'Every day',
@@ -574,20 +574,20 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: { nl: 'Helemaal niet', en: 'Not at all', fr: 'Pas du tout' },
         },
         {
-          value: 1,
+          value: 3,
           label: { nl: 'Een beetje', en: 'A little bit', fr: 'Un peu' },
         },
         {
           value: 2,
           label: { nl: 'Nogal', en: 'Moderately', fr: 'Modérément' },
         },
-        { value: 3, label: { nl: 'Veel', en: 'Greatly', fr: 'Fortement' } },
+        { value: 1, label: { nl: 'Veel', en: 'Greatly', fr: 'Fortement' } },
         {
-          value: 4,
+          value: 0,
           label: { nl: 'Totaal', en: 'Totally', fr: 'Tout le temps' },
         },
       ],
@@ -609,7 +609,7 @@ export const OHS_INPUTS = {
     uiOptions: {
       options: [
         {
-          value: 0,
+          value: 4,
           label: {
             nl: 'Nooit',
             en: 'No nights',
@@ -617,7 +617,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 1,
+          value: 3,
           label: {
             nl: '1 of 2 nachten per week',
             en: 'Only 1 or 2 nights',
@@ -633,7 +633,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 3,
+          value: 1,
           label: {
             nl: '5 of 6 nachten per week',
             en: 'Most nights',
@@ -641,7 +641,7 @@ export const OHS_INPUTS = {
           },
         },
         {
-          value: 4,
+          value: 0,
           label: {
             nl: 'Alle nachten',
             en: 'Every night',
