@@ -82,6 +82,7 @@ import { oas } from './oas/oas'
 import { ompq, ompq_10 } from './orebro'
 import { oswestry } from './oswestry/oswestry'
 import { oxford_hip_score } from './oxford_hip_score/oxford_hip_score'
+import { oxford_hip_score_inverted } from './oxford_hip_score/oxford_hip_score_inverted'
 import { oxford_knee_score } from './oxford_knee_score/oxford_knee_score'
 import { packyears } from './packyears/packyears'
 import { panss_6 } from './panss_6/panss_6'
@@ -226,6 +227,7 @@ export const ScoreLibrary = createScoreLibrary({
   ompq_short_form: ompq_10,
   oswestry,
   oxford_hip_score,
+  oxford_hip_score_inverted,
   oxford_knee_score,
   packyears,
   panss_6,
