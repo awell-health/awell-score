@@ -4,7 +4,7 @@ import {
   STOOL_FREQUENCY_FACTOR,
   ABDOMINAL_PAIN_FACTOR,
 } from './definition/pro2_cd_v2_inputs'
-import { max } from 'lodash'
+import { isNil, max } from 'lodash'
 
 export const pro2_cd_v2: ScoreType<typeof PRO2_INPUTS, typeof PRO2_OUTPUT> = {
   name: "PRO2 | Crohn's Disease | Version 2 (10-2025)",
@@ -32,7 +32,7 @@ export const getAlert = (
   const BASELINE_MAX_INCREASE = 5
   const SCORE_THRESHOLD = 14
 
-  if (!baselineScore) return false
+  if (isNil(baselineScore)) return false
 
   const baselineScoreIncrease = totalScore - baselineScore
 

@@ -193,5 +193,10 @@ describe('PRO2 | CD | Version 2', function () {
       const alert = getAlert(16, 10)
       expect(alert).toEqual(true)
     })
+
+    it('should return true when total score > 14 and increase is more than 5', function () {
+      const alert = getAlert(16, 0)
+      expect(alert).toEqual(true)
+    })
   })
 })
