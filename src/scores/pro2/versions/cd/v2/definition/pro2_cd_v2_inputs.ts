@@ -33,7 +33,7 @@ export const PRO2_INPUTS = {
   },
   PRO2_CD_BASELINE_SCORE: {
     label: {
-      nl: 'De baseline PRO2 score van de patiënt indien beschikbaar. Dit wordt gebruikt om te bepalen of een alert status is bereikt. Deze vraag hoeft niet ingevuld te worden door de patiënt dus kan verwijderd worden uit de vragenlijst. Indien deze waarde niet wordt meegegeven, kan de alert status niet bepaald worden.',
+      nl: 'De baseline PRO2-score van de patiënt, indien beschikbaar. Deze waarde wordt gebruikt om te bepalen of een alertstatus is bereikt. De patiënt hoeft deze vraag niet in te vullen, dus ze kan uit de vragenlijst worden verwijderd. Als deze waarde niet wordt meegegeven, kan de alertstatus niet worden bepaald.',
     },
     type: z.number().optional(),
   },
