@@ -12,6 +12,7 @@ export const PRO2_INPUTS = {
     type: z.number().min(0).max(20),
     info: {
       en: `Stool frequency will be multiplied with a factor ${STOOL_FREQUENCY_FACTOR}`,
+      nl: `Stoelgang wordt vermenigvuldigd met een factor ${STOOL_FREQUENCY_FACTOR}`,
     },
   },
   ABDOMINAL_PAIN: {
@@ -21,14 +22,15 @@ export const PRO2_INPUTS = {
     type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
     uiOptions: {
       options: [
-        { value: 0, label: { en: 'Geen' } },
-        { value: 1, label: { en: 'Mild' } },
-        { value: 2, label: { en: 'Matig' } },
-        { value: 3, label: { en: 'Ernstig' } },
+        { value: 0, label: { nl: 'Geen' } },
+        { value: 1, label: { nl: 'Mild' } },
+        { value: 2, label: { nl: 'Matig' } },
+        { value: 3, label: { nl: 'Ernstig' } },
       ],
     },
     info: {
       en: `Abdominal pain will be multiplied with a factor ${ABDOMINAL_PAIN_FACTOR}`,
+      nl: `Buikpijn wordt vermenigvuldigd met een factor ${ABDOMINAL_PAIN_FACTOR}`,
     },
   },
   PRO2_CD_BASELINE_SCORE: {
