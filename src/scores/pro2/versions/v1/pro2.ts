@@ -1,5 +1,5 @@
 import { PRO2_INPUTS, PRO2_OUTPUT } from './definition'
-import { ScoreType } from '../../types'
+import { ScoreType } from '../../../../types'
 import { sum, omit } from 'lodash'
 import {
   GENERAL_WELL_BEING_FACTOR,

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { ScoreOutputSchemaType } from '../../../types'
+import { ScoreOutputSchemaType } from '../../../../../types'
 
 export const PRO2_OUTPUT = {
   TOTAL_SCORE: {
