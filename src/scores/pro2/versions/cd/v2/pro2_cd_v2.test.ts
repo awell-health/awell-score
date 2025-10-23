@@ -1,5 +1,5 @@
-import { Score } from '../../../../classes'
-import { ScoreLibrary } from '../../../library'
+import { Score } from '../../../../../classes'
+import { ScoreLibrary } from '../../../../library'
 import { pro2_cd_v2, getAlert } from './pro2_cd_v2'
 import { ZodError } from 'zod'
 

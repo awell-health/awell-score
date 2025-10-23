@@ -1,5 +1,5 @@
 import { PRO2_INPUTS, PRO2_OUTPUT } from './definition'
-import { ScoreType } from '../../../../types'
+import { ScoreType } from '../../../../../types'
 import {
   STOOL_FREQUENCY_FACTOR,
   ABDOMINAL_PAIN_FACTOR,
