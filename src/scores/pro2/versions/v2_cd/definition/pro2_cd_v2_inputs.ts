@@ -31,7 +31,7 @@ export const PRO2_INPUTS = {
       en: `Abdominal pain will be multiplied with a factor ${ABDOMINAL_PAIN_FACTOR}`,
     },
   },
-  PRO2_BASELINE_SCORE: {
+  PRO2_CD_BASELINE_SCORE: {
     label: {
       nl: 'De baseline PRO2 score van de patiënt indien beschikbaar. Dit wordt gebruikt om te bepalen of een alert status is bereikt. Deze vraag hoeft niet ingevuld te worden door de patiënt dus kan verwijderd worden uit de vragenlijst. Indien deze waarde niet wordt meegegeven, kan de alert status niet bepaald worden.',
     },

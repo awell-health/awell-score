@@ -20,7 +20,7 @@ export const pro2_cd_v2: ScoreType<typeof PRO2_INPUTS, typeof PRO2_OUTPUT> = {
 
     return {
       PRO2_CD_SCORE: totalScore,
-      PRO2_CD_ALERT: getAlert(totalScore, data.PRO2_BASELINE_SCORE),
+      PRO2_CD_ALERT: getAlert(totalScore, data.PRO2_CD_BASELINE_SCORE),
     }
   },
 }

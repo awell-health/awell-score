@@ -15,7 +15,7 @@ describe('PRO2 | CD | Version 2', function () {
       const EXPECTED_CALCULATION_INPUT_IDS = [
         'STOOL_FREQUENCY',
         'ABDOMINAL_PAIN',
-        'PRO2_BASELINE_SCORE',
+        'PRO2_CD_BASELINE_SCORE',
       ]
 
       const configured_calculation_input_ids = Object.keys(
@@ -33,7 +33,7 @@ describe('PRO2 | CD | Version 2', function () {
       payload: {
         STOOL_FREQUENCY: 1,
         ABDOMINAL_PAIN: 1,
-        PRO2_BASELINE_SCORE: 10,
+        PRO2_CD_BASELINE_SCORE: 10,
       },
     })
 
@@ -56,7 +56,7 @@ describe('PRO2 | CD | Version 2', function () {
         payload: {
           STOOL_FREQUENCY: 0,
           ABDOMINAL_PAIN: 1,
-          PRO2_BASELINE_SCORE: 10,
+          PRO2_CD_BASELINE_SCORE: 10,
         },
       })
 
@@ -75,7 +75,7 @@ describe('PRO2 | CD | Version 2', function () {
       payload: {
         STOOL_FREQUENCY: 20,
         ABDOMINAL_PAIN: 3,
-        PRO2_BASELINE_SCORE: 10,
+        PRO2_CD_BASELINE_SCORE: 10,
       },
     })
 
@@ -93,7 +93,7 @@ describe('PRO2 | CD | Version 2', function () {
       payload: {
         STOOL_FREQUENCY: 3,
         ABDOMINAL_PAIN: 2,
-        PRO2_BASELINE_SCORE: 10,
+        PRO2_CD_BASELINE_SCORE: 10,
       },
     })
 
