@@ -98,7 +98,11 @@ import { phq_8 } from './phq_8/phq_8'
 import { phq_9 } from './phq_9/phq_9'
 import { physical_activity_measurement } from './physical_activity_measurement/physical_activity_measurement'
 // import { pro_ctcae } from './pro_ctcae/pro_ctcae'
-import { pro2 as PRO2 } from './pro2/pro2'
+import {
+  pro2 as PRO2,
+  pro2_cd_v2 as PRO2_CD_V2,
+  pro2_uc as PRO2_UC,
+} from './pro2'
 import { promis_10 } from './promis_10/promis_10'
 import { prtee } from './prtee/prtee'
 import { paid_20 } from './PAID_20/paid_20'
@@ -243,6 +247,8 @@ export const ScoreLibrary = createScoreLibrary({
   phq_9,
   physical_activity_measurement,
   PRO2,
+  PRO2_CD_V2,
+  PRO2_UC,
   promis_10,
   prtee,
   paid_20,

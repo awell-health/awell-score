@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { ScoreInputSchemaType } from '../../../types'
+import { ScoreInputSchemaType } from '../../../../../../types'
 
 export const STOOL_FREQUENCY_FACTOR = 2
 export const ABDOMINAL_PAIN_FACTOR = 5

@@ -1,5 +1,5 @@
-import { Score } from '../../classes'
-import { ScoreLibrary } from '../library'
+import { Score } from '../../../../../classes'
+import { ScoreLibrary } from '../../../../library'
 import {
   max_response,
   min_response,
