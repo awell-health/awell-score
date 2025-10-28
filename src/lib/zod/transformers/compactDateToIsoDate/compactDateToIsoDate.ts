@@ -17,8 +17,11 @@ import { parse, isValid, format } from 'date-fns'
 export const compactDateToIsoDate = (dateString: string): string => {
   const trimmed = dateString.trim()
 
-  const parsed = parse(trimmed, 'yyyyMMdd', new Date())
-  if (isValid(parsed)) return format(parsed, 'yyyy-MM-dd')
+  // Only attempt parsing for strict compact format YYYYMMDD
+  if (/^\d{8}$/.test(trimmed)) {
+    const parsed = parse(trimmed, 'yyyyMMdd', new Date())
+    if (isValid(parsed)) return format(parsed, 'yyyy-MM-dd')
+  }
 
   return trimmed
 }
