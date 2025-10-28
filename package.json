@@ -23,6 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
     "showdown": "^2.1.0",
     "zod": "^3.24.1"

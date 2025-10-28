@@ -20,6 +20,7 @@ export interface BooleanInputType extends BaseInputType {
 export interface DateInputType extends BaseInputType {
   type:
     | z.ZodPipeline<z.ZodString, z.ZodDate>
+    | z.ZodPipeline<z.ZodEffects<z.ZodString, string>, z.ZodDate>
     | z.ZodPipeline<z.ZodOptional<z.ZodString>, z.ZodOptional<z.ZodDate>>
 }
 
