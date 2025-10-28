@@ -239,8 +239,8 @@ export const FAAM_INPUTS = {
   },
   ADL_RATING: {
     label: {
-      nl: 'How would you rate your current level of function during you usual activities of daily living from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities.',
-      en: 'How would you rate your current level of function during you usual activities of daily living from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities.',
+      nl: 'How would you rate your current level of function during your usual activities of daily living from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities.',
+      en: 'How would you rate your current level of function during your usual activities of daily living from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities.',
       fr: 'A combien estimez-vous votre niveau actuel de fonctionnement dans les activités habituelles de votre vie quotidienne de 0 à 100, 100 étant votre niveau de fonctionnement avant votre problème de pied ou de cheville, 0 étant l’incapacité à faire la moindre de vos activités quotidiennes habituelles ?',
     },
     type: z.number().min(0).max(100).optional(),
@@ -306,8 +306,8 @@ export const FAAM_INPUTS = {
   },
   SPORTS_RATING: {
     label: {
-      nl: 'How would you rate your current level of function during your sports related activities from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities?',
-      en: 'How would you rate your current level of function during your sports related activities from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities?',
+      nl: 'How would you rate your current level of function during your sports related activities from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual sports related activities?',
+      en: 'How would you rate your current level of function during your sports related activities from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual sports related activities?',
       fr: "A combien estimez-vous votre niveau actuel de fonctionnement durant vos activités sportives de 0 à 100, 100 étant votre niveau de fonctionnement avant votre problème de pied ou de cheville, 0 étant l'incapacité à faire la moindre de vos activités sportives habituelles?",
     },
     type: z.number().min(0).max(100).optional(),
