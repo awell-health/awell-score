@@ -28,7 +28,7 @@ export const FAAM_SUBSCALES: Record<
       'ADL_Q20',
       'ADL_Q21',
     ],
-    minRequiredAnswers: 19,
+    minRequiredAnswers: 20,
   },
   SPORTS: {
     inputs: [
@@ -40,6 +40,6 @@ export const FAAM_SUBSCALES: Record<
       'SPORTS_Q06',
       'SPORTS_Q07',
     ],
-    minRequiredAnswers: 7,
+    minRequiredAnswers: 6,
   },
 }

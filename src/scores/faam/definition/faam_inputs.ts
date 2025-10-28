@@ -237,7 +237,17 @@ export const FAAM_INPUTS = {
     },
     ...type,
   },
-
+  ADL_RATING: {
+    label: {
+      nl: 'How would you rate your current level of function during you usual activities of daily living from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities.',
+      en: 'How would you rate your current level of function during you usual activities of daily living from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities.',
+      fr: 'A combien estimez-vous votre niveau actuel de fonctionnement dans les activités habituelles de votre vie quotidienne de 0 à 100, 100 étant votre niveau de fonctionnement avant votre problème de pied ou de cheville, 0 étant l’incapacité à faire la moindre de vos activités quotidiennes habituelles ?',
+    },
+    type: z.number().min(0).max(100).optional(),
+    uiOptions: {
+      component: 'slider',
+    },
+  },
   SPORTS_Q01: {
     label: {
       nl: 'Hardlopen',
@@ -293,5 +303,58 @@ export const FAAM_INPUTS = {
       fr: 'Capacité à exécuter votre activité sportive avec votre technique habituelle',
     },
     ...type,
+  },
+  SPORTS_RATING: {
+    label: {
+      nl: 'How would you rate your current level of function during your sports related activities from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities?',
+      en: 'How would you rate your current level of function during your sports related activities from 0 to 100 with 100 being your level of function prior to your foot or ankle problem and 0 being the inability to perform any of your usual daily activities?',
+      fr: "A combien estimez-vous votre niveau actuel de fonctionnement durant vos activités sportives de 0 à 100, 100 étant votre niveau de fonctionnement avant votre problème de pied ou de cheville, 0 étant l'incapacité à faire la moindre de vos activités sportives habituelles?",
+    },
+    type: z.number().min(0).max(100).optional(),
+    uiOptions: {
+      component: 'slider',
+    },
+  },
+  OVERALL_RATING: {
+    label: {
+      nl: 'Overall, how would you rate your current level of function?',
+      en: 'Overall, how would you rate your current level of function?',
+      fr: 'Globalement, comment estimez-vous votre niveau actuel de fonctionnement ?',
+    },
+    type: z
+      .union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)])
+      .optional(),
+    uiOptions: {
+      options: [
+        {
+          value: 0,
+          label: { en: 'Normal', nl: 'Normaal', fr: 'Normal' },
+        },
+        {
+          value: 1,
+          label: {
+            en: 'Nearly normal',
+            nl: 'Vrijwel normaal',
+            fr: 'Presque normal',
+          },
+        },
+        {
+          value: 2,
+          label: {
+            en: 'Abnormal',
+            nl: 'Abnormaal',
+            fr: 'En dessous de la normale',
+          },
+        },
+        {
+          value: 3,
+          label: {
+            en: 'Severely Abnormal',
+            nl: 'Zeer abnormaal',
+            fr: 'Bien en dessous de la normale',
+          },
+        },
+      ],
+    },
   },
 } satisfies ScoreInputSchemaType

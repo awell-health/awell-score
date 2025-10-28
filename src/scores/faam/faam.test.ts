@@ -46,6 +46,7 @@ describe('faam', function () {
           'ADL_Q19',
           'ADL_Q20',
           'ADL_Q21',
+          'ADL_RATING',
           'SPORTS_Q01',
           'SPORTS_Q02',
           'SPORTS_Q03',
@@ -53,6 +54,8 @@ describe('faam', function () {
           'SPORTS_Q05',
           'SPORTS_Q06',
           'SPORTS_Q07',
+          'SPORTS_RATING',
+          'OVERALL_RATING',
         ]
 
         const configured_input_ids = Object.keys(faam_calculation.inputSchema)
@@ -131,6 +134,40 @@ describe('faam', function () {
 
         it('should return null as the result for "SPORTS" subscale', function () {
           expect(outcome.SPORTS).toEqual(null)
+        })
+      })
+
+      describe('when a response is passed with less than the minimum number of answers for a subscale', function () {
+        describe('when the "ADL" subscale is passed with less than the minimum number of answers', function () {
+          it('should return null as the result for "ADL" subscale', function () {
+            const outcome = faam_calculation.calculate({
+              payload: {
+                ...worst_response,
+                // Two missing questions for the "ADL" subscale
+                ADL_Q01: undefined,
+                ADL_Q02: undefined,
+              },
+            })
+
+            expect(outcome.ADL).toEqual(null)
+            expect(outcome.SPORTS).toEqual(WORST_SCORE)
+          })
+        })
+
+        describe('when the "SPORTS" subscale is passed with less than the minimum number of answers', function () {
+          it('should return null as the result for "SPORTS" subscale', function () {
+            const outcome = faam_calculation.calculate({
+              payload: {
+                ...worst_response,
+                // Two missing questions for the "SPORTS" subscale
+                SPORTS_Q01: undefined,
+                SPORTS_Q02: undefined,
+              },
+            })
+
+            expect(outcome.ADL).toEqual(WORST_SCORE)
+            expect(outcome.SPORTS).toEqual(null)
+          })
         })
       })
     })
