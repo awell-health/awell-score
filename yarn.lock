@@ -38,6 +38,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.18.2"
     "@yarnpkg/sdks": "npm:^3.2.0"
     cpx: "npm:^1.5.0"
+    date-fns: "npm:^4.1.0"
     eslint: "npm:^9.17.0"
     husky: "npm:^9.1.7"
     jest: "npm:^29.7.0"
@@ -2385,6 +2386,13 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10/0d52657d7ae36eb130999dffff1168ec348687b48dd38e2ff59992ed916c88d328cf1d07ff4a4a10bc78de5e1c23f04b306d569e42f7a2293915c081e4dfee86
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "date-fns@npm:4.1.0"
+  checksum: 10/d5f6e9de5bbc52310f786099e18609289ed5e30af60a71e0646784c8185ddd1d0eebcf7c96b7faaaefc4a8366f3a3a4244d099b6d0866ee2bec80d1361e64342
   languageName: node
   linkType: hard
 

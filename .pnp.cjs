@@ -37,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:8.19.0"],\
           ["@yarnpkg/sdks", "npm:3.2.0"],\
           ["cpx", "npm:1.5.0"],\
+          ["date-fns", "npm:4.1.0"],\
           ["eslint", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:9.17.0"],\
           ["husky", "npm:9.1.7"],\
           ["jest", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:29.7.0"],\
@@ -90,6 +91,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:8.19.0"],\
           ["@yarnpkg/sdks", "npm:3.2.0"],\
           ["cpx", "npm:1.5.0"],\
+          ["date-fns", "npm:4.1.0"],\
           ["eslint", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:9.17.0"],\
           ["husky", "npm:9.1.7"],\
           ["jest", "virtual:c11cbab1df73e7032a6d8bcafb5c58a4c11fb78ba80ef895601a81a15c29f5b343c43e035b66a1214c24a4f6d3e38f8ccc02d9319d36f49c292198fca205d412#npm:29.7.0"],\
@@ -3322,6 +3324,15 @@ const RAW_RUNTIME_STATE =
           ["path-key", "npm:3.1.1"],\
           ["shebang-command", "npm:2.0.0"],\
           ["which", "npm:2.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["date-fns", [\
+      ["npm:4.1.0", {\
+        "packageLocation": "./.yarn/cache/date-fns-npm-4.1.0-764604ee0f-d5f6e9de5b.zip/node_modules/date-fns/",\
+        "packageDependencies": [\
+          ["date-fns", "npm:4.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\

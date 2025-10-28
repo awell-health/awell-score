@@ -115,5 +115,35 @@ describe('age_calc', function () {
         expect(result.AGE).toEqual(EXPECTED_AGE)
       })
     })
+
+    describe('when input date is a compact date ', () => {
+      it('should return correct result age', function () {
+        const dob = '19780415'
+        MockDate.set('2025-10-28T00:00:00Z')
+
+        const EXPECTED_AGE = 47
+
+        const result = calculate_age.calculate({
+          payload: { date_of_birth: dob },
+        })
+
+        expect(result.AGE).toEqual(EXPECTED_AGE)
+      })
+    })
+
+    describe('when input date uses / to separate year, month and day (international format)', () => {
+      it('should return correct result age', function () {
+        const dob = '1978/04/15'
+        MockDate.set('2025-10-28T00:00:00Z')
+
+        const EXPECTED_AGE = 47
+
+        const result = calculate_age.calculate({
+          payload: { date_of_birth: dob },
+        })
+
+        expect(result.AGE).toEqual(EXPECTED_AGE)
+      })
+    })
   })
 })
