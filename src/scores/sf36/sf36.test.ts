@@ -25,7 +25,7 @@ describe('sf36', function () {
     it('should have all the expected input ids configured', function () {
       const EXPECTED_INPUT_IDS = [
         'SF36_Q01',
-        // 'SF36_Q02', Question 2 is not used in any subscale for score calculation
+        'SF36_Q02', // Question 2 is not used in subscale calculations but is part of the official SF36 questionnaire
         'SF36_Q03',
         'SF36_Q04',
         'SF36_Q05',
