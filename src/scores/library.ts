@@ -1,5 +1,6 @@
 import { ten_meter_walk_test } from './10_meter_walk_test/10_meter_walk_test'
 import { age_calc } from './age_calc/age_calc'
+import { ais } from './ais/ais'
 import { asrs } from './asrs/asrs'
 import { audit } from './audit/audit'
 import { aq_10 } from './AQ_10/aq_10'
@@ -150,6 +151,7 @@ export const ScoreLibrary = createScoreLibrary({
   test_calculation,
   age_calc,
   acro,
+  ais,
   asrs,
   audit,
   aq_10,
