@@ -71,11 +71,10 @@ describe('ais', function () {
     })
 
     describe('when called with an empty response', function () {
-      it('should return 0 for the score and undefined for interpretation', function () {
-        const outcome = ais_calculation.calculate({ payload: {} })
-
-        expect(outcome.AIS_SCORE).toEqual(0)
-        expect(outcome.AIS_INTERPRETATION).toBeUndefined()
+      it('should throw a ZodError', function () {
+        expect(() =>
+          ais_calculation.calculate({ payload: {} }),
+        ).toThrow(ZodError)
       })
     })
   })
@@ -196,16 +195,16 @@ describe('ais', function () {
   })
 
   describe('partial responses', function () {
-    it('should calculate score with missing values', function () {
+    it('should throw a ZodError when questions are missing', function () {
       const partial_response = {
         AIS_Q01: 5,
         AIS_Q02: 4,
-        // Missing other questions - should be ignored by sum()
+        // Missing other questions - should throw ZodError
       }
-      const outcome = ais_calculation.calculate({ payload: partial_response })
-
-      expect(outcome.AIS_SCORE).toEqual(9)
-      expect(outcome.AIS_INTERPRETATION).toEqual('Low acceptance')
+      
+      expect(() =>
+        ais_calculation.calculate({ payload: partial_response }),
+      ).toThrow(ZodError)
     })
   })
 })

@@ -8,8 +8,7 @@ export const ais: ScoreType<typeof AIS_INPUTS, typeof AIS_OUTPUT> = {
   inputSchema: AIS_INPUTS,
   outputSchema: AIS_OUTPUT,
   calculate: ({ data }) => {
-    const validValues = Object.values(data).filter(value => value !== undefined)
-    const total_score = sum(validValues)
+    const total_score = sum(Object.values(data))
 
     return {
       AIS_SCORE: total_score,

@@ -73,9 +73,9 @@ The AIS demonstrates:
 ## Implementation Notes
 
 ### Missing Data
-- If responses are missing, they contribute 0 to the total score
-- Consider requiring complete responses for valid interpretation
-- Partial responses may underestimate acceptance levels
+- All 8 questions are required for a valid assessment
+- If any responses are missing, the calculation will return null
+- This ensures scores are always within the valid range of 8-40 points
 
 ### Clinical Considerations
 - Low scores may indicate need for psychological intervention
