@@ -4,6 +4,7 @@ import { ais } from './ais/ais'
 import { asrs } from './asrs/asrs'
 import { audit } from './audit/audit'
 import { aq_10 } from './AQ_10/aq_10'
+import { aq_50 } from './AQ_50/aq_50'
 import { basdai } from './basdai/basdai'
 import { basfi } from './basfi/basfi'
 import { beck } from './beck/beck'
@@ -155,6 +156,7 @@ export const ScoreLibrary = createScoreLibrary({
   asrs,
   audit,
   aq_10,
+  aq_50,
   basdai,
   basfi,
   beck,
