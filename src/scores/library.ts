@@ -7,6 +7,7 @@ import { aq_10 } from './AQ_10/aq_10'
 import { aq_50 } from './AQ_50/aq_50'
 import { basdai } from './basdai/basdai'
 import { basfi } from './basfi/basfi'
+import { bai } from './bai/bai'
 import { beck } from './beck/beck'
 import { blcs } from './blcs/blcs'
 import { bpses } from './bpses/bpses'
@@ -159,6 +160,7 @@ export const ScoreLibrary = createScoreLibrary({
   aq_50,
   basdai,
   basfi,
+  bai,
   beck,
   bmi: bmi_metric,
   bmi_imperial,
