@@ -7,7 +7,7 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/whoqol_bref_test_responses'
-import { WHOQOL_BREF_DOMAINS } from './definition/whoqol_bref_questions'
+import { WHOQOL_BREF_DOMAINS } from './definition/whoqol_bref_domains'
 import { whoqol_bref } from './whoqol_bref'
 
 const whoqol_bref_calculation = new Score(whoqol_bref)

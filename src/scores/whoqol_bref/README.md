@@ -6,7 +6,7 @@ WHOQOL-BREF is an implementation of the World Health Organization Quality of Lif
 
 The questionnaire consists of 26 questions assessing quality of life over the last four weeks.
 
-**Note:** This implementation follows the Polish WHOQOL-BREF methodology, which includes pre-reversed value scales for certain questions (Q3, Q4, Q26) in the questionnaire design itself.
+**Note:** This implementation assumes that certain WHOQOL-BREF items that require reverse scoring (e.g., Q3, Q4, Q26) are already reversed in the questionnaire itself.
 
 ## Questionnaire Structure
 

@@ -21,7 +21,7 @@ export const whoqol_bref: ScoreType<
     const MAX_MISSING_PERCENTAGE = 0.2 // 20%
     const TOTAL_QUESTIONS = 26
 
-    // Note: Polish WHOQOL-BREF uses pre-reversed values for Q3, Q4, Q26
+    // Note: we pre-reverse the values for Q3, Q4, Q26 in the WHOQOL-BREF
     // (5=best, 1=worst for these questions), so no transformation is needed
 
     // TIER 1: Check overall data quality (20% rule)
