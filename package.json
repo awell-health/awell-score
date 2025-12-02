@@ -1,6 +1,6 @@
 {
   "name": "@awell-health/awell-score",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Library of Medical Score functions",
   "packageManager": "yarn@4.6.0",
   "main": "dist/index.js",
