@@ -120,6 +120,7 @@ import { scl90r } from './scl90r/scl90r'
 import { sdq } from './sdq/sdq'
 import { sf12 } from './sf12/sf12'
 import { sf36 } from './sf36/sf36'
+import { whoqol_bref } from './whoqol_bref/whoqol_bref'
 import { spadi } from './spadi/spadi'
 import { simple_shoulder_test } from './sst/simple_shoulder_test'
 import { start_back_screening_tool } from './start_back_screening_tool/start_back_screening_tool'
@@ -271,6 +272,7 @@ export const ScoreLibrary = createScoreLibrary({
   sdq,
   sf12,
   sf36,
+  whoqol_bref,
   short_fes_i,
   spadi,
   simple_shoulder_test,
