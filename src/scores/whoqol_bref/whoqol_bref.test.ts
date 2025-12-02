@@ -179,14 +179,34 @@ describe('whoqol_bref', function () {
         const score = whoqol_bref_calculation.calculate({ payload: response })
 
         // Q1 and Q2 should have values (not missing)
-        expect(score.QUALITY_OF_LIFE).not.toBeNull()
-        expect(score.HEALTH_SATISFACTION).not.toBeNull()
+        expect(score.QUALITY_OF_LIFE).toBe(5)
+        expect(score.HEALTH_SATISFACTION).toBe(5)
         
-        // All domains should calculate (missing data within per-domain limits)
-        expect(score.PHYSICAL_HEALTH).not.toBeNull()
-        expect(score.PSYCHOLOGICAL_HEALTH).not.toBeNull()
-        expect(score.SOCIAL_RELATIONSHIPS).not.toBeNull()
-        expect(score.ENVIRONMENT).not.toBeNull()
+        // Physical Health: Missing Q03
+        // Present values: Q04=5, Q10=5, Q15=5, Q16=5, Q17=5, Q18=5
+        // Mean of present values: 5
+        // After imputation: all 7 values = 5
+        // Score: (4 × 5 - 4) × 6.25 = 16 × 6.25 = 100
+        expect(score.PHYSICAL_HEALTH).toBe(100)
+        
+        // Psychological Health: Missing Q05, Q06
+        // Present values: Q07=5, Q11=5, Q19=5, Q26=5
+        // Mean of present values: 5
+        // After imputation: all 6 values = 5
+        // Score: (4 × 5 - 4) × 6.25 = 16 × 6.25 = 100
+        expect(score.PSYCHOLOGICAL_HEALTH).toBe(100)
+        
+        // Social Relationships: No missing values
+        // All values: Q20=5, Q21=5, Q22=5
+        // Score: (4 × 5 - 4) × 6.25 = 16 × 6.25 = 100
+        expect(score.SOCIAL_RELATIONSHIPS).toBe(100)
+        
+        // Environment: Missing Q08, Q09
+        // Present values: Q12=5, Q13=5, Q14=5, Q23=5, Q24=5, Q25=5
+        // Mean of present values: 5
+        // After imputation: all 8 values = 5
+        // Score: (4 × 5 - 4) × 6.25 = 16 × 6.25 = 100
+        expect(score.ENVIRONMENT).toBe(100)
       })
     })
 
