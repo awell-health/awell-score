@@ -19,26 +19,15 @@ export const calculateDomainScore = (
   const domainInputs = pick(inputs, domainItems)
   
   // Check if all domain inputs have values
-  const values = Object.values(domainInputs)
+  const validValues = Object.values(domainInputs).filter(value => value !== undefined && value !== null)
   
   // If we don't have all expected items, return null
-  if (values.length !== domainItems.length) {
-    return null
-  }
-  
-  const hasAllValues = values.every(value => value !== undefined && value !== null)
-  
-  if (!hasAllValues) {
+  if (validValues.length !== domainItems.length) {
     return null // If any input is missing, return null for the domain
   }
   
-  // Check if all values are 0 (no sexual activity)
-  if (values.every(value => value === 0)) {
-    return 0 // If all responses are "no sexual activity", domain score is 0
-  }
-  
   // Calculate raw sum
-  const rawSum = sum(values)
+  const rawSum = sum(validValues)
   
   // Apply domain factor
   const domainScore = rawSum * domainConfig.factor
