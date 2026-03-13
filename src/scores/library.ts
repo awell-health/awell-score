@@ -110,6 +110,7 @@ import {
 import { promis_10 } from './promis_10/promis_10'
 import { prtee } from './prtee/prtee'
 import { paid_20 } from './PAID_20/paid_20'
+import { paid_5 } from './PAID_5/paid_5'
 import { psk } from './psk/psk'
 import { qol_stoma } from './qol_stoma/qol_stoma'
 import { quickdash } from './quickdash/quickdash'
@@ -261,6 +262,7 @@ export const ScoreLibrary = createScoreLibrary({
   promis_10,
   prtee,
   paid_20,
+  paid_5,
   psk,
   psqi,
   pss_4,
