@@ -57,28 +57,28 @@ export const PAID5_INPUTS = {
   PAID5_Q01: {
     label: {
       en: 'Feeling scared when you think about living with diabetes?',
-      pl: 'Strach przed myśleniem o życiu z cukrzycą?',
+      pl: 'Poczucie przerażenia na myśl o życiu z cukrzycą?',
     },
     ...PAID5_INPUT_TYPE,
   },
   PAID5_Q02: {
     label: {
       en: 'Feeling depressed when you think about living with diabetes?',
-      pl: 'Poczucie depresji przy myśleniu o życiu z cukrzycą?',
+      pl: 'Poczucie przygnębienia na myśl o życiu z cukrzycą?',
     },
     ...PAID5_INPUT_TYPE,
   },
   PAID5_Q03: {
     label: {
       en: 'Worrying about the future and the possibility of serious complications?',
-      pl: 'Obawy dotyczące przyszłości i możliwości poważnych powikłań?',
+      pl: 'Martwienie się o przyszłość i możliwość poważnych powikłań?',
     },
     ...PAID5_INPUT_TYPE,
   },
   PAID5_Q04: {
     label: {
       en: 'Feeling that diabetes is taking up too much of your mental and physical energy every day?',
-      pl: 'Poczucie, że cukrzyca pochłania zbyt wiele Twojej codziennej energii psychicznej i fizycznej?',
+      pl: 'Poczucie, że cukrzyca zabiera Pani/Panu zbyt wiele sił psychicznych i fizycznych każdego dnia?',
     },
     ...PAID5_INPUT_TYPE,
   },
