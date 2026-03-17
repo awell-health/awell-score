@@ -24,28 +24,28 @@ const PAID5_INPUT_TYPE = {
       {
         label: {
           en: 'Minor problem',
-          pl: 'Drobny problem',
+          pl: 'Jest to niewielki problem',
         },
         value: 1,
       },
       {
         label: {
           en: 'Moderate problem',
-          pl: 'Umiarkowany problem',
+          pl: 'Jest to umiarkowany problem',
         },
         value: 2,
       },
       {
         label: {
           en: 'Somewhat serious problem',
-          pl: 'Dość poważny problem',
+          pl: 'Jest to dość poważny problem',
         },
         value: 3,
       },
       {
         label: {
           en: 'Serious problem',
-          pl: 'Poważny problem',
+          pl: 'Jest to poważny problem',
         },
         value: 4,
       },

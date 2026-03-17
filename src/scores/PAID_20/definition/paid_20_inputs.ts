@@ -24,28 +24,28 @@ const PAID20_INPUTS_TYPE = {
       {
         label: {
           en: 'Minor problem',
-          pl: 'Drobny problem',
+          pl: 'Jest to niewielki problem',
         },
         value: 1,
       },
       {
         label: {
           en: 'Moderate problem',
-          pl: 'Umiarkowany problem',
+          pl: 'Jest to umiarkowany problem',
         },
         value: 2,
       },
       {
         label: {
           en: 'Somewhat serious problem',
-          pl: 'Dość poważny problem',
+          pl: 'Jest to dość poważny problem',
         },
         value: 3,
       },
       {
         label: {
           en: 'Serious problem',
-          pl: 'Poważny problem',
+          pl: 'Jest to poważny problem',
         },
         value: 4,
       },
@@ -57,126 +57,126 @@ export const PAID20_INPUTS = {
   PAID20_Q01: {
     label: {
       en: 'Not having clear and concrete goals for your diabetes care?',
-      pl: 'Brak jasnych i konkretnych celów dotyczących opieki nad cukrzycą?',
+      pl: 'Brak jasnych, skonkretyzowanych celów w leczeniu cukrzycy?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q02: {
     label: {
       en: 'Feeling discouraged with your diabetes treatment plan?',
-      pl: 'Zniechęcenie związane z planem leczenia cukrzycy?',
+      pl: 'Poczucie zniechęcenia do swojego planu leczenia cukrzycy?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q03: {
     label: {
       en: 'Feeling scared when you think about living with diabetes?',
-      pl: 'Strach przed myśleniem o życiu z cukrzycą?',
+      pl: 'Poczucie przerażenia na myśl o życiu z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q04: {
     label: {
       en: 'Uncomfortable social situations related to your diabetes care (e.g. people telling you what to eat)?',
-      pl: 'Niezręczne sytuacje społeczne związane z opieką nad cukrzycą (np. ludzie mówiący, co masz jeść)?',
+      pl: 'Krępujące sytuacje społeczne, związane z Pani/Pana opieką diabetologiczną (np. ludzie mówiący Pani/Panu co jeść)?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q05: {
     label: {
       en: 'Feelings of deprivation regarding food and meals?',
-      pl: 'Poczucie deprywacji związane z jedzeniem i posiłkami?',
+      pl: 'Poczucie utraty możliwości jedzenia pewnych potraw?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q06: {
     label: {
       en: 'Feeling depressed when you think about living with diabetes?',
-      pl: 'Poczucie depresji przy myśleniu o życiu z cukrzycą?',
+      pl: 'Poczucie przygnębienia na myśl o życiu z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q07: {
     label: {
       en: 'Not knowing if your mood or feelings are related to your diabetes?',
-      pl: 'Niepewność, czy Twój nastrój lub uczucia są związane z cukrzycą?',
+      pl: 'Niepewność, czy Pani/Pana samopoczucie związane jest z cukrzycą czy innym problemem?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q08: {
     label: {
       en: 'Feeling overwhelmed by your diabetes?',
-      pl: 'Poczucie przytłoczenia cukrzycą?',
+      pl: 'Poczucie przytłoczenia przez cukrzycę?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q09: {
     label: {
       en: 'Worrying about low blood glucose reactions?',
-      pl: 'Obawy dotyczące reakcji na niski poziom glukozy we krwi?',
+      pl: 'Niepokój o reakcje organizmu na niski poziom cukru we krwi?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q10: {
     label: {
       en: 'Feeling angry when you think about living with diabetes?',
-      pl: 'Złość kiedy myślisz o życiu z cukrzycą?',
+      pl: 'Uczucie złości na myśl o życiu z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q11: {
     label: {
       en: 'Feeling constantly concerned about food and eating?',
-      pl: 'Stałe zmartwienie związane z jedzeniem i odżywianiem?',
+      pl: 'Poczucie ciągłego zatroskania o żywność i jedzenie?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q12: {
     label: {
       en: 'Worrying about the future and the possibility of serious complications?',
-      pl: 'Obawy dotyczące przyszłości i możliwości poważnych powikłań?',
+      pl: 'Martwienie się o przyszłość i możliwość poważnych powikłań?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q13: {
     label: {
       en: 'Feelings of guilt or anxiety when you get off track with your diabetes management?',
-      pl: 'Poczucie winy lub niepokoju, gdy nie trzymasz się planu zarządzania cukrzycą?',
+      pl: 'Uczucia winy lub lęku, kiedy przestaje sobie Pani/Pan radzić z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q14: {
     label: {
       en: 'Not accepting your diabetes?',
-      pl: 'Brak akceptacji swojej cukrzycy?',
+      pl: 'Brak pogodzenia się z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q15: {
     label: {
       en: 'Feeling unsatisfied with your diabetes physician?',
-      pl: 'Niezadowolenie ze swojego lekarza prowadzącego cukrzycę?',
+      pl: 'Poczucie niezadowolenia ze swojego lekarza prowadzącego cukrzycę?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q16: {
     label: {
       en: 'Feeling that diabetes is taking up too much of your mental and physical energy every day?',
-      pl: 'Poczucie, że cukrzyca pochłania zbyt wiele Twojej codziennej energii psychicznej i fizycznej?',
+      pl: 'Poczucie, że cukrzyca zabiera Pani/Panu zbyt wiele sił psychicznych i fizycznych każdego dnia?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q17: {
     label: {
       en: 'Feeling alone with your diabetes?',
-      pl: 'Poczucie osamotnienia z powodu cukrzycy?',
+      pl: 'Poczucie osamotnienia w problemie cukrzycy?',
     },
     ...PAID20_INPUTS_TYPE,
   },
   PAID20_Q18: {
     label: {
       en: 'Feeling that your friends and family are not supportive of your diabetes management efforts?',
-      pl: 'Poczucie, że Twoi przyjaciele i rodzina nie wspierają Twoich starań w zarządzaniu cukrzycą?',
+      pl: 'Poczucie, że Pani/Pana przyjaciele i rodzina nie wspierają Pani/Pana w radzeniu sobie z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
@@ -190,7 +190,7 @@ export const PAID20_INPUTS = {
   PAID20_Q20: {
     label: {
       en: 'Feeling burned out by the constant effort needed to manage diabetes?',
-      pl: 'Poczucie wypalenia z powodu ciągłego wysiłku wymaganego do zarządzania cukrzycą?',
+      pl: 'Wyczerpanie (wypalenie) spowodowane ciągłym wysiłkiem potrzebnym do radzenia sobie z cukrzycą?',
     },
     ...PAID20_INPUTS_TYPE,
   },
