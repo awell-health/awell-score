@@ -3,7 +3,7 @@ import { ScoreOutputSchemaType } from '../../../../types'
 
 export const EQ5D_5L_OUTPUT = {
   EQ_HEALTH_STATE: {
-    label: { en: 'EQ Health State' },
+    label: { en: 'EQ Health State', pl: 'Stan zdrowia EQ' },
     type: z.number(),
   },
   EQ_VAS: {
