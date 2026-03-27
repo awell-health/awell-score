@@ -49,8 +49,8 @@ describe('eq5d_5l', function () {
   describe('each calculated score includes the correct output result and correct score title', function () {
     const outcome = eq5d_5l_calculation.calculate({ payload: min_response })
 
-    it('should return 2 scores', function () {
-      expect(Object.keys(outcome).length).toEqual(3)
+    it('should return 4 scores', function () {
+      expect(Object.keys(outcome).length).toEqual(4)
     })
 
     it('should have the correct calculation ids', function () {
@@ -58,6 +58,7 @@ describe('eq5d_5l', function () {
         'EQ_HEALTH_STATE',
         'EQ_VAS',
         'UTILITY_VALUE_HEALTH_STATE_BELGIUM',
+        'UTILITY_VALUE_HEALTH_STATE_POLAND',
       ]
 
       const extracted_calculation_ids_from_outcome = Object.keys(outcome)
@@ -83,6 +84,10 @@ describe('eq5d_5l', function () {
       it('should return a score for EQ Utility Value (Belgium)', function () {
         expect(outcome.UTILITY_VALUE_HEALTH_STATE_BELGIUM).toEqual(1)
       })
+
+      it('should return a score for EQ Utility Value (Poland)', function () {
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(1)
+      })
     })
 
     describe('when a median response is passed', function () {
@@ -103,6 +108,10 @@ describe('eq5d_5l', function () {
           0.576553031441399,
         )
       })
+
+      it('should return a score for EQ Utility Value (Poland)', function () {
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(0.513)
+      })
     })
 
     describe('when a maximum response is passed', function () {
@@ -120,6 +129,10 @@ describe('eq5d_5l', function () {
         expect(outcome.UTILITY_VALUE_HEALTH_STATE_BELGIUM).toEqual(
           -0.531645728835225,
         )
+      })
+
+      it('should return a score for EQ Utility Value (Poland)', function () {
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(-0.637)
       })
     })
 
@@ -142,6 +155,10 @@ describe('eq5d_5l', function () {
         expect(outcome.UTILITY_VALUE_HEALTH_STATE_BELGIUM).toEqual(
           0.587383672120598,
         )
+      })
+
+      it('should return a score for EQ Utility Value (Poland)', function () {
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(0.469)
       })
     })
   })
