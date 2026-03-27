@@ -7,7 +7,6 @@ import {
   min_response,
   random_response,
 } from './__testdata__/eq5d_5l_test_responses'
-import { EQ5D_5L_INPUTS } from './definition/eq5d_5l_inputs'
 import { eq5d_5l } from './eq5d_5l'
 
 const EQ5D_5L_MIN_HEALTH_STATE = 11111
