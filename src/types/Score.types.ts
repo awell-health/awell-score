@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { type ScoreInputSchemaType } from './ScoreInput.types'
 import { type ScoreOutputSchemaType } from './ScoreOutput.types'
+import { type AvailableLanguagesType } from './Label.types'
 
 export interface CodeType {
   coding: {
@@ -37,6 +38,7 @@ export type CalculateFn<
 > = {
   calculate: (opts: {
     data: z.infer<InputSchema>
+    language?: AvailableLanguagesType
   }) => Record<
     keyof OutputSchema,
     z.infer<OutputSchema[keyof OutputSchema]['type']> | null
