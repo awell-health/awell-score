@@ -3,7 +3,10 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/paid_5_test_responses'
-import { PAID5_INTERPRETATION } from './definition'
+import {
+  PAID5_INTERPRETATION_LABEL,
+  PAID5_INTERPRETATION_CODE,
+} from './definition'
 import { paid_5 } from './paid_5'
 import { ScoreLibrary } from '../library'
 import { Score } from '../../classes'
@@ -104,12 +107,14 @@ describe('paid_5', function () {
       })
 
       it('should return the "NO_DISTRESS" interpretation', function () {
-        expect(outcome.PAID5_INTERPRETATION).toEqual('NO_DISTRESS')
+        expect(outcome.PAID5_INTERPRETATION).toEqual(
+          PAID5_INTERPRETATION_CODE.NO_DISTRESS.en,
+        )
       })
 
-      it('should return the "No distress" interpretation label', function () {
+      it('should return the English interpretation label by default', function () {
         expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
-          PAID5_INTERPRETATION.NO_DISTRESS.en,
+          PAID5_INTERPRETATION_LABEL.NO_DISTRESS.en,
         )
       })
     })
@@ -124,12 +129,14 @@ describe('paid_5', function () {
       })
 
       it('should return the "POSSIBLE_DISTRESS" interpretation', function () {
-        expect(outcome.PAID5_INTERPRETATION).toEqual('POSSIBLE_DISTRESS')
+        expect(outcome.PAID5_INTERPRETATION).toEqual(
+          PAID5_INTERPRETATION_CODE.POSSIBLE_DISTRESS.en,
+        )
       })
 
-      it('should return the "Possible distress" interpretation label', function () {
+      it('should return the English interpretation label by default', function () {
         expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
-          PAID5_INTERPRETATION.POSSIBLE_DISTRESS.en,
+          PAID5_INTERPRETATION_LABEL.POSSIBLE_DISTRESS.en,
         )
       })
     })
@@ -144,14 +151,64 @@ describe('paid_5', function () {
       })
 
       it('should return the "POSSIBLE_DISTRESS" interpretation (score >= 8)', function () {
-        expect(outcome.PAID5_INTERPRETATION).toEqual('POSSIBLE_DISTRESS')
-      })
-
-      it('should return the "Possible distress" interpretation label', function () {
-        expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
-          PAID5_INTERPRETATION.POSSIBLE_DISTRESS.en,
+        expect(outcome.PAID5_INTERPRETATION).toEqual(
+          PAID5_INTERPRETATION_CODE.POSSIBLE_DISTRESS.en,
         )
       })
+
+      it('should return the English interpretation label by default', function () {
+        expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
+          PAID5_INTERPRETATION_LABEL.POSSIBLE_DISTRESS.en,
+        )
+      })
+    })
+  })
+
+  describe('language-aware calculation', function () {
+    it('should return Polish interpretation code when language is pl', function () {
+      const outcome = paid_5_calculation.calculate({
+        payload: best_response,
+        language: 'pl',
+      })
+      expect(outcome.PAID5_INTERPRETATION).toEqual(
+        PAID5_INTERPRETATION_CODE.NO_DISTRESS.pl,
+      )
+    })
+
+    it('should return Polish interpretation label when language is pl', function () {
+      const outcome = paid_5_calculation.calculate({
+        payload: best_response,
+        language: 'pl',
+      })
+      expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
+        PAID5_INTERPRETATION_LABEL.NO_DISTRESS.pl,
+      )
+    })
+
+    it('should return Polish values for distress when language is pl', function () {
+      const outcome = paid_5_calculation.calculate({
+        payload: worst_response,
+        language: 'pl',
+      })
+      expect(outcome.PAID5_INTERPRETATION).toEqual(
+        PAID5_INTERPRETATION_CODE.POSSIBLE_DISTRESS.pl,
+      )
+      expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
+        PAID5_INTERPRETATION_LABEL.POSSIBLE_DISTRESS.pl,
+      )
+    })
+
+    it('should fall back to English when requested language is not available', function () {
+      const outcome = paid_5_calculation.calculate({
+        payload: best_response,
+        language: 'fr',
+      })
+      expect(outcome.PAID5_INTERPRETATION).toEqual(
+        PAID5_INTERPRETATION_CODE.NO_DISTRESS.en,
+      )
+      expect(outcome.PAID5_INTERPRETATION_LABEL).toEqual(
+        PAID5_INTERPRETATION_LABEL.NO_DISTRESS.en,
+      )
     })
   })
 })
