@@ -1,4 +1,4 @@
-export const PAID5_INTERPRETATION = {
+export const PAID5_INTERPRETATION_LABEL = {
   POSSIBLE_DISTRESS: {
     en: 'Possible diabetes related emotional distress, which warrants further assessment',
     pl: 'Możliwe zaburzenia emocjonalne związane z cukrzycą, wymagające dalszej oceny',
@@ -9,4 +9,15 @@ export const PAID5_INTERPRETATION = {
   },
 }
 
-export type PAID5_SCORE_INTERPRETATION = 'POSSIBLE_DISTRESS' | 'NO_DISTRESS'
+export const PAID5_INTERPRETATION_CODE = {
+  POSSIBLE_DISTRESS: {
+    en: 'POSSIBLE_DISTRESS',
+    pl: 'MOŻLIWY_DYSTRES',
+  },
+  NO_DISTRESS: {
+    en: 'NO_DISTRESS',
+    pl: 'BRAK_DYSTRESU',
+  },
+}
+
+

@@ -7,11 +7,15 @@ export const EQ5D_5L_OUTPUT = {
     type: z.number(),
   },
   EQ_VAS: {
-    label: { en: 'EQ VAS' },
+    label: { en: 'EQ VAS', pl: 'EQ VAS' },
     type: z.number(),
   },
   UTILITY_VALUE_HEALTH_STATE_BELGIUM: {
     label: { en: 'Utility value of health state - Belgium' },
+    type: z.number(),
+  },
+  UTILITY_VALUE_HEALTH_STATE_POLAND: {
+    label: { en: 'Utility value of health state - Poland', pl: 'Wartość użytkowa stanu zdrowia - Polska' },
     type: z.number(),
   },
 } satisfies ScoreOutputSchemaType

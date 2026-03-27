@@ -3,7 +3,10 @@ import {
   random_response,
   worst_response,
 } from './__testdata__/paid_20_test_responses'
-import { PAID20_INPUTS, PAID20_INTERPRATION } from './definition'
+import {
+  PAID20_INTERPRETATION_CODE,
+  PAID20_INTERPRETATION_LABEL,
+} from './definition'
 import { paid_20 } from './paid_20'
 import { ScoreLibrary } from '../library'
 import { Score } from '../../classes'
@@ -23,8 +26,8 @@ describe('paid_20', function () {
   describe('basic assumptions', function () {
     const outcome = paid_20_calculation.calculate({ payload: best_response })
 
-    it('should return 2 calculation results', function () {
-      expect(Object.keys(outcome).length).toEqual(3)
+    it('should return 4 calculation results', function () {
+      expect(Object.keys(outcome).length).toEqual(4)
     })
 
     it('should have the expected calculation result ids', function () {
@@ -32,6 +35,7 @@ describe('paid_20', function () {
         'PAID20_SCORE',
         'PAID20_QUESTIONS_WITH_SCORE_3_OR_4',
         'PAID20_INTERPRETATION',
+        'PAID20_INTERPRETATION_LABEL',
       ]
 
       const configured_calculation_id = Object.keys(outcome)
@@ -74,8 +78,8 @@ describe('paid_20', function () {
       })
     })
 
-    describe('when an answer is not not one of the allowed answers', function () {
-      it('should throw an InvalidInputsError', function () {
+    describe('when an answer is not one of the allowed answers', function () {
+      it('should throw a ZodError', function () {
         expect(() =>
           paid_20_calculation.calculate({
             payload: {
@@ -102,6 +106,10 @@ describe('paid_20', function () {
         expect(outcome.PAID20_INTERPRETATION).toEqual(null)
       })
 
+      it('should return null for the interpretation label', function () {
+        expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(null)
+      })
+
       it('should return null for the questions with score 3 or 4', function () {
         expect(outcome.PAID20_QUESTIONS_WITH_SCORE_3_OR_4).toEqual(null)
       })
@@ -118,13 +126,19 @@ describe('paid_20', function () {
         expect(outcome.PAID20_SCORE).toEqual(BEST_SCORE)
       })
 
-      it('should return the "Not severe diabetes distress" interpretation', function () {
+      it('should return the "NOT_SEVERE" interpretation code', function () {
         expect(outcome.PAID20_INTERPRETATION).toEqual(
-          PAID20_INTERPRATION.NOT_SEVERE,
+          PAID20_INTERPRETATION_CODE.NOT_SEVERE.en,
         )
       })
 
-      it('should return the empty string interpretation', function () {
+      it('should return the English interpretation label', function () {
+        expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(
+          PAID20_INTERPRETATION_LABEL.NOT_SEVERE.en,
+        )
+      })
+
+      it('should return empty questions with score 3 or 4', function () {
         expect(outcome.PAID20_QUESTIONS_WITH_SCORE_3_OR_4).toEqual('')
       })
     })
@@ -138,13 +152,19 @@ describe('paid_20', function () {
         expect(outcome.PAID20_SCORE).toEqual(WORST_SCORE)
       })
 
-      it('should return the "Severe diabetes distress" interpretation', function () {
+      it('should return the "SEVERE" interpretation code', function () {
         expect(outcome.PAID20_INTERPRETATION).toEqual(
-          PAID20_INTERPRATION.SEVERE,
+          PAID20_INTERPRETATION_CODE.SEVERE.en,
         )
       })
 
-      it('should return the "Questions with score 3 or 4" interpretation', function () {
+      it('should return the English interpretation label', function () {
+        expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(
+          PAID20_INTERPRETATION_LABEL.SEVERE.en,
+        )
+      })
+
+      it('should return the questions with score 3 or 4', function () {
         expect(outcome.PAID20_QUESTIONS_WITH_SCORE_3_OR_4).toEqual(
           'PAID20_Q01:4,PAID20_Q02:4,PAID20_Q03:4,PAID20_Q04:4,PAID20_Q05:4,PAID20_Q06:4,PAID20_Q07:4,PAID20_Q08:4,PAID20_Q09:4,PAID20_Q10:4,PAID20_Q11:4,PAID20_Q12:4,PAID20_Q13:4,PAID20_Q14:4,PAID20_Q15:4,PAID20_Q16:4,PAID20_Q17:4,PAID20_Q18:4,PAID20_Q19:4,PAID20_Q20:4',
         )
@@ -160,17 +180,71 @@ describe('paid_20', function () {
         expect(outcome.PAID20_SCORE).toEqual(RANDOM_SCORE)
       })
 
-      it('should return the "Not severe diabetes distress" interpretation', function () {
+      it('should return the "NOT_SEVERE" interpretation code', function () {
         expect(outcome.PAID20_INTERPRETATION).toEqual(
-          PAID20_INTERPRATION.NOT_SEVERE,
+          PAID20_INTERPRETATION_CODE.NOT_SEVERE.en,
         )
       })
 
-      it('should return the "Questions with score 3 or 4" interpretation', function () {
+      it('should return the English interpretation label', function () {
+        expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(
+          PAID20_INTERPRETATION_LABEL.NOT_SEVERE.en,
+        )
+      })
+
+      it('should return the questions with score 3 or 4', function () {
         expect(outcome.PAID20_QUESTIONS_WITH_SCORE_3_OR_4).toEqual(
           'PAID20_Q01:3,PAID20_Q09:4,PAID20_Q13:4,PAID20_Q17:3',
         )
       })
+    })
+  })
+
+  describe('language-aware calculation', function () {
+    it('should return Polish interpretation code when language is pl', function () {
+      const outcome = paid_20_calculation.calculate({
+        payload: best_response,
+        language: 'pl',
+      })
+      expect(outcome.PAID20_INTERPRETATION).toEqual(
+        PAID20_INTERPRETATION_CODE.NOT_SEVERE.pl,
+      )
+    })
+
+    it('should return Polish interpretation label when language is pl', function () {
+      const outcome = paid_20_calculation.calculate({
+        payload: best_response,
+        language: 'pl',
+      })
+      expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(
+        PAID20_INTERPRETATION_LABEL.NOT_SEVERE.pl,
+      )
+    })
+
+    it('should return Polish values for severe distress when language is pl', function () {
+      const outcome = paid_20_calculation.calculate({
+        payload: worst_response,
+        language: 'pl',
+      })
+      expect(outcome.PAID20_INTERPRETATION).toEqual(
+        PAID20_INTERPRETATION_CODE.SEVERE.pl,
+      )
+      expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(
+        PAID20_INTERPRETATION_LABEL.SEVERE.pl,
+      )
+    })
+
+    it('should fall back to English when requested language is not available', function () {
+      const outcome = paid_20_calculation.calculate({
+        payload: best_response,
+        language: 'fr',
+      })
+      expect(outcome.PAID20_INTERPRETATION).toEqual(
+        PAID20_INTERPRETATION_CODE.NOT_SEVERE.en,
+      )
+      expect(outcome.PAID20_INTERPRETATION_LABEL).toEqual(
+        PAID20_INTERPRETATION_LABEL.NOT_SEVERE.en,
+      )
     })
   })
 })

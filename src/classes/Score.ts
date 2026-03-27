@@ -5,6 +5,7 @@ import {
   type ScoreType,
   type CalculateFn,
   type TerminologyType,
+  type AvailableLanguagesType,
 } from '../types'
 import {
   parseReadmeToHtml,
@@ -120,6 +121,7 @@ export class Score<
        */
       nullOnMissingInputs?: boolean
     }
+    language?: AvailableLanguagesType
   }): Record<
     keyof OutputSchema,
     z.infer<OutputSchema[keyof OutputSchema]['type']> | null
@@ -144,7 +146,7 @@ export class Score<
         throw new ZodError(deduplicatedIssues)
       }
 
-      return this._calculate({ data: result.data })
+      return this._calculate({ data: result.data, language: params.language })
     } catch (err) {
       if (err instanceof ZodError) {
         if (params?.opts?.nullOnMissingInputs === true) {
@@ -215,6 +217,7 @@ export class Score<
        * @default 'simple'
        */
       format?: 'simple' | 'awell'
+      language?: AvailableLanguagesType
     },
   ) {
     if (opts?.format === 'simple') {

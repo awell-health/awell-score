@@ -8,3 +8,5 @@ export type LabelType = {
   it?: string
   pl?: string
 }
+
+export type AvailableLanguagesType = keyof LabelType
