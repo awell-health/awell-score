@@ -182,7 +182,7 @@ export class Score<
    * Simulates input values based on the input schema.
    * @returns The simulated input data and the resut.
    */
-  simulate(): {
+  simulate(opts?: { language?: AvailableLanguagesType }): {
     simulatedInput: Record<string, unknown>
     results: Record<
       keyof OutputSchema,
@@ -190,7 +190,10 @@ export class Score<
     >
   } {
     const simulatedInput = simulateScoreInput(this.inputSchemaAsObject)
-    const simulatedResults = this.calculate({ payload: simulatedInput })
+    const simulatedResults = this.calculate({
+      payload: simulatedInput,
+      language: opts?.language,
+    })
 
     return {
       simulatedInput,
