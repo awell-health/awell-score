@@ -109,7 +109,7 @@ describe('eq5d_5l', function () {
       })
 
       it('should return a score for EQ Utility Value (Poland)', function () {
-        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(0.513)
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(0.8)
       })
     })
 
@@ -131,7 +131,7 @@ describe('eq5d_5l', function () {
       })
 
       it('should return a score for EQ Utility Value (Poland)', function () {
-        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(-0.637)
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(-0.59)
       })
     })
 
@@ -157,7 +157,7 @@ describe('eq5d_5l', function () {
       })
 
       it('should return a score for EQ Utility Value (Poland)', function () {
-        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(0.469)
+        expect(outcome.UTILITY_VALUE_HEALTH_STATE_POLAND).toEqual(0.609)
       })
     })
   })

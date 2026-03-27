@@ -1,4 +1,4 @@
-import { PL_PENALTIES, PL_CONSTANT_PENALTY } from './PL_coefficients'
+import { PL_PENALTIES } from './PL_coefficients'
 
 const DIMENSIONS = ['MO', 'SC', 'UA', 'PD', 'AD'] as const
 
@@ -27,10 +27,7 @@ export const calculate_pl_utility_value = (
     0,
   )
 
-  const isFullHealth = levels.every(l => l === 1)
-  const constantPenalty = isFullHealth ? 0 : PL_CONSTANT_PENALTY
-
-  const utility = 1 - totalPenalty - constantPenalty
+  const utility = 1 - totalPenalty
 
   return Math.round(utility * 1000) / 1000
 }
