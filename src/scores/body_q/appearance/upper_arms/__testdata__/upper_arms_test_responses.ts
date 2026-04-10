@@ -42,7 +42,7 @@ export const too_many_missing_response = {
   BODY_Q_UPPER_ARMS_Q01: 2,
   BODY_Q_UPPER_ARMS_Q02: 3,
   BODY_Q_UPPER_ARMS_Q03: 1,
-  BODY_Q_UPPER_ARMS_Q04: 4,
+  BODY_Q_UPPER_ARMS_Q04: undefined,
   BODY_Q_UPPER_ARMS_Q05: undefined,
   BODY_Q_UPPER_ARMS_Q06: undefined,
   BODY_Q_UPPER_ARMS_Q07: undefined,
