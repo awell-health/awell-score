@@ -31,9 +31,11 @@ export interface SimpleNumberInputType extends BaseInputType {
     range?: {
       min?: {
         label?: LabelType
+        value?: number
       }
       max?: {
         label?: LabelType
+        value?: number
       }
     }
   }
