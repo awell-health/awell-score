@@ -284,11 +284,11 @@ export const EQ5D_5L_INPUTS = {
     label: {
       nl: '- We willen weten hoe goed of slecht uw gezondheid VANDAAG is.\n- Deze meetschaal loopt van 0 tot 100.\n-100 staat voor de beste gezondheid die u zich kunt voorstellen. 0 staat voor de slechtste gezondheid die u zich kunt voorstellen.\n- Duid op de meetschaal aan hoe uw gezondheid VANDAAG is.',
       en: '- We would like to know how good or bad your health is TODAY.\n- This scale is numbered from 0 to 100\n- 100 means the best health you can imagine; 0 means the worst health you can imagine\n- Indicate on the scale how your health is TODAY.',
-      pl: '- Chcielibyśmy wiedzieć jak dobre lub jak złe jest Pana/Pani zdrowie DZISIAJ.\n- Ta skala jest ponumerowana od 0 do 100.\n- 100 oznacza najlepsze zdrowie jakie można sobie wyobrazić. 0 oznacza najgorsze zdrowie jakie można sobie wyobrazić.\n- Proszę zaznaczyć krzyżykiem (X) miejsce na skali, które pokazuje jakie jest Pana/Pani zdrowie DZISIAJ.\n- Teraz liczbę, którą zaznaczył/a Pan/i na skali proszę wpisać w okienko poniżej.',
+      pl: '- Chcielibyśmy wiedzieć jak dobre lub jak złe jest Pana/Pani zdrowie DZISIAJ.',
     },
-    type: z.number(),
+    type: z.number().min(0).max(100),
     uiOptions: {
-      component: 'slider',
+      component: 'slider' as const,
       range: {
         min: {
           label: {
@@ -296,6 +296,7 @@ export const EQ5D_5L_INPUTS = {
             en: 'The worst health you can imagine',
             pl: 'Najgorsze zdrowie jakie można sobie wyobrazić',
           },
+          value: 0,
         },
         max: {
           label: {
@@ -303,6 +304,7 @@ export const EQ5D_5L_INPUTS = {
             en: 'The best health you can imagine',
             pl: 'Najlepsze zdrowie jakie można sobie wyobrazić',
           },
+          value: 100,
         },
       },
     },

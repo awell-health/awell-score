@@ -11,8 +11,8 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No pain', fr: 'Aucune douleur' } },
-        max: { label: { en: 'Extreme pain', fr: 'Douleur extrême' } },
+        min: { label: { en: 'No pain', fr: 'Aucune douleur' }, value: 0 },
+        max: { label: { en: 'Extreme pain', fr: 'Douleur extrême' }, value: 100 },
       },
     },
   },
@@ -25,8 +25,8 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No pain', fr: 'Aucune douleur' } },
-        max: { label: { en: 'Extreme pain', fr: 'Douleur extrême' } },
+        min: { label: { en: 'No pain', fr: 'Aucune douleur' }, value: 0 },
+        max: { label: { en: 'Extreme pain', fr: 'Douleur extrême' }, value: 100 },
       },
     },
   },
@@ -39,8 +39,8 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No weakness', fr: 'Aucune faiblesse' } },
-        max: { label: { en: 'Extreme weakness', fr: 'Faiblesse extrême' } },
+        min: { label: { en: 'No weakness', fr: 'Aucune faiblesse' }, value: 0 },
+        max: { label: { en: 'Extreme weakness', fr: 'Faiblesse extrême' }, value: 100 },
       },
     },
   },
@@ -53,8 +53,8 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No stiffness', fr: 'Aucune raideur' } },
-        max: { label: { en: 'Extreme stiffness', fr: 'Raideur extrême' } },
+        min: { label: { en: 'No stiffness', fr: 'Aucune raideur' }, value: 0 },
+        max: { label: { en: 'Extreme stiffness', fr: 'Raideur extrême' }, value: 100 },
       },
     },
   },
@@ -67,8 +67,8 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'None', fr: 'Aucune gêne' } },
-        max: { label: { en: 'Extreme', fr: 'Gêne extrême' } },
+        min: { label: { en: 'None', fr: 'Aucune gêne' }, value: 0 },
+        max: { label: { en: 'Extreme', fr: 'Gêne extrême' }, value: 100 },
       },
     },
   },
@@ -81,9 +81,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'Not affected', fr: 'Pas du tout affectée' } },
+        min: { label: { en: 'Not affected', fr: 'Pas du tout affectée' }, value: 0 },
         max: {
           label: { en: 'Extremely affected', fr: 'Extrêmement affectée' },
+          value: 100,
         },
       },
     },
@@ -97,9 +98,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -113,9 +115,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -129,9 +132,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -145,9 +149,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -161,9 +166,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'Not at all', fr: 'Aucune gêne' } },
+        min: { label: { en: 'Not at all', fr: 'Aucune gêne' }, value: 0 },
         max: {
           label: { en: 'Extremely troubled', fr: 'Gêne extrême' },
+          value: 100,
         },
       },
     },
@@ -177,9 +183,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -193,9 +200,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -209,9 +217,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -225,9 +234,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -241,9 +251,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' } },
+        min: { label: { en: 'No difficulty', fr: 'Aucune difficulté' }, value: 0 },
         max: {
           label: { en: 'Extreme difficulty', fr: 'Difficulté extrême' },
+          value: 100,
         },
       },
     },
@@ -257,12 +268,13 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'No frustration', fr: 'Pas du tout frustré(e) ou découragé(e)' } },
+        min: { label: { en: 'No frustration', fr: 'Pas du tout frustré(e) ou découragé(e)' }, value: 0 },
         max: {
           label: {
             en: 'Extreme frustration',
             fr: 'Extrêmement frustré(e) ou découragé(e)',
           },
+          value: 100,
         },
       },
     },
@@ -276,9 +288,10 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'Not worried at all', fr: 'Aucune inquiétude' } },
+        min: { label: { en: 'Not worried at all', fr: 'Aucune inquiétude' }, value: 0 },
         max: {
           label: { en: 'Extremely worried', fr: 'Inquiétude extrême' },
+          value: 100,
         },
       },
     },
@@ -292,8 +305,8 @@ export const WOOS_INPUTS = {
     uiOptions: {
       component: 'slider' as const,
       range: {
-        min: { label: { en: 'Not at all', fr: 'Pas du tout' } },
-        max: { label: { en: 'Extreme burden', fr: 'Extrêmement' } },
+        min: { label: { en: 'Not at all', fr: 'Pas du tout' }, value: 0 },
+        max: { label: { en: 'Extreme burden', fr: 'Extrêmement' }, value: 100 },
       },
     },
   },
