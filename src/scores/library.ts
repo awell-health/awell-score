@@ -138,6 +138,7 @@ import { korq } from './korq/korq'
 import { mlks } from './mlks/mlks'
 import { psqi } from './psqi/psqi'
 import { test_calculation } from './test_calculation/test_caculation'
+import { uas7 } from './uas7/uas7'
 
 const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
   scoreObjects: T,
@@ -284,6 +285,7 @@ export const ScoreLibrary = createScoreLibrary({
   stop_bang,
   tampa,
   ten_meter_walk_test,
+  uas7,
   visa_a,
   visa_g,
   visa_p,
