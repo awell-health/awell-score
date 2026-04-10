@@ -139,6 +139,7 @@ import { mlks } from './mlks/mlks'
 import { psqi } from './psqi/psqi'
 import { test_calculation } from './test_calculation/test_caculation'
 import { uas7 } from './uas7/uas7'
+import { woos } from './woos/woos'
 
 const createScoreLibrary = <T extends Record<string, ScoreType<any, any>>>(
   scoreObjects: T,
@@ -292,4 +293,5 @@ export const ScoreLibrary = createScoreLibrary({
   yp_core,
   zarit_12,
   womac,
+  woos,
 })
