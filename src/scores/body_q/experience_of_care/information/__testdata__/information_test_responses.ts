@@ -1,0 +1,65 @@
+export const best_response = {
+  BODY_Q_INFORMATION_Q01: 1,
+  BODY_Q_INFORMATION_Q02: 1,
+  BODY_Q_INFORMATION_Q03: 1,
+  BODY_Q_INFORMATION_Q04: 1,
+  BODY_Q_INFORMATION_Q05: 1,
+  BODY_Q_INFORMATION_Q06: 1,
+  BODY_Q_INFORMATION_Q07: 1,
+  BODY_Q_INFORMATION_Q08: 1,
+  BODY_Q_INFORMATION_Q09: 1,
+  BODY_Q_INFORMATION_Q10: 1,
+}
+
+export const worst_response = {
+  BODY_Q_INFORMATION_Q01: 4,
+  BODY_Q_INFORMATION_Q02: 4,
+  BODY_Q_INFORMATION_Q03: 4,
+  BODY_Q_INFORMATION_Q04: 4,
+  BODY_Q_INFORMATION_Q05: 4,
+  BODY_Q_INFORMATION_Q06: 4,
+  BODY_Q_INFORMATION_Q07: 4,
+  BODY_Q_INFORMATION_Q08: 4,
+  BODY_Q_INFORMATION_Q09: 4,
+  BODY_Q_INFORMATION_Q10: 4,
+}
+
+export const random_response = {
+  BODY_Q_INFORMATION_Q01: 2,
+  BODY_Q_INFORMATION_Q02: 3,
+  BODY_Q_INFORMATION_Q03: 2,
+  BODY_Q_INFORMATION_Q04: 4,
+  BODY_Q_INFORMATION_Q05: 1,
+  BODY_Q_INFORMATION_Q06: 3,
+  BODY_Q_INFORMATION_Q07: 4,
+  BODY_Q_INFORMATION_Q08: 2,
+  BODY_Q_INFORMATION_Q09: 3,
+  BODY_Q_INFORMATION_Q10: 1,
+}
+
+/**
+ * 3 out of 10 missing (< 50%) — mean imputation should apply.
+ * After rescoring: Q03(2→1), Q06(3→2), Q07(4→3); others unchanged.
+ * Rescored values: [2,3,1,4,1,2,3] → sum=16, mean≈2.2857
+ * Imputed total = round(16 + 3×2.2857) = round(22.857) = 23 → conversion 48
+ */
+export const partial_response = {
+  BODY_Q_INFORMATION_Q01: 2,
+  BODY_Q_INFORMATION_Q02: 3,
+  BODY_Q_INFORMATION_Q03: 2,
+  BODY_Q_INFORMATION_Q04: 4,
+  BODY_Q_INFORMATION_Q05: 1,
+  BODY_Q_INFORMATION_Q06: 3,
+  BODY_Q_INFORMATION_Q07: 4,
+}
+
+/**
+ * 5 out of 10 missing (≥ 50%) — should return null.
+ */
+export const half_missing_response = {
+  BODY_Q_INFORMATION_Q01: 2,
+  BODY_Q_INFORMATION_Q02: 3,
+  BODY_Q_INFORMATION_Q03: 2,
+  BODY_Q_INFORMATION_Q04: 4,
+  BODY_Q_INFORMATION_Q05: 1,
+}
