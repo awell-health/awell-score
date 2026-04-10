@@ -23,9 +23,12 @@ export const partial_response = {
   BODY_Q_BACK_Q01: 3,
   BODY_Q_BACK_Q02: 2,
   BODY_Q_BACK_Q03: 4,
+  BODY_Q_BACK_Q04: undefined,
 }
 
 export const too_many_missing_response = {
   BODY_Q_BACK_Q01: 2,
   BODY_Q_BACK_Q02: 3,
+  BODY_Q_BACK_Q03: undefined,
+  BODY_Q_BACK_Q04: undefined,
 }

@@ -44,6 +44,10 @@ export const partial_response = {
   BODY_Q_SCARS_Q04: 4,
   BODY_Q_SCARS_Q05: 2,
   BODY_Q_SCARS_Q06: 3,
+  BODY_Q_SCARS_Q07: undefined,
+  BODY_Q_SCARS_Q08: undefined,
+  BODY_Q_SCARS_Q09: undefined,
+  BODY_Q_SCARS_Q10: undefined,
 }
 
 export const too_many_missing_response = {
@@ -52,4 +56,9 @@ export const too_many_missing_response = {
   BODY_Q_SCARS_Q03: 1,
   BODY_Q_SCARS_Q04: 4,
   BODY_Q_SCARS_Q05: 2,
+  BODY_Q_SCARS_Q06: undefined,
+  BODY_Q_SCARS_Q07: undefined,
+  BODY_Q_SCARS_Q08: undefined,
+  BODY_Q_SCARS_Q09: undefined,
+  BODY_Q_SCARS_Q10: undefined,
 }

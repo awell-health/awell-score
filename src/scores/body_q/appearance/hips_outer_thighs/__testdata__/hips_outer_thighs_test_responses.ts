@@ -26,9 +26,14 @@ export const partial_response = {
   BODY_Q_HIPS_OUTER_THIGHS_Q01: 4,
   BODY_Q_HIPS_OUTER_THIGHS_Q02: 1,
   BODY_Q_HIPS_OUTER_THIGHS_Q03: 3,
+  BODY_Q_HIPS_OUTER_THIGHS_Q04: undefined,
+  BODY_Q_HIPS_OUTER_THIGHS_Q05: undefined,
 }
 
 export const too_many_missing_response = {
   BODY_Q_HIPS_OUTER_THIGHS_Q01: 2,
   BODY_Q_HIPS_OUTER_THIGHS_Q02: 3,
+  BODY_Q_HIPS_OUTER_THIGHS_Q03: undefined,
+  BODY_Q_HIPS_OUTER_THIGHS_Q04: undefined,
+  BODY_Q_HIPS_OUTER_THIGHS_Q05: undefined,
 }

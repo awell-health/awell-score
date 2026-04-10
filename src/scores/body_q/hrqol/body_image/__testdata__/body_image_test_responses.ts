@@ -37,6 +37,9 @@ export const partial_response = {
   BODY_Q_BODY_IMAGE_Q02: 3,
   BODY_Q_BODY_IMAGE_Q03: 1,
   BODY_Q_BODY_IMAGE_Q04: 4,
+  BODY_Q_BODY_IMAGE_Q05: undefined,
+  BODY_Q_BODY_IMAGE_Q06: undefined,
+  BODY_Q_BODY_IMAGE_Q07: undefined,
 }
 
 /**
@@ -46,4 +49,8 @@ export const too_many_missing_response = {
   BODY_Q_BODY_IMAGE_Q01: 1,
   BODY_Q_BODY_IMAGE_Q02: 2,
   BODY_Q_BODY_IMAGE_Q03: 3,
+  BODY_Q_BODY_IMAGE_Q04: undefined,
+  BODY_Q_BODY_IMAGE_Q05: undefined,
+  BODY_Q_BODY_IMAGE_Q06: undefined,
+  BODY_Q_BODY_IMAGE_Q07: undefined,
 }

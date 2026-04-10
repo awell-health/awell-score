@@ -33,10 +33,17 @@ export const partial_response = {
   BODY_Q_ABDOMEN_Q02: 4,
   BODY_Q_ABDOMEN_Q03: 1,
   BODY_Q_ABDOMEN_Q04: 3,
+  BODY_Q_ABDOMEN_Q05: undefined,
+  BODY_Q_ABDOMEN_Q06: undefined,
+  BODY_Q_ABDOMEN_Q07: undefined,
 }
 
 export const too_many_missing_response = {
   BODY_Q_ABDOMEN_Q01: 2,
   BODY_Q_ABDOMEN_Q02: 3,
   BODY_Q_ABDOMEN_Q03: 1,
+  BODY_Q_ABDOMEN_Q04: undefined,
+  BODY_Q_ABDOMEN_Q05: undefined,
+  BODY_Q_ABDOMEN_Q06: undefined,
+  BODY_Q_ABDOMEN_Q07: undefined,
 }

@@ -50,6 +50,9 @@ export const partial_response = {
   BODY_Q_DOCTOR_Q05: 4,
   BODY_Q_DOCTOR_Q06: 3,
   BODY_Q_DOCTOR_Q07: 2,
+  BODY_Q_DOCTOR_Q08: undefined,
+  BODY_Q_DOCTOR_Q09: undefined,
+  BODY_Q_DOCTOR_Q10: undefined,
 }
 
 /**
@@ -61,4 +64,9 @@ export const half_missing_response = {
   BODY_Q_DOCTOR_Q03: 1,
   BODY_Q_DOCTOR_Q04: 2,
   BODY_Q_DOCTOR_Q05: 4,
+  BODY_Q_DOCTOR_Q06: undefined,
+  BODY_Q_DOCTOR_Q07: undefined,
+  BODY_Q_DOCTOR_Q08: undefined,
+  BODY_Q_DOCTOR_Q09: undefined,
+  BODY_Q_DOCTOR_Q10: undefined,
 }
