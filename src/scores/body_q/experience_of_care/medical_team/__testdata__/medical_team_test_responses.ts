@@ -1,0 +1,72 @@
+export const best_response = {
+  BODY_Q_MEDICAL_TEAM_Q01: 1,
+  BODY_Q_MEDICAL_TEAM_Q02: 1,
+  BODY_Q_MEDICAL_TEAM_Q03: 1,
+  BODY_Q_MEDICAL_TEAM_Q04: 1,
+  BODY_Q_MEDICAL_TEAM_Q05: 1,
+  BODY_Q_MEDICAL_TEAM_Q06: 1,
+  BODY_Q_MEDICAL_TEAM_Q07: 1,
+  BODY_Q_MEDICAL_TEAM_Q08: 1,
+  BODY_Q_MEDICAL_TEAM_Q09: 1,
+  BODY_Q_MEDICAL_TEAM_Q10: 1,
+}
+
+export const worst_response = {
+  BODY_Q_MEDICAL_TEAM_Q01: 4,
+  BODY_Q_MEDICAL_TEAM_Q02: 4,
+  BODY_Q_MEDICAL_TEAM_Q03: 4,
+  BODY_Q_MEDICAL_TEAM_Q04: 4,
+  BODY_Q_MEDICAL_TEAM_Q05: 4,
+  BODY_Q_MEDICAL_TEAM_Q06: 4,
+  BODY_Q_MEDICAL_TEAM_Q07: 4,
+  BODY_Q_MEDICAL_TEAM_Q08: 4,
+  BODY_Q_MEDICAL_TEAM_Q09: 4,
+  BODY_Q_MEDICAL_TEAM_Q10: 4,
+}
+
+export const random_response = {
+  BODY_Q_MEDICAL_TEAM_Q01: 2,
+  BODY_Q_MEDICAL_TEAM_Q02: 3,
+  BODY_Q_MEDICAL_TEAM_Q03: 1,
+  BODY_Q_MEDICAL_TEAM_Q04: 2,
+  BODY_Q_MEDICAL_TEAM_Q05: 4,
+  BODY_Q_MEDICAL_TEAM_Q06: 3,
+  BODY_Q_MEDICAL_TEAM_Q07: 2,
+  BODY_Q_MEDICAL_TEAM_Q08: 1,
+  BODY_Q_MEDICAL_TEAM_Q09: 3,
+  BODY_Q_MEDICAL_TEAM_Q10: 2,
+}
+
+/**
+ * 3 out of 10 missing (< 50%) — mean imputation should apply.
+ * Answered: [2,3,1,2,4,3,2] → sum=17, mean≈2.4286
+ * Imputed total = round(17 + 3×2.4286) = round(24.286) = 24 → conversion 46
+ */
+export const partial_response = {
+  BODY_Q_MEDICAL_TEAM_Q01: 2,
+  BODY_Q_MEDICAL_TEAM_Q02: 3,
+  BODY_Q_MEDICAL_TEAM_Q03: 1,
+  BODY_Q_MEDICAL_TEAM_Q04: 2,
+  BODY_Q_MEDICAL_TEAM_Q05: 4,
+  BODY_Q_MEDICAL_TEAM_Q06: 3,
+  BODY_Q_MEDICAL_TEAM_Q07: 2,
+  BODY_Q_MEDICAL_TEAM_Q08: undefined,
+  BODY_Q_MEDICAL_TEAM_Q09: undefined,
+  BODY_Q_MEDICAL_TEAM_Q10: undefined,
+}
+
+/**
+ * 5 out of 10 missing (≥ 50%) — should return null.
+ */
+export const half_missing_response = {
+  BODY_Q_MEDICAL_TEAM_Q01: 2,
+  BODY_Q_MEDICAL_TEAM_Q02: 3,
+  BODY_Q_MEDICAL_TEAM_Q03: 1,
+  BODY_Q_MEDICAL_TEAM_Q04: 2,
+  BODY_Q_MEDICAL_TEAM_Q05: 4,
+  BODY_Q_MEDICAL_TEAM_Q06: undefined,
+  BODY_Q_MEDICAL_TEAM_Q07: undefined,
+  BODY_Q_MEDICAL_TEAM_Q08: undefined,
+  BODY_Q_MEDICAL_TEAM_Q09: undefined,
+  BODY_Q_MEDICAL_TEAM_Q10: undefined,
+}
