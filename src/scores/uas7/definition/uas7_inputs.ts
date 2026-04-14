@@ -5,7 +5,7 @@ import {
 } from '../../../types'
 
 const WHEALS_INPUT_TYPE = {
-  type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+  type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]).optional(),
   uiOptions: {
     options: [
       { label: { en: 'None' }, value: 0 },
@@ -20,7 +20,7 @@ const WHEALS_INPUT_TYPE = {
 } satisfies EnumNumberInputType
 
 const ITCH_INPUT_TYPE = {
-  type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+  type: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]).optional(),
   uiOptions: {
     options: [
       { label: { en: 'None' }, value: 0 },

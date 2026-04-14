@@ -31,6 +31,29 @@ Each day, patients evaluate the previous 24 hours and assign two scores:
 1. **Daily UAS** = Wheals score + Itch score (range: 0–6)
 2. **UAS7** = Sum of 7 daily UAS scores (range: 0–42)
 
+## Missing Data Handling (4/7 Rule)
+
+When fewer than 7 days of data are available, the 4/7 rule is applied:
+
+- **4–6 days present**: The weekly total is estimated using mean imputation. The mean of the available daily UAS scores is calculated and extrapolated to a full 7-day week:
+
+  `UAS7 = round( (sum of available daily scores / number of available days) × 7 )`
+
+- **0–3 days present**: The weekly total cannot be reliably estimated and is returned as `null`.
+
+Daily UAS scores are always returned for any day that has both a wheals and itch value, regardless of how many other days are missing.
+
+### Additional Outputs
+
+| Output | Description |
+| --- | --- |
+| `UAS7_MISSING_DAYS_NUMBER` | Count of days with incomplete data (0–7) |
+| `UAS7_MISSING_DAYS` | Comma-separated list of missing day numbers (e.g. `"2, 5"`) |
+
+### Reference
+
+Griffiths P, Williams A, Brohan E. How do the number of missing daily diary days impact the psychometric properties and meaningful change thresholds arising from a weekly average summary score? Qual Life Res. 2022;31(12):3433-3445. doi:10.1007/s11136-022-03198-9. PMID: 35930136.
+
 ## Interpretation
 
 | UAS7 score | Disease activity | Rationale |

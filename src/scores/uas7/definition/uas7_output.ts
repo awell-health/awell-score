@@ -42,4 +42,12 @@ export const UAS7_OUTPUT = {
     label: { en: 'UAS7 Interpretation Label' },
     type: z.string(),
   },
+  UAS7_MISSING_DAYS_NUMBER: {
+    label: { en: 'Number of missing days' },
+    type: z.number(),
+  },
+  UAS7_MISSING_DAYS: {
+    label: { en: 'Which days are missing (comma-separated)' },
+    type: z.string(),
+  },
 } satisfies ScoreOutputSchemaType
