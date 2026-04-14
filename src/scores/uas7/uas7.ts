@@ -15,6 +15,8 @@ export const uas7: ScoreType<typeof UAS7_INPUTS, typeof UAS7_OUTPUT> = {
   inputSchema: UAS7_INPUTS,
   outputSchema: UAS7_OUTPUT,
   calculate: ({ data, language }) => {
+    const MIN_DAYS_REQUIRED = 4
+
     const dailyScores = DAYS.map(day => {
       const wheals = data[`DAY_${day}_WHEALS` as keyof typeof data]
       const itch = data[`DAY_${day}_ITCH` as keyof typeof data]
@@ -24,10 +26,19 @@ export const uas7: ScoreType<typeof UAS7_INPUTS, typeof UAS7_OUTPUT> = {
       return (wheals as number) + (itch as number)
     })
 
-    const allDaysPresent = dailyScores.every(s => s !== null)
-    const total = allDaysPresent
-      ? dailyScores.reduce((sum, s) => sum! + s!, 0)
-      : null
+    const missingDays = DAYS.filter((_day, i) => dailyScores[i] === null)
+    const presentScores = dailyScores.filter(
+      (s): s is number => s !== null,
+    )
+    const presentCount = presentScores.length
+
+    let total: number | null = null
+    if (presentCount === 7) {
+      total = presentScores.reduce((sum, s) => sum + s, 0)
+    } else if (presentCount >= MIN_DAYS_REQUIRED) {
+      const sum = presentScores.reduce((acc, s) => acc + s, 0)
+      total = Math.round((sum / presentCount) * 7)
+    }
 
     let interpretation: string | null = null
     let interpretationLabel: string | null = null
@@ -57,6 +68,8 @@ export const uas7: ScoreType<typeof UAS7_INPUTS, typeof UAS7_OUTPUT> = {
       UAS7_TOTAL: total,
       UAS7_INTERPRETATION: interpretation,
       UAS7_INTERPRETATION_LABEL: interpretationLabel,
+      UAS7_MISSING_DAYS_NUMBER: missingDays.length,
+      UAS7_MISSING_DAYS: missingDays.join(', '),
     }
   },
 }
