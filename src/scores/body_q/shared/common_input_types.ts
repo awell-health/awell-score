@@ -55,3 +55,15 @@ export const FREQUENCY_INPUT_TYPE = {
     ],
   },
 } satisfies EnumNumberInputType
+
+export const FREQUENCY_POSITIVE_INPUT_TYPE = {
+  type: BODY_Q_LIKERT_TYPE.optional(),
+  uiOptions: {
+    options: [
+      { value: 1, label: { en: 'Never', fr: 'Jamais' } },
+      { value: 2, label: { en: 'Sometimes', fr: 'Parfois' } },
+      { value: 3, label: { en: 'Often', fr: 'Souvent' } },
+      { value: 4, label: { en: 'Always', fr: 'Toujours' } },
+    ],
+  },
+} satisfies EnumNumberInputType
