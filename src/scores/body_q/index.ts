@@ -19,9 +19,12 @@ export {
   body_q_expectations_cosmetic,
   body_q_physical_function,
   body_q_physical_symptoms,
+  body_q_psychological_function,
   body_q_sexual_function,
   body_q_social_function,
 } from './hrqol'
+
+export { body_q_eating_behavior } from './eating'
 
 export {
   body_q_doctor,
