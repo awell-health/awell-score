@@ -42,7 +42,7 @@ __metadata:
     eslint: "npm:^9.17.0"
     husky: "npm:^9.1.7"
     jest: "npm:^29.7.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:4.18.0"
     mockdate: "npm:^3.0.5"
     openai: "npm:^4.87.3"
     pre-commit: "npm:^1.2.2"
@@ -4642,7 +4642,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash@npm:4.18.0":
+  version: 4.18.0
+  resolution: "lodash@npm:4.18.0"
+  checksum: 10/8f7f3c2013026623feb0950c2a3310427a7f3a978daedac5b9b2fb52044bb2fe38cb31e08484017f20c2297199a1ddce5c7accf8ebd108956876ce9162dedfff
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.15":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10/c08619c038846ea6ac754abd6dd29d2568aa705feb69339e836dfa8d8b09abbb2f859371e86863eda41848221f9af43714491467b5b0299122431e202bb0c532
