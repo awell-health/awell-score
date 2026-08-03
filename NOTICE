@@ -1,0 +1,14 @@
+This repository implements scoring logic for clinical assessment instruments.
+Many such instruments are protected by copyright held by their authors or
+publishers, and some require a licence or fee for use.
+
+Awell makes no claim of ownership over instrument content including item text,
+question labels, response options, scoring anchors, and interview prompts, and
+grants no rights to it. The MIT licence covers Awell's source code only.
+
+Determining whether a licence is required for a given instrument, and obtaining
+it, is the responsibility of the party using that instrument.
+
+Reporting a rights concern: if you hold rights to content in this repository and
+believe it is published without authorisation, contact support@awellhealth.com. We remove content
+on notice while the position is clarified.

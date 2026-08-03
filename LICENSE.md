@@ -1,3 +1,8 @@
+The MIT licence below applies to the software in this repository. It does not
+apply to third-party clinical instrument content. See NOTICE.
+
+---
+
 The MIT License (MIT)
 
 Copyright (c) Awell

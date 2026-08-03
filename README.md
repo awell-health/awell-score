@@ -26,6 +26,10 @@
 - **📏 Reliability and validity**: Open peer review ensures high-quality, clinically assured calculations.
 - **🧑‍🤝‍🧑 Collaboration**: Contribute to and benefit from a shared knowledge base.
 
+## ⚖️ Licence scope
+
+This repository's code is MIT licensed. Clinical instrument content (item text, question labels, response options, scoring anchors, interview prompts) is not covered by that licence and may be subject to third-party copyright. See [NOTICE](./NOTICE) for details.
+
 ## Contents
 
 - [Background](#-background)
