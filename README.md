@@ -171,6 +171,15 @@ The calculate function is a function that takes the input data and returns the o
 
 It always needs to return an object with the same keys as the output schema and values of the correct types. However, the value can also be set to `null` if the score cannot be calculated.
 
+#### Licensing status
+
+A score definition may optionally set two fields describing the licensing status of the underlying instrument (not the Awell Score source code, which is always MIT licensed):
+
+- `licensing_status`: one of `public_domain`, `free_with_attribution`, `license_required`, or `unknown`. Defaults to `unknown` when omitted.
+- `license_contact`: an optional contact or reference for licensing questions. Defaults to `null` when omitted.
+
+Only set `licensing_status` to a value other than `unknown` if you can point to a verifiable source for that instrument's licensing terms. Do not guess — leaving it `unknown` is always safer than an incorrect status.
+
 ## 🪪 License policy
 
 Awell Score is open-source and supports various clinical questionnaires. Some questionnaires may have licensing requirements. Users are responsible for ensuring they hold the appropriate licenses. We do not manage or provide these licenses. Misuse of licensed questionnaires is the sole responsibility of the user.

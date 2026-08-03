@@ -6,6 +6,8 @@ import {
   type CalculateFn,
   type TerminologyType,
   type AvailableLanguagesType,
+  type LicensingStatusType,
+  LICENSING_STATUS_VALUES,
 } from '../types'
 import {
   parseReadmeToHtml,
@@ -64,6 +66,18 @@ export class Score<
   terminology: TerminologyType | undefined
 
   /**
+   * Licensing status of the underlying clinical instrument. Defaults to
+   * 'unknown' when the definition omits it.
+   */
+  licensing_status: LicensingStatusType
+
+  /**
+   * Contact/reference for licensing questions about the underlying
+   * instrument. Defaults to null when the definition omits it.
+   */
+  license_contact: string | null
+
+  /**
    * The function to calculate the score.
    */
   private _calculate: CalculateFn<
@@ -96,6 +110,15 @@ export class Score<
     this.inputSchema = score.inputSchema
     this.outputSchema = score.outputSchema
     this.terminology = score.terminology
+    this.licensing_status = z
+      .enum(LICENSING_STATUS_VALUES)
+      .default('unknown')
+      .parse(score.licensing_status)
+    this.license_contact = z
+      .string()
+      .nullable()
+      .default(null)
+      .parse(score.license_contact)
     this._calculate = score.calculate
     this.inputSchemaAsObject = createZodObjectFromSchema(this.inputSchema)
   }
@@ -242,6 +265,8 @@ export class Score<
       inputSchema: this.inputSchema,
       outputSchema: this.outputSchema,
       terminology: this.terminology,
+      licensing_status: this.licensing_status,
+      license_contact: this.license_contact,
     })
   }
 }

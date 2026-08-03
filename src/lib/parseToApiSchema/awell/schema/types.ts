@@ -1,4 +1,9 @@
-import { CodeType, TerminologyType, type LabelType } from '../../../../types'
+import {
+  CodeType,
+  TerminologyType,
+  type LabelType,
+  type LicensingStatusType,
+} from '../../../../types'
 
 interface BooleanInputApiType {
   type: 'boolean'
@@ -97,4 +102,6 @@ export interface ApiScoreType {
     output_definition: Array<ApiOutputType>
   }
   terminology?: TerminologyType
+  licensing_status: LicensingStatusType
+  license_contact: string | null
 }

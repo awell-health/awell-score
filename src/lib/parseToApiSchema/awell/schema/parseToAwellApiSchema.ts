@@ -2,6 +2,7 @@ import {
   TerminologyType,
   type ScoreInputSchemaType,
   type ScoreOutputSchemaType,
+  type LicensingStatusType,
 } from '../../../../types'
 import { type ApiScoreType } from './types'
 import { inputSchemaToApiInputSchema } from './lib/inputSchemaToApiInputSchema/inputSchemaToApiInputSchema'
@@ -14,6 +15,8 @@ export const parseToAwellApiSchema = ({
   inputSchema,
   outputSchema,
   terminology,
+  licensing_status,
+  license_contact,
 }: {
   scoreId: string
   scoreName: string
@@ -21,6 +24,8 @@ export const parseToAwellApiSchema = ({
   inputSchema: ScoreInputSchemaType
   outputSchema: ScoreOutputSchemaType
   terminology?: TerminologyType
+  licensing_status: LicensingStatusType
+  license_contact: string | null
 }): ApiScoreType => {
   const DEFAULT_SCORE_TERMINOLOGY = {
     category: [
@@ -47,5 +52,7 @@ export const parseToAwellApiSchema = ({
       output_definition: outputSchemaToApiOutputSchema(outputSchema),
     },
     terminology: terminology ?? DEFAULT_SCORE_TERMINOLOGY,
+    licensing_status,
+    license_contact,
   }
 }
