@@ -1,13 +1,24 @@
 import { z, ZodError } from 'zod'
 import { Score } from '../Score'
 import { CalculationResultStatus } from '../../lib/parseToApiSchema/awell/result/parseToApiResultFormat/types'
-import { type ScoreInputSchemaType } from '../../types'
+import {
+  LICENSING_STATUS_VALUES,
+  type LicensingStatusType,
+  type ScoreInputSchemaType,
+} from '../../types'
 
-const createScore = (inputSchema?: ScoreInputSchemaType) => {
+const createScore = (
+  inputSchema?: ScoreInputSchemaType,
+  extra?: {
+    licensing_status?: LicensingStatusType
+    license_contact?: string | null
+  },
+) => {
   return new Score({
     id: 'test_score',
     name: 'Test Score',
     readmeLocation: __dirname,
+    ...extra,
     inputSchema: inputSchema || {
       simpleNumberInput: { type: z.number().optional() },
       simpleNumberInputWithRange: {
@@ -341,7 +352,40 @@ describe('Score', () => {
             },
           ],
         },
+        licensing_status: 'unknown',
+        license_contact: null,
       })
+    })
+  })
+
+  describe('Licensing status', () => {
+    test('defaults to "unknown" when the definition omits licensing_status', () => {
+      expect(createScore().licensing_status).toBe('unknown')
+    })
+
+    test.each(LICENSING_STATUS_VALUES)('accepts "%s" as a valid value', value => {
+      expect(
+        createScore(undefined, { licensing_status: value }).licensing_status,
+      ).toBe(value)
+    })
+
+    test('rejects a value outside the allowed list', () => {
+      const invalidStatus = 'not_a_real_status' as unknown as LicensingStatusType
+
+      expect(() =>
+        createScore(undefined, { licensing_status: invalidStatus }),
+      ).toThrow(ZodError)
+    })
+
+    test('license_contact defaults to null when the definition omits it', () => {
+      expect(createScore().license_contact).toBeNull()
+    })
+
+    test('license_contact keeps an explicit string value', () => {
+      expect(
+        createScore(undefined, { license_contact: 'licensing@example.com' })
+          .license_contact,
+      ).toBe('licensing@example.com')
     })
   })
 

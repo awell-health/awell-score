@@ -17,6 +17,21 @@ export interface TerminologyType {
   code?: CodeType & { text?: string }
 }
 
+/**
+ * Licensing status of the underlying clinical instrument (not the Awell Score
+ * source code, which is always MIT licensed). Defaults to 'unknown' when a
+ * definition omits it. Never inferred or guessed — only set when a verifiable
+ * source confirms the status.
+ */
+export const LICENSING_STATUS_VALUES = [
+  'public_domain',
+  'free_with_attribution',
+  'license_required',
+  'unknown',
+] as const
+
+export type LicensingStatusType = (typeof LICENSING_STATUS_VALUES)[number]
+
 export type ScoreType<
   InputSchema extends ScoreInputSchemaType = ScoreInputSchemaType,
   OutputSchema extends ScoreOutputSchemaType = ScoreOutputSchemaType,
@@ -26,6 +41,8 @@ export type ScoreType<
   inputSchema: InputSchema
   outputSchema: OutputSchema
   terminology?: TerminologyType
+  licensing_status?: LicensingStatusType
+  license_contact?: string | null
   calculate: CalculateFn<
     z.ZodObject<{ [K in keyof InputSchema]: InputSchema[K]['type'] }>,
     OutputSchema
