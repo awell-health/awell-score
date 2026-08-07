@@ -57,8 +57,8 @@ import { csi } from './csi/csi'
 import { dast_10 } from './dast_10/dast_10'
 import { dn4 } from './dn4/dn4'
 import { dri } from './dri/dri'
+import { eortc_qlq_br23 } from './eortc/eortc_qlq_br23/eortc_qlq_br23'
 // import {
-//   eortc_qlq_br23,
 //   eortc_qlq_br45,
 //   eortc_qlq_c30,
 //   eortc_qlq_cr29,
@@ -241,7 +241,7 @@ export const ScoreLibrary = createScoreLibrary({
   dast_10,
   dn4,
   dri,
-  // eortc_qlq_br23,
+  eortc_qlq_br23,
   // eortc_qlq_br45,
   // eortc_qlq_c30,
   // eortc_qlq_cr29,
