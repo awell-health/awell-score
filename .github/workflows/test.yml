@@ -30,6 +30,11 @@ jobs:
       - name: Compile Typescript
         run: yarn build
 
+      # vitest transpiles without type-checking, and tsconfig.json excludes test
+      # files from the build, so this is what keeps them type-safe.
+      - name: Typecheck tests
+        run: yarn typecheck
+
       - name: Run tests
         run: yarn test
 
