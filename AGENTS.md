@@ -17,8 +17,10 @@ repo), which is deployed through
 ## Commands
 
 ```bash
-yarn test                       # jest, whole suite (slow — see below)
+yarn test                       # vitest, whole suite (~25s for 3122 tests)
 yarn test src/scores/audit      # one score's tests
+yarn test:watch                 # vitest in watch mode
+yarn typecheck                  # tsc over src *including* tests
 yarn lint                       # eslint
 yarn build                      # tsc + copy score READMEs into dist
 yarn bump                       # next release candidate, e.g. 1.1.8 -> 1.1.9-rc.0
@@ -26,6 +28,11 @@ yarn bump:minor                 # 1.2.0-rc.0
 yarn bump:major                 # 2.0.0-rc.0
 yarn bump:release               # drop the rc suffix and cut stable
 ```
+
+**Run `yarn typecheck` after touching tests.** vitest transpiles without
+type-checking, and `tsconfig.json` excludes `*.test.ts` from the build, so
+`yarn build` will not catch a type error in a test. `yarn typecheck` uses
+`tsconfig.test.json`, which includes them. CI runs both.
 
 ## Releasing, in one paragraph
 
@@ -83,27 +90,24 @@ Add entries under `## Unreleased` in [CHANGELOG.md](./CHANGELOG.md). Releasing
 renames that heading to the version number — see RELEASING.md. Call out anything
 that changes the shape of `apiSchema` output, since consumers validate against it.
 
-## Known gotcha: the test suite is slow
+## Test runner
 
-A single test file takes roughly 9 seconds locally, and almost none of that is
-the test. Measured:
+vitest, configured in [`vitest.config.mts`](./vitest.config.mts) with
+`globals: true`, so `describe`/`it`/`expect` need no imports. The whole suite —
+166 files, 3122 tests — runs in about 25 seconds.
 
-| A test file that imports | Time |
-| --- | --- |
-| nothing | 2.1s |
-| one score module | 3.0s |
-| `ScoreLibrary` | 6.7s |
+There is no `jest` here. Do not add `jest.fn`/`jest.mock`; use `vi.fn`/`vi.mock`.
+As of the migration nothing in the suite mocked anything at all, so if you find
+yourself needing a mock, check whether the score can be tested through its inputs
+instead.
 
-Nearly every test imports `ScoreLibrary` to look its own score up, and
-`library.ts` imports all 124 scores — so each of the 166 test files loads and
-type-checks the entire graph, in every jest worker, with no shared cache. On top of
-that, `jest.config.cjs` uses `preset: 'ts-jest'` with type-checking left on, which
-accounts for about 40% of the per-file cost.
+One inefficiency remains, if you are optimizing: 154 of the 166 test files
+`import { ScoreLibrary }`, and `library.ts` imports all 124 scores, so each of
+those files loads the entire graph. Almost every one of them uses it for a single
+`expect(ScoreLibrary).toHaveProperty('<name>')` registration assertion. Those
+could collapse into one test in `library.test.ts` that derives the expected names
+from the score directories — stronger than the current per-file checks, which only
+cover scores someone remembered to assert. Not urgent at 25 seconds.
 
-Practical consequences for you:
-
-- Run the single score's tests while iterating (`yarn test src/scores/audit`), not
-  the whole suite.
-- Do not conclude the suite has hung. It is just slow.
-- Importing `ScoreLibrary` in a new test costs ~4s. If the test only needs one
-  score, import that score directly.
+If you add a test that only needs one score, import that score directly rather
+than reaching through `ScoreLibrary`.

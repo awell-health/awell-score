@@ -1,7 +1,7 @@
 module.exports = {
   ignores: [
     'dist/**/*/generated/*.ts',
-    'jest.config.js',
+    'vitest.config.mts',
     '.yarn',
     '**/*/*.test.ts',
     '*pnp*',

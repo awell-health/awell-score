@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: ['*']
+    # '**' rather than '*': a single star does not match '/', so PRs targeting a
+    # branch with a slash in its name — any stacked PR — never ran the tests.
+    branches: ['**']
 
 jobs:
   test:
@@ -19,7 +21,9 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          # vitest 4 needs node:util's styleText, added in Node 20.12. Node 18 is
+          # also past end-of-life.
+          node-version: '22'
 
       - name: Install dependencies
         run: yarn
@@ -29,6 +33,11 @@ jobs:
 
       - name: Compile Typescript
         run: yarn build
+
+      # vitest transpiles without type-checking, and tsconfig.json excludes test
+      # files from the build, so this is what keeps them type-safe.
+      - name: Typecheck tests
+        run: yarn typecheck
 
       - name: Run tests
         run: yarn test

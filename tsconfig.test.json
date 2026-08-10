@@ -1,0 +1,13 @@
+{
+  // tsconfig.json excludes test files, and ts-jest used to be the only thing
+  // type-checking them. vitest transpiles without type-checking, so `yarn
+  // typecheck` uses this config to keep tests type-safe — once for the whole
+  // project rather than once per test file.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["**/scripts/*.ts", "**/todo/**/*.ts", "**/old/**/*.ts"]
+}
