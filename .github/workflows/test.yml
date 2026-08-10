@@ -82,6 +82,10 @@ jobs:
 
           if [ -n "$previous" ] && [ "$previous" != "$current" ]; then
             echo "::notice::This push set the version to $current by hand; leaving it as is."
+            # The version this replaces is superseded just as much as on the
+            # automatic path — `yarn bump:release` from 1.1.9-rc.0 to 1.1.9 leaves
+            # the rc's draft behind otherwise, on every single stable release.
+            echo "superseded=$previous" >> "$GITHUB_OUTPUT"
             emit "$current"
             exit 0
           fi
