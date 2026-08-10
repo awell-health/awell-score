@@ -35,6 +35,7 @@ This repository's code is MIT licensed. Clinical instrument content (item text, 
 - [Background](#-background)
 - [Installation and usage](#-documentation)
 - [How to Contribute](#-how-to-contribute)
+- [Releasing](./RELEASING.md)
 - [License policy](#-license-policy)
 
 ## 📜 Background
@@ -99,6 +100,8 @@ console.log(simulation)
 ## 👏 How to Contribute
 
 We welcome contributions from the community to improve and expand the Awell Score library. Here's how you can get involved:
+
+> Cutting a new version of the package? See [RELEASING.md](./RELEASING.md) — a push to `main` does not publish to npm.
 
 ### Adding a new Score
 
