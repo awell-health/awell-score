@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.1.9
 
 - Added optional `licensing_status` and `license_contact` fields to instrument
   definitions and the API schema output (`apiSchema`). Both are additive and
