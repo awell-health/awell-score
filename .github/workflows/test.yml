@@ -52,45 +52,81 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           # main requires a pull request, and github-actions[bot] cannot be
-          # granted a bypass, so pushing the bump needs a token belonging to
-          # someone who can — see RELEASING.md. Falls back to the built-in token,
-          # which will fail the push on a protected branch.
+          # granted a bypass, so pushing the bump directly needs a token belonging
+          # to someone who can — see RELEASING.md. Without RELEASE_BOT_TOKEN this
+          # falls back to the built-in token, the push is rejected, and the step
+          # below routes the bump through a pull request instead.
           token: ${{ secrets.RELEASE_BOT_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Bump to the next release candidate
         id: bump
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           previous=$(git show "${{ github.event.before }}:package.json" 2>/dev/null | jq -r .version || true)
           current=$(jq -r .version package.json)
 
+          # The draft must point at the commit whose package.json carries the
+          # version — publish.yml checks the tag against it.
+          emit() {
+            echo "version=$1" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          }
+
           if [ -n "$previous" ] && [ "$previous" != "$current" ]; then
             echo "::notice::This push set the version to $current by hand; leaving it as is."
-          else
-            npm version prerelease --preid rc --no-git-tag-version >/dev/null
-            current=$(jq -r .version package.json)
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            # [skip ci] matters when RELEASE_BOT_TOKEN is a PAT: unlike the
-            # built-in token, a PAT push retriggers workflows, and without this
-            # the bump would bump itself forever.
-            git commit -am "chore: bump version to v$current [skip ci]"
-            git push origin "HEAD:$GITHUB_REF_NAME"
-            echo "::notice::Bumped $previous -> $current."
-            echo "superseded=$previous" >> "$GITHUB_OUTPUT"
+            emit "$current"
+            exit 0
           fi
 
-          echo "version=$current" >> "$GITHUB_OUTPUT"
-          # The draft must point at the bump commit, not at the pushed commit —
-          # publish.yml checks the tag against package.json at the tagged commit.
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          npm version prerelease --preid rc --no-git-tag-version >/dev/null
+          version=$(jq -r .version package.json)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # [skip ci] matters when RELEASE_BOT_TOKEN is a PAT: unlike the built-in
+          # token, a PAT push retriggers workflows, and without this the bump
+          # would bump itself forever.
+          git commit -qam "chore: bump version to v$version [skip ci]"
 
+          if git push origin "HEAD:$GITHUB_REF_NAME"; then
+            echo "::notice::Bumped $current -> $version."
+            echo "superseded=$current" >> "$GITHUB_OUTPUT"
+            emit "$version"
+            exit 0
+          fi
+
+          # Protected branch. Open a pull request for the bump instead of failing
+          # the run. Merging it re-enters this job, which then sees the version
+          # already set, leaves it alone, and drafts the release. No draft is made
+          # now, because the version has not landed on the release branch yet.
+          branch="chore/bump-v$version"
+          git push -qf origin "HEAD:$branch"
+
+          if [ -z "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
+            # printf rather than a multi-line string, so YAML indentation does not
+            # end up in the pull request body.
+            body=$(printf '%s\n\n%s\n\n%s' \
+              "Automated release-candidate bump from $current to $version." \
+              "Merging this drafts the \`v$version\` release; publishing that draft ships it to npm. See [RELEASING.md](./RELEASING.md)." \
+              "This arrived as a pull request because the bump could not be pushed to \`$GITHUB_REF_NAME\` directly. Setting the \`RELEASE_BOT_TOKEN\` secret removes this extra step.")
+
+            gh pr create --base "$GITHUB_REF_NAME" --head "$branch" \
+              --title "chore: bump version to v$version" --body "$body"
+          fi
+
+          echo "::warning::Could not push to $GITHUB_REF_NAME, so v$version was opened as a pull request. Set RELEASE_BOT_TOKEN to bump directly — see RELEASING.md."
+
+      # Skipped when the bump went out as a pull request: the version is not on the
+      # release branch yet, so there is nothing valid to tag.
       - name: Refresh the draft release
+        if: steps.bump.outputs.version != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.bump.outputs.version }}

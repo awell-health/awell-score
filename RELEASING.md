@@ -105,19 +105,21 @@ teams, and installable GitHub Apps in "Allow specified actors to bypass required
 pull requests", and the Actions bot is none of those. Its push is rejected with
 `protected branch hook declined`.
 
-So the `release` job checks out with `RELEASE_BOT_TOKEN` and falls back to the
-built-in token, which cannot push here. Create that secret with a token
-belonging to someone who *can* bypass — repository admins always can, as can the
+**Without the secret, the release job still works** — it just takes one more
+click. When the direct push is rejected, it pushes `chore/bump-v<version>` and
+opens a pull request for the bump instead of failing. Merging that PR re-enters
+the job, which sees the version already set, leaves it alone, and drafts the
+release. So the only difference the secret makes is whether you merge a bump PR
+or not.
+
+To skip that step, create the secret with a token belonging to someone who *can*
+bypass the branch protection — repository admins always can, as can the
 `awell-health/awell-developers` team:
 
 1. Create a fine-grained personal access token scoped to this repository with
    **Contents: read and write**.
 2. Add it as the repository secret `RELEASE_BOT_TOKEN` (Settings → Secrets and
    variables → Actions).
-
-Until that secret exists, everything else still works — tests run, and you can
-release by bumping the version in a PR yourself and cutting the release by hand.
-Only the automatic rc bump needs it.
 
 A personal token ties releases to one person's account and expires. The durable
 version of this is a GitHub App with `contents: write`, installed on the repo and
