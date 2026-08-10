@@ -52,10 +52,13 @@ merges keep incrementing within it: `1.2.0-rc.0` → `1.2.0-rc.1` → …
 1. In a PR, run `yarn bump:release`. From any rc on the line this drops the
    suffix — `1.2.0-rc.4` becomes `1.2.0` — and from a stable version it moves to
    the next patch.
-2. Roll the `## Unreleased` heading in [CHANGELOG.md](./CHANGELOG.md) to the
-   version number.
-3. Merge. CI leaves the version alone and drafts `v1.2.0` as a normal (non-pre)
-   release.
+2. **Rename** the `## Unreleased` heading in [CHANGELOG.md](./CHANGELOG.md) to the
+   version number — do not leave an empty `## Unreleased` above it. The draft's
+   notes are the *first* `## ` section, so an empty one ships an empty release
+   body. Add a fresh `## Unreleased` next time there is something to record.
+3. Merge. CI leaves the version alone, deletes the superseded rc's draft, and
+   drafts `v1.2.0` as a normal (non-pre) release. A superseded version that was
+   actually *published* is never deleted, only an unshipped draft.
 4. Publish the draft. Check the **target commit** first — a draft has no tag yet,
    only a target, so the tag is created wherever the target points at the moment
    you publish.
