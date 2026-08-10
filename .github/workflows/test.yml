@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: ['*']
+    # '**' rather than '*': a single star does not match '/', so PRs targeting a
+    # branch with a slash in its name — any stacked PR — never ran the tests.
+    branches: ['**']
 
 jobs:
   test:
