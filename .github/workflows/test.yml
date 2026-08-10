@@ -32,3 +32,99 @@ jobs:
 
       - name: Run tests
         run: yarn test
+
+  # Moves main to the next release candidate and leaves a draft GitHub Release
+  # ready in the Releases tab. Publishing that draft is what ships to npm — see
+  # RELEASING.md. If the push already set the version by hand (`yarn bump:minor`
+  # and friends), that version is respected instead of being bumped over.
+  release:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # main requires a pull request, and github-actions[bot] cannot be
+          # granted a bypass, so pushing the bump needs a token belonging to
+          # someone who can — see RELEASING.md. Falls back to the built-in token,
+          # which will fail the push on a protected branch.
+          token: ${{ secrets.RELEASE_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Bump to the next release candidate
+        id: bump
+        run: |
+          previous=$(git show "${{ github.event.before }}:package.json" 2>/dev/null | jq -r .version || true)
+          current=$(jq -r .version package.json)
+
+          if [ -n "$previous" ] && [ "$previous" != "$current" ]; then
+            echo "::notice::This push set the version to $current by hand; leaving it as is."
+          else
+            npm version prerelease --preid rc --no-git-tag-version >/dev/null
+            current=$(jq -r .version package.json)
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            # [skip ci] matters when RELEASE_BOT_TOKEN is a PAT: unlike the
+            # built-in token, a PAT push retriggers workflows, and without this
+            # the bump would bump itself forever.
+            git commit -am "chore: bump version to v$current [skip ci]"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+            echo "::notice::Bumped $previous -> $current."
+            echo "superseded=$previous" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "version=$current" >> "$GITHUB_OUTPUT"
+          # The draft must point at the bump commit, not at the pushed commit —
+          # publish.yml checks the tag against package.json at the tagged commit.
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Refresh the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.bump.outputs.version }}
+          SHA: ${{ steps.bump.outputs.sha }}
+          SUPERSEDED: ${{ steps.bump.outputs.superseded }}
+        run: |
+          state() {
+            gh release list --limit 100 --json tagName,isDraft \
+              --jq ".[] | select(.tagName == \"$1\") | if .isDraft then \"draft\" else \"published\" end"
+          }
+
+          # The version we just bumped past never shipped, so its draft is stale.
+          if [ -n "$SUPERSEDED" ] && [ "$(state "v$SUPERSEDED")" = "draft" ]; then
+            gh release delete "v$SUPERSEDED" --yes
+            echo "Deleted superseded draft v$SUPERSEDED."
+          fi
+
+          tag="v$VERSION"
+          if [ "$(state "$tag")" = "published" ]; then
+            echo "::notice::$tag is already released; nothing to draft."
+            exit 0
+          fi
+
+          if [ "$(state "$tag")" = "draft" ]; then
+            # Notes are left alone so hand-written release notes survive.
+            gh release edit "$tag" --target "$SHA"
+            echo "::notice::Retargeted draft $tag at $SHA."
+            exit 0
+          fi
+
+          # A version with a hyphen is a release candidate; flag it so GitHub does
+          # not label it the latest release.
+          case "$VERSION" in
+            *-*) prerelease=--prerelease ;;
+            *)   prerelease= ;;
+          esac
+
+          # Body is the top section of the changelog; --generate-notes appends the
+          # merged-PR list underneath it.
+          gh release create "$tag" \
+            --draft $prerelease \
+            --target "$SHA" \
+            --title "$tag" \
+            --generate-notes \
+            --notes "$(awk '/^## /{n++; next} n==1' CHANGELOG.md)"
+          echo "::notice::Drafted $tag. Publish it to ship $VERSION to npm."

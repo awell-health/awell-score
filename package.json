@@ -17,7 +17,11 @@
     "lint": "eslint --config eslint.config.js",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "jest ",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "bump": "npm version prerelease --preid rc --no-git-tag-version",
+    "bump:minor": "npm version preminor --preid rc --no-git-tag-version",
+    "bump:major": "npm version premajor --preid rc --no-git-tag-version",
+    "bump:release": "npm version patch --no-git-tag-version"
   },
   "keywords": [],
   "author": "",

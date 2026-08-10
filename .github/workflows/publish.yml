@@ -14,6 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify release tag matches package.json version
+        run: |
+          tag=${GITHUB_REF##*/}
+          pkg=$(jq -r .version package.json)
+          if [ "$tag" != "v$pkg" ]; then
+            echo "::error::tag $tag does not match package.json version $pkg. See RELEASING.md."
+            exit 1
+          fi
+
       - name: Enable Corepack before setting up Node
         run: corepack enable
 
@@ -37,8 +46,16 @@ jobs:
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
+      # package.json is the source of truth and the step above proved it matches
+      # the tag, so there is nothing to rewrite here. Release candidates go to the
+      # `rc` dist-tag so that `npm install @awell-health/awell-score` keeps
+      # resolving to the latest stable version.
       - name: Publish to NPM Registry
         run: |
-          release_version=${GITHUB_REF##*/}
-          yarn version "$release_version"
-          yarn npm publish --access public
+          version=$(jq -r .version package.json)
+          case "$version" in
+            *-*) dist_tag=rc ;;
+            *)   dist_tag=latest ;;
+          esac
+          echo "Publishing $version to the $dist_tag dist-tag."
+          yarn npm publish --access public --tag "$dist_tag"
