@@ -142,6 +142,7 @@ Work through this in order:
 - [ ] 8. Register in src/scores/library.ts
 - [ ] 9. Add a CHANGELOG.md entry under ## Unreleased
 - [ ] 10. yarn test src/scores/<score> && yarn typecheck && yarn lint
+- [ ] 11. Get an independent review and resolve its blockers
 ```
 
 Writing the README before the code is deliberate: it forces the scoring rules and
@@ -158,6 +159,28 @@ failures (out-of-range, wrong type), empty-response behaviour, and each fixture'
 expected value. Derive expected values from the instrument's manual, not from
 running the code — a test written from the implementation only proves the
 implementation is self-consistent.
+
+## Step 11: independent review
+
+A score is not done until another agent has checked it against the instrument's
+own publication. Launch a fresh subagent, tell it to follow
+[awell-score-review](../awell-score-review/SKILL.md), and give it only the
+instrument name and the changed paths:
+
+```
+Review the WHO-5 score in src/scores/who_5/ against the instrument's original
+publication. Follow .claude/skills/awell-score-review/SKILL.md.
+```
+
+Do not include your reasoning, your reading of the scoring rules, or a summary of
+what you implemented. The review's entire value is that it reaches the primary
+source independently; anchoring it on your interpretation means it can only
+confirm you. Prefer a different model from your own, since a model tends to share
+blind spots with itself.
+
+Resolve every Blocker before calling the work done. If you believe a finding is
+wrong, answer it with the source you relied on rather than with your reasoning —
+and if you cannot produce one, the reviewer is probably right.
 
 ## Writing the README for a clinical reader
 
@@ -237,6 +260,7 @@ over mocking anything.
 - [ ] No unlicensed item text added
 - [ ] Registered in `library.ts`; `CHANGELOG.md` updated under `## Unreleased`
 - [ ] Tests, typecheck and lint pass
+- [ ] Independent review obtained and every Blocker resolved
 
 For file-by-file templates, the full input type table and edge-case patterns
 (interpretation tables, conversion tables, multi-variant scores, `null` returns),
