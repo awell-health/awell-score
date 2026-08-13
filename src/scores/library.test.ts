@@ -5,6 +5,9 @@ describe('calculation library', function () {
     test('mock test', function () {
       expect(true).toBe(true)
     })
+    it('should include who_5', function () {
+      expect(ScoreLibrary).toHaveProperty('who_5')
+    })
     // it('needs to have at least an English calculation name', function () {
     //   R.forEachObjIndexed((calculation, calculation_id) => {
     //     if (!('calculation_name' in calculation)) {
