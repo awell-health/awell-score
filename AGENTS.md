@@ -11,7 +11,8 @@ repo), which is deployed through
 | Task | Read |
 | --- | --- |
 | Cutting a release, bumping the version | **[RELEASING.md](./RELEASING.md)** |
-| Adding or changing a score | [README.md](./README.md#adding-a-new-score) and the anatomy below |
+| Adding or changing a score | [awell-score-authoring skill](./.claude/skills/awell-score-authoring/SKILL.md) — templates, workflow and clinical-correctness rules |
+| Contributor-facing SDK docs for a score | [README.md](./README.md#adding-a-new-score) and the anatomy below |
 | Anything touching instrument content | **[NOTICE](./NOTICE)** — read before adding item text |
 
 ## Commands
